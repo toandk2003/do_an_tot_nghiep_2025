@@ -1,0 +1,419 @@
+2025-07-12T19:40:43.835+07:00  INFO 11205 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : Starting StrongStrongApplication using Java 22.0.2 with PID 11205 (/home/ngocyenptit/Documents/strong-strong/target/classes started by ngocyenptit in /home/ngocyenptit/Documents/strong-strong)
+2025-07-12T19:40:43.835+07:00  INFO 11205 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : No active profile set, falling back to 1 default profile: "default"
+2025-07-12T19:40:43.991+07:00  INFO 11205 --- [strong-strong] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-07-12T19:40:43.993+07:00  INFO 11205 --- [strong-strong] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-07-12T19:40:43.993+07:00  INFO 11205 --- [strong-strong] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-07-12T19:40:43.999+07:00  INFO 11205 --- [strong-strong] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-07-12T19:40:43.999+07:00  INFO 11205 --- [strong-strong] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 162 ms
+2025-07-12T19:40:44.008+07:00  INFO 11205 --- [strong-strong] [restartedMain] f.a.AutowiredAnnotationBeanPostProcessor : Autowired annotation is not supported on static fields: public static java.lang.String org.yenln8.ChatApp.StrongStrongApplication.passwordSender
+2025-07-12T19:40:44.041+07:00  INFO 11205 --- [strong-strong] [restartedMain] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-07-12T19:40:44.109+07:00  INFO 11205 --- [strong-strong] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-07-12T19:40:44.117+07:00  INFO 11205 --- [strong-strong] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-07-12T19:40:44.120+07:00  INFO 11205 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : Started StrongStrongApplication in 0.313 seconds (process running for 883.449)
+2025-07-12T19:40:44.122+07:00  INFO 11205 --- [strong-strong] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2025-07-12T19:49:02.049+07:00  INFO 11205 --- [strong-strong] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 10 class path changes (0 additions, 7 deletions, 3 modifications)
+2025-07-12T19:49:02.050+07:00  INFO 11205 --- [strong-strong] [Thread-11] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-07-12T19:49:02.052+07:00  INFO 11205 --- [strong-strong] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-07-12T19:49:02.174+07:00  INFO 11205 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : Starting StrongStrongApplication using Java 22.0.2 with PID 11205 (/home/ngocyenptit/Documents/strong-strong/target/classes started by ngocyenptit in /home/ngocyenptit/Documents/strong-strong)
+2025-07-12T19:49:02.174+07:00  INFO 11205 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : No active profile set, falling back to 1 default profile: "default"
+2025-07-12T19:49:02.379+07:00  INFO 11205 --- [strong-strong] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-07-12T19:49:02.381+07:00  INFO 11205 --- [strong-strong] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-07-12T19:49:02.381+07:00  INFO 11205 --- [strong-strong] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-07-12T19:49:02.387+07:00  INFO 11205 --- [strong-strong] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-07-12T19:49:02.387+07:00  INFO 11205 --- [strong-strong] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 210 ms
+2025-07-12T19:49:02.396+07:00  INFO 11205 --- [strong-strong] [restartedMain] f.a.AutowiredAnnotationBeanPostProcessor : Autowired annotation is not supported on static fields: public static java.lang.String org.yenln8.ChatApp.StrongStrongApplication.passwordSender
+2025-07-12T19:49:02.430+07:00  INFO 11205 --- [strong-strong] [restartedMain] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-07-12T19:49:02.485+07:00  INFO 11205 --- [strong-strong] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-07-12T19:49:02.493+07:00  INFO 11205 --- [strong-strong] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-07-12T19:49:02.496+07:00  INFO 11205 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : Started StrongStrongApplication in 0.356 seconds (process running for 1381.825)
+2025-07-12T19:49:02.497+07:00  INFO 11205 --- [strong-strong] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2025-07-12T19:49:03.888+07:00  INFO 11205 --- [strong-strong] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 2 class path changes (2 additions, 0 deletions, 0 modifications)
+2025-07-12T19:49:03.889+07:00  INFO 11205 --- [strong-strong] [Thread-15] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-07-12T19:49:03.890+07:00  INFO 11205 --- [strong-strong] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-07-12T19:49:03.965+07:00  INFO 11205 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : Starting StrongStrongApplication using Java 22.0.2 with PID 11205 (/home/ngocyenptit/Documents/strong-strong/target/classes started by ngocyenptit in /home/ngocyenptit/Documents/strong-strong)
+2025-07-12T19:49:03.965+07:00  INFO 11205 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : No active profile set, falling back to 1 default profile: "default"
+2025-07-12T19:49:04.066+07:00  INFO 11205 --- [strong-strong] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-07-12T19:49:04.067+07:00  INFO 11205 --- [strong-strong] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-07-12T19:49:04.067+07:00  INFO 11205 --- [strong-strong] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-07-12T19:49:04.072+07:00  INFO 11205 --- [strong-strong] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-07-12T19:49:04.072+07:00  INFO 11205 --- [strong-strong] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 106 ms
+2025-07-12T19:49:04.078+07:00  INFO 11205 --- [strong-strong] [restartedMain] f.a.AutowiredAnnotationBeanPostProcessor : Autowired annotation is not supported on static fields: public static java.lang.String org.yenln8.ChatApp.StrongStrongApplication.passwordSender
+2025-07-12T19:49:04.093+07:00  INFO 11205 --- [strong-strong] [restartedMain] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-07-12T19:49:04.132+07:00  INFO 11205 --- [strong-strong] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-07-12T19:49:04.140+07:00  INFO 11205 --- [strong-strong] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-07-12T19:49:04.143+07:00  INFO 11205 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : Started StrongStrongApplication in 0.195 seconds (process running for 1383.472)
+2025-07-12T19:49:04.144+07:00  INFO 11205 --- [strong-strong] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2025-07-12T19:49:56.572+07:00  INFO 11205 --- [strong-strong] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 2 class path changes (0 additions, 2 deletions, 0 modifications)
+2025-07-12T19:49:56.574+07:00  INFO 11205 --- [strong-strong] [Thread-19] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-07-12T19:49:56.575+07:00  INFO 11205 --- [strong-strong] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-07-12T19:49:56.644+07:00  INFO 11205 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : Starting StrongStrongApplication using Java 22.0.2 with PID 11205 (/home/ngocyenptit/Documents/strong-strong/target/classes started by ngocyenptit in /home/ngocyenptit/Documents/strong-strong)
+2025-07-12T19:49:56.645+07:00  INFO 11205 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : No active profile set, falling back to 1 default profile: "default"
+2025-07-12T19:49:56.762+07:00  INFO 11205 --- [strong-strong] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-07-12T19:49:56.763+07:00  INFO 11205 --- [strong-strong] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-07-12T19:49:56.763+07:00  INFO 11205 --- [strong-strong] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-07-12T19:49:56.768+07:00  INFO 11205 --- [strong-strong] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-07-12T19:49:56.768+07:00  INFO 11205 --- [strong-strong] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 122 ms
+2025-07-12T19:49:56.775+07:00  INFO 11205 --- [strong-strong] [restartedMain] f.a.AutowiredAnnotationBeanPostProcessor : Autowired annotation is not supported on static fields: public static java.lang.String org.yenln8.ChatApp.StrongStrongApplication.passwordSender
+2025-07-12T19:49:56.793+07:00  INFO 11205 --- [strong-strong] [restartedMain] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-07-12T19:49:56.836+07:00  INFO 11205 --- [strong-strong] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-07-12T19:49:56.842+07:00  INFO 11205 --- [strong-strong] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-07-12T19:49:56.845+07:00  INFO 11205 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : Started StrongStrongApplication in 0.218 seconds (process running for 1436.174)
+2025-07-12T19:49:56.846+07:00  INFO 11205 --- [strong-strong] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2025-07-12T19:49:58.239+07:00  INFO 11205 --- [strong-strong] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 2 class path changes (2 additions, 0 deletions, 0 modifications)
+2025-07-12T19:49:58.240+07:00  INFO 11205 --- [strong-strong] [Thread-23] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-07-12T19:49:58.241+07:00  INFO 11205 --- [strong-strong] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-07-12T19:49:58.311+07:00  INFO 11205 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : Starting StrongStrongApplication using Java 22.0.2 with PID 11205 (/home/ngocyenptit/Documents/strong-strong/target/classes started by ngocyenptit in /home/ngocyenptit/Documents/strong-strong)
+2025-07-12T19:49:58.311+07:00  INFO 11205 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : No active profile set, falling back to 1 default profile: "default"
+2025-07-12T19:49:58.408+07:00  INFO 11205 --- [strong-strong] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-07-12T19:49:58.409+07:00  INFO 11205 --- [strong-strong] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-07-12T19:49:58.409+07:00  INFO 11205 --- [strong-strong] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-07-12T19:49:58.413+07:00  INFO 11205 --- [strong-strong] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-07-12T19:49:58.413+07:00  INFO 11205 --- [strong-strong] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 101 ms
+2025-07-12T19:49:58.419+07:00  INFO 11205 --- [strong-strong] [restartedMain] f.a.AutowiredAnnotationBeanPostProcessor : Autowired annotation is not supported on static fields: public static java.lang.String org.yenln8.ChatApp.StrongStrongApplication.passwordSender
+2025-07-12T19:49:58.434+07:00  INFO 11205 --- [strong-strong] [restartedMain] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-07-12T19:49:58.471+07:00  INFO 11205 --- [strong-strong] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-07-12T19:49:58.479+07:00  INFO 11205 --- [strong-strong] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-07-12T19:49:58.482+07:00  INFO 11205 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : Started StrongStrongApplication in 0.183 seconds (process running for 1437.81)
+2025-07-12T19:49:58.482+07:00  INFO 11205 --- [strong-strong] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2025-07-12T19:50:56.787+07:00  INFO 11205 --- [strong-strong] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-07-12T19:50:56.789+07:00  INFO 11205 --- [strong-strong] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-07-12T20:13:37.858+07:00  INFO 15392 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : Starting StrongStrongApplication using Java 22.0.2 with PID 15392 (/home/ngocyenptit/Documents/strong-strong/target/classes started by ngocyenptit in /home/ngocyenptit/Documents/strong-strong)
+2025-07-12T20:13:37.860+07:00  INFO 15392 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : No active profile set, falling back to 1 default profile: "default"
+2025-07-12T20:13:37.893+07:00  INFO 15392 --- [strong-strong] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-07-12T20:13:37.893+07:00  INFO 15392 --- [strong-strong] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-07-12T20:13:38.607+07:00  INFO 15392 --- [strong-strong] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-07-12T20:13:38.623+07:00  INFO 15392 --- [strong-strong] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-07-12T20:13:38.624+07:00  INFO 15392 --- [strong-strong] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-07-12T20:13:38.649+07:00  INFO 15392 --- [strong-strong] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-07-12T20:13:38.649+07:00  INFO 15392 --- [strong-strong] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 756 ms
+2025-07-12T20:13:38.689+07:00  INFO 15392 --- [strong-strong] [restartedMain] f.a.AutowiredAnnotationBeanPostProcessor : Autowired annotation is not supported on static fields: public static java.lang.String org.yenln8.ChatApp.StrongStrongApplication.passwordSender
+2025-07-12T20:13:38.816+07:00  INFO 15392 --- [strong-strong] [restartedMain] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-07-12T20:13:39.043+07:00  INFO 15392 --- [strong-strong] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-07-12T20:13:39.072+07:00  INFO 15392 --- [strong-strong] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-07-12T20:13:39.079+07:00  INFO 15392 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : Started StrongStrongApplication in 1.57 seconds (process running for 1.996)
+2025-07-12T20:13:39.082+07:00  INFO 15392 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : helllll
+2025-07-12T20:15:00.577+07:00  INFO 15392 --- [strong-strong] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-07-12T20:15:00.582+07:00  INFO 15392 --- [strong-strong] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-07-12T20:39:08.453+07:00  INFO 16885 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : Starting StrongStrongApplication using Java 22.0.2 with PID 16885 (/home/ngocyenptit/Documents/strong-strong/target/classes started by ngocyenptit in /home/ngocyenptit/Documents/strong-strong)
+2025-07-12T20:39:08.455+07:00  INFO 16885 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : No active profile set, falling back to 1 default profile: "default"
+2025-07-12T20:39:08.493+07:00  INFO 16885 --- [strong-strong] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-07-12T20:39:08.494+07:00  INFO 16885 --- [strong-strong] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-07-12T20:39:09.258+07:00  INFO 16885 --- [strong-strong] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-07-12T20:39:09.269+07:00  INFO 16885 --- [strong-strong] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-07-12T20:39:09.270+07:00  INFO 16885 --- [strong-strong] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-07-12T20:39:09.296+07:00  INFO 16885 --- [strong-strong] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-07-12T20:39:09.297+07:00  INFO 16885 --- [strong-strong] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 802 ms
+2025-07-12T20:39:09.338+07:00  INFO 16885 --- [strong-strong] [restartedMain] f.a.AutowiredAnnotationBeanPostProcessor : Autowired annotation is not supported on static fields: public static java.lang.String org.yenln8.ChatApp.StrongStrongApplication.passwordSender
+2025-07-12T20:39:09.472+07:00  INFO 16885 --- [strong-strong] [restartedMain] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-07-12T20:39:09.705+07:00  INFO 16885 --- [strong-strong] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-07-12T20:39:09.732+07:00  INFO 16885 --- [strong-strong] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-07-12T20:39:09.743+07:00  INFO 16885 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : Started StrongStrongApplication in 1.649 seconds (process running for 2.15)
+2025-07-12T20:39:09.747+07:00  INFO 16885 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : Fail to get message with key "system.message", params "[]",
+ Can't find resource for bundle java.util.PropertyResourceBundle, key system.message
+2025-07-12T20:39:14.457+07:00  INFO 16885 --- [strong-strong] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-07-12T20:39:14.458+07:00  INFO 16885 --- [strong-strong] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-07-12T20:39:14.459+07:00  INFO 16885 --- [strong-strong] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-07-12T20:39:14.870+07:00  INFO 16885 --- [strong-strong] [http-nio-8080-exec-4] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 205 ms
+2025-07-12T20:39:33.773+07:00  INFO 16885 --- [strong-strong] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-07-12T20:39:33.778+07:00  INFO 16885 --- [strong-strong] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-07-12T20:39:36.702+07:00  INFO 17074 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : Starting StrongStrongApplication using Java 22.0.2 with PID 17074 (/home/ngocyenptit/Documents/strong-strong/target/classes started by ngocyenptit in /home/ngocyenptit/Documents/strong-strong)
+2025-07-12T20:39:36.704+07:00  INFO 17074 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : No active profile set, falling back to 1 default profile: "default"
+2025-07-12T20:39:36.739+07:00  INFO 17074 --- [strong-strong] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-07-12T20:39:36.739+07:00  INFO 17074 --- [strong-strong] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-07-12T20:39:37.446+07:00  INFO 17074 --- [strong-strong] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-07-12T20:39:37.455+07:00  INFO 17074 --- [strong-strong] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-07-12T20:39:37.456+07:00  INFO 17074 --- [strong-strong] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-07-12T20:39:37.480+07:00  INFO 17074 --- [strong-strong] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-07-12T20:39:37.480+07:00  INFO 17074 --- [strong-strong] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 740 ms
+2025-07-12T20:39:37.528+07:00  INFO 17074 --- [strong-strong] [restartedMain] f.a.AutowiredAnnotationBeanPostProcessor : Autowired annotation is not supported on static fields: public static java.lang.String org.yenln8.ChatApp.StrongStrongApplication.passwordSender
+2025-07-12T20:39:37.655+07:00  INFO 17074 --- [strong-strong] [restartedMain] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-07-12T20:39:37.882+07:00  INFO 17074 --- [strong-strong] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-07-12T20:39:37.905+07:00  INFO 17074 --- [strong-strong] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-07-12T20:39:37.913+07:00  INFO 17074 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : Started StrongStrongApplication in 1.59 seconds (process running for 2.031)
+2025-07-12T20:39:37.917+07:00  INFO 17074 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : Fail to get message with key "system.message", params "[]",
+ Can't find resource for bundle java.util.PropertyResourceBundle, key system.message
+2025-07-12T20:39:40.829+07:00  INFO 17074 --- [strong-strong] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-07-12T20:39:40.831+07:00  INFO 17074 --- [strong-strong] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-07-12T20:39:40.836+07:00  INFO 17074 --- [strong-strong] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-07-12T20:41:43.705+07:00  INFO 17074 --- [strong-strong] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-07-12T20:41:43.708+07:00  INFO 17074 --- [strong-strong] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-07-12T20:41:46.751+07:00  INFO 17463 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : Starting StrongStrongApplication using Java 22.0.2 with PID 17463 (/home/ngocyenptit/Documents/strong-strong/target/classes started by ngocyenptit in /home/ngocyenptit/Documents/strong-strong)
+2025-07-12T20:41:46.753+07:00  INFO 17463 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : No active profile set, falling back to 1 default profile: "default"
+2025-07-12T20:41:46.783+07:00  INFO 17463 --- [strong-strong] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-07-12T20:41:46.783+07:00  INFO 17463 --- [strong-strong] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-07-12T20:41:47.469+07:00  INFO 17463 --- [strong-strong] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-07-12T20:41:47.480+07:00  INFO 17463 --- [strong-strong] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-07-12T20:41:47.480+07:00  INFO 17463 --- [strong-strong] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-07-12T20:41:47.505+07:00  INFO 17463 --- [strong-strong] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-07-12T20:41:47.506+07:00  INFO 17463 --- [strong-strong] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 722 ms
+2025-07-12T20:41:47.543+07:00  INFO 17463 --- [strong-strong] [restartedMain] f.a.AutowiredAnnotationBeanPostProcessor : Autowired annotation is not supported on static fields: public static java.lang.String org.yenln8.ChatApp.StrongStrongApplication.passwordSender
+2025-07-12T20:41:47.665+07:00  INFO 17463 --- [strong-strong] [restartedMain] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-07-12T20:41:47.892+07:00  INFO 17463 --- [strong-strong] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-07-12T20:41:47.917+07:00  INFO 17463 --- [strong-strong] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-07-12T20:41:47.925+07:00  INFO 17463 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : Started StrongStrongApplication in 1.501 seconds (process running for 1.988)
+2025-07-12T20:41:47.929+07:00  INFO 17463 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : Fail to get message with key "system.message", params "[]",
+ Can't find resource for bundle java.util.PropertyResourceBundle, key system.message
+2025-07-12T20:42:20.864+07:00  INFO 17463 --- [strong-strong] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-07-12T20:42:20.869+07:00  INFO 17463 --- [strong-strong] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-07-12T20:42:23.778+07:00  INFO 17598 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : Starting StrongStrongApplication using Java 22.0.2 with PID 17598 (/home/ngocyenptit/Documents/strong-strong/target/classes started by ngocyenptit in /home/ngocyenptit/Documents/strong-strong)
+2025-07-12T20:42:23.780+07:00  INFO 17598 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : No active profile set, falling back to 1 default profile: "default"
+2025-07-12T20:42:23.815+07:00  INFO 17598 --- [strong-strong] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-07-12T20:42:23.815+07:00  INFO 17598 --- [strong-strong] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-07-12T20:42:24.558+07:00  INFO 17598 --- [strong-strong] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-07-12T20:42:24.568+07:00  INFO 17598 --- [strong-strong] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-07-12T20:42:24.568+07:00  INFO 17598 --- [strong-strong] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-07-12T20:42:24.594+07:00  INFO 17598 --- [strong-strong] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-07-12T20:42:24.595+07:00  INFO 17598 --- [strong-strong] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 780 ms
+2025-07-12T20:42:24.635+07:00  INFO 17598 --- [strong-strong] [restartedMain] f.a.AutowiredAnnotationBeanPostProcessor : Autowired annotation is not supported on static fields: public static java.lang.String org.yenln8.ChatApp.StrongStrongApplication.passwordSender
+2025-07-12T20:42:24.762+07:00  INFO 17598 --- [strong-strong] [restartedMain] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-07-12T20:42:24.987+07:00  INFO 17598 --- [strong-strong] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-07-12T20:42:25.010+07:00  INFO 17598 --- [strong-strong] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-07-12T20:42:25.018+07:00  INFO 17598 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : Started StrongStrongApplication in 1.576 seconds (process running for 2.029)
+2025-07-12T20:42:25.021+07:00  INFO 17598 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : Fail to get message with key "system.message", params "[]",
+ Can't find resource for bundle java.util.PropertyResourceBundle, key system.message
+2025-07-12T20:43:05.332+07:00  INFO 17598 --- [strong-strong] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-07-12T20:43:05.337+07:00  INFO 17598 --- [strong-strong] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-07-12T20:43:08.270+07:00  INFO 17732 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : Starting StrongStrongApplication using Java 22.0.2 with PID 17732 (/home/ngocyenptit/Documents/strong-strong/target/classes started by ngocyenptit in /home/ngocyenptit/Documents/strong-strong)
+2025-07-12T20:43:08.271+07:00  INFO 17732 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : No active profile set, falling back to 1 default profile: "default"
+2025-07-12T20:43:08.302+07:00  INFO 17732 --- [strong-strong] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-07-12T20:43:08.302+07:00  INFO 17732 --- [strong-strong] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-07-12T20:43:08.985+07:00  INFO 17732 --- [strong-strong] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-07-12T20:43:08.996+07:00  INFO 17732 --- [strong-strong] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-07-12T20:43:08.996+07:00  INFO 17732 --- [strong-strong] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-07-12T20:43:09.022+07:00  INFO 17732 --- [strong-strong] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-07-12T20:43:09.022+07:00  INFO 17732 --- [strong-strong] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 720 ms
+2025-07-12T20:43:09.065+07:00  INFO 17732 --- [strong-strong] [restartedMain] f.a.AutowiredAnnotationBeanPostProcessor : Autowired annotation is not supported on static fields: public static java.lang.String org.yenln8.ChatApp.StrongStrongApplication.passwordSender
+2025-07-12T20:43:09.200+07:00  INFO 17732 --- [strong-strong] [restartedMain] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-07-12T20:43:09.440+07:00  INFO 17732 --- [strong-strong] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-07-12T20:43:09.463+07:00  INFO 17732 --- [strong-strong] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-07-12T20:43:09.472+07:00  INFO 17732 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : Started StrongStrongApplication in 1.567 seconds (process running for 2.031)
+2025-07-12T20:43:57.033+07:00  INFO 17732 --- [strong-strong] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-07-12T20:43:57.036+07:00  INFO 17732 --- [strong-strong] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-07-12T20:44:00.038+07:00  INFO 17872 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : Starting StrongStrongApplication using Java 22.0.2 with PID 17872 (/home/ngocyenptit/Documents/strong-strong/target/classes started by ngocyenptit in /home/ngocyenptit/Documents/strong-strong)
+2025-07-12T20:44:00.040+07:00  INFO 17872 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : No active profile set, falling back to 1 default profile: "default"
+2025-07-12T20:44:00.070+07:00  INFO 17872 --- [strong-strong] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-07-12T20:44:00.070+07:00  INFO 17872 --- [strong-strong] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-07-12T20:44:00.759+07:00  INFO 17872 --- [strong-strong] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-07-12T20:44:00.772+07:00  INFO 17872 --- [strong-strong] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-07-12T20:44:00.773+07:00  INFO 17872 --- [strong-strong] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-07-12T20:44:00.799+07:00  INFO 17872 --- [strong-strong] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-07-12T20:44:00.799+07:00  INFO 17872 --- [strong-strong] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 728 ms
+2025-07-12T20:44:00.839+07:00  INFO 17872 --- [strong-strong] [restartedMain] f.a.AutowiredAnnotationBeanPostProcessor : Autowired annotation is not supported on static fields: public static java.lang.String org.yenln8.ChatApp.StrongStrongApplication.passwordSender
+2025-07-12T20:44:00.964+07:00  INFO 17872 --- [strong-strong] [restartedMain] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-07-12T20:44:01.203+07:00  INFO 17872 --- [strong-strong] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-07-12T20:44:01.226+07:00  INFO 17872 --- [strong-strong] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-07-12T20:44:01.234+07:00  INFO 17872 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : Started StrongStrongApplication in 1.541 seconds (process running for 1.987)
+2025-07-12T20:44:01.238+07:00  INFO 17872 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : Fail to get message with key "system.message", params "[]",
+ Can't find resource for bundle java.util.PropertyResourceBundle, key system.message
+2025-07-12T20:45:08.812+07:00  INFO 17872 --- [strong-strong] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-07-12T20:45:08.816+07:00  INFO 17872 --- [strong-strong] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-07-12T20:45:11.722+07:00  INFO 18026 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : Starting StrongStrongApplication using Java 22.0.2 with PID 18026 (/home/ngocyenptit/Documents/strong-strong/target/classes started by ngocyenptit in /home/ngocyenptit/Documents/strong-strong)
+2025-07-12T20:45:11.723+07:00  INFO 18026 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : No active profile set, falling back to 1 default profile: "default"
+2025-07-12T20:45:11.756+07:00  INFO 18026 --- [strong-strong] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-07-12T20:45:11.757+07:00  INFO 18026 --- [strong-strong] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-07-12T20:45:12.485+07:00  INFO 18026 --- [strong-strong] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-07-12T20:45:12.496+07:00  INFO 18026 --- [strong-strong] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-07-12T20:45:12.497+07:00  INFO 18026 --- [strong-strong] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-07-12T20:45:12.526+07:00  INFO 18026 --- [strong-strong] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-07-12T20:45:12.526+07:00  INFO 18026 --- [strong-strong] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 769 ms
+2025-07-12T20:45:12.568+07:00  INFO 18026 --- [strong-strong] [restartedMain] f.a.AutowiredAnnotationBeanPostProcessor : Autowired annotation is not supported on static fields: public static java.lang.String org.yenln8.ChatApp.StrongStrongApplication.passwordSender
+2025-07-12T20:45:12.692+07:00  INFO 18026 --- [strong-strong] [restartedMain] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-07-12T20:45:12.917+07:00  INFO 18026 --- [strong-strong] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-07-12T20:45:12.940+07:00  INFO 18026 --- [strong-strong] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-07-12T20:45:12.947+07:00  INFO 18026 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : Started StrongStrongApplication in 1.579 seconds (process running for 2.022)
+2025-07-12T20:45:12.950+07:00  INFO 18026 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : ChatApp sends you an OTP to register your new account
+2025-07-12T20:46:52.575+07:00  INFO 18026 --- [strong-strong] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-07-12T20:46:52.579+07:00  INFO 18026 --- [strong-strong] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-07-12T20:46:55.462+07:00  INFO 18751 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : Starting StrongStrongApplication using Java 22.0.2 with PID 18751 (/home/ngocyenptit/Documents/strong-strong/target/classes started by ngocyenptit in /home/ngocyenptit/Documents/strong-strong)
+2025-07-12T20:46:55.464+07:00  INFO 18751 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : No active profile set, falling back to 1 default profile: "default"
+2025-07-12T20:46:55.498+07:00  INFO 18751 --- [strong-strong] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-07-12T20:46:55.499+07:00  INFO 18751 --- [strong-strong] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-07-12T20:46:56.188+07:00  INFO 18751 --- [strong-strong] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-07-12T20:46:56.201+07:00  INFO 18751 --- [strong-strong] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-07-12T20:46:56.202+07:00  INFO 18751 --- [strong-strong] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-07-12T20:46:56.226+07:00  INFO 18751 --- [strong-strong] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-07-12T20:46:56.227+07:00  INFO 18751 --- [strong-strong] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 728 ms
+2025-07-12T20:46:56.266+07:00  INFO 18751 --- [strong-strong] [restartedMain] f.a.AutowiredAnnotationBeanPostProcessor : Autowired annotation is not supported on static fields: public static java.lang.String org.yenln8.ChatApp.StrongStrongApplication.passwordSender
+2025-07-12T20:46:56.385+07:00  INFO 18751 --- [strong-strong] [restartedMain] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-07-12T20:46:56.615+07:00  INFO 18751 --- [strong-strong] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-07-12T20:46:56.638+07:00  INFO 18751 --- [strong-strong] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-07-12T20:46:56.646+07:00  INFO 18751 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : Started StrongStrongApplication in 1.623 seconds (process running for 2.086)
+2025-07-12T20:46:56.649+07:00  INFO 18751 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : ChatApp sends you an OTP to register your new account
+2025-07-12T20:59:51.959+07:00  INFO 18751 --- [strong-strong] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-07-12T20:59:51.960+07:00  INFO 18751 --- [strong-strong] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-07-12T20:59:51.962+07:00  INFO 18751 --- [strong-strong] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-07-12T20:59:52.006+07:00 ERROR 18751 --- [strong-strong] [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: java.lang.NullPointerException: Cannot invoke "org.yenln8.ChatApp.service.EmailService.systemSendTo(String, String, String)" because "this.emailService" is null] with root cause
+
+java.lang.NullPointerException: Cannot invoke "org.yenln8.ChatApp.service.EmailService.systemSendTo(String, String, String)" because "this.emailService" is null
+	at org.yenln8.ChatApp.controller.TestController.test(TestController.java:16) ~[classes/:na]
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:258) ~[spring-web-6.2.8.jar:6.2.8]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:191) ~[spring-web-6.2.8.jar:6.2.8]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.2.8.jar:6.2.8]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986) ~[spring-webmvc-6.2.8.jar:6.2.8]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891) ~[spring-webmvc-6.2.8.jar:6.2.8]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.2.8.jar:6.2.8]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089) ~[spring-webmvc-6.2.8.jar:6.2.8]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979) ~[spring-webmvc-6.2.8.jar:6.2.8]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014) ~[spring-webmvc-6.2.8.jar:6.2.8]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903) ~[spring-webmvc-6.2.8.jar:6.2.8]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564) ~[tomcat-embed-core-10.1.42.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.2.8.jar:6.2.8]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.42.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.42.jar:10.1.42]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.2.8.jar:6.2.8]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.8.jar:6.2.8]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.2.8.jar:6.2.8]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.8.jar:6.2.8]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.2.8.jar:6.2.8]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.2.8.jar:6.2.8]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:116) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1769) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1189) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:658) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63) ~[tomcat-embed-core-10.1.42.jar:10.1.42]
+	at java.base/java.lang.Thread.run(Thread.java:1570) ~[na:na]
+
+2025-07-12T21:01:14.450+07:00  INFO 18751 --- [strong-strong] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-07-12T21:01:14.453+07:00  INFO 18751 --- [strong-strong] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-07-12T21:01:17.475+07:00  INFO 19486 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : Starting StrongStrongApplication using Java 22.0.2 with PID 19486 (/home/ngocyenptit/Documents/strong-strong/target/classes started by ngocyenptit in /home/ngocyenptit/Documents/strong-strong)
+2025-07-12T21:01:17.477+07:00  INFO 19486 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : No active profile set, falling back to 1 default profile: "default"
+2025-07-12T21:01:17.513+07:00  INFO 19486 --- [strong-strong] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-07-12T21:01:17.513+07:00  INFO 19486 --- [strong-strong] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-07-12T21:01:18.309+07:00  INFO 19486 --- [strong-strong] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-07-12T21:01:18.320+07:00  INFO 19486 --- [strong-strong] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-07-12T21:01:18.321+07:00  INFO 19486 --- [strong-strong] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-07-12T21:01:18.349+07:00  INFO 19486 --- [strong-strong] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-07-12T21:01:18.349+07:00  INFO 19486 --- [strong-strong] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 836 ms
+2025-07-12T21:01:18.395+07:00  INFO 19486 --- [strong-strong] [restartedMain] f.a.AutowiredAnnotationBeanPostProcessor : Autowired annotation is not supported on static fields: public static java.lang.String org.yenln8.ChatApp.StrongStrongApplication.passwordSender
+2025-07-12T21:01:18.528+07:00  INFO 19486 --- [strong-strong] [restartedMain] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-07-12T21:01:18.771+07:00  INFO 19486 --- [strong-strong] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-07-12T21:01:18.794+07:00  INFO 19486 --- [strong-strong] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-07-12T21:01:18.802+07:00  INFO 19486 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : Started StrongStrongApplication in 1.701 seconds (process running for 2.179)
+2025-07-12T21:01:18.805+07:00  INFO 19486 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : ChatApp sends you an OTP to register your new account
+2025-07-12T21:01:24.707+07:00  INFO 19486 --- [strong-strong] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-07-12T21:01:24.708+07:00  INFO 19486 --- [strong-strong] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-07-12T21:01:24.710+07:00  INFO 19486 --- [strong-strong] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-07-12T21:01:31.076+07:00  INFO 19486 --- [strong-strong] [http-nio-8080-exec-1] o.y.C.s.serviceImpl.EmailServiceImpl     : OTP sent successfully to: dieutuyetnguyenthi@gmail.com
+2025-07-12T21:01:31.105+07:00  WARN 19486 --- [strong-strong] [http-nio-8080-exec-1] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotAcceptableException: No acceptable representation]
+2025-07-12T21:03:41.414+07:00  INFO 19486 --- [strong-strong] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 2 class path changes (0 additions, 2 deletions, 0 modifications)
+2025-07-12T21:03:41.418+07:00  INFO 19486 --- [strong-strong] [Thread-5] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-07-12T21:03:41.421+07:00  INFO 19486 --- [strong-strong] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-07-12T21:03:41.496+07:00  INFO 19486 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : Starting StrongStrongApplication using Java 22.0.2 with PID 19486 (/home/ngocyenptit/Documents/strong-strong/target/classes started by ngocyenptit in /home/ngocyenptit/Documents/strong-strong)
+2025-07-12T21:03:41.496+07:00  INFO 19486 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : No active profile set, falling back to 1 default profile: "default"
+2025-07-12T21:03:41.670+07:00  INFO 19486 --- [strong-strong] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-07-12T21:03:41.671+07:00  INFO 19486 --- [strong-strong] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-07-12T21:03:41.671+07:00  INFO 19486 --- [strong-strong] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-07-12T21:03:41.678+07:00  INFO 19486 --- [strong-strong] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-07-12T21:03:41.678+07:00  INFO 19486 --- [strong-strong] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 178 ms
+2025-07-12T21:03:41.686+07:00  INFO 19486 --- [strong-strong] [restartedMain] f.a.AutowiredAnnotationBeanPostProcessor : Autowired annotation is not supported on static fields: public static java.lang.String org.yenln8.ChatApp.StrongStrongApplication.passwordSender
+2025-07-12T21:03:41.722+07:00  INFO 19486 --- [strong-strong] [restartedMain] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-07-12T21:03:41.788+07:00  INFO 19486 --- [strong-strong] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-07-12T21:03:41.799+07:00  INFO 19486 --- [strong-strong] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-07-12T21:03:41.803+07:00  INFO 19486 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : Started StrongStrongApplication in 0.331 seconds (process running for 145.18)
+2025-07-12T21:03:41.805+07:00  INFO 19486 --- [strong-strong] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2025-07-12T21:03:41.806+07:00  INFO 19486 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : ChatApp sends you an OTP to register your new account
+2025-07-12T21:03:43.192+07:00  INFO 19486 --- [strong-strong] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 2 class path changes (2 additions, 0 deletions, 0 modifications)
+2025-07-12T21:03:43.195+07:00  INFO 19486 --- [strong-strong] [Thread-7] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-07-12T21:03:43.197+07:00  INFO 19486 --- [strong-strong] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-07-12T21:03:43.308+07:00  INFO 19486 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : Starting StrongStrongApplication using Java 22.0.2 with PID 19486 (/home/ngocyenptit/Documents/strong-strong/target/classes started by ngocyenptit in /home/ngocyenptit/Documents/strong-strong)
+2025-07-12T21:03:43.308+07:00  INFO 19486 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : No active profile set, falling back to 1 default profile: "default"
+2025-07-12T21:03:43.507+07:00  INFO 19486 --- [strong-strong] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-07-12T21:03:43.508+07:00  INFO 19486 --- [strong-strong] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-07-12T21:03:43.509+07:00  INFO 19486 --- [strong-strong] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-07-12T21:03:43.515+07:00  INFO 19486 --- [strong-strong] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-07-12T21:03:43.515+07:00  INFO 19486 --- [strong-strong] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 205 ms
+2025-07-12T21:03:43.525+07:00  INFO 19486 --- [strong-strong] [restartedMain] f.a.AutowiredAnnotationBeanPostProcessor : Autowired annotation is not supported on static fields: public static java.lang.String org.yenln8.ChatApp.StrongStrongApplication.passwordSender
+2025-07-12T21:03:43.557+07:00  INFO 19486 --- [strong-strong] [restartedMain] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-07-12T21:03:43.606+07:00  INFO 19486 --- [strong-strong] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-07-12T21:03:43.614+07:00  INFO 19486 --- [strong-strong] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-07-12T21:03:43.617+07:00  INFO 19486 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : Started StrongStrongApplication in 0.341 seconds (process running for 146.994)
+2025-07-12T21:03:43.618+07:00  INFO 19486 --- [strong-strong] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2025-07-12T21:03:43.619+07:00  INFO 19486 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : ChatApp sends you an OTP to register your new account
+2025-07-12T21:04:27.271+07:00  INFO 19486 --- [strong-strong] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-07-12T21:04:27.273+07:00  INFO 19486 --- [strong-strong] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-07-12T21:04:30.878+07:00  INFO 20018 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : Starting StrongStrongApplication using Java 22.0.2 with PID 20018 (/home/ngocyenptit/Documents/strong-strong/target/classes started by ngocyenptit in /home/ngocyenptit/Documents/strong-strong)
+2025-07-12T21:04:30.880+07:00  INFO 20018 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : No active profile set, falling back to 1 default profile: "default"
+2025-07-12T21:04:30.914+07:00  INFO 20018 --- [strong-strong] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-07-12T21:04:30.915+07:00  INFO 20018 --- [strong-strong] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-07-12T21:04:31.625+07:00  INFO 20018 --- [strong-strong] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-07-12T21:04:31.636+07:00  INFO 20018 --- [strong-strong] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-07-12T21:04:31.637+07:00  INFO 20018 --- [strong-strong] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-07-12T21:04:31.662+07:00  INFO 20018 --- [strong-strong] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-07-12T21:04:31.662+07:00  INFO 20018 --- [strong-strong] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 747 ms
+2025-07-12T21:04:31.701+07:00  INFO 20018 --- [strong-strong] [restartedMain] f.a.AutowiredAnnotationBeanPostProcessor : Autowired annotation is not supported on static fields: public static java.lang.String org.yenln8.ChatApp.StrongStrongApplication.passwordSender
+2025-07-12T21:04:31.829+07:00  INFO 20018 --- [strong-strong] [restartedMain] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-07-12T21:04:32.060+07:00  INFO 20018 --- [strong-strong] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-07-12T21:04:32.084+07:00  INFO 20018 --- [strong-strong] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-07-12T21:04:32.092+07:00  INFO 20018 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : Started StrongStrongApplication in 1.56 seconds (process running for 2.016)
+2025-07-12T21:04:32.095+07:00  INFO 20018 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : ChatApp sends you an OTP to register your new account
+2025-07-12T21:04:42.884+07:00  INFO 20018 --- [strong-strong] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-07-12T21:04:42.885+07:00  INFO 20018 --- [strong-strong] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-07-12T21:04:42.887+07:00  INFO 20018 --- [strong-strong] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-07-12T21:04:49.687+07:00  INFO 20018 --- [strong-strong] [http-nio-8080-exec-1] o.y.C.s.serviceImpl.EmailServiceImpl     : OTP sent successfully to: dieutuyetnguyenthi@gmail.com
+2025-07-12T21:04:49.718+07:00  WARN 20018 --- [strong-strong] [http-nio-8080-exec-1] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotAcceptableException: No acceptable representation]
+2025-07-12T21:05:08.239+07:00  INFO 20018 --- [strong-strong] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-07-12T21:05:08.243+07:00  INFO 20018 --- [strong-strong] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-07-12T21:05:11.078+07:00  INFO 20421 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : Starting StrongStrongApplication using Java 22.0.2 with PID 20421 (/home/ngocyenptit/Documents/strong-strong/target/classes started by ngocyenptit in /home/ngocyenptit/Documents/strong-strong)
+2025-07-12T21:05:11.080+07:00  INFO 20421 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : No active profile set, falling back to 1 default profile: "default"
+2025-07-12T21:05:11.116+07:00  INFO 20421 --- [strong-strong] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-07-12T21:05:11.116+07:00  INFO 20421 --- [strong-strong] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-07-12T21:05:11.804+07:00  INFO 20421 --- [strong-strong] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-07-12T21:05:11.815+07:00  INFO 20421 --- [strong-strong] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-07-12T21:05:11.815+07:00  INFO 20421 --- [strong-strong] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-07-12T21:05:11.840+07:00  INFO 20421 --- [strong-strong] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-07-12T21:05:11.840+07:00  INFO 20421 --- [strong-strong] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 723 ms
+2025-07-12T21:05:11.878+07:00  INFO 20421 --- [strong-strong] [restartedMain] f.a.AutowiredAnnotationBeanPostProcessor : Autowired annotation is not supported on static fields: public static java.lang.String org.yenln8.ChatApp.StrongStrongApplication.passwordSender
+2025-07-12T21:05:11.999+07:00  INFO 20421 --- [strong-strong] [restartedMain] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-07-12T21:05:12.229+07:00  INFO 20421 --- [strong-strong] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-07-12T21:05:12.251+07:00  INFO 20421 --- [strong-strong] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-07-12T21:05:12.259+07:00  INFO 20421 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : Started StrongStrongApplication in 1.532 seconds (process running for 1.962)
+2025-07-12T21:05:12.262+07:00  INFO 20421 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : ChatApp sends you an OTP to register your new account
+2025-07-12T21:05:19.884+07:00  INFO 20421 --- [strong-strong] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-07-12T21:05:19.885+07:00  INFO 20421 --- [strong-strong] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-07-12T21:05:19.886+07:00  INFO 20421 --- [strong-strong] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2025-07-12T21:05:24.924+07:00  INFO 20421 --- [strong-strong] [http-nio-8080-exec-1] o.y.C.s.serviceImpl.EmailServiceImpl     : OTP sent successfully to: dieutuyetnguyenthi@gmail.com
+2025-07-12T21:05:24.953+07:00  WARN 20421 --- [strong-strong] [http-nio-8080-exec-1] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpMediaTypeNotAcceptableException: No acceptable representation]
+2025-07-12T21:07:19.624+07:00  INFO 20421 --- [strong-strong] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-07-12T21:07:19.627+07:00  INFO 20421 --- [strong-strong] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-07-12T21:07:22.746+07:00  INFO 20762 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : Starting StrongStrongApplication using Java 22.0.2 with PID 20762 (/home/ngocyenptit/Documents/strong-strong/target/classes started by ngocyenptit in /home/ngocyenptit/Documents/strong-strong)
+2025-07-12T21:07:22.748+07:00  INFO 20762 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : No active profile set, falling back to 1 default profile: "default"
+2025-07-12T21:07:22.779+07:00  INFO 20762 --- [strong-strong] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-07-12T21:07:22.779+07:00  INFO 20762 --- [strong-strong] [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-07-12T21:07:23.490+07:00  INFO 20762 --- [strong-strong] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-07-12T21:07:23.500+07:00  INFO 20762 --- [strong-strong] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-07-12T21:07:23.500+07:00  INFO 20762 --- [strong-strong] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-07-12T21:07:23.527+07:00  INFO 20762 --- [strong-strong] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-07-12T21:07:23.527+07:00  INFO 20762 --- [strong-strong] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 747 ms
+2025-07-12T21:07:23.566+07:00  INFO 20762 --- [strong-strong] [restartedMain] f.a.AutowiredAnnotationBeanPostProcessor : Autowired annotation is not supported on static fields: public static java.lang.String org.yenln8.ChatApp.StrongStrongApplication.passwordSender
+2025-07-12T21:07:23.690+07:00  INFO 20762 --- [strong-strong] [restartedMain] o.s.v.b.OptionalValidatorFactoryBean     : Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-07-12T21:07:23.916+07:00  INFO 20762 --- [strong-strong] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-07-12T21:07:23.940+07:00  INFO 20762 --- [strong-strong] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-07-12T21:07:23.948+07:00  INFO 20762 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : Started StrongStrongApplication in 1.556 seconds (process running for 2.021)
+2025-07-12T21:07:23.951+07:00  INFO 20762 --- [strong-strong] [restartedMain] o.y.ChatApp.StrongStrongApplication      : ChatApp sends you an OTP to register your new account
+2025-07-12T21:07:31.637+07:00  INFO 20762 --- [strong-strong] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-07-12T21:07:31.638+07:00  INFO 20762 --- [strong-strong] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-07-12T21:07:31.640+07:00  INFO 20762 --- [strong-strong] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-07-12T21:07:38.255+07:00  INFO 20762 --- [strong-strong] [http-nio-8080-exec-1] o.y.C.s.serviceImpl.EmailServiceImpl     : OTP sent successfully to: dieutuyetnguyenthi@gmail.com
+2025-07-12T21:08:20.019+07:00  INFO 20762 --- [strong-strong] [http-nio-8080-exec-2] o.y.C.s.serviceImpl.EmailServiceImpl     : OTP sent successfully to: dieutuyetnguyenthi@gmail.com

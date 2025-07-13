@@ -5,9 +5,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.yenln8.ChatApp.common.util.MessageBundle;
-import org.yenln8.ChatApp.dto.SendEmailResponseDto;
+import org.yenln8.ChatApp.dto.response.SendEmailResponseDto;
 import org.yenln8.ChatApp.service.EmailService;
-import org.yenln8.ChatApp.service.SendOTPChangePasswordService;
 import org.yenln8.ChatApp.service.SendOTPResetPasswordService;
 
 import java.util.Random;
@@ -55,6 +54,7 @@ public class SendOTPResetPasswordServiceImpl implements SendOTPResetPasswordServ
             } else {
                 logger.error("Failed to send Reset Password OTP to: {}", recipientEmail);
             }
+            response.setMessage(MessageBundle.getMessage("app.email.reset.password.success"));
 
             return response;
 
@@ -63,7 +63,7 @@ public class SendOTPResetPasswordServiceImpl implements SendOTPResetPasswordServ
             return SendEmailResponseDto.builder()
                     .success(false)
                     .statusCode(500)
-                    .message("Failed to send OTP email due to system error")
+                    .message(MessageBundle.getMessage("app.email.reset.password.fail"))
                     .build();
         }
     }

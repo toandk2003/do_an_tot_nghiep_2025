@@ -1,15 +1,17 @@
-package org.yenln8.ChatApp.dto;
+package org.yenln8.ChatApp.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Builder
+import java.io.Serializable;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class VerifyOTPResponseDto  {
+@Builder
+public class SendEmailResponseDto  implements Serializable {
     private Boolean success;
     private Integer statusCode;
     private String message;

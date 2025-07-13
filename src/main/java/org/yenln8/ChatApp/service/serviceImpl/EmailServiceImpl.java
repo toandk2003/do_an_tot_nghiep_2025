@@ -7,11 +7,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.yenln8.ChatApp.dto.SendEmailResponseDto;
+import org.yenln8.ChatApp.dto.response.SendEmailResponseDto;
 import org.yenln8.ChatApp.service.EmailService;
 
 import java.util.Properties;
-import java.util.Random;
 
 @Service
 public class EmailServiceImpl implements EmailService {
@@ -65,8 +64,8 @@ public class EmailServiceImpl implements EmailService {
                 logger.error("Failed to send OTP: " + e.getMessage());
                 return  SendEmailResponseDto.builder()
                         .success(false)
-                        .statusCode(200)
-                        .message("Email sent successfully to: " + recipientEmail)
+                        .statusCode(500)
+                        .message("Email sent fail to: " + recipientEmail)
                         .build();
             }
 

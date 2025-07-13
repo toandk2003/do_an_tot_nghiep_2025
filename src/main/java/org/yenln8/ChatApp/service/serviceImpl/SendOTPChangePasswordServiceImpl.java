@@ -5,10 +5,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.yenln8.ChatApp.common.util.MessageBundle;
-import org.yenln8.ChatApp.dto.SendEmailResponseDto;
+import org.yenln8.ChatApp.dto.response.SendEmailResponseDto;
 import org.yenln8.ChatApp.service.EmailService;
 import org.yenln8.ChatApp.service.SendOTPChangePasswordService;
-import org.yenln8.ChatApp.service.SendOTPRegistrationService;
 
 import java.util.Random;
 
@@ -55,15 +54,15 @@ public class SendOTPChangePasswordServiceImpl implements SendOTPChangePasswordSe
             } else {
                 logger.error("Failed to send Change Password OTP to: {}", recipientEmail);
             }
-
-            return response;
+            response.setMessage(MessageBundle.getMessage("app.email.change.password.success"));
+            return response ;
 
         } catch (Exception e) {
             logger.error("Error sending Change Password  OTP to {}: {}", recipientEmail, e.getMessage());
             return SendEmailResponseDto.builder()
                     .success(false)
                     .statusCode(500)
-                    .message("Failed to send OTP email due to system error")
+                    .message(MessageBundle.getMessage("app.email.change.password.fail"))
                     .build();
         }
     }

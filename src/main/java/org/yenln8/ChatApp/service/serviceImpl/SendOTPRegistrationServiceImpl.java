@@ -5,7 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.yenln8.ChatApp.common.util.MessageBundle;
-import org.yenln8.ChatApp.dto.SendEmailResponseDto;
+import org.yenln8.ChatApp.dto.response.SendEmailResponseDto;
 import org.yenln8.ChatApp.service.EmailService;
 import org.yenln8.ChatApp.service.SendOTPRegistrationService;
 
@@ -54,6 +54,7 @@ public class SendOTPRegistrationServiceImpl implements SendOTPRegistrationServic
             } else {
                 logger.error("Failed to send registration OTP to: {}", recipientEmail);
             }
+            response.setMessage(MessageBundle.getMessage("app.email.register.success"));
 
             return response;
 
@@ -62,7 +63,7 @@ public class SendOTPRegistrationServiceImpl implements SendOTPRegistrationServic
             return SendEmailResponseDto.builder()
                     .success(false)
                     .statusCode(500)
-                    .message("Failed to send OTP email due to system error")
+                    .message(MessageBundle.getMessage("app.email.register.fail"))
                     .build();
         }
     }

@@ -1,54 +1,65 @@
 package org.yenln8.ChatApp.security;
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.JwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.lang.NonNull;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
+import org.yenln8.ChatApp.dto.other.CurrentUser;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 @AllArgsConstructor
+@Slf4j
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private final JwtTokenProvider jwtTokenProvider;
 
     @Override
-    protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull  HttpServletResponse response, @NonNull  FilterChain filterChain)
+    protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain filterChain)
             throws IOException, ServletException {
 
         String token = getTokenFromRequest(request);
-        Claims tokenDecoded = this.jwtTokenProvider.decodeToken(token != null ? token : "");
-        if (tokenDecoded != null) {
-            List<String> roles = this.jwtTokenProvider.getRoles(tokenDecoded); // List<String>
 
-            List<GrantedAuthority> authorities = roles.stream()
-                    .map(authority -> new SimpleGrantedAuthority(authority))
-                    .collect(Collectors.toList());
+        if (token == null) throw new JwtException("Invalid token");
 
-            UserDetails userDetails = User.withUsername(this.jwtTokenProvider.getEmail(tokenDecoded))
-                    .authorities(authorities)
-                    .build();
+        Claims tokenDecoded = this.jwtTokenProvider.decodeToken(token);
 
-            UsernamePasswordAuthenticationToken authentication =
-                    new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+        log.info("tokenDecoded: {}", tokenDecoded);
 
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-        }
+        if (tokenDecoded == null) throw new JwtException("Invalid token");
+
+        if (this.jwtTokenProvider.isExpired(tokenDecoded))
+            throw new ExpiredJwtException(null, null, "Token is expired");
+
+        Long id = this.jwtTokenProvider.getId(tokenDecoded);
+        String email = this.jwtTokenProvider.getEmail(tokenDecoded);
+        List<String> roles = this.jwtTokenProvider.getRoles(tokenDecoded);
+
+        UserDetails userDetails = CurrentUser.builder()
+                .id(id)
+                .email(email)
+                .roles(roles)
+                .build();
+
+        UsernamePasswordAuthenticationToken authentication =
+                new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+
 
         filterChain.doFilter(request, response);
     }

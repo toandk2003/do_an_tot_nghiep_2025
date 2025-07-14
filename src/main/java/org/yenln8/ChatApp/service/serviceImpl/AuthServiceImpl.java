@@ -35,4 +35,9 @@ public class AuthServiceImpl implements AuthService {
     public BaseResponseDto resetPassword(String email) {
         return null;
     }
+
+    @Override
+    public BaseResponseDto logout() {
+        return null;
+    }
 }

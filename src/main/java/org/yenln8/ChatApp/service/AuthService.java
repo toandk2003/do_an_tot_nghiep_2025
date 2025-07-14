@@ -7,4 +7,6 @@ public interface AuthService {
     BaseResponseDto register(String email);
     BaseResponseDto changePassword(String email);
     BaseResponseDto resetPassword(String email);
+    BaseResponseDto logout();
+
 }

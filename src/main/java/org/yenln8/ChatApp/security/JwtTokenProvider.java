@@ -52,6 +52,11 @@ public class JwtTokenProvider {
         return claims.get("roles", List.class);
     }
 
+    public boolean isExpired(Claims claims) {
+        return claims.getExpiration().before(new Date());
+    }
+
+
     public Claims decodeToken(String token) {
         try {
             return Jwts.parserBuilder().setSigningKey(this.getKey()).build().parseClaimsJws(token).getBody();

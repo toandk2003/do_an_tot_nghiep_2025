@@ -31,12 +31,9 @@ import java.util.List;
 @Slf4j
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private JwtTokenProvider jwtTokenProvider;
-    @Value(value = "${jwt.skip-endpoints}")
-    private List<String> skipEndpoints;
 
-    public JwtAuthenticationFilter(JwtTokenProvider jwtTokenProvider,  List<String> skipEndpoints) {
+    public JwtAuthenticationFilter(JwtTokenProvider jwtTokenProvider) {
         this.jwtTokenProvider = jwtTokenProvider;
-        this.skipEndpoints = skipEndpoints;
     }
 
     @Override
@@ -46,48 +43,30 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         String tokenFromRequest = getTokenFromRequest(request);
         Claims tokenDecoded = this.jwtTokenProvider.decodeToken(tokenFromRequest);
 
-
         log.info("token from Request: " + tokenFromRequest);
         log.info("tokenDecoded: {}",tokenDecoded);
 
-        if (tokenDecoded == null) {
+        if (tokenDecoded != null) {
             // if token expire, it's seen as invalid because decode return null
-            log.error("tokenDecoded is null");
-            handleAuthenticationError(response, MessageBundle.getMessage("validate.token.invalid"), HttpStatus.UNAUTHORIZED);
-            return;
+//            handleAuthenticationError(response, MessageBundle.getMessage("validate.token.invalid"), HttpStatus.UNAUTHORIZED);//
+//            return;
+            Long id = this.jwtTokenProvider.getId(tokenDecoded);
+            String email = this.jwtTokenProvider.getEmail(tokenDecoded);
+            List<String> roles = this.jwtTokenProvider.getRoles(tokenDecoded);
+
+            UserDetails userDetails = CurrentUser.builder()
+                    .id(id)
+                    .email(email)
+                    .roles(roles)
+                    .build();
+
+            UsernamePasswordAuthenticationToken authentication =
+                    new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+
+            SecurityContextHolder.getContext().setAuthentication(authentication);
         }
-
-        Long id = this.jwtTokenProvider.getId(tokenDecoded);
-        String email = this.jwtTokenProvider.getEmail(tokenDecoded);
-        List<String> roles = this.jwtTokenProvider.getRoles(tokenDecoded);
-
-        UserDetails userDetails = CurrentUser.builder()
-                .id(id)
-                .email(email)
-                .roles(roles)
-                .build();
-
-        UsernamePasswordAuthenticationToken authentication =
-                new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-
-        SecurityContextHolder.getContext().setAuthentication(authentication);
 
         filterChain.doFilter(request, response);
-    }
-
-    @Override
-    protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
-        String path = request.getRequestURI();
-        log.info("path: {}", path);
-        log.info("skip endpoints: {}", skipEndpoints);
-        // Kiểm tra exact match
-        if (skipEndpoints.contains(path)) {
-            return true;
-        }
-
-        // Kiểm tra prefix match
-        return skipEndpoints.stream()
-                .anyMatch(path::startsWith);
     }
 
     private String getTokenFromRequest(HttpServletRequest request) {

@@ -29,8 +29,8 @@ public class JwtTokenProvider {
     }
 
     public String createToken(Long id,String email, List<String> roles) {
-        log.info("using key to gen token: " + this.key);
-        log.info("using validityInMs to gen token: " + this.validityInMs);
+        log.info("using key to gen token: {}", this.key);
+        log.info("using validityInMs to gen token: {}", this.validityInMs);
         Date now = new Date();
         Date validity = new Date(now.getTime() + validityInMs);
         Map<String, Object> claims = new HashMap<>();
@@ -66,8 +66,8 @@ public class JwtTokenProvider {
 
 
     public Claims decodeToken(String token) {
-        log.info("using key to decode token: " + this.key);
-        log.info("using validityInMs to decode token: " + this.validityInMs);
+        log.info("using key to decode token: {}", this.key);
+        log.info("using validityInMs to decode token: {}", this.validityInMs);
         if(token == null) return null;
 
         try {

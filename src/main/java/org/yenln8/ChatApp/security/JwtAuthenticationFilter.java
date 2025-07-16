@@ -30,7 +30,7 @@ import java.util.List;
 @Component
 @Slf4j
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
-    private JwtTokenProvider jwtTokenProvider;
+    private final JwtTokenProvider jwtTokenProvider;
 
     public JwtAuthenticationFilter(JwtTokenProvider jwtTokenProvider) {
         this.jwtTokenProvider = jwtTokenProvider;
@@ -43,13 +43,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         String tokenFromRequest = getTokenFromRequest(request);
         Claims tokenDecoded = this.jwtTokenProvider.decodeToken(tokenFromRequest);
 
-        log.info("token from Request: " + tokenFromRequest);
+        log.info("token from Request: {}", tokenFromRequest);
         log.info("tokenDecoded: {}",tokenDecoded);
 
         if (tokenDecoded != null) {
             // if token expire, it's seen as invalid because decode return null
-//            handleAuthenticationError(response, MessageBundle.getMessage("validate.token.invalid"), HttpStatus.UNAUTHORIZED);//
-//            return;
             Long id = this.jwtTokenProvider.getId(tokenDecoded);
             String email = this.jwtTokenProvider.getEmail(tokenDecoded);
             List<String> roles = this.jwtTokenProvider.getRoles(tokenDecoded);
@@ -75,32 +73,5 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             return bearerToken.substring(7).trim();
         }
         return null;
-    }
-
-    private void handleAuthenticationError(HttpServletResponse response, String message, HttpStatus statusCode) throws IOException {
-        response.setStatus(statusCode.value());
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
-
-        String jsonResponse = String.format(
-                "{\"error\":\"%s\",\"message\":\"%s\",\"status\":%d,\"timestamp\":\"%s\"}",
-                getErrorNameByStatus(statusCode),
-                message,
-                statusCode.value(),
-                java.time.Instant.now()
-        );
-
-        response.getWriter().write(jsonResponse);
-        response.getWriter().flush();
-    }
-
-    private String getErrorNameByStatus(HttpStatus statusCode) {
-        return switch (statusCode.value()) {
-            case 401 -> "Unauthorized";
-            case 403 -> "Forbidden";
-            case 404 -> "Not Found";
-            case 500 -> "Internal Server Error";
-            default -> "Error";
-        };
     }
 }

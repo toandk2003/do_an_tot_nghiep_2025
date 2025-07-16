@@ -10,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
+import org.yenln8.ChatApp.common.util.MessageBundle;
 
 import java.io.IOException;
 import java.time.Instant;
@@ -34,7 +35,7 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
 
         Map<String, Object> body = new HashMap<>();
         body.put("error", "Unauthorized");
-        body.put("message", "Authentication required");
+        body.put("message", MessageBundle.getMessage("validate.token.invalid"));
         body.put("status", HttpStatus.UNAUTHORIZED.value());
         body.put("timestamp", Instant.now().toString());
         body.put("path", request.getServletPath());

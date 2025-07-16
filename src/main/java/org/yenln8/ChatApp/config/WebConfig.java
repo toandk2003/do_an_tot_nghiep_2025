@@ -19,4 +19,5 @@ public class WebConfig implements WebMvcConfigurer {
                 .addPathPatterns("/**") // Áp dụng cho tất cả đường dẫn
                 .excludePathPatterns("/static/**", "/css/**", "/js/**", "/images/**"); // Loại trừ static resources
     }
+
 }

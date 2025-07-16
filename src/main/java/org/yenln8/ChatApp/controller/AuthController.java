@@ -9,7 +9,7 @@ import org.yenln8.ChatApp.dto.base.BaseResponseDto;
 import org.yenln8.ChatApp.dto.request.LoginRequestDto;
 import org.yenln8.ChatApp.service.AuthService;
 
-@RestController
+@RestController("api/auth")
 @AllArgsConstructor
 @NoArgsConstructor
 public class AuthController {

@@ -3660,3 +3660,87 @@ Caused by: java.lang.IllegalArgumentException: The Filter class org.yenln8.ChatA
 2025-07-17T01:46:14.529+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-2] o.y.C.security.JwtAuthenticationFilter   : tokenDecoded: null
 2025-07-17T01:46:14.531+07:00 ERROR 43038 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-2] o.y.C.s.CustomAuthenticationEntryPoint   : Unauthorized error: Full authentication is required to access this resource
 2025-07-17T01:46:14.532+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-2] o.y.ChatApp.common.util.MessageBundle    : Invalid token in VI
+2025-07-17T01:49:02.876+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 2 class path changes (0 additions, 2 deletions, 0 modifications)
+2025-07-17T01:49:02.879+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [Thread-5] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-07-17T01:49:02.881+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-07-17T01:49:02.885+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [Thread-5] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-07-17T01:49:02.888+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-07-17T01:49:02.893+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [Thread-5] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-07-17T01:49:02.977+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [restartedMain] o.y.ChatApp.StrongStrongApplication      : Starting StrongStrongApplication using Java 22.0.2 with PID 43038 (/home/ngocyenptit/Documents/do_an_tot_nghiep_2025/target/classes started by ngocyenptit in /home/ngocyenptit/Documents/do_an_tot_nghiep_2025)
+2025-07-17T01:49:02.977+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [restartedMain] o.y.ChatApp.StrongStrongApplication      : No active profile set, falling back to 1 default profile: "default"
+2025-07-17T01:49:03.152+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-07-17T01:49:03.162+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 9 ms. Found 2 JPA repository interfaces.
+2025-07-17T01:49:03.257+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-07-17T01:49:03.258+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-07-17T01:49:03.258+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-07-17T01:49:03.267+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-07-17T01:49:03.267+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 288 ms
+2025-07-17T01:49:03.304+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-07-17T01:49:03.306+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-07-17T01:49:03.311+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-07-17T01:49:03.312+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2025-07-17T01:49:03.324+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2b2abbb0
+2025-07-17T01:49:03.324+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2025-07-17T01:49:03.324+07:00  WARN 43038 --- [do-an-tot-nghiep-2025] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-07-17T01:49:03.325+07:00  WARN 43038 --- [do-an-tot-nghiep-2025] [restartedMain] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-07-17T01:49:03.325+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-2)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-07-17T01:49:03.381+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-17T01:49:03.394+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-07-17T01:49:03.397+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [restartedMain] f.a.AutowiredAnnotationBeanPostProcessor : Autowired annotation is not supported on static fields: public static java.lang.String org.yenln8.ChatApp.StrongStrongApplication.passwordSender
+2025-07-17T01:49:03.442+07:00  WARN 43038 --- [do-an-tot-nghiep-2025] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-07-17T01:49:03.509+07:00  WARN 43038 --- [do-an-tot-nghiep-2025] [restartedMain] thorizationManagerRequestMatcherRegistry : One of the patterns in [/swagger-ui/**, v3/api-docs/**] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-17T01:49:03.621+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-07-17T01:49:03.632+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-07-17T01:49:03.635+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [restartedMain] o.y.ChatApp.StrongStrongApplication      : Started StrongStrongApplication in 0.675 seconds (process running for 183.064)
+2025-07-17T01:49:03.643+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2025-07-17T01:49:03.644+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [restartedMain] o.y.ChatApp.common.util.MessageBundle    : [ChatApp] - Account Registration OTP Verification
+2025-07-17T01:49:03.644+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [restartedMain] o.y.ChatApp.StrongStrongApplication      : [ChatApp] - Account Registration OTP Verification
+2025-07-17T01:49:05.030+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 2 class path changes (2 additions, 0 deletions, 0 modifications)
+2025-07-17T01:49:05.031+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [Thread-7] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-07-17T01:49:05.033+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-07-17T01:49:05.037+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [Thread-7] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-07-17T01:49:05.038+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [Thread-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2025-07-17T01:49:05.041+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [Thread-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+2025-07-17T01:49:05.121+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [restartedMain] o.y.ChatApp.StrongStrongApplication      : Starting StrongStrongApplication using Java 22.0.2 with PID 43038 (/home/ngocyenptit/Documents/do_an_tot_nghiep_2025/target/classes started by ngocyenptit in /home/ngocyenptit/Documents/do_an_tot_nghiep_2025)
+2025-07-17T01:49:05.121+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [restartedMain] o.y.ChatApp.StrongStrongApplication      : No active profile set, falling back to 1 default profile: "default"
+2025-07-17T01:49:05.252+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-07-17T01:49:05.262+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 9 ms. Found 2 JPA repository interfaces.
+2025-07-17T01:49:05.342+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-07-17T01:49:05.343+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-07-17T01:49:05.343+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-07-17T01:49:05.350+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-07-17T01:49:05.350+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 228 ms
+2025-07-17T01:49:05.383+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-07-17T01:49:05.384+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-07-17T01:49:05.389+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-07-17T01:49:05.390+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
+2025-07-17T01:49:05.401+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-3 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1b7d17d8
+2025-07-17T01:49:05.402+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
+2025-07-17T01:49:05.402+07:00  WARN 43038 --- [do-an-tot-nghiep-2025] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-07-17T01:49:05.402+07:00  WARN 43038 --- [do-an-tot-nghiep-2025] [restartedMain] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-07-17T01:49:05.402+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-3)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-07-17T01:49:05.451+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-17T01:49:05.464+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-07-17T01:49:05.467+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [restartedMain] f.a.AutowiredAnnotationBeanPostProcessor : Autowired annotation is not supported on static fields: public static java.lang.String org.yenln8.ChatApp.StrongStrongApplication.passwordSender
+2025-07-17T01:49:05.506+07:00  WARN 43038 --- [do-an-tot-nghiep-2025] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-07-17T01:49:05.564+07:00  WARN 43038 --- [do-an-tot-nghiep-2025] [restartedMain] thorizationManagerRequestMatcherRegistry : One of the patterns in [/swagger-ui/**, v3/api-docs/**] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-17T01:49:05.673+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2025-07-17T01:49:05.684+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-07-17T01:49:05.688+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [restartedMain] o.y.ChatApp.StrongStrongApplication      : Started StrongStrongApplication in 0.585 seconds (process running for 185.116)
+2025-07-17T01:49:05.695+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2025-07-17T01:49:05.696+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [restartedMain] o.y.ChatApp.common.util.MessageBundle    : [ChatApp] - Account Registration OTP Verification
+2025-07-17T01:49:05.696+07:00  INFO 43038 --- [do-an-tot-nghiep-2025] [restartedMain] o.y.ChatApp.StrongStrongApplication      : [ChatApp] - Account Registration OTP Verification

@@ -52,7 +52,7 @@ public class EmailServiceImpl implements EmailService {
 
                 // Send
                 Transport.send(message);
-                logger.info("OTP sent successfully to: " + recipientEmail);
+                logger.info("OTP sent successfully to: {}", recipientEmail);
 
                 return SendEmailResponseDto.builder()
                         .success(true)
@@ -61,7 +61,7 @@ public class EmailServiceImpl implements EmailService {
                         .build();
 
             } catch (MessagingException e) {
-                logger.error("Failed to send OTP: " + e.getMessage());
+                logger.error("Failed to send OTP: {}", e.getMessage());
                 return  SendEmailResponseDto.builder()
                         .success(false)
                         .statusCode(500)

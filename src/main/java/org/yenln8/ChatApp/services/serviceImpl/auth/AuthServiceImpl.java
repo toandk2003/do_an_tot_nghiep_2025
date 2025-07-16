@@ -1,12 +1,10 @@
 package org.yenln8.ChatApp.services.serviceImpl.auth;
 
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.yenln8.ChatApp.dto.base.BaseResponseDto;
 import org.yenln8.ChatApp.dto.request.LoginRequestDto;
-import org.yenln8.ChatApp.repository.UserRepository;
 import org.yenln8.ChatApp.services.*;
 import org.yenln8.ChatApp.services.serviceImpl.auth.service.LoginService;
 

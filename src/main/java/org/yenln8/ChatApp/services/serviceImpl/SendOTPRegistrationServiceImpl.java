@@ -1,4 +1,4 @@
-package org.yenln8.ChatApp.service.serviceImpl;
+package org.yenln8.ChatApp.services.serviceImpl;
 
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
@@ -6,8 +6,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.yenln8.ChatApp.common.util.MessageBundle;
 import org.yenln8.ChatApp.dto.response.SendEmailResponseDto;
-import org.yenln8.ChatApp.service.EmailService;
-import org.yenln8.ChatApp.service.SendOTPRegistrationService;
+import org.yenln8.ChatApp.services.EmailService;
+import org.yenln8.ChatApp.services.SendOTPRegistrationService;
 
 import java.util.Random;
 

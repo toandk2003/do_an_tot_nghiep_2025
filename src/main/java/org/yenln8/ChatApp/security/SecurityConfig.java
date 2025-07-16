@@ -32,6 +32,8 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable)
+                .formLogin(AbstractHttpConfigurer::disable) // ← Disable form login
+                .httpBasic(AbstractHttpConfigurer::disable) // ← Disable basic auth
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(new JwtAuthenticationFilter(this.jwtTokenProvider, this.skipEndpoints), UsernamePasswordAuthenticationFilter.class);
 

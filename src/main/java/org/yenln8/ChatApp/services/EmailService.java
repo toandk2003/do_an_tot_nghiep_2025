@@ -1,4 +1,4 @@
-package org.yenln8.ChatApp.service;
+package org.yenln8.ChatApp.services;
 
 import org.yenln8.ChatApp.dto.response.SendEmailResponseDto;
 

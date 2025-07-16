@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.http.HttpStatus;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -13,6 +14,6 @@ import lombok.NoArgsConstructor;
 @JsonInclude(JsonInclude.Include.NON_NULL)  // Bỏ qua các trường null
 public class BaseResponseDto {
     private Boolean success;
-    private Integer statusCode;
+    private int statusCode;
     private String message;
 }

@@ -1,9 +1,10 @@
-package org.yenln8.ChatApp.service;
+package org.yenln8.ChatApp.services;
 
 import org.yenln8.ChatApp.dto.base.BaseResponseDto;
+import org.yenln8.ChatApp.dto.request.LoginRequestDto;
 
 public interface AuthService {
-    BaseResponseDto login(String username, String password);
+    BaseResponseDto login(LoginRequestDto form);
     BaseResponseDto register(String email);
     BaseResponseDto changePassword(String email);
     BaseResponseDto resetPassword(String email);

@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.yenln8.ChatApp.repository.UserRepository;
 import org.yenln8.ChatApp.security.JwtTokenProvider;
-import org.yenln8.ChatApp.service.EmailService;
-import org.yenln8.ChatApp.service.SendOTPChangePasswordService;
-import org.yenln8.ChatApp.service.SendOTPRegistrationService;
-import org.yenln8.ChatApp.service.SendOTPResetPasswordService;
+import org.yenln8.ChatApp.services.EmailService;
+import org.yenln8.ChatApp.services.SendOTPChangePasswordService;
+import org.yenln8.ChatApp.services.SendOTPRegistrationService;
+import org.yenln8.ChatApp.services.SendOTPResetPasswordService;
 
 import java.util.List;
 

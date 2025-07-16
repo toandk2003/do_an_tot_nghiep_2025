@@ -1,24 +1,22 @@
-package org.yenln8.ChatApp.service.serviceImpl;
+package org.yenln8.ChatApp.services.serviceImpl.auth;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.yenln8.ChatApp.dto.base.BaseResponseDto;
+import org.yenln8.ChatApp.dto.request.LoginRequestDto;
 import org.yenln8.ChatApp.repository.UserRepository;
-import org.yenln8.ChatApp.service.*;
+import org.yenln8.ChatApp.services.*;
+import org.yenln8.ChatApp.services.serviceImpl.auth.service.LoginService;
 
 @Service
 @AllArgsConstructor
-@NoArgsConstructor
 public class AuthServiceImpl implements AuthService {
-    private EmailService emailService;
-    private SendOTPRegistrationService sendOTPRegistrationService;
-    private SendOTPResetPasswordService sendOTPResetPasswordService;
-    private SendOTPChangePasswordService sendOTPChangePasswordService;
-    private UserRepository userRepository;
+    private LoginService loginService;
+
     @Override
-    public BaseResponseDto login(String username, String password) {
-        return null;
+    public BaseResponseDto login(LoginRequestDto loginRequestDto) {
+        return this.loginService.call(loginRequestDto);
     }
 
     @Override

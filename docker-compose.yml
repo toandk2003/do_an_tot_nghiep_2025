@@ -1,0 +1,44 @@
+# docker-compose.yml
+version: '3.8'
+
+services:
+  # Database MySQL
+  mysql-db:
+    image: mysql:8.0
+    container_name: springboot-mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: my_database
+      MYSQL_ROOT_PASSWORD: Yenmysql153@
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql  # Optional: SQL scripts to run on startup
+    networks:
+      - springboot-network
+
+  # Spring Boot Application
+  springboot-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: springboot-demo
+    restart: always
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./logs:/app/logs  # Mount logs directory to host
+    environment:
+      SPRING_PROFILES_ACTIVE: compose
+    depends_on:
+      - mysql-db
+    networks:
+      - springboot-network
+
+volumes:
+  mysql_data:
+
+networks:
+  springboot-network:
+    driver: bridge

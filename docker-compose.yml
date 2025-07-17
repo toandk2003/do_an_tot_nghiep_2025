@@ -20,10 +20,9 @@ services:
 
   # Spring Boot Application
   springboot-app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: ngocyenptit153/chatapp
     container_name: springboot-demo
+    pull_policy: always
     restart: always
     ports:
       - "8080:8080"

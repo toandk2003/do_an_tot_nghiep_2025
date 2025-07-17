@@ -4013,3 +4013,257 @@ Caused by: java.lang.NumberFormatException: For input string: "APP_SECURITY_JWT_
 2025-07-17T16:45:58.965Z  INFO 1 --- [do-an-tot-nghiep-2025] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2025-07-17T16:45:58.968Z  INFO 1 --- [do-an-tot-nghiep-2025] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
 2025-07-17T16:45:58.975Z  INFO 1 --- [do-an-tot-nghiep-2025] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-07-17T18:00:48.035Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.y.ChatApp.StrongStrongApplication      : Starting StrongStrongApplication v0.0.1-SNAPSHOT using Java 21 with PID 1 (/app/app.jar started by root in /app)
+2025-07-17T18:00:48.038Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.y.ChatApp.StrongStrongApplication      : The following 1 profile is active: "compose"
+2025-07-17T18:00:48.884Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-07-17T18:00:48.946Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 51 ms. Found 2 JPA repository interfaces.
+2025-07-17T18:00:49.488Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-07-17T18:00:49.505Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-07-17T18:00:49.506Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-07-17T18:00:49.536Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-07-17T18:00:49.536Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1451 ms
+2025-07-17T18:00:49.740Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-07-17T18:00:49.794Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.18.Final
+2025-07-17T18:00:49.830Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-07-17T18:00:50.104Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-07-17T18:00:50.136Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-07-17T18:00:50.482Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@e5c5e6
+2025-07-17T18:00:50.484Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-07-17T18:00:50.540Z  WARN 1 --- [do-an-tot-nghiep-2025] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-07-17T18:00:50.542Z  WARN 1 --- [do-an-tot-nghiep-2025] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-07-17T18:00:50.564Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-07-17T18:00:51.357Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-17T18:00:51.431Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-07-17T18:00:51.437Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] f.a.AutowiredAnnotationBeanPostProcessor : Autowired annotation is not supported on static fields: public static java.lang.String org.yenln8.ChatApp.StrongStrongApplication.passwordSender
+2025-07-17T18:00:51.617Z  WARN 1 --- [do-an-tot-nghiep-2025] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-07-17T18:00:51.921Z  WARN 1 --- [do-an-tot-nghiep-2025] [main] thorizationManagerRequestMatcherRegistry : One of the patterns in [/swagger-ui/**, v3/api-docs/**] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-17T18:00:52.392Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-07-17T18:00:52.408Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.y.ChatApp.StrongStrongApplication      : Started StrongStrongApplication in 4.909 seconds (process running for 5.373)
+2025-07-17T18:00:52.808Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.y.ChatApp.common.util.MessageBundle    : [ChatApp] - Account Registration OTP Verification
+2025-07-17T18:00:52.809Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.y.ChatApp.StrongStrongApplication      : [ChatApp] - Account Registration OTP Verification
+2025-07-17T18:01:46.714Z  INFO 1 --- [do-an-tot-nghiep-2025] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-07-17T18:01:46.716Z  INFO 1 --- [do-an-tot-nghiep-2025] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-07-17T18:01:46.720Z  INFO 1 --- [do-an-tot-nghiep-2025] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-07-17T18:01:46.722Z  INFO 1 --- [do-an-tot-nghiep-2025] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-07-17T18:01:46.729Z  INFO 1 --- [do-an-tot-nghiep-2025] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-07-17T18:03:09.081Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.y.ChatApp.StrongStrongApplication      : Starting StrongStrongApplication v0.0.1-SNAPSHOT using Java 21 with PID 1 (/app/app.jar started by root in /app)
+2025-07-17T18:03:09.157Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.y.ChatApp.StrongStrongApplication      : The following 1 profile is active: "compose"
+2025-07-17T18:03:10.035Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-07-17T18:03:10.103Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 56 ms. Found 2 JPA repository interfaces.
+2025-07-17T18:03:10.680Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-07-17T18:03:10.694Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-07-17T18:03:10.695Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-07-17T18:03:10.720Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-07-17T18:03:10.721Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1525 ms
+2025-07-17T18:03:10.909Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-07-17T18:03:10.973Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.18.Final
+2025-07-17T18:03:11.017Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-07-17T18:03:11.271Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-07-17T18:03:11.298Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-07-17T18:03:11.602Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7ee2423
+2025-07-17T18:03:11.604Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-07-17T18:03:11.649Z  WARN 1 --- [do-an-tot-nghiep-2025] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-07-17T18:03:11.650Z  WARN 1 --- [do-an-tot-nghiep-2025] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-07-17T18:03:11.668Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-07-17T18:03:12.474Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-17T18:03:12.553Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-07-17T18:03:12.558Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] f.a.AutowiredAnnotationBeanPostProcessor : Autowired annotation is not supported on static fields: public static java.lang.String org.yenln8.ChatApp.StrongStrongApplication.passwordSender
+2025-07-17T18:03:12.761Z  WARN 1 --- [do-an-tot-nghiep-2025] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-07-17T18:03:13.094Z  WARN 1 --- [do-an-tot-nghiep-2025] [main] thorizationManagerRequestMatcherRegistry : One of the patterns in [/swagger-ui/**, v3/api-docs/**] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-17T18:03:13.615Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-07-17T18:03:13.633Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.y.ChatApp.StrongStrongApplication      : Started StrongStrongApplication in 5.031 seconds (process running for 5.467)
+2025-07-17T18:03:14.011Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.y.ChatApp.common.util.MessageBundle    : [ChatApp] - Account Registration OTP Verification
+2025-07-17T18:03:14.011Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.y.ChatApp.StrongStrongApplication      : [ChatApp] - Account Registration OTP Verification
+2025-07-17T18:03:24.727Z  INFO 1 --- [do-an-tot-nghiep-2025] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-07-17T18:03:24.730Z  INFO 1 --- [do-an-tot-nghiep-2025] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-07-17T18:03:24.733Z  INFO 1 --- [do-an-tot-nghiep-2025] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-07-17T18:03:24.735Z  INFO 1 --- [do-an-tot-nghiep-2025] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-07-17T18:03:24.741Z  INFO 1 --- [do-an-tot-nghiep-2025] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-07-17T18:04:57.980Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.y.ChatApp.StrongStrongApplication      : Starting StrongStrongApplication v0.0.1-SNAPSHOT using Java 21 with PID 1 (/app/app.jar started by root in /app)
+2025-07-17T18:04:58.061Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.y.ChatApp.StrongStrongApplication      : The following 1 profile is active: "compose"
+2025-07-17T18:04:58.964Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-07-17T18:04:59.023Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 49 ms. Found 2 JPA repository interfaces.
+2025-07-17T18:04:59.562Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-07-17T18:04:59.574Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-07-17T18:04:59.575Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-07-17T18:04:59.601Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-07-17T18:04:59.601Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1500 ms
+2025-07-17T18:04:59.792Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-07-17T18:04:59.849Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.18.Final
+2025-07-17T18:04:59.882Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-07-17T18:05:00.139Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-07-17T18:05:00.164Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-07-17T18:05:00.474Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@76e00bdb
+2025-07-17T18:05:00.476Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-07-17T18:05:00.521Z  WARN 1 --- [do-an-tot-nghiep-2025] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-07-17T18:05:00.522Z  WARN 1 --- [do-an-tot-nghiep-2025] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-07-17T18:05:00.539Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-07-17T18:05:01.299Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-17T18:05:01.372Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-07-17T18:05:01.377Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] f.a.AutowiredAnnotationBeanPostProcessor : Autowired annotation is not supported on static fields: public static java.lang.String org.yenln8.ChatApp.StrongStrongApplication.passwordSender
+2025-07-17T18:05:01.562Z  WARN 1 --- [do-an-tot-nghiep-2025] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-07-17T18:05:01.874Z  WARN 1 --- [do-an-tot-nghiep-2025] [main] thorizationManagerRequestMatcherRegistry : One of the patterns in [/swagger-ui/**, v3/api-docs/**] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-17T18:05:02.385Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-07-17T18:05:02.401Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.y.ChatApp.StrongStrongApplication      : Started StrongStrongApplication in 4.871 seconds (process running for 5.314)
+2025-07-17T18:05:02.798Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.y.ChatApp.common.util.MessageBundle    : [ChatApp] - Account Registration OTP Verification
+2025-07-17T18:05:02.799Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.y.ChatApp.StrongStrongApplication      : [ChatApp] - Account Registration OTP Verification
+2025-07-17T18:06:18.864Z  INFO 1 --- [do-an-tot-nghiep-2025] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-07-17T18:06:18.866Z  INFO 1 --- [do-an-tot-nghiep-2025] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-07-17T18:06:18.870Z  INFO 1 --- [do-an-tot-nghiep-2025] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-07-17T18:06:18.872Z  INFO 1 --- [do-an-tot-nghiep-2025] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-07-17T18:06:18.878Z  INFO 1 --- [do-an-tot-nghiep-2025] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-07-17T18:10:00.147Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.y.ChatApp.StrongStrongApplication      : Starting StrongStrongApplication v0.0.1-SNAPSHOT using Java 21 with PID 1 (/app/app.jar started by root in /app)
+2025-07-17T18:10:00.150Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.y.ChatApp.StrongStrongApplication      : The following 1 profile is active: "compose"
+2025-07-17T18:10:01.046Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-07-17T18:10:01.104Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 49 ms. Found 2 JPA repository interfaces.
+2025-07-17T18:10:01.662Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-07-17T18:10:01.675Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-07-17T18:10:01.676Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-07-17T18:10:01.703Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-07-17T18:10:01.704Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1503 ms
+2025-07-17T18:10:01.912Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-07-17T18:10:01.979Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.18.Final
+2025-07-17T18:10:02.016Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-07-17T18:10:02.262Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-07-17T18:10:02.291Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-07-17T18:10:02.612Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6475e778
+2025-07-17T18:10:02.615Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-07-17T18:10:02.661Z  WARN 1 --- [do-an-tot-nghiep-2025] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-07-17T18:10:02.662Z  WARN 1 --- [do-an-tot-nghiep-2025] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-07-17T18:10:02.679Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-07-17T18:10:03.452Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-17T18:10:03.528Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-07-17T18:10:03.533Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] f.a.AutowiredAnnotationBeanPostProcessor : Autowired annotation is not supported on static fields: public static java.lang.String org.yenln8.ChatApp.StrongStrongApplication.passwordSender
+2025-07-17T18:10:03.728Z  WARN 1 --- [do-an-tot-nghiep-2025] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-07-17T18:10:04.044Z  WARN 1 --- [do-an-tot-nghiep-2025] [main] thorizationManagerRequestMatcherRegistry : One of the patterns in [/swagger-ui/**, v3/api-docs/**] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-17T18:10:04.558Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-07-17T18:10:04.576Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.y.ChatApp.StrongStrongApplication      : Started StrongStrongApplication in 5.002 seconds (process running for 5.476)
+2025-07-17T18:10:04.983Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.y.ChatApp.common.util.MessageBundle    : [ChatApp] - Account Registration OTP Verification
+2025-07-17T18:10:04.984Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.y.ChatApp.StrongStrongApplication      : [ChatApp] - Account Registration OTP Verification
+2025-07-17T18:28:10.101Z  INFO 1 --- [do-an-tot-nghiep-2025] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-07-17T18:28:10.104Z  INFO 1 --- [do-an-tot-nghiep-2025] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-07-17T18:28:10.108Z  INFO 1 --- [do-an-tot-nghiep-2025] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-07-17T18:28:10.110Z  INFO 1 --- [do-an-tot-nghiep-2025] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-07-17T18:28:10.116Z  INFO 1 --- [do-an-tot-nghiep-2025] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-07-17T18:29:17.768Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.y.ChatApp.StrongStrongApplication      : Starting StrongStrongApplication v0.0.1-SNAPSHOT using Java 21 with PID 1 (/app/app.jar started by root in /app)
+2025-07-17T18:29:17.772Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.y.ChatApp.StrongStrongApplication      : The following 1 profile is active: "compose"
+2025-07-17T18:29:18.645Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-07-17T18:29:18.708Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 52 ms. Found 2 JPA repository interfaces.
+2025-07-17T18:29:19.243Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-07-17T18:29:19.257Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-07-17T18:29:19.258Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-07-17T18:29:19.286Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-07-17T18:29:19.286Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1461 ms
+2025-07-17T18:29:19.481Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-07-17T18:29:19.546Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.18.Final
+2025-07-17T18:29:19.582Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-07-17T18:29:19.863Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-07-17T18:29:19.892Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-07-17T18:29:20.219Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@b788dc2
+2025-07-17T18:29:20.222Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-07-17T18:29:20.274Z  WARN 1 --- [do-an-tot-nghiep-2025] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-07-17T18:29:20.276Z  WARN 1 --- [do-an-tot-nghiep-2025] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-07-17T18:29:20.297Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-07-17T18:29:21.108Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-17T18:29:21.181Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-07-17T18:29:21.186Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] f.a.AutowiredAnnotationBeanPostProcessor : Autowired annotation is not supported on static fields: public static java.lang.String org.yenln8.ChatApp.StrongStrongApplication.passwordSender
+2025-07-17T18:29:21.370Z  WARN 1 --- [do-an-tot-nghiep-2025] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-07-17T18:29:21.693Z  WARN 1 --- [do-an-tot-nghiep-2025] [main] thorizationManagerRequestMatcherRegistry : One of the patterns in [/swagger-ui/**, v3/api-docs/**] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-17T18:29:22.198Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-07-17T18:29:22.215Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.y.ChatApp.StrongStrongApplication      : Started StrongStrongApplication in 5.024 seconds (process running for 5.512)
+2025-07-17T18:29:22.628Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.y.ChatApp.common.util.MessageBundle    : [ChatApp] - Account Registration OTP Verification
+2025-07-17T18:29:22.628Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.y.ChatApp.StrongStrongApplication      : [ChatApp] - Account Registration OTP Verification
+2025-07-17T18:29:47.325Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-07-17T18:29:47.325Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-07-17T18:29:47.327Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-07-17T18:29:47.344Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-1] o.y.ChatApp.security.JwtTokenProvider    : using key to decode token: dkjgjiwejpdsjgssjfsdjofsodfdddfefreg
+2025-07-17T18:29:47.344Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-1] o.y.ChatApp.security.JwtTokenProvider    : using validityInMs to decode token: 36000000
+2025-07-17T18:29:47.344Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-1] o.y.C.security.JwtAuthenticationFilter   : token from Request: null
+2025-07-17T18:29:47.344Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-1] o.y.C.security.JwtAuthenticationFilter   : tokenDecoded: null
+2025-07-17T18:29:47.349Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-1] o.y.ChatApp.security.JwtTokenProvider    : using key to decode token: dkjgjiwejpdsjgssjfsdjofsodfdddfefreg
+2025-07-17T18:29:47.349Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-1] o.y.ChatApp.security.JwtTokenProvider    : using validityInMs to decode token: 36000000
+2025-07-17T18:29:47.349Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-1] o.y.C.security.JwtAuthenticationFilter   : token from Request: null
+2025-07-17T18:29:47.350Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-1] o.y.C.security.JwtAuthenticationFilter   : tokenDecoded: null
+2025-07-17T18:29:47.360Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-1] o.y.C.interceptor.LocaleInterceptor      : Set locale: en_US for request: /swagger-ui/index.html
+2025-07-17T18:29:47.360Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-1] o.y.C.interceptor.LocaleInterceptor      : Current locale: en for request: /swagger-ui/index.html
+2025-07-17T18:29:47.396Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-2] o.y.ChatApp.security.JwtTokenProvider    : using key to decode token: dkjgjiwejpdsjgssjfsdjofsodfdddfefreg
+2025-07-17T18:29:47.396Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-3] o.y.ChatApp.security.JwtTokenProvider    : using key to decode token: dkjgjiwejpdsjgssjfsdjofsodfdddfefreg
+2025-07-17T18:29:47.397Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-2] o.y.ChatApp.security.JwtTokenProvider    : using validityInMs to decode token: 36000000
+2025-07-17T18:29:47.397Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-3] o.y.ChatApp.security.JwtTokenProvider    : using validityInMs to decode token: 36000000
+2025-07-17T18:29:47.397Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-2] o.y.C.security.JwtAuthenticationFilter   : token from Request: null
+2025-07-17T18:29:47.397Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-3] o.y.C.security.JwtAuthenticationFilter   : token from Request: null
+2025-07-17T18:29:47.397Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-2] o.y.C.security.JwtAuthenticationFilter   : tokenDecoded: null
+2025-07-17T18:29:47.397Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-3] o.y.C.security.JwtAuthenticationFilter   : tokenDecoded: null
+2025-07-17T18:29:47.398Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-2] o.y.ChatApp.security.JwtTokenProvider    : using key to decode token: dkjgjiwejpdsjgssjfsdjofsodfdddfefreg
+2025-07-17T18:29:47.398Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-2] o.y.ChatApp.security.JwtTokenProvider    : using validityInMs to decode token: 36000000
+2025-07-17T18:29:47.398Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-2] o.y.C.security.JwtAuthenticationFilter   : token from Request: null
+2025-07-17T18:29:47.398Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-2] o.y.C.security.JwtAuthenticationFilter   : tokenDecoded: null
+2025-07-17T18:29:47.399Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-3] o.y.ChatApp.security.JwtTokenProvider    : using key to decode token: dkjgjiwejpdsjgssjfsdjofsodfdddfefreg
+2025-07-17T18:29:47.399Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-3] o.y.ChatApp.security.JwtTokenProvider    : using validityInMs to decode token: 36000000
+2025-07-17T18:29:47.399Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-3] o.y.C.security.JwtAuthenticationFilter   : token from Request: null
+2025-07-17T18:29:47.399Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-3] o.y.C.security.JwtAuthenticationFilter   : tokenDecoded: null
+2025-07-17T18:29:47.400Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-2] o.y.C.interceptor.LocaleInterceptor      : Set locale: en_US for request: /swagger-ui/swagger-ui-bundle.js
+2025-07-17T18:29:47.400Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-2] o.y.C.interceptor.LocaleInterceptor      : Current locale: en for request: /swagger-ui/swagger-ui-bundle.js
+2025-07-17T18:29:47.401Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-3] o.y.C.interceptor.LocaleInterceptor      : Set locale: en_US for request: /swagger-ui/swagger-initializer.js
+2025-07-17T18:29:47.402Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-3] o.y.C.interceptor.LocaleInterceptor      : Current locale: en for request: /swagger-ui/swagger-initializer.js
+2025-07-17T18:29:47.610Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-4] o.y.ChatApp.security.JwtTokenProvider    : using key to decode token: dkjgjiwejpdsjgssjfsdjofsodfdddfefreg
+2025-07-17T18:29:47.611Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-4] o.y.ChatApp.security.JwtTokenProvider    : using validityInMs to decode token: 36000000
+2025-07-17T18:29:47.611Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-4] o.y.C.security.JwtAuthenticationFilter   : token from Request: null
+2025-07-17T18:29:47.611Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-4] o.y.C.security.JwtAuthenticationFilter   : tokenDecoded: null
+2025-07-17T18:29:47.612Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-4] o.y.ChatApp.security.JwtTokenProvider    : using key to decode token: dkjgjiwejpdsjgssjfsdjofsodfdddfefreg
+2025-07-17T18:29:47.612Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-4] o.y.ChatApp.security.JwtTokenProvider    : using validityInMs to decode token: 36000000
+2025-07-17T18:29:47.612Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-4] o.y.C.security.JwtAuthenticationFilter   : token from Request: null
+2025-07-17T18:29:47.612Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-4] o.y.C.security.JwtAuthenticationFilter   : tokenDecoded: null
+2025-07-17T18:29:47.613Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-4] o.y.C.interceptor.LocaleInterceptor      : Set locale: en_US for request: /v3/api-docs/swagger-config
+2025-07-17T18:29:47.613Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-4] o.y.C.interceptor.LocaleInterceptor      : Current locale: en for request: /v3/api-docs/swagger-config
+2025-07-17T18:29:47.668Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-5] o.y.ChatApp.security.JwtTokenProvider    : using key to decode token: dkjgjiwejpdsjgssjfsdjofsodfdddfefreg
+2025-07-17T18:29:47.668Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-5] o.y.ChatApp.security.JwtTokenProvider    : using validityInMs to decode token: 36000000
+2025-07-17T18:29:47.669Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-5] o.y.C.security.JwtAuthenticationFilter   : token from Request: null
+2025-07-17T18:29:47.669Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-5] o.y.C.security.JwtAuthenticationFilter   : tokenDecoded: null
+2025-07-17T18:29:47.669Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-5] o.y.ChatApp.security.JwtTokenProvider    : using key to decode token: dkjgjiwejpdsjgssjfsdjofsodfdddfefreg
+2025-07-17T18:29:47.669Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-5] o.y.ChatApp.security.JwtTokenProvider    : using validityInMs to decode token: 36000000
+2025-07-17T18:29:47.669Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-5] o.y.C.security.JwtAuthenticationFilter   : token from Request: null
+2025-07-17T18:29:47.669Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-5] o.y.C.security.JwtAuthenticationFilter   : tokenDecoded: null
+2025-07-17T18:29:47.670Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-5] o.y.C.interceptor.LocaleInterceptor      : Set locale: en_US for request: /v3/api-docs
+2025-07-17T18:29:47.671Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-5] o.y.C.interceptor.LocaleInterceptor      : Current locale: en for request: /v3/api-docs
+2025-07-17T18:29:47.958Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-5] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 275 ms
+2025-07-17T18:42:34.339Z  INFO 1 --- [do-an-tot-nghiep-2025] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-07-17T18:42:34.342Z  INFO 1 --- [do-an-tot-nghiep-2025] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-07-17T18:42:34.347Z  INFO 1 --- [do-an-tot-nghiep-2025] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-07-17T18:42:34.349Z  INFO 1 --- [do-an-tot-nghiep-2025] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-07-17T18:42:34.357Z  INFO 1 --- [do-an-tot-nghiep-2025] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

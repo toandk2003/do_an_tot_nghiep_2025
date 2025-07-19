@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 import org.yenln8.ChatApp.dto.response.SendEmailResponseDto;
 import org.yenln8.ChatApp.services.EmailService;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 @Service
@@ -17,6 +20,7 @@ public class EmailServiceImpl implements EmailService {
     private static Logger logger = LoggerFactory.getLogger(EmailServiceImpl.class);
     private static final String SMTP_HOST = "smtp.gmail.com";
     private static final String SMTP_PORT = "587";
+    private  static final Map<String, List<Long>> DEVICE_SEND_MAIL_HISTORY = new HashMap<>();
 
     @Value("${email.sender.address}")
     private String systemEmailSender;

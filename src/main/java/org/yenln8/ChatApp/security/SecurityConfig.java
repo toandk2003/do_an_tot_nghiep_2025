@@ -36,8 +36,13 @@ public class SecurityConfig {
                 .httpBasic(AbstractHttpConfigurer::disable) // ← Disable basic auth
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/**").permitAll()
-                        .requestMatchers("/swagger-ui/**", "v3/api-docs/**").permitAll()
+                        .requestMatchers(
+                                "/swagger-ui/**",
+                                "v3/api-docs/**",
+                                "/api/auth/**",
+                                "/test"
+                        )
+                        .permitAll()
                         .anyRequest().authenticated()
                 )
                 .exceptionHandling(exception -> exception

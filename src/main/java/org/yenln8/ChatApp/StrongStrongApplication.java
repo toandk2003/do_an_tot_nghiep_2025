@@ -6,10 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.yenln8.ChatApp.common.util.MessageBundle;
 
 
 @SpringBootApplication
+@EnableScheduling
 public class StrongStrongApplication {
     private static final Logger logger = LoggerFactory.getLogger(StrongStrongApplication.class);
 

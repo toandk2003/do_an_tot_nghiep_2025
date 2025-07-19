@@ -38,4 +38,32 @@ public class RedisService {
     public <T> void setKey(String key, T value, long tllInSeconds) {
         redisTemplate.opsForValue().set(key, value, Duration.ofSeconds(tllInSeconds));
     }
+
+    public boolean deleteKey(String key) {
+        try {
+            return redisTemplate.delete(key);
+        } catch (Exception e) {
+            log.error("Error deleting key {}: {}", key, e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean extendTTLBy(String key, long additionalSeconds) {
+        try {
+            long currentTtl = redisTemplate.getExpire(key); // TTL hiện tại (tính bằng giây)
+            if (currentTtl < 0) {
+                log.warn("Key {} does not have a valid TTL to extend.", key);
+                return false;
+            }
+
+            return Boolean.TRUE.equals(
+                    redisTemplate.expire(key, Duration.ofSeconds(currentTtl + additionalSeconds))
+            );
+        } catch (Exception e) {
+            log.error("Error extending TTL for key {}: {}", key, e.getMessage());
+            return false;
+        }
+    }
+
+
 }

@@ -67,6 +67,7 @@ public class AccountPending {
 
     public enum STATUS{
         PENDING,
-        DONE
+        DONE,
+        EXPIRED
     }
 }

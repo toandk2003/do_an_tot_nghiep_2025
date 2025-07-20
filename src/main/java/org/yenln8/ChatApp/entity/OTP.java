@@ -69,7 +69,8 @@ public class OTP {// table chua cac OTP da gui di
 
     public enum STATUS{
         BE_SENT,
-        VERIFIED
+        VERIFIED,
+        EXPIRED
     }
 
     public enum TYPE{

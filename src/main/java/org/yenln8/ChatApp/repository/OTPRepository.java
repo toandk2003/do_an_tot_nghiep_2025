@@ -1,9 +1,13 @@
 package org.yenln8.ChatApp.repository;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.yenln8.ChatApp.entity.OTP;
 
+import java.net.ContentHandler;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
@@ -12,5 +16,7 @@ public interface OTPRepository extends JpaRepository<OTP, Long> {
     long countByFromIpAddressAndToEmailAndTypeAndCreatedAtAfterAndDeletedAtIsNull(String ipAddress, String email, OTP.TYPE type, LocalDateTime createdAt);
 
     Optional<OTP> findByOtpCodeAndTypeAndDeletedAtIsNull(String otpCode, OTP.TYPE type);
+
+    Page<OTP> findAllByTypeAndDeletedAtIsNull(OTP.TYPE type,Pageable pageable);
 }
 

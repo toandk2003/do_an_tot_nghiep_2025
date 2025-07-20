@@ -62,8 +62,8 @@ public class User {
     @Column(name = "deleted_at")
     private LocalDateTime deletedAt;
 
-    @Column(name = "deleted", columnDefinition = "INT DEFAULT 0")
-    private Integer deleted = 0;
+    @Column(name = "deleted", columnDefinition = "BIGINT DEFAULT 0")
+    private Long deleted = 0L;
 
     @Version
     private Integer rowVersion;

@@ -1,0 +1,95 @@
+package org.yenln8.ChatApp.services.serviceImpl.auth.service;
+
+import jakarta.servlet.http.HttpServletRequest;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
+import org.yenln8.ChatApp.common.util.MessageBundle;
+import org.yenln8.ChatApp.dto.base.BaseResponseDto;
+import org.yenln8.ChatApp.dto.request.LoginRequestDto;
+import org.yenln8.ChatApp.dto.request.VerifyOtpRegisterRequestDto;
+import org.yenln8.ChatApp.entity.AccountPending;
+import org.yenln8.ChatApp.entity.OTP;
+import org.yenln8.ChatApp.entity.User;
+import org.yenln8.ChatApp.repository.AccountPendingRepository;
+import org.yenln8.ChatApp.repository.OTPRepository;
+import org.yenln8.ChatApp.repository.UserRepository;
+
+import java.time.LocalDateTime;
+import java.util.Optional;
+
+@Service
+@Slf4j
+@AllArgsConstructor
+public class VerifyOtpRegisterService {
+    private UserRepository userRepository;
+    private OTPRepository otpRepository;
+    private AccountPendingRepository accountPendingRepository;
+
+    public BaseResponseDto call(VerifyOtpRegisterRequestDto form, HttpServletRequest request) throws Exception {
+        OTP otp = validate(form, request);
+
+        save(form, otp, request);
+
+        return BaseResponseDto.builder()
+                .success(true)
+                .statusCode(HttpStatus.OK.value())
+                .message(MessageBundle.getMessage("app.email.register.success"))
+                .build();
+    }
+
+    private OTP validate(VerifyOtpRegisterRequestDto form, HttpServletRequest request) {
+        // Tim ban ghi ung voi OTP trong bang OTP va type REGISTER_ACCOUNT, neu khong ton tai hoac ton tai nhung het han, nem loi
+        String otpCode = form.getOtp();
+
+        Optional<OTP> optionalOTP = this.otpRepository.findByOtpCodeAndTypeAndDeletedAtIsNull(otpCode, OTP.TYPE.REGISTER_ACCOUNT);
+
+        // Validate exist
+        if (optionalOTP.isEmpty()) throw new IllegalArgumentException(MessageBundle.getMessage("error.otp.incorrect"));
+
+        OTP otp = optionalOTP.get();
+        log.info("OTP code {} found", otp);
+
+        // Validate expired
+        if (otp.getExpireAt().isBefore(LocalDateTime.now()))
+            throw new IllegalArgumentException(MessageBundle.getMessage("error.otp.expire"));
+
+        return otp;
+    }
+
+    private void save(VerifyOtpRegisterRequestDto form, OTP otp, HttpServletRequest request) {
+        // Cap nhat OTP tu trang thai BE_SENT thanh VERIFIED va deletedAt = now()  + deleted = id
+        otp.setStatus(OTP.STATUS.VERIFIED);
+        otp.setDeletedAt(LocalDateTime.now());
+        otp.setDeleted(otp.getId());
+
+        this.otpRepository.save(otp);
+
+        // Cap nhat AccountPending
+        Optional<AccountPending> optionalAccountPending = this.accountPendingRepository.findByOtpIdAndStatusAndDeletedAtIsNull(otp.getId(), AccountPending.STATUS.PENDING);
+        log.info("Account Pending: {}", optionalAccountPending);
+
+        if (optionalAccountPending.isEmpty())
+            throw new IllegalArgumentException(MessageBundle.getMessage("error.object.not.found", "AccountPending", "otpId", otp.getId()));
+
+        AccountPending accountPending = optionalAccountPending.get();
+        accountPending.setStatus(AccountPending.STATUS.DONE);
+        accountPending.setDeletedAt(LocalDateTime.now());
+        accountPending.setDeleted(accountPending.getId());
+        this.accountPendingRepository.save(accountPending);
+
+        // Them User
+        User newUser = this.userRepository.save(User.builder()
+                .firstName(accountPending.getFirstName())
+                .lastName(accountPending.getLastName())
+                .fullName(accountPending.getFullName())
+                .email(accountPending.getEmail())
+                .password(accountPending.getPassword())
+                .role(accountPending.getRole())
+                .status(User.STATUS.ACTIVE)
+                .build());
+        log.info("new User : {}", newUser);
+
+    }
+}

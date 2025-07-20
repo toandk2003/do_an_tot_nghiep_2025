@@ -27,7 +27,6 @@ public class DataInitializer {
                         .fullName("John Doe")
                         .status(User.STATUS.ACTIVE)
                         .role(User.ROLE.ADMIN)
-                        .deleted(0)
                         .build();
 
                 // User 2 - Normal User
@@ -39,7 +38,6 @@ public class DataInitializer {
                         .fullName("Jane Smith")
                         .status(User.STATUS.ACTIVE)
                         .role(User.ROLE.ADMIN)
-                        .deleted(0)
                         .build();
 
                 // User 3 - Admin User (NORMAL_USER role)
@@ -51,7 +49,6 @@ public class DataInitializer {
                         .fullName("Admin User")
                         .status(User.STATUS.ACTIVE)
                         .role(User.ROLE.ADMIN)
-                        .deleted(0)
                         .build();
 
                 // Lưu cả 3 bản ghi vào database

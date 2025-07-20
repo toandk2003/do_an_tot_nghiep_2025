@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.yenln8.ChatApp.dto.request.LoginRequestDto;
 import org.yenln8.ChatApp.dto.request.RegisterAccountRequestDto;
+import org.yenln8.ChatApp.dto.request.VerifyOtpRegisterRequestDto;
 import org.yenln8.ChatApp.services.AuthService;
 
 @RestController
@@ -26,5 +27,10 @@ public class AuthController {
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody @Valid RegisterAccountRequestDto form, HttpServletRequest request) throws Exception {
         return ResponseEntity.ok(this.authService.register(form, request));
+    }
+
+    @PostMapping("/register/verify-otp")
+    public ResponseEntity<?> verifyOtpRegister(@RequestBody @Valid VerifyOtpRegisterRequestDto form, HttpServletRequest request) throws Exception {
+        return ResponseEntity.ok(this.authService.verifyOtpRegister(form, request));
     }
 }

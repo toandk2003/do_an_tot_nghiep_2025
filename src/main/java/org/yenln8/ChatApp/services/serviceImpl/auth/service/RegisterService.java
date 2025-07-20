@@ -111,7 +111,7 @@ public class RegisterService {
         // Luu thong tin vao bang Account Pending
          AccountPending accountPending = this.accountPendingRepository.save(AccountPending.builder()
                 .otpId(otp.getId())
-                .role(AccountPending.ROLE.USER)
+                .role(User.ROLE.USER)
                 .status(AccountPending.STATUS.PENDING)
                 .email(email)
                 .firstName(firstName)

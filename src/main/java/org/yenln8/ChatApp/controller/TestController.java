@@ -34,21 +34,7 @@ public class TestController {
 
     @GetMapping("/tevst-exception")
     public ResponseEntity<?> exceptions(HttpServletRequest request) throws Exception {
-//        emailService.systemSendTo("ddfdfdfdfddfffffffsaaaa@gmail.com", "verrify", "abccc");
-//        System.out.println(Network.getUserIP(request));
-
-//        redisTemplate.opsForValue().set("lll", new int[]{1, 2, 3});
-//        throw new Exception(MessageBundle.getMessage("error.system.send.mail"));
-//        System.out.println(redisTemplate.opsForValue().get("exception"));
-//        return ResponseEntity.ok(1);
-        Optional<User> optionalUserser = this.userRepository.findById(1L);
-        if(optionalUserser.isPresent()) {
-            User user = optionalUserser.get();
-            user.setFullName("hihihihi");
-            User userSaved = this.userRepository.save(user);
-            return ResponseEntity.ok(userSaved);
-        }
-        return ResponseEntity.ok(optionalUserser);
+        throw new IllegalArgumentException(MessageBundle.getMessage("error.object.not.found", "AccountPending", "otpId",List.of(2,3,4)));
     }
 
 }

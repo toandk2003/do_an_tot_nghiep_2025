@@ -9,4 +9,5 @@ import java.util.Optional;
 
 @Repository
 public interface AccountPendingRepository extends JpaRepository<AccountPending, Long> {
+    Optional<AccountPending> findByOtpIdAndStatusAndDeletedAtIsNull(Long id, AccountPending.STATUS status);
 }

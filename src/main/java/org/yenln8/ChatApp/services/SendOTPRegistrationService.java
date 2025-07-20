@@ -5,5 +5,5 @@ import org.yenln8.ChatApp.dto.response.SendEmailResponseDto;
 
 @Service
 public interface SendOTPRegistrationService {
-    public SendEmailResponseDto sendOTPRegistration(String recipientEmail);
+    public SendEmailResponseDto sendOTPRegistration(String recipientEmail, String otp);
 }

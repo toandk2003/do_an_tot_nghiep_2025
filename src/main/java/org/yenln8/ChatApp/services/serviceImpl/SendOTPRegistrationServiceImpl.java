@@ -18,28 +18,14 @@ public class SendOTPRegistrationServiceImpl implements SendOTPRegistrationServic
     private EmailService emailService;
 
     /**
-     * Generate 8-digit OTP
-     *
-     * @return 8-digit OTP as String
-     */
-    public String generateOTP() {
-        Random random = new Random();
-        int otp = 10000000 + random.nextInt(90000000); // 8 digit OTP (10000000 - 99999999)
-        return String.valueOf(otp);
-    }
-
-    /**
      * Send OTP email for account registration
      *
      * @param recipientEmail Email address to send OTP to
      * @return SendEmailResponseDto with result status
      */
     @Override
-    public SendEmailResponseDto sendOTPRegistration(String recipientEmail) {
+    public SendEmailResponseDto sendOTPRegistration(String recipientEmail, String otp) {
         try {
-            // Generate 8-digit OTP
-            String otp = generateOTP();
-
             // Email subject
             String subject = MessageBundle.getMessage("app.email.register.otp.subject");
 
@@ -48,7 +34,8 @@ public class SendOTPRegistrationServiceImpl implements SendOTPRegistrationServic
             logger.info(content);
             // Send email using EmailService
             SendEmailResponseDto response = emailService.systemSendTo(recipientEmail, subject, content);
-            logger.info("OTP Registration OTP Verification Response: " + response);
+            logger.info("OTP Registration OTP Verification Response: {}", response);
+
             if (response.getSuccess()) {
                 logger.info("Registration OTP sent successfully to: {}", recipientEmail);
             } else {

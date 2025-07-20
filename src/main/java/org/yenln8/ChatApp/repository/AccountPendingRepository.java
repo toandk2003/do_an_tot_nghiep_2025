@@ -2,12 +2,11 @@ package org.yenln8.ChatApp.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import org.yenln8.ChatApp.entity.AccountPending;
 import org.yenln8.ChatApp.entity.User;
 
-import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
-    Optional<User> findByEmailAndDeletedAtIsNull(String email);
+public interface AccountPendingRepository extends JpaRepository<AccountPending, Long> {
 }

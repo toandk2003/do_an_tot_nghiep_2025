@@ -15,18 +15,15 @@ import java.time.LocalDateTime;
 @Data
 @Builder
 @Entity
-@Table(name = "users",
-        uniqueConstraints = {
-                @UniqueConstraint(name = "uk_email_deleted", columnNames = {"email", "deleted"})
-        },
-        indexes = {
-                @Index(name = "idx_email_deleted", columnList = "email, deleted")
-        })
+@Table(name = "account_pendings")
 
-public class User {
+public class AccountPending {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "otp_id", nullable = false)
+    private Long otpId;
 
     @Column(name = "email", nullable = false)
     private String email;
@@ -69,10 +66,8 @@ public class User {
     private Integer rowVersion;
 
     public enum STATUS{
-        INACTIVE,
-        ACTIVE,
-        LOCK,
-        BAN
+        PENDING,
+        ACTIVE
     }
 
     public enum ROLE{

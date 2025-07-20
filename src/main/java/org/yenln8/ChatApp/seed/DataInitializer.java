@@ -1,7 +1,6 @@
 package org.yenln8.ChatApp.seed;
 
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.yenln8.ChatApp.entity.User;
 import org.yenln8.ChatApp.repository.UserRepository;
@@ -21,37 +20,37 @@ public class DataInitializer {
 
                 // User 1 - Admin
                 User admin = User.builder()
-                        .username("admin")
                         .email("john@example.com")
                         .password(passwordEncoder.encode("123"))
+                        .firstName("John")
+                        .lastName("Doe")
                         .fullName("John Doe")
-                        .phone("0123456789")
-                        .status(1)
-                        .role("ADMIN")
+                        .status(User.STATUS.ACTIVE)
+                        .role(User.ROLE.ADMIN)
                         .deleted(0)
                         .build();
 
                 // User 2 - Normal User
                 User normalUser = User.builder()
-                        .username("user")
                         .email("jane@example.com")
                         .password(passwordEncoder.encode("123"))
+                        .firstName("Jane")
+                        .lastName("Smith")
                         .fullName("Jane Smith")
-                        .phone("0987654321")
-                        .status(1)
-                        .role("NORMAL_USER")
+                        .status(User.STATUS.ACTIVE)
+                        .role(User.ROLE.ADMIN)
                         .deleted(0)
                         .build();
 
                 // User 3 - Admin User (NORMAL_USER role)
                 User adminUser = User.builder()
-                        .username("admin_user")
                         .email("admin@example.com")
                         .password(passwordEncoder.encode("123"))
+                        .firstName("Admin")
+                        .lastName("User")
                         .fullName("Admin User")
-                        .phone("0555123456")
-                        .status(1)
-                        .role("NORMAL_USER")
+                        .status(User.STATUS.ACTIVE)
+                        .role(User.ROLE.ADMIN)
                         .deleted(0)
                         .build();
 

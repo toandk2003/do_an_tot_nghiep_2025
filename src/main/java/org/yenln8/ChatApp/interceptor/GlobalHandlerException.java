@@ -34,8 +34,8 @@ public class GlobalHandlerException {
 
         ErrorResponse response = ErrorResponse.builder()
                 .success(false)
-                .errorCode("400")
-                .message("Invalid argument provided")
+                .statusCode(400)
+                .message(ex.getMessage())
                 .details(ex.getMessage())
                 .timestamp(LocalDateTime.now())
                 .path(getPath(request))
@@ -51,7 +51,7 @@ public class GlobalHandlerException {
 
         ErrorResponse response = ErrorResponse.builder()
                 .success(false)
-                .errorCode("400")
+                .statusCode(400)
                 .message("Invalid number format")
                 .details(ex.getMessage())
                 .timestamp(LocalDateTime.now())
@@ -68,7 +68,7 @@ public class GlobalHandlerException {
 
         ErrorResponse response = ErrorResponse.builder()
                 .success(false)
-                .errorCode("E50003")
+                .statusCode(408)
                 .message("Operation timeout")
                 .details(ex.getMessage())
                 .timestamp(LocalDateTime.now())
@@ -85,7 +85,7 @@ public class GlobalHandlerException {
 
         ErrorResponse response = ErrorResponse.builder()
                 .success(false)
-                .errorCode("400")
+                .statusCode(400)
                 .message("Invalid request body")
                 .details("Request body is malformed or unreadable")
                 .timestamp(LocalDateTime.now())
@@ -109,7 +109,7 @@ public class GlobalHandlerException {
 
         ErrorResponse response = ErrorResponse.builder()
                 .success(false)
-                .errorCode("400")
+                .statusCode(400)
                 .message("Validation failed")
                 .details(errors.toString())
                 .validationErrors(errors)
@@ -136,7 +136,7 @@ public class GlobalHandlerException {
 
         ErrorResponse response = ErrorResponse.builder()
                 .success(false)
-                .errorCode("400")
+                .statusCode(400)
                 .message("Constraint violation")
                 .details("Validation constraints violated")
                 .validationErrors(errors)
@@ -154,8 +154,8 @@ public class GlobalHandlerException {
 
         ErrorResponse response = ErrorResponse.builder()
                 .success(false)
-                .errorCode("500")
-                .message("Internal server error")
+                .statusCode(500)
+                .message(ex.getMessage())
                 .details("An unexpected error occurred")
                 .timestamp(LocalDateTime.now())
                 .path(getPath(request))
@@ -171,7 +171,7 @@ public class GlobalHandlerException {
 
         ErrorResponse response = ErrorResponse.builder()
                 .success(false)
-                .errorCode(HttpStatus.UNAUTHORIZED.toString())
+                .statusCode(HttpStatus.UNAUTHORIZED.value())
                 .message(MessageBundle.getMessage("validate.permission.unauthorized"))
                 .details("The JWT token has expired. Please login again to get a new token")
                 .timestamp(LocalDateTime.now())
@@ -188,7 +188,7 @@ public class GlobalHandlerException {
 
         ErrorResponse response = ErrorResponse.builder()
                 .success(false)
-                .errorCode(HttpStatus.UNAUTHORIZED.toString())
+                .statusCode(HttpStatus.UNAUTHORIZED.value())
                 .message(MessageBundle.getMessage("validate.permission.unauthorized"))
                 .details("The provided token is invalid or malformed")
                 .timestamp(LocalDateTime.now())
@@ -205,7 +205,7 @@ public class GlobalHandlerException {
 
         ErrorResponse response = ErrorResponse.builder()
                 .success(false)
-                .errorCode("403")
+                .statusCode(403)
                 .message(HttpStatus.FORBIDDEN.toString())
                 .message(MessageBundle.getMessage("validate.permission.forbidden"))
                 .timestamp(LocalDateTime.now())

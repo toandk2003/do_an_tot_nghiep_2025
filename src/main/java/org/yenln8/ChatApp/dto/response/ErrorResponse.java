@@ -18,7 +18,7 @@ public class ErrorResponse {
 
     private boolean success;
 
-    private String errorCode;
+    private int statusCode;
 
     private String message;
 

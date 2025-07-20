@@ -9,47 +9,46 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.Random;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Builder
 @Entity
-@Table(name = "users",
+@Table(name = "otps",
         uniqueConstraints = {
-                @UniqueConstraint(name = "uk_email_deleted", columnNames = {"email", "deleted"})
-        },
-        indexes = {
-                @Index(name = "idx_email_deleted", columnList = "email, deleted")
-        })
+                @UniqueConstraint(name = "uk_otp_code_type_deleted", columnNames = {"otp_code", "type", "deleted"})
+        }
+)
 
-public class User {
+public class OTP {// table chua cac OTP da gui di
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "email", nullable = false)
-    private String email;
+    @Column(name = "user_id")
+    private Integer userId;
 
-    @Column(name = "password", nullable = false)
-    private String password;
+    @Column(name = "from_ip_address", nullable = false)
+    private String fromIpAddress;
 
-    @Column(name = "first_name")
-    private String firstName;
+    @Column(name = "to_email", nullable = false)
+    private String toEmail;
 
-    @Column(name = "last_name")
-    private String lastName;
+    @Column(name = "otp_code", nullable = false)
+    private String otpCode;
 
-    @Column(name = "full_name")
-    private String fullName;
+    @Column(name = "type", nullable = false)
+    @Enumerated(EnumType.ORDINAL)
+    private TYPE type;
 
     @Column(name = "status", nullable = false)
     @Enumerated(EnumType.ORDINAL)
     private STATUS status;
 
-    @Column(name = "role", nullable = false)
-    @Enumerated(EnumType.ORDINAL)
-    private ROLE role;
+    @Column(name = "expire_at", nullable = false)
+    private LocalDateTime expireAt;
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
@@ -69,14 +68,17 @@ public class User {
     private Integer rowVersion;
 
     public enum STATUS{
-        INACTIVE,
-        ACTIVE,
-        LOCK,
-        BAN
+        BE_SENT,
+        VERIFIED
     }
 
-    public enum ROLE{
-        USER,
-        ADMIN
+    public enum TYPE{
+        REGISTER_ACCOUNT
+    }
+
+    public static String generateOTP() {
+        Random random = new Random();
+        int otp = 10000000 + random.nextInt(90000000); // 8 digit OTP (10000000 - 99999999)
+        return String.valueOf(otp);
     }
 }

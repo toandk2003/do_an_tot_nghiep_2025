@@ -15,41 +15,36 @@ import java.time.LocalDateTime;
 @Data
 @Builder
 @Entity
-@Table(name = "users",
-        uniqueConstraints = {
-                @UniqueConstraint(name = "uk_email_deleted", columnNames = {"email", "deleted"})
-        },
-        indexes = {
-                @Index(name = "idx_email_deleted", columnList = "email, deleted")
-        })
+@Table(name = "black_list_send_emails",
+    uniqueConstraints = {
+        @UniqueConstraint(name = "idx_ip_email_type", columnNames = {"from_ip_address","to_email","type"})
+    }
+)
 
-public class User {
+public class BlackListSendEmail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "email", nullable = false)
-    private String email;
+    @Column(name = "from_ip_address", nullable = false)
+    private String fromIpAddress;
 
-    @Column(name = "password", nullable = false)
-    private String password;
+    @Column(name = "to_email", nullable = false)
+    private String toEmail;
 
-    @Column(name = "first_name")
-    private String firstName;
+    @Column(name = "user_id")
+    private Integer userId;
 
-    @Column(name = "last_name")
-    private String lastName;
-
-    @Column(name = "full_name")
-    private String fullName;
+    @Column(name = "type", nullable = false)
+    @Enumerated(EnumType.ORDINAL)
+    private TYPE type;
 
     @Column(name = "status", nullable = false)
     @Enumerated(EnumType.ORDINAL)
     private STATUS status;
 
-    @Column(name = "role", nullable = false)
-    @Enumerated(EnumType.ORDINAL)
-    private ROLE role;
+    @Column(name = "free_to_send_at")
+    private LocalDateTime freeToSendAt;
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
@@ -69,14 +64,11 @@ public class User {
     private Integer rowVersion;
 
     public enum STATUS{
-        INACTIVE,
-        ACTIVE,
-        LOCK,
-        BAN
+        BAN,
+        FREE
     }
 
-    public enum ROLE{
-        USER,
-        ADMIN
+    public enum TYPE{
+        REGISTER_ACCOUNT
     }
 }

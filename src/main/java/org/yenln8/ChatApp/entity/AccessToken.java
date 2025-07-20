@@ -15,7 +15,11 @@ import java.time.LocalDateTime;
 @Data
 @Builder
 @Entity
-@Table(name = "access_tokens")
+@Table(name = "access_tokens",
+        uniqueConstraints = {
+                @UniqueConstraint(name = "uk_token_deleted", columnNames = {"token", "deleted"})
+        }
+)
 public class AccessToken {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,7 +47,7 @@ public class AccessToken {
     @Column(name = "device_info")
     private String deviceInfo;
 
-    @Column(name = "ip_address")
+    @Column(name = "ip_address", nullable = false)
     private String ipAddress;
 
     @CreationTimestamp
@@ -59,6 +63,9 @@ public class AccessToken {
 
     @Column(name = "deleted", columnDefinition = "INT DEFAULT 0")
     private Integer deleted = 0;
+
+    @Version
+    private Integer rowVersion;
 
     // Helper methods
     public boolean isExpired() {

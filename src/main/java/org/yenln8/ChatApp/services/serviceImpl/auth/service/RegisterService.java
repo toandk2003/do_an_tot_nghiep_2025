@@ -14,14 +14,8 @@ import org.yenln8.ChatApp.common.util.Network;
 import org.yenln8.ChatApp.dto.base.BaseResponseDto;
 import org.yenln8.ChatApp.dto.request.RegisterAccountRequestDto;
 import org.yenln8.ChatApp.dto.response.SendEmailResponseDto;
-import org.yenln8.ChatApp.entity.AccountPending;
-import org.yenln8.ChatApp.entity.BlackListSendEmail;
-import org.yenln8.ChatApp.entity.OTP;
-import org.yenln8.ChatApp.entity.User;
-import org.yenln8.ChatApp.repository.AccountPendingRepository;
-import org.yenln8.ChatApp.repository.BlackListSendEmailRepository;
-import org.yenln8.ChatApp.repository.OTPRepository;
-import org.yenln8.ChatApp.repository.UserRepository;
+import org.yenln8.ChatApp.entity.*;
+import org.yenln8.ChatApp.repository.*;
 import org.yenln8.ChatApp.services.SendOTPRegistrationService;
 
 import java.time.LocalDateTime;
@@ -38,6 +32,7 @@ public class RegisterService {
     private AccountPendingRepository accountPendingRepository;
     private SendOTPRegistrationService sendOTPRegistrationService;
     private PasswordEncoder passwordEncoder;
+    private EmailOutboxRepository emailOutboxRepository;
 
     @Transactional(rollbackFor = Exception.class)
     public BaseResponseDto call(RegisterAccountRequestDto form, HttpServletRequest request) throws Exception {
@@ -109,7 +104,7 @@ public class RegisterService {
         log.info("otp saved: {}", otp);
 
         // Luu thong tin vao bang Account Pending
-         AccountPending accountPending = this.accountPendingRepository.save(AccountPending.builder()
+        AccountPending accountPending = this.accountPendingRepository.save(AccountPending.builder()
                 .otpId(otp.getId())
                 .role(User.ROLE.USER)
                 .status(AccountPending.STATUS.PENDING)
@@ -122,13 +117,16 @@ public class RegisterService {
         log.info("AccountPending saved: {}", accountPending);
 
         // Kiem tra so lan gui email tu ip X toi email Y voi type = Z, neu dat threshhold, tien hanh cap nhat bang BlackList de cam gui email tiep
-        validateReachLimitSendEmail(ipAddress,email);
+        validateReachLimitSendEmail(ipAddress, email);
 
         // Gui email
-        SendEmailResponseDto emailResponse = this.sendOTPRegistrationService.sendOTPRegistration(email, otp.getOtpCode());
-        log.info("emailResponse register: {}", emailResponse);
+        EmailOutbox emailOutboxSaved = this.emailOutboxRepository.save(EmailOutbox.builder()
+                .toEmail(email)
+                .otpCode(otp.getOtpCode())
+                .type(EmailOutbox.TYPE.REGISTER_ACCOUNT)
+                .build());
+        log.info("EmailOutbox saved: {}", emailOutboxSaved);
 
-        if (!emailResponse.getSuccess()) throw new Exception(MessageBundle.getMessage("error.system.send.mail"));
     }
 
     private void validateReachLimitSendEmail(String ipAddress, String email) {

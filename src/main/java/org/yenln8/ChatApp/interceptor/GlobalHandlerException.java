@@ -14,7 +14,9 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.server.ResponseStatusException;
 import org.yenln8.ChatApp.common.util.MessageBundle;
+import org.yenln8.ChatApp.dto.base.BaseResponseDto;
 import org.yenln8.ChatApp.dto.response.ErrorResponse;
 
 import java.time.LocalDateTime;
@@ -42,6 +44,17 @@ public class GlobalHandlerException {
                 .build();
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+    }
+
+    @ExceptionHandler(ResponseStatusException.class)
+    public ResponseEntity<?> handleNotFound(ResponseStatusException ex) {
+        System.out.println(ex.getMessage());
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(BaseResponseDto.builder()
+                        .success(false)
+                        .statusCode(ex.getStatusCode().value())
+                        .message(ex.getReason())
+                        .build());
     }
 
     @ExceptionHandler(NumberFormatException.class)

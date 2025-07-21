@@ -8,10 +8,14 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.yenln8.ChatApp.common.util.MessageBundle;
+import org.yenln8.ChatApp.dto.redis.BlackListLoginDto;
+import org.yenln8.ChatApp.dto.request.LoginRequestDto;
 import org.yenln8.ChatApp.entity.User;
 import org.yenln8.ChatApp.repository.UserRepository;
 import org.yenln8.ChatApp.services.EmailService;
 import org.yenln8.ChatApp.security.JwtTokenProvider;
+import org.yenln8.ChatApp.services.RedisService;
+import org.yenln8.ChatApp.services.serviceImpl.auth.service.LoginService;
 
 
 import java.util.ArrayList;
@@ -23,13 +27,20 @@ import java.util.Optional;
 public class TestController {
     private JwtTokenProvider jwtTokenProvider;
     private EmailService emailService;
-    private RedisTemplate<String, Object> redisTemplate;
+    private RedisService redisService;
     private UserRepository  userRepository;
 
     @GetMapping("/test")
     public ResponseEntity<?> test() throws IllegalAccessException {
-        String token = jwtTokenProvider.createToken(1L, "abc@mgila.com", List.of("ADMIN"));
-        return ResponseEntity.ok(token);
+//        String token = jwtTokenProvider.createToken(1L, "abc@mgila.com", List.of("ADMIN"));
+//        return ResponseEntity.ok(token);
+        LoginRequestDto loginRequestDto = LoginRequestDto.builder().email("sadsdasd").build();
+        loginRequestDto.setEmail("abc@gmail.com");
+        redisService.setKeyInMinutes(loginRequestDto.getEmail(), "ABCCCCC",1);
+        String val = redisService.getKey(loginRequestDto.getEmail(), String.class);
+        System.out.println(">>> Value in Redis: " + val);
+        return ResponseEntity.ok(val);
+//        return  ResponseEntity.ok().build();
     }
 
     @GetMapping("/tevst-exception")

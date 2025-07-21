@@ -16,27 +16,30 @@ public class RedisService {
     private RedisTemplate<String, Object> redisTemplate;
 
     @SuppressWarnings("NoWarning")
-    public <T> T getKey(String key, Class<T> type){
-        try{
+    public <T> T getKey(String key, Class<T> type) {
+        try {
             Object value = redisTemplate.opsForValue().get(key);
 
-            if(!type.isInstance(value)) return null;
+            if (!type.isInstance(value)) return null;
 
-            return (T)value;
-        }
-        catch (Exception e){
+            return (T) value;
+        } catch (Exception e) {
             log.error(e.getMessage());
 
             return null;
         }
     }
 
+    public long getExpireTimeBySecond(String key) {
+        return redisTemplate.getExpire(key);
+    }
+
     public <T> void setKey(String key, T value) {
         redisTemplate.opsForValue().set(key, value);
     }
 
-    public <T> void setKey(String key, T value, long tllInSeconds) {
-        redisTemplate.opsForValue().set(key, value, Duration.ofSeconds(tllInSeconds));
+    public <T> void setKeyInMinutes(String key, T value, long tllInMinute) {
+        redisTemplate.opsForValue().set(key, value, Duration.ofMinutes(tllInMinute));
     }
 
     public boolean deleteKey(String key) {
@@ -65,5 +68,8 @@ public class RedisService {
         }
     }
 
-
+    public void updateValueKeepTTL(String key, Object newValue) {
+        long ttlInMilisSecond = redisTemplate.getExpire(key);
+        this.redisTemplate.opsForValue().set(key, newValue,Duration.ofSeconds(ttlInMilisSecond));
+    }
 }

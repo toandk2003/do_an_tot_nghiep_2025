@@ -52,5 +52,7 @@ public class EmailOutbox {// table chua cac OTP da gui di
 
     public enum TYPE {
         REGISTER_ACCOUNT,
+        CHANGE_PASSWORD,
+        FORGOT_PASSWORD
     }
 }

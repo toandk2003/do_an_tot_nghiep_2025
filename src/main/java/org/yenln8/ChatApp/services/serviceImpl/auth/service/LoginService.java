@@ -6,8 +6,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import org.yenln8.ChatApp.common.constant.AuthConstant;
-import org.yenln8.ChatApp.common.util.AccessService;
 import org.yenln8.ChatApp.common.util.MessageBundle;
+import org.yenln8.ChatApp.common.util.spam.SpamService;
 import org.yenln8.ChatApp.dto.base.BaseResponseDto;
 import org.yenln8.ChatApp.dto.redis.BlackListLoginDto;
 import org.yenln8.ChatApp.dto.request.LoginRequestDto;
@@ -26,11 +26,9 @@ public class LoginService {
     private UserRepository userRepository;
     private PasswordEncoder passwordEncoder;
     private JwtTokenProvider jwtTokenProvider;
-    private AccessService accessService;
+    private SpamService spamService;
 
     public BaseResponseDto call(LoginRequestDto loginRequestDto) {
-
-        System.out.println("received login request" + this.redisService.getKey(RedisService.BLACKLIST_LOGIN_PREFIX + loginRequestDto.getEmail(), BlackListLoginDto.class));
         User user = validate(loginRequestDto);
 
         String token = save(user);
@@ -55,7 +53,7 @@ public class LoginService {
         Optional<User> optionalUser = this.userRepository.findByEmailAndDeletedAtIsNull(form.getEmail());
         if (optionalUser.isEmpty()) {
             // +1 fail login
-            this.accessService.handleSpamToLogin(form, blackListLoginDto);
+            this.spamService.avoidSpamLogin(form, blackListLoginDto);
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, MessageBundle.getMessage("error.login.fail"));
 
         }
@@ -63,19 +61,19 @@ public class LoginService {
         User user = optionalUser.get();
         if (!(user.getEmail().equals(form.getEmail()) && passwordEncoder.matches(form.getPassword(), user.getPassword()))) {
             // +1 fail login
-            this.accessService.handleSpamToLogin(form, blackListLoginDto);
+            this.spamService.avoidSpamLogin(form, blackListLoginDto);
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, MessageBundle.getMessage("error.login.fail"));
         }
 
         // Kiem tra tai khoan co bi LOCK hoac BAN khong
         if (user.getStatus().equals(User.STATUS.LOCK)) {
             // +1 fail login
-            this.accessService.handleSpamToLogin(form, blackListLoginDto);
+            this.spamService.avoidSpamLogin(form, blackListLoginDto);
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, MessageBundle.getMessage("error.login.lock"));
         }
         if (user.getStatus().equals(User.STATUS.BAN)) {
             // +1 fail login
-            this.accessService.handleSpamToLogin(form, blackListLoginDto);
+            this.spamService.avoidSpamLogin(form, blackListLoginDto);
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, MessageBundle.getMessage("error.login.ban"));
         }
 

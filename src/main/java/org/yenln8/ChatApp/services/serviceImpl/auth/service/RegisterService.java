@@ -3,24 +3,21 @@ package org.yenln8.ChatApp.services.serviceImpl.auth.service;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.yenln8.ChatApp.common.constant.AuthConstant;
 import org.yenln8.ChatApp.common.constant.EmailConstant;
 import org.yenln8.ChatApp.common.util.MessageBundle;
 import org.yenln8.ChatApp.common.util.Network;
+import org.yenln8.ChatApp.common.util.spam.SpamService;
 import org.yenln8.ChatApp.dto.base.BaseResponseDto;
 import org.yenln8.ChatApp.dto.request.RegisterAccountRequestDto;
-import org.yenln8.ChatApp.dto.response.SendEmailResponseDto;
 import org.yenln8.ChatApp.entity.*;
 import org.yenln8.ChatApp.repository.*;
 import org.yenln8.ChatApp.services.SendOTPRegistrationService;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Optional;
 
 @Slf4j
@@ -31,9 +28,9 @@ public class RegisterService {
     private OTPRepository OTPRepository;
     private BlackListSendEmailRepository blackListSendEmailRepository;
     private AccountPendingRepository accountPendingRepository;
-    private SendOTPRegistrationService sendOTPRegistrationService;
     private PasswordEncoder passwordEncoder;
     private EmailOutboxRepository emailOutboxRepository;
+    private SpamService spamService;
 
     @Transactional(rollbackFor = Exception.class)
     public BaseResponseDto call(RegisterAccountRequestDto form, HttpServletRequest request) throws Exception {
@@ -118,7 +115,7 @@ public class RegisterService {
         log.info("AccountPending saved: {}", accountPending);
 
         // Kiem tra so lan gui email tu ip X toi email Y voi type = Z, neu dat threshhold, tien hanh cap nhat bang BlackList de cam gui email tiep
-        validateReachLimitSendEmail(ipAddress, email);
+        this.spamService.avoidSpamOTP(ipAddress, email, BlackListSendEmail.TYPE.REGISTER_ACCOUNT);
 
         // Gui email
         EmailOutbox emailOutboxSaved = this.emailOutboxRepository.save(EmailOutbox.builder()
@@ -130,34 +127,6 @@ public class RegisterService {
 
     }
 
-    private void validateReachLimitSendEmail(String ipAddress, String email) {
-        long countOtpSent = this.OTPRepository.countByFromIpAddressAndToEmailAndTypeAndCreatedAtAfterAndDeletedAtIsNull(ipAddress, email, OTP.TYPE.REGISTER_ACCOUNT, LocalDateTime.now().minusMinutes(EmailConstant.LIMIT_MINUTES_TO_SEND_EMAIL));
-        log.info("countOtpSent to check exceed: {}", countOtpSent);
-
-        if (countOtpSent < EmailConstant.LIMIT_QUANTITY_EMAIL_SENT) return;
-
-        Optional<BlackListSendEmail> oBlackListSendEmail = this.blackListSendEmailRepository.findByFromIpAddressAndToEmailAndType(ipAddress, email, BlackListSendEmail.TYPE.REGISTER_ACCOUNT);
-
-        if (oBlackListSendEmail.isEmpty()) {
-            BlackListSendEmail blackListSendEmailSaved = this.blackListSendEmailRepository.save(BlackListSendEmail.builder()
-                    .freeToSendAt(LocalDateTime.now().plusMinutes(EmailConstant.LIMIT_MINUTES_TO_SEND_EMAIL))
-                    .toEmail(email)
-                    .fromIpAddress(ipAddress)
-                    .status(BlackListSendEmail.STATUS.BAN)
-                    .type(BlackListSendEmail.TYPE.REGISTER_ACCOUNT)
-                    .build());
-
-            log.info("blackListSendEmailSaved is created: {}", blackListSendEmailSaved);
-
-        } else {
-            BlackListSendEmail blackListSendEmail = oBlackListSendEmail.get();
-            blackListSendEmail.setFreeToSendAt(LocalDateTime.now().plusMinutes(EmailConstant.LIMIT_MINUTES_TO_SEND_EMAIL));
-            blackListSendEmail.setStatus(BlackListSendEmail.STATUS.BAN);
-
-            BlackListSendEmail blackListSendEmailSaved = this.blackListSendEmailRepository.save(blackListSendEmail);
-            log.info("blackListSendEmailSaved is updated: {}", blackListSendEmailSaved);
-        }
-    }
 
     private boolean containsDigit(String s) {
         if (s == null) return false;

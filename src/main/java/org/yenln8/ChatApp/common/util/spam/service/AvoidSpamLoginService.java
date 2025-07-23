@@ -1,6 +1,7 @@
-package org.yenln8.ChatApp.common.util;
+package org.yenln8.ChatApp.common.util.spam.service;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.yenln8.ChatApp.common.constant.AuthConstant;
 import org.yenln8.ChatApp.dto.redis.BlackListLoginDto;
@@ -9,10 +10,11 @@ import org.yenln8.ChatApp.services.RedisService;
 
 @Service
 @AllArgsConstructor
-public class AccessService {
+@Slf4j
+public class AvoidSpamLoginService {
     private RedisService redisService;
 
-    public void handleSpamToLogin(LoginRequestDto form, BlackListLoginDto blackListLoginDto) {
+    public void call(LoginRequestDto form, BlackListLoginDto blackListLoginDto) {
         // key no exists
         String failToLoginKeyRedis = RedisService.BLACKLIST_LOGIN_PREFIX + form.getEmail();
 
@@ -36,4 +38,5 @@ public class AccessService {
             }
         }
     }
+
 }

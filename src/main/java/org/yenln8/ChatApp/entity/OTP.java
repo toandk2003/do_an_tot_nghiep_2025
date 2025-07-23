@@ -74,7 +74,9 @@ public class OTP {// table chua cac OTP da gui di
     }
 
     public enum TYPE{
-        REGISTER_ACCOUNT
+        REGISTER_ACCOUNT,
+        CHANGE_PASSWORD,
+        FORGOT_PASSWORD
     }
 
     public static String generateOTP() {

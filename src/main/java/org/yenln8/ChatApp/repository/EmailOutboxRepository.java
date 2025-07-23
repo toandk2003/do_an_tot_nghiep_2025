@@ -8,6 +8,6 @@ import org.yenln8.ChatApp.entity.EmailOutbox;
 
 @Repository
 public interface EmailOutboxRepository extends JpaRepository<EmailOutbox, Long> {
-    Page<EmailOutbox> findAllByTypeAndDeletedAtIsNull(EmailOutbox.TYPE type, Pageable pageable);
+    Page<EmailOutbox> findAllByDeletedAtIsNull(Pageable pageable);
 }
 

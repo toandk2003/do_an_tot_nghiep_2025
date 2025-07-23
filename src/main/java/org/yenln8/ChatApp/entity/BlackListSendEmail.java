@@ -69,6 +69,8 @@ public class BlackListSendEmail {
     }
 
     public enum TYPE{
-        REGISTER_ACCOUNT
+        REGISTER_ACCOUNT,
+        CHANGE_PASSWORD,
+        FORGOT_PASSWORD
     }
 }

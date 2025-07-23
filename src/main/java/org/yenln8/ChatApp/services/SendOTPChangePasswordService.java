@@ -5,5 +5,5 @@ import org.yenln8.ChatApp.dto.response.SendEmailResponseDto;
 
 @Service
 public interface SendOTPChangePasswordService {
-    public SendEmailResponseDto sendOTPChangePassword(String recipientEmail);
+    public SendEmailResponseDto sendOTPChangePassword(String recipientEmail, String otp);
 }

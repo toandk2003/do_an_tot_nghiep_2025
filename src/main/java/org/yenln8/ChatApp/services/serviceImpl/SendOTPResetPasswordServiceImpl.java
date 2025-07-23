@@ -17,29 +17,9 @@ public class SendOTPResetPasswordServiceImpl implements SendOTPResetPasswordServ
     private static final Logger logger = LoggerFactory.getLogger(SendOTPResetPasswordServiceImpl.class);
     private EmailService emailService;
 
-    /**
-     * Generate 8-digit OTP
-     *
-     * @return 8-digit OTP as String
-     */
-    public String generateOTP() {
-        Random random = new Random();
-        int otp = 10000000 + random.nextInt(90000000); // 8 digit OTP (10000000 - 99999999)
-        return String.valueOf(otp);
-    }
-
-    /**
-     * Send OTP email for account registration
-     *
-     * @param recipientEmail Email address to send OTP to
-     * @return SendEmailResponseDto with result status
-     */
     @Override
-    public SendEmailResponseDto sendOTPResetPassword(String recipientEmail) {
+    public SendEmailResponseDto sendOTPResetPassword(String recipientEmail, String otp) {
         try {
-            // Generate 8-digit OTP
-            String otp = generateOTP();
-
             // Email subject
             String subject = MessageBundle.getMessage("app.email.reset.password.otp.subject");
 

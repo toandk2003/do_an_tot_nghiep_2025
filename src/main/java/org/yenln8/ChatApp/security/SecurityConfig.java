@@ -1,7 +1,5 @@
 package org.yenln8.ChatApp.security;
 
-import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -14,18 +12,19 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
-import java.util.List;
+import org.yenln8.ChatApp.services.RedisService;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
     private final JwtTokenProvider jwtTokenProvider;
     private CustomAuthenticationEntryPoint authenticationEntryPoint;
+    private RedisService redisService;
 
-    public SecurityConfig(JwtTokenProvider jwtTokenProvider,  CustomAuthenticationEntryPoint authenticationEntryPoint) {
+    public SecurityConfig(JwtTokenProvider jwtTokenProvider,  CustomAuthenticationEntryPoint authenticationEntryPoint, RedisService redisService) {
         this.jwtTokenProvider = jwtTokenProvider;
         this.authenticationEntryPoint = authenticationEntryPoint;
+        this.redisService = redisService;
     }
 
     @Bean
@@ -48,7 +47,7 @@ public class SecurityConfig {
                 .exceptionHandling(exception -> exception
                         .authenticationEntryPoint(authenticationEntryPoint)
                 )
-                .addFilterAfter(new JwtAuthenticationFilter(this.jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
+                .addFilterAfter(new JwtAuthenticationFilter(this.jwtTokenProvider,this.redisService), UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }

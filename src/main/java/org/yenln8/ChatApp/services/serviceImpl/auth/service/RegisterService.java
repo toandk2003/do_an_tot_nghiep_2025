@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.yenln8.ChatApp.common.constant.AuthConstant;
 import org.yenln8.ChatApp.common.constant.EmailConstant;
 import org.yenln8.ChatApp.common.util.MessageBundle;
 import org.yenln8.ChatApp.common.util.Network;
@@ -78,15 +79,15 @@ public class RegisterService {
                 blackListSendEmail.get().getStatus().equals(BlackListSendEmail.STATUS.BAN) &&
                 blackListSendEmail.get().getFreeToSendAt().isAfter(LocalDateTime.now())
         ) {
-            throw new IllegalArgumentException(MessageBundle.getMessage("error.email.exceed"));
+            throw new IllegalArgumentException(MessageBundle.getMessage("error.email.exceed", EmailConstant.LIMIT_MINUTES_TO_SEND_EMAIL));
         }
     }
 
     private void save(RegisterAccountRequestDto form, HttpServletRequest request) throws Exception {
-        String email = form.getEmail();
+        String email = form.getEmail().trim();
         String password = form.getPassword();
-        String firstName = form.getFirstName();
-        String lastName = form.getLastName();
+        String firstName = form.getFirstName().trim();
+        String lastName = form.getLastName().trim();
         String fullName = firstName + " " + lastName;
         String ipAddress = Network.getUserIP(request);
 

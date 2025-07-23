@@ -1,39 +1,35 @@
 package org.yenln8.ChatApp.security;
 
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.ExpiredJwtException;
-import io.jsonwebtoken.JwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
 import org.springframework.lang.NonNull;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
-import org.yenln8.ChatApp.common.util.MessageBundle;
 import org.yenln8.ChatApp.dto.other.CurrentUser;
+import org.yenln8.ChatApp.services.RedisService;
 
 import java.io.IOException;
+import java.time.Instant;
 import java.util.List;
 
 @Component
 @Slf4j
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final JwtTokenProvider jwtTokenProvider;
+    private final RedisService redisService;
 
-    public JwtAuthenticationFilter(JwtTokenProvider jwtTokenProvider) {
+    public JwtAuthenticationFilter(JwtTokenProvider jwtTokenProvider,RedisService redisService) {
         this.jwtTokenProvider = jwtTokenProvider;
+        this.redisService = redisService;
     }
 
     @Override
@@ -44,7 +40,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         Claims tokenDecoded = this.jwtTokenProvider.decodeToken(tokenFromRequest);
 
         log.info("token from Request: {}", tokenFromRequest);
-        log.info("tokenDecoded: {}",tokenDecoded);
+        log.info("tokenDecoded: {}", tokenDecoded);
 
         if (tokenDecoded != null) {
             // if token expire, it's seen as invalid because decode return null
@@ -61,7 +57,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             UsernamePasswordAuthenticationToken authentication =
                     new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
 
+            // Set to SecurityContextHolder
             SecurityContextHolder.getContext().setAuthentication(authentication);
+
+            // Set last online
+            this.redisService.setKey(RedisService.LAST_ONLINE_PREFIX + email,Instant.now().getEpochSecond());
         }
 
         filterChain.doFilter(request, response);

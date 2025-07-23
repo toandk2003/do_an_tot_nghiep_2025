@@ -45,7 +45,9 @@ public class TestController {
 
     @GetMapping("/tevst-exception")
     public ResponseEntity<?> exceptions(HttpServletRequest request) throws Exception {
-        throw new IllegalArgumentException(MessageBundle.getMessage("error.object.not.found", "AccountPending", "otpId",List.of(2,3,4)));
+        System.out.println(this.redisService.getKey(RedisService.LAST_ONLINE_PREFIX + "ngocyenptit153@gmail.com", Long.class));
+        return ResponseEntity.ok(1);
+//        throw new IllegalArgumentException(MessageBundle.getMessage("error.object.not.found", "AccountPending", "otpId",List.of(2,3,4)));
     }
 
 }

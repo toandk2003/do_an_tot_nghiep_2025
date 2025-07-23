@@ -1,6 +1,5 @@
 package org.yenln8.ChatApp.services;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -12,15 +11,15 @@ import java.time.Duration;
 @AllArgsConstructor
 @Slf4j
 public class RedisService {
-    private ObjectMapper objectMapper;
+    public static final String BLACKLIST_LOGIN_PREFIX = "BLACK_LIST_LOGIN_PREFIX_";
+    public static final String LAST_ONLINE_PREFIX= "LAST_ONLINE_PREFIX_";
+
     private RedisTemplate<String, Object> redisTemplate;
 
     @SuppressWarnings("NoWarning")
     public <T> T getKey(String key, Class<T> type) {
         try {
             Object value = redisTemplate.opsForValue().get(key);
-
-            if (!type.isInstance(value)) return null;
 
             return (T) value;
         } catch (Exception e) {

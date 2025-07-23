@@ -6,6 +6,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import org.yenln8.ChatApp.common.constant.AuthConstant;
+import org.yenln8.ChatApp.common.util.AccessService;
 import org.yenln8.ChatApp.common.util.MessageBundle;
 import org.yenln8.ChatApp.dto.base.BaseResponseDto;
 import org.yenln8.ChatApp.dto.redis.BlackListLoginDto;
@@ -25,10 +26,11 @@ public class LoginService {
     private UserRepository userRepository;
     private PasswordEncoder passwordEncoder;
     private JwtTokenProvider jwtTokenProvider;
+    private AccessService accessService;
 
     public BaseResponseDto call(LoginRequestDto loginRequestDto) {
 
-        System.out.println("received login request" + this.redisService.getKey(RedisService.BLACKLIST_LOGIN_PREFIX  + loginRequestDto.getEmail(), BlackListLoginDto.class));
+        System.out.println("received login request" + this.redisService.getKey(RedisService.BLACKLIST_LOGIN_PREFIX + loginRequestDto.getEmail(), BlackListLoginDto.class));
         User user = validate(loginRequestDto);
 
         String token = save(user);
@@ -53,7 +55,7 @@ public class LoginService {
         Optional<User> optionalUser = this.userRepository.findByEmailAndDeletedAtIsNull(form.getEmail());
         if (optionalUser.isEmpty()) {
             // +1 fail login
-            handleFailToLogin(form, blackListLoginDto);
+            this.accessService.handleSpamToLogin(form, blackListLoginDto);
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, MessageBundle.getMessage("error.login.fail"));
 
         }
@@ -61,48 +63,23 @@ public class LoginService {
         User user = optionalUser.get();
         if (!(user.getEmail().equals(form.getEmail()) && passwordEncoder.matches(form.getPassword(), user.getPassword()))) {
             // +1 fail login
-            handleFailToLogin(form, blackListLoginDto);
+            this.accessService.handleSpamToLogin(form, blackListLoginDto);
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, MessageBundle.getMessage("error.login.fail"));
         }
 
         // Kiem tra tai khoan co bi LOCK hoac BAN khong
         if (user.getStatus().equals(User.STATUS.LOCK)) {
             // +1 fail login
-            handleFailToLogin(form, blackListLoginDto);
+            this.accessService.handleSpamToLogin(form, blackListLoginDto);
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, MessageBundle.getMessage("error.login.lock"));
         }
         if (user.getStatus().equals(User.STATUS.BAN)) {
             // +1 fail login
-            handleFailToLogin(form, blackListLoginDto);
+            this.accessService.handleSpamToLogin(form, blackListLoginDto);
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, MessageBundle.getMessage("error.login.ban"));
         }
 
         return user;
-    }
-
-    private void handleFailToLogin(LoginRequestDto form, BlackListLoginDto blackListLoginDto) {
-        // key no exists
-        String failToLoginKeyRedis = RedisService.BLACKLIST_LOGIN_PREFIX + form.getEmail();
-
-        if (blackListLoginDto == null) {
-            this.redisService.setKeyInMinutes(failToLoginKeyRedis, BlackListLoginDto.builder()
-                            .ban(Boolean.FALSE)
-                            .failTimes(1)
-                            .build(),
-                    AuthConstant.LOGIN_TRY_AGAIN_TIME_IN_MINUTES);
-        } else {
-            // reach limit
-            if (blackListLoginDto.getFailTimes() == AuthConstant.LOGIN_FAIL_LIMIT - 1) {
-                this.redisService.setKeyInMinutes(failToLoginKeyRedis, BlackListLoginDto.builder()
-                                .ban(Boolean.TRUE)
-                                .build(),
-                        AuthConstant.LOGIN_TRY_AGAIN_TIME_IN_MINUTES);
-            } else {
-                // reach limit yet
-                blackListLoginDto.setFailTimes(blackListLoginDto.getFailTimes() + 1);
-                this.redisService.updateValueKeepTTL(failToLoginKeyRedis, blackListLoginDto);
-            }
-        }
     }
 
     private String save(User user) {

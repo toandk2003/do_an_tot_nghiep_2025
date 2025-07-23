@@ -1,5 +1,39 @@
 package org.yenln8.ChatApp.common.util;
 
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.yenln8.ChatApp.common.constant.AuthConstant;
+import org.yenln8.ChatApp.dto.redis.BlackListLoginDto;
+import org.yenln8.ChatApp.dto.request.LoginRequestDto;
+import org.yenln8.ChatApp.services.RedisService;
 
+@Service
+@AllArgsConstructor
 public class AccessService {
+    private RedisService redisService;
+
+    public void handleSpamToLogin(LoginRequestDto form, BlackListLoginDto blackListLoginDto) {
+        // key no exists
+        String failToLoginKeyRedis = RedisService.BLACKLIST_LOGIN_PREFIX + form.getEmail();
+
+        if (blackListLoginDto == null) {
+            this.redisService.setKeyInMinutes(failToLoginKeyRedis, BlackListLoginDto.builder()
+                            .ban(Boolean.FALSE)
+                            .failTimes(1)
+                            .build(),
+                    AuthConstant.LOGIN_TRY_AGAIN_TIME_IN_MINUTES);
+        } else {
+            // reach limit
+            if (blackListLoginDto.getFailTimes() == AuthConstant.LOGIN_FAIL_LIMIT - 1) {
+                this.redisService.setKeyInMinutes(failToLoginKeyRedis, BlackListLoginDto.builder()
+                                .ban(Boolean.TRUE)
+                                .build(),
+                        AuthConstant.LOGIN_TRY_AGAIN_TIME_IN_MINUTES);
+            } else {
+                // reach limit yet
+                blackListLoginDto.setFailTimes(blackListLoginDto.getFailTimes() + 1);
+                this.redisService.updateValueKeepTTL(failToLoginKeyRedis, blackListLoginDto);
+            }
+        }
+    }
 }

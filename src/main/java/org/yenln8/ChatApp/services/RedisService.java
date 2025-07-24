@@ -12,7 +12,7 @@ import java.time.Duration;
 @Slf4j
 public class RedisService {
     public static final String BLACKLIST_LOGIN_PREFIX = "BLACK_LIST_LOGIN_PREFIX_";
-    public static final String LAST_ONLINE_PREFIX= "LAST_ONLINE_PREFIX_";
+    public static final String LAST_ONLINE_PREFIX = "LAST_ONLINE_PREFIX_";
 
     private RedisTemplate<String, Object> redisTemplate;
 
@@ -69,6 +69,14 @@ public class RedisService {
 
     public void updateValueKeepTTL(String key, Object newValue) {
         long ttlInMilisSecond = redisTemplate.getExpire(key);
-        this.redisTemplate.opsForValue().set(key, newValue,Duration.ofSeconds(ttlInMilisSecond));
+        this.redisTemplate.opsForValue().set(key, newValue, Duration.ofSeconds(ttlInMilisSecond));
+    }
+
+    public String getKeyLoginWithPrefix(String email, String ipAddress) {
+        return BLACKLIST_LOGIN_PREFIX + email + "_" + ipAddress;
+    }
+
+    public String getKeyLastOnlineWithPrefix(String email) {
+        return LAST_ONLINE_PREFIX + email;
     }
 }

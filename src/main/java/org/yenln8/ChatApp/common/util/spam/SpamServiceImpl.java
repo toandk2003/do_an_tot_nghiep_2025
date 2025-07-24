@@ -1,5 +1,6 @@
 package org.yenln8.ChatApp.common.util.spam;
 
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -18,8 +19,8 @@ public class SpamServiceImpl implements SpamService {
 
 
     @Override
-    public void avoidSpamLogin(LoginRequestDto form, BlackListLoginDto blackListLoginDto) {
-        this.avoidSpamLoginService.call(form, blackListLoginDto);
+    public void avoidSpamLogin(LoginRequestDto form, HttpServletRequest request, BlackListLoginDto blackListLoginDto) {
+        this.avoidSpamLoginService.call(form, request, blackListLoginDto);
     }
 
     @Override

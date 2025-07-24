@@ -7,7 +7,7 @@ import org.yenln8.ChatApp.dto.request.RegisterAccountRequestDto;
 import org.yenln8.ChatApp.dto.request.VerifyOtpRegisterRequestDto;
 
 public interface AuthService {
-    BaseResponseDto login(LoginRequestDto form);
+    BaseResponseDto login(LoginRequestDto form, HttpServletRequest request);
     BaseResponseDto register(RegisterAccountRequestDto form, HttpServletRequest request) throws Exception;
     BaseResponseDto verifyOtpRegister(VerifyOtpRegisterRequestDto form, HttpServletRequest request) throws Exception;
     BaseResponseDto changePassword(String email);

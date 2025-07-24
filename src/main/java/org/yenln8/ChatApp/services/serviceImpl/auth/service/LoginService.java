@@ -1,5 +1,6 @@
 package org.yenln8.ChatApp.services.serviceImpl.auth.service;
 
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import org.yenln8.ChatApp.common.constant.AuthConstant;
 import org.yenln8.ChatApp.common.util.MessageBundle;
+import org.yenln8.ChatApp.common.util.Network;
 import org.yenln8.ChatApp.common.util.spam.SpamService;
 import org.yenln8.ChatApp.dto.base.BaseResponseDto;
 import org.yenln8.ChatApp.dto.redis.BlackListLoginDto;
@@ -28,10 +30,10 @@ public class LoginService {
     private JwtTokenProvider jwtTokenProvider;
     private SpamService spamService;
 
-    public BaseResponseDto call(LoginRequestDto loginRequestDto) {
-        User user = validate(loginRequestDto);
+    public BaseResponseDto call(LoginRequestDto loginRequestDto, HttpServletRequest request) {
+        User user = validate(loginRequestDto, request);
 
-        String token = save(user);
+        String token = save(user,request);
 
         return BaseResponseDto.builder()
                 .success(true)
@@ -40,10 +42,9 @@ public class LoginService {
                 .build();
     }
 
-    private User validate(LoginRequestDto form) {
-        String prefix = RedisService.BLACKLIST_LOGIN_PREFIX;
+    private User validate(LoginRequestDto form, HttpServletRequest request) {
 
-        BlackListLoginDto blackListLoginDto = this.redisService.getKey(prefix + form.getEmail(), BlackListLoginDto.class);
+        BlackListLoginDto blackListLoginDto = this.redisService.getKey(this.redisService.getKeyLoginWithPrefix(form.getEmail(), Network.getUserIP(request)), BlackListLoginDto.class);
         // Kiem lan login vuot qua muc cho phep
         if (blackListLoginDto != null && blackListLoginDto.getBan().equals(Boolean.TRUE)) {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, MessageBundle.getMessage("error.login.fail.reach.limit", AuthConstant.LOGIN_TRY_AGAIN_TIME_IN_MINUTES));
@@ -53,7 +54,7 @@ public class LoginService {
         Optional<User> optionalUser = this.userRepository.findByEmailAndDeletedAtIsNull(form.getEmail());
         if (optionalUser.isEmpty()) {
             // +1 fail login
-            this.spamService.avoidSpamLogin(form, blackListLoginDto);
+            this.spamService.avoidSpamLogin(form, request, blackListLoginDto);
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, MessageBundle.getMessage("error.login.fail"));
 
         }
@@ -61,32 +62,32 @@ public class LoginService {
         User user = optionalUser.get();
         if (!(user.getEmail().equals(form.getEmail()) && passwordEncoder.matches(form.getPassword(), user.getPassword()))) {
             // +1 fail login
-            this.spamService.avoidSpamLogin(form, blackListLoginDto);
+            this.spamService.avoidSpamLogin(form, request, blackListLoginDto);
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, MessageBundle.getMessage("error.login.fail"));
         }
 
         // Kiem tra tai khoan co bi LOCK hoac BAN khong
         if (user.getStatus().equals(User.STATUS.LOCK)) {
             // +1 fail login
-            this.spamService.avoidSpamLogin(form, blackListLoginDto);
+            this.spamService.avoidSpamLogin(form, request, blackListLoginDto);
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, MessageBundle.getMessage("error.login.lock"));
         }
         if (user.getStatus().equals(User.STATUS.BAN)) {
             // +1 fail login
-            this.spamService.avoidSpamLogin(form, blackListLoginDto);
+            this.spamService.avoidSpamLogin(form, request, blackListLoginDto);
             throw new ResponseStatusException(HttpStatus.FORBIDDEN, MessageBundle.getMessage("error.login.ban"));
         }
 
         return user;
     }
 
-    private String save(User user) {
+    private String save(User user, HttpServletRequest request) {
         Long id = user.getId();
         String email = user.getEmail();
         User.ROLE role = user.getRole();
 
         //delete key redis
-        this.redisService.deleteKey(RedisService.BLACKLIST_LOGIN_PREFIX + email);
+        this.redisService.deleteKey(this.redisService.getKeyLoginWithPrefix(user.getEmail(), Network.getUserIP(request)));
 
         //create token return
         return this.jwtTokenProvider.createToken(id, email, Collections.singletonList(role.name()));

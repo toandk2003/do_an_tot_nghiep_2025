@@ -22,8 +22,8 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public BaseResponseDto login(LoginRequestDto loginRequestDto) {
-        return this.loginService.call(loginRequestDto);
+    public BaseResponseDto login(LoginRequestDto loginRequestDto, HttpServletRequest request) {
+        return this.loginService.call(loginRequestDto, request);
     }
 
     @Override

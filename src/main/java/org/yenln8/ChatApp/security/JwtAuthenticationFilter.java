@@ -61,7 +61,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             SecurityContextHolder.getContext().setAuthentication(authentication);
 
             // Set last online
-            this.redisService.setKey(RedisService.LAST_ONLINE_PREFIX + email,Instant.now().getEpochSecond());
+            this.redisService.setKey(this.redisService.getKeyLastOnlineWithPrefix(email),Instant.now().getEpochSecond());
         }
 
         filterChain.doFilter(request, response);

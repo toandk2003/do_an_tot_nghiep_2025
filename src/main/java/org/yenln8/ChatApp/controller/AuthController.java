@@ -20,8 +20,8 @@ public class AuthController {
     private AuthService authService;
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody @Valid LoginRequestDto form) {
-        return ResponseEntity.ok(this.authService.login(form));
+    public ResponseEntity<?> login(@RequestBody @Valid LoginRequestDto form,HttpServletRequest request) {
+        return ResponseEntity.ok(this.authService.login(form, request));
     }
 
     @PostMapping("/register")

@@ -8,9 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.yenln8.ChatApp.dto.request.LoginRequestDto;
-import org.yenln8.ChatApp.dto.request.RegisterAccountRequestDto;
-import org.yenln8.ChatApp.dto.request.VerifyOtpRegisterRequestDto;
+import org.yenln8.ChatApp.dto.request.*;
 import org.yenln8.ChatApp.services.AuthService;
 
 @RestController
@@ -30,7 +28,27 @@ public class AuthController {
     }
 
     @PostMapping("/register/verify-otp")
-    public ResponseEntity<?> verifyOtpRegister(@RequestBody @Valid VerifyOtpRegisterRequestDto form, HttpServletRequest request) throws Exception {
+    public ResponseEntity<?> verifyOtpRegister(@RequestBody @Valid VerifyOtpRequestDto form, HttpServletRequest request) throws Exception {
         return ResponseEntity.ok(this.authService.verifyOtpRegister(form, request));
+    }
+
+    @PostMapping("/reset-password")
+    public ResponseEntity<?> resetPassword(@RequestBody @Valid ResetPasswordAccountRequestDto form, HttpServletRequest request) throws Exception {
+        return ResponseEntity.ok(this.authService.resetPassword(form, request));
+    }
+
+    @PostMapping("/reset-password/verify-otp")
+    public ResponseEntity<?> verifyOtpResetPassword(@RequestBody @Valid VerifyOtpRequestDto form, HttpServletRequest request) throws Exception {
+        return ResponseEntity.ok(this.authService.verifyOtpResetPassword(form, request));
+    }
+
+    @PostMapping("/change-password")
+    public ResponseEntity<?> changePassword(@RequestBody @Valid ChangePasswordAccountRequestDto form, HttpServletRequest request) throws Exception {
+        return ResponseEntity.ok(this.authService.changePassword(form, request));
+    }
+
+    @PostMapping("/change-password/verify-otp")
+    public ResponseEntity<?> verifyOtpChangePassword(@RequestBody @Valid VerifyOtpRequestDto form, HttpServletRequest request) throws Exception {
+        return ResponseEntity.ok(this.authService.verifyChangePassword(form, request));
     }
 }

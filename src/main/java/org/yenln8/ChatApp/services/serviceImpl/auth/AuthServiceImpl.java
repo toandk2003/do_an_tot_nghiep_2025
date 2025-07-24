@@ -5,13 +5,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.yenln8.ChatApp.dto.base.BaseResponseDto;
-import org.yenln8.ChatApp.dto.request.LoginRequestDto;
-import org.yenln8.ChatApp.dto.request.RegisterAccountRequestDto;
-import org.yenln8.ChatApp.dto.request.VerifyOtpRegisterRequestDto;
+import org.yenln8.ChatApp.dto.request.*;
 import org.yenln8.ChatApp.services.*;
-import org.yenln8.ChatApp.services.serviceImpl.auth.service.LoginService;
-import org.yenln8.ChatApp.services.serviceImpl.auth.service.RegisterService;
-import org.yenln8.ChatApp.services.serviceImpl.auth.service.VerifyOtpRegisterService;
+import org.yenln8.ChatApp.services.serviceImpl.auth.interfaces.*;
 
 @Service
 @AllArgsConstructor
@@ -19,6 +15,11 @@ public class AuthServiceImpl implements AuthService {
     private LoginService loginService;
     private RegisterService registerService;
     private VerifyOtpRegisterService verifyOtpRegisterService;
+    private ChangePasswordService changePasswordService;
+    private VerifyChangePasswordService verifyChangePasswordService;
+    private ResetPasswordService resetPasswordService;
+    private VerifyResetPasswordService verifyResetPasswordService;
+
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -28,24 +29,35 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public BaseResponseDto register(RegisterAccountRequestDto form, HttpServletRequest request) throws Exception {return this.registerService.call(form, request);}
+    public BaseResponseDto register(RegisterAccountRequestDto form, HttpServletRequest request) throws Exception {
+        return this.registerService.call(form, request);}
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public BaseResponseDto verifyOtpRegister(VerifyOtpRegisterRequestDto form, HttpServletRequest request) throws Exception {
+    public BaseResponseDto verifyOtpRegister(VerifyOtpRequestDto form, HttpServletRequest request) throws Exception {
         return verifyOtpRegisterService.call(form, request);
     }
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public BaseResponseDto changePassword(String email) {
-        return null;
+    public BaseResponseDto changePassword(ChangePasswordAccountRequestDto form, HttpServletRequest request) {
+        return this.changePasswordService.call(form,request);
+    }
+
+    @Override
+    public BaseResponseDto verifyChangePassword(VerifyOtpRequestDto form, HttpServletRequest request) throws Exception {
+        return this.verifyChangePasswordService.call(form,request);
     }
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public BaseResponseDto resetPassword(String email) {
-        return null;
+    public BaseResponseDto resetPassword(ResetPasswordAccountRequestDto form, HttpServletRequest request) {
+        return this.resetPasswordService.call(form,request);
+    }
+
+    @Override
+    public BaseResponseDto verifyOtpResetPassword(VerifyOtpRequestDto form, HttpServletRequest request) throws Exception {
+        return this.verifyResetPasswordService.call(form,request);
     }
 
     @Override

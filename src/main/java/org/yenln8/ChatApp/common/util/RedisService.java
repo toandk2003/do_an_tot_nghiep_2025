@@ -1,4 +1,4 @@
-package org.yenln8.ChatApp.services;
+package org.yenln8.ChatApp.common.util;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

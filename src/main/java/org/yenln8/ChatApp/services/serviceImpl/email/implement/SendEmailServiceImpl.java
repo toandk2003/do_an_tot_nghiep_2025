@@ -1,4 +1,4 @@
-package org.yenln8.ChatApp.services.serviceImpl;
+package org.yenln8.ChatApp.services.serviceImpl.email.implement;
 
 import jakarta.mail.*;
 import jakarta.mail.internet.InternetAddress;
@@ -8,19 +8,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.yenln8.ChatApp.dto.response.SendEmailResponseDto;
-import org.yenln8.ChatApp.services.EmailService;
+import org.yenln8.ChatApp.services.serviceImpl.email.intefaces.SendEmailService;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.Properties;
 
 @Service
-public class EmailServiceImpl implements EmailService {
-    private static Logger logger = LoggerFactory.getLogger(EmailServiceImpl.class);
+public class SendEmailServiceImpl  implements SendEmailService {
+    private static final Logger logger = LoggerFactory.getLogger(SendEmailServiceImpl.class);
     private static final String SMTP_HOST = "smtp.gmail.com";
     private static final String SMTP_PORT = "587";
-    private  static final Map<String, List<Long>> DEVICE_SEND_MAIL_HISTORY = new HashMap<>();
 
     @Value("${email.sender.address}")
     private String systemEmailSender;
@@ -29,7 +25,7 @@ public class EmailServiceImpl implements EmailService {
     private String senderPassword;
 
     @Override
-    public SendEmailResponseDto systemSendTo(String recipientEmail, String subject, String content) {
+    public SendEmailResponseDto call(String recipientEmail, String subject, String content) {
             try {
                 // Setup mail properties
                 Properties props = new Properties();
@@ -74,4 +70,5 @@ public class EmailServiceImpl implements EmailService {
             }
 
     }
+
 }

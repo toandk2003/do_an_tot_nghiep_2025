@@ -2,16 +2,23 @@ package org.yenln8.ChatApp.services;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.yenln8.ChatApp.dto.base.BaseResponseDto;
-import org.yenln8.ChatApp.dto.request.LoginRequestDto;
-import org.yenln8.ChatApp.dto.request.RegisterAccountRequestDto;
-import org.yenln8.ChatApp.dto.request.VerifyOtpRegisterRequestDto;
+import org.yenln8.ChatApp.dto.request.*;
 
 public interface AuthService {
     BaseResponseDto login(LoginRequestDto form, HttpServletRequest request);
+
     BaseResponseDto register(RegisterAccountRequestDto form, HttpServletRequest request) throws Exception;
-    BaseResponseDto verifyOtpRegister(VerifyOtpRegisterRequestDto form, HttpServletRequest request) throws Exception;
-    BaseResponseDto changePassword(String email);
-    BaseResponseDto resetPassword(String email);
+
+    BaseResponseDto verifyOtpRegister(VerifyOtpRequestDto form, HttpServletRequest request) throws Exception;
+
+    BaseResponseDto changePassword(ChangePasswordAccountRequestDto form, HttpServletRequest request) throws Exception;
+
+    BaseResponseDto verifyChangePassword(VerifyOtpRequestDto form, HttpServletRequest request) throws Exception;
+
+    BaseResponseDto resetPassword(ResetPasswordAccountRequestDto form, HttpServletRequest request);
+
+    BaseResponseDto verifyOtpResetPassword(VerifyOtpRequestDto form, HttpServletRequest request) throws Exception;
+
     BaseResponseDto logout();
 
 }

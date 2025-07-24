@@ -1,4 +1,4 @@
-package org.yenln8.ChatApp.services.serviceImpl.auth.service;
+package org.yenln8.ChatApp.services.serviceImpl.auth.implement;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
@@ -7,14 +7,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.yenln8.ChatApp.common.util.MessageBundle;
 import org.yenln8.ChatApp.dto.base.BaseResponseDto;
-import org.yenln8.ChatApp.dto.request.LoginRequestDto;
-import org.yenln8.ChatApp.dto.request.VerifyOtpRegisterRequestDto;
+import org.yenln8.ChatApp.dto.request.VerifyOtpRequestDto;
 import org.yenln8.ChatApp.entity.AccountPending;
 import org.yenln8.ChatApp.entity.OTP;
 import org.yenln8.ChatApp.entity.User;
 import org.yenln8.ChatApp.repository.AccountPendingRepository;
 import org.yenln8.ChatApp.repository.OTPRepository;
 import org.yenln8.ChatApp.repository.UserRepository;
+import org.yenln8.ChatApp.services.serviceImpl.auth.interfaces.VerifyOtpRegisterService;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -22,12 +22,13 @@ import java.util.Optional;
 @Service
 @Slf4j
 @AllArgsConstructor
-public class VerifyOtpRegisterService {
+public class VerifyOtpRegisterServiceImpl implements VerifyOtpRegisterService {
     private UserRepository userRepository;
     private OTPRepository otpRepository;
     private AccountPendingRepository accountPendingRepository;
 
-    public BaseResponseDto call(VerifyOtpRegisterRequestDto form, HttpServletRequest request) throws Exception {
+    @Override
+    public BaseResponseDto call(VerifyOtpRequestDto form, HttpServletRequest request) throws Exception {
         OTP otp = validate(form, request);
 
         save(form, otp, request);
@@ -39,7 +40,7 @@ public class VerifyOtpRegisterService {
                 .build();
     }
 
-    private OTP validate(VerifyOtpRegisterRequestDto form, HttpServletRequest request) {
+    private OTP validate(VerifyOtpRequestDto form, HttpServletRequest request) {
         // Tim ban ghi ung voi OTP trong bang OTP va type REGISTER_ACCOUNT, neu khong ton tai hoac ton tai nhung het han, nem loi
         String otpCode = form.getOtp();
 
@@ -58,7 +59,7 @@ public class VerifyOtpRegisterService {
         return otp;
     }
 
-    private void save(VerifyOtpRegisterRequestDto form, OTP otp, HttpServletRequest request) {
+    private void save(VerifyOtpRequestDto form, OTP otp, HttpServletRequest request) {
         // Cap nhat OTP tu trang thai BE_SENT thanh VERIFIED va deletedAt = now()  + deleted = id
         otp.setStatus(OTP.STATUS.VERIFIED);
         otp.setDeletedAt(LocalDateTime.now());

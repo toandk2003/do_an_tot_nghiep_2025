@@ -1,4 +1,4 @@
-package org.yenln8.ChatApp.services.serviceImpl.auth.service;
+package org.yenln8.ChatApp.services.serviceImpl.auth.implement;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
@@ -16,20 +16,22 @@ import org.yenln8.ChatApp.dto.request.LoginRequestDto;
 import org.yenln8.ChatApp.entity.User;
 import org.yenln8.ChatApp.repository.UserRepository;
 import org.yenln8.ChatApp.security.JwtTokenProvider;
-import org.yenln8.ChatApp.services.RedisService;
+import org.yenln8.ChatApp.common.util.RedisService;
+import org.yenln8.ChatApp.services.serviceImpl.auth.interfaces.LoginService;
 
 import java.util.Collections;
 import java.util.Optional;
 
 @AllArgsConstructor
 @Service
-public class LoginService {
+public class LoginServiceImpl implements LoginService {
     private RedisService redisService;
     private UserRepository userRepository;
     private PasswordEncoder passwordEncoder;
     private JwtTokenProvider jwtTokenProvider;
     private SpamService spamService;
 
+    @Override
     public BaseResponseDto call(LoginRequestDto loginRequestDto, HttpServletRequest request) {
         User user = validate(loginRequestDto, request);
 
@@ -38,7 +40,8 @@ public class LoginService {
         return BaseResponseDto.builder()
                 .success(true)
                 .statusCode(HttpStatus.OK.value())
-                .message(token)
+                .message(MessageBundle.getMessage("login.success"))
+                .data(token)
                 .build();
     }
 

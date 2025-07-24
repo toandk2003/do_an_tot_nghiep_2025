@@ -8,9 +8,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.yenln8.ChatApp.entity.EmailOutbox;
 import org.yenln8.ChatApp.repository.EmailOutboxRepository;
-import org.yenln8.ChatApp.services.SendOTPChangePasswordService;
-import org.yenln8.ChatApp.services.SendOTPRegistrationService;
-import org.yenln8.ChatApp.services.SendOTPResetPasswordService;
+import org.yenln8.ChatApp.services.EmailService;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -21,9 +19,7 @@ import java.util.List;
 public class SendEmailSchedule {
     private static final int batchSize = 100;
     private EmailOutboxRepository emailOutboxRepository;
-    private SendOTPRegistrationService sendOTPRegistrationService;
-    private SendOTPChangePasswordService  sendOTPChangePasswordService;
-    private SendOTPResetPasswordService  sendOTPResetPasswordService;
+    private EmailService emailService;
 
     @Scheduled(fixedDelay = 1000)
     @Transactional
@@ -52,7 +48,7 @@ public class SendEmailSchedule {
                 .deleted(emailOutbox.getId())
                 .build());
 
-        this.sendOTPRegistrationService.sendOTPRegistration(emailOutbox.getToEmail(), emailOutbox.getOtpCode());
+        this.emailService.sendOTPRegistration(emailOutbox.getToEmail(), emailOutbox.getOtpCode());
         log.warn("OTP {} sent to {} for registration", emailOutbox.getOtpCode(), emailOutbox.getToEmail());
     }
 
@@ -62,7 +58,7 @@ public class SendEmailSchedule {
                 .deleted(emailOutbox.getId())
                 .build());
 
-        this.sendOTPResetPasswordService.sendOTPResetPassword(emailOutbox.getToEmail(), emailOutbox.getOtpCode());
+        this.emailService.sendOTPResetPassword(emailOutbox.getToEmail(), emailOutbox.getOtpCode());
         log.warn("OTP {} sent to {} for forgot password", emailOutbox.getOtpCode(), emailOutbox.getToEmail());
     }
 
@@ -72,7 +68,7 @@ public class SendEmailSchedule {
                 .deleted(emailOutbox.getId())
                 .build());
 
-        this.sendOTPChangePasswordService.sendOTPChangePassword(emailOutbox.getToEmail(), emailOutbox.getOtpCode());
+        this.emailService.sendOTPChangePassword(emailOutbox.getToEmail(), emailOutbox.getOtpCode());
         log.warn("OTP {} sent to {} for change password", emailOutbox.getOtpCode(), emailOutbox.getToEmail());
     }
 }

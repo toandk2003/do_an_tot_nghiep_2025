@@ -1,4 +1,4 @@
-package org.yenln8.ChatApp.services.serviceImpl.auth.service;
+package org.yenln8.ChatApp.services.serviceImpl.auth.implement;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
@@ -15,7 +15,7 @@ import org.yenln8.ChatApp.dto.base.BaseResponseDto;
 import org.yenln8.ChatApp.dto.request.RegisterAccountRequestDto;
 import org.yenln8.ChatApp.entity.*;
 import org.yenln8.ChatApp.repository.*;
-import org.yenln8.ChatApp.services.SendOTPRegistrationService;
+import org.yenln8.ChatApp.services.serviceImpl.auth.interfaces.RegisterService;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -23,7 +23,7 @@ import java.util.Optional;
 @Slf4j
 @AllArgsConstructor
 @Service
-public class RegisterService {
+public class RegisterServiceImpl implements RegisterService {
     private UserRepository userRepository;
     private OTPRepository OTPRepository;
     private BlackListSendEmailRepository blackListSendEmailRepository;
@@ -33,6 +33,7 @@ public class RegisterService {
     private SpamService spamService;
 
     @Transactional(rollbackFor = Exception.class)
+    @Override
     public BaseResponseDto call(RegisterAccountRequestDto form, HttpServletRequest request) throws Exception {
         validate(form, request);
         save(form, request);

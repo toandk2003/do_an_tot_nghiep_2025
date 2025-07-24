@@ -8,7 +8,7 @@ import org.yenln8.ChatApp.common.constant.AuthConstant;
 import org.yenln8.ChatApp.common.util.Network;
 import org.yenln8.ChatApp.dto.redis.BlackListLoginDto;
 import org.yenln8.ChatApp.dto.request.LoginRequestDto;
-import org.yenln8.ChatApp.services.RedisService;
+import org.yenln8.ChatApp.common.util.RedisService;
 
 @Service
 @AllArgsConstructor

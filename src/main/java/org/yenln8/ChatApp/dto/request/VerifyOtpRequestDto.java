@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Data
-public class VerifyOtpRegisterRequestDto {
+public class VerifyOtpRequestDto {
     @NotBlank
     @NotNull
     @Size(min = 8, max = 8)

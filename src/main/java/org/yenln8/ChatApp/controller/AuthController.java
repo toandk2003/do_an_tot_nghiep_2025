@@ -22,12 +22,12 @@ public class AuthController {
         return ResponseEntity.ok(this.authService.login(form, request));
     }
 
-    @PostMapping("/register")
+    @PostMapping("/signup")
     public ResponseEntity<?> register(@RequestBody @Valid RegisterAccountRequestDto form, HttpServletRequest request) throws Exception {
         return ResponseEntity.ok(this.authService.register(form, request));
     }
 
-    @PostMapping("/register/verify-otp")
+    @PostMapping("/signup/verify-otp")
     public ResponseEntity<?> verifyOtpRegister(@RequestBody @Valid VerifyOtpRequestDto form, HttpServletRequest request) throws Exception {
         return ResponseEntity.ok(this.authService.verifyOtpRegister(form, request));
     }

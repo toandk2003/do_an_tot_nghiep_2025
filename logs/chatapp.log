@@ -1,22 +1,22 @@
-2025-07-24T15:40:54.266Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.y.ChatApp.StrongStrongApplication      : Starting StrongStrongApplication v0.0.1-SNAPSHOT using Java 21 with PID 1 (/app/app.jar started by root in /app)
-2025-07-24T15:40:54.294Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.y.ChatApp.StrongStrongApplication      : The following 1 profile is active: "compose"
-2025-07-24T15:40:57.395Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2025-07-24T15:40:57.559Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 136 ms. Found 2 JPA repository interfaces.
-2025-07-24T15:40:59.170Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
-2025-07-24T15:40:59.232Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2025-07-24T15:40:59.232Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
-2025-07-24T15:40:59.316Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2025-07-24T15:40:59.316Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4893 ms
-2025-07-24T15:40:59.823Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2025-07-24T15:41:00.285Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.18.Final
-2025-07-24T15:41:00.431Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
-2025-07-24T15:41:01.971Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
-2025-07-24T15:41:02.081Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2025-07-24T15:41:04.872Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@31880efa
-2025-07-24T15:41:04.899Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2025-07-24T15:41:05.134Z  WARN 1 --- [do-an-tot-nghiep-2025] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2025-07-24T15:41:05.139Z  WARN 1 --- [do-an-tot-nghiep-2025] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
-2025-07-24T15:41:05.188Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+2025-07-25T14:05:58.028Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.y.ChatApp.StrongStrongApplication      : Starting StrongStrongApplication v0.0.1-SNAPSHOT using Java 21 with PID 1 (/app/app.jar started by root in /app)
+2025-07-25T14:05:58.074Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.y.ChatApp.StrongStrongApplication      : The following 1 profile is active: "compose"
+2025-07-25T14:06:02.025Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-07-25T14:06:02.191Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 140 ms. Found 2 JPA repository interfaces.
+2025-07-25T14:06:04.402Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-07-25T14:06:04.472Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-07-25T14:06:04.473Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-07-25T14:06:04.582Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-07-25T14:06:04.583Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 6382 ms
+2025-07-25T14:06:05.133Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-07-25T14:06:05.619Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.18.Final
+2025-07-25T14:06:05.783Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-07-25T14:06:07.214Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-07-25T14:06:07.327Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-07-25T14:06:09.330Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2b6b487c
+2025-07-25T14:06:09.350Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-07-25T14:06:09.557Z  WARN 1 --- [do-an-tot-nghiep-2025] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-07-25T14:06:09.559Z  WARN 1 --- [do-an-tot-nghiep-2025] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-07-25T14:06:09.616Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
 	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
 	Database driver: undefined/unknown
 	Database version: 8.0
@@ -24,71 +24,205 @@
 	Isolation level: undefined/unknown
 	Minimum pool size: undefined/unknown
 	Maximum pool size: undefined/unknown
-2025-07-24T15:41:08.080Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
-2025-07-24T15:41:08.216Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2025-07-24T15:41:08.225Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] f.a.AutowiredAnnotationBeanPostProcessor : Autowired annotation is not supported on static fields: public static java.lang.String org.yenln8.ChatApp.StrongStrongApplication.passwordSender
-2025-07-24T15:41:08.619Z  WARN 1 --- [do-an-tot-nghiep-2025] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-07-24T15:41:09.282Z  WARN 1 --- [do-an-tot-nghiep-2025] [main] thorizationManagerRequestMatcherRegistry : One of the patterns in [/swagger-ui/**, v3/api-docs/**] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
-2025-07-24T15:41:10.245Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
-2025-07-24T15:41:10.445Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.y.ChatApp.StrongStrongApplication      : Started StrongStrongApplication in 18.006 seconds (process running for 28.907)
-2025-07-24T15:41:11.204Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.y.ChatApp.common.util.MessageBundle    : [ChatApp] - Account Registration OTP Verification
-2025-07-24T15:41:11.204Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.y.ChatApp.StrongStrongApplication      : [ChatApp] - Account Registration OTP Verification
-2025-07-24T15:43:03.373Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-07-24T15:43:03.374Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2025-07-24T15:43:03.376Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
-2025-07-24T15:43:03.406Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-1] o.y.ChatApp.security.JwtTokenProvider    : using key to decode token: dkjgjiwejpdsjgssjfsdjofsodfdddfefreg
-2025-07-24T15:43:03.406Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-1] o.y.ChatApp.security.JwtTokenProvider    : using validityInMs to decode token: 36000000
-2025-07-24T15:43:03.407Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-1] o.y.C.security.JwtAuthenticationFilter   : token from Request: null
-2025-07-24T15:43:03.407Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-1] o.y.C.security.JwtAuthenticationFilter   : tokenDecoded: null
-2025-07-24T15:43:03.413Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-1] o.y.ChatApp.security.JwtTokenProvider    : using key to decode token: dkjgjiwejpdsjgssjfsdjofsodfdddfefreg
-2025-07-24T15:43:03.414Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-1] o.y.ChatApp.security.JwtTokenProvider    : using validityInMs to decode token: 36000000
-2025-07-24T15:43:03.414Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-1] o.y.C.security.JwtAuthenticationFilter   : token from Request: null
-2025-07-24T15:43:03.414Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-1] o.y.C.security.JwtAuthenticationFilter   : tokenDecoded: null
-2025-07-24T15:43:03.431Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-1] o.y.C.interceptor.LocaleInterceptor      : Set locale: en_US for request: /swagger-ui/index.html
-2025-07-24T15:43:03.432Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-1] o.y.C.interceptor.LocaleInterceptor      : Current locale: en for request: /swagger-ui/index.html
-2025-07-24T15:43:03.486Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-3] o.y.ChatApp.security.JwtTokenProvider    : using key to decode token: dkjgjiwejpdsjgssjfsdjofsodfdddfefreg
-2025-07-24T15:43:03.486Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-2] o.y.ChatApp.security.JwtTokenProvider    : using key to decode token: dkjgjiwejpdsjgssjfsdjofsodfdddfefreg
-2025-07-24T15:43:03.486Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-3] o.y.ChatApp.security.JwtTokenProvider    : using validityInMs to decode token: 36000000
-2025-07-24T15:43:03.486Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-2] o.y.ChatApp.security.JwtTokenProvider    : using validityInMs to decode token: 36000000
-2025-07-24T15:43:03.487Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-3] o.y.C.security.JwtAuthenticationFilter   : token from Request: null
-2025-07-24T15:43:03.487Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-2] o.y.C.security.JwtAuthenticationFilter   : token from Request: null
-2025-07-24T15:43:03.487Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-3] o.y.C.security.JwtAuthenticationFilter   : tokenDecoded: null
-2025-07-24T15:43:03.487Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-2] o.y.C.security.JwtAuthenticationFilter   : tokenDecoded: null
-2025-07-24T15:43:03.487Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-3] o.y.ChatApp.security.JwtTokenProvider    : using key to decode token: dkjgjiwejpdsjgssjfsdjofsodfdddfefreg
-2025-07-24T15:43:03.487Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-2] o.y.ChatApp.security.JwtTokenProvider    : using key to decode token: dkjgjiwejpdsjgssjfsdjofsodfdddfefreg
-2025-07-24T15:43:03.487Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-2] o.y.ChatApp.security.JwtTokenProvider    : using validityInMs to decode token: 36000000
-2025-07-24T15:43:03.487Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-3] o.y.ChatApp.security.JwtTokenProvider    : using validityInMs to decode token: 36000000
-2025-07-24T15:43:03.488Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-3] o.y.C.security.JwtAuthenticationFilter   : token from Request: null
-2025-07-24T15:43:03.488Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-2] o.y.C.security.JwtAuthenticationFilter   : token from Request: null
-2025-07-24T15:43:03.488Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-3] o.y.C.security.JwtAuthenticationFilter   : tokenDecoded: null
-2025-07-24T15:43:03.488Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-2] o.y.C.security.JwtAuthenticationFilter   : tokenDecoded: null
-2025-07-24T15:43:03.489Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-3] o.y.C.interceptor.LocaleInterceptor      : Set locale: en_US for request: /swagger-ui/swagger-initializer.js
-2025-07-24T15:43:03.489Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-2] o.y.C.interceptor.LocaleInterceptor      : Set locale: en_US for request: /swagger-ui/swagger-ui-bundle.js
-2025-07-24T15:43:03.490Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-2] o.y.C.interceptor.LocaleInterceptor      : Current locale: en for request: /swagger-ui/swagger-ui-bundle.js
-2025-07-24T15:43:03.490Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-3] o.y.C.interceptor.LocaleInterceptor      : Current locale: en for request: /swagger-ui/swagger-initializer.js
-2025-07-24T15:43:03.746Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-4] o.y.ChatApp.security.JwtTokenProvider    : using key to decode token: dkjgjiwejpdsjgssjfsdjofsodfdddfefreg
-2025-07-24T15:43:03.746Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-4] o.y.ChatApp.security.JwtTokenProvider    : using validityInMs to decode token: 36000000
-2025-07-24T15:43:03.747Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-4] o.y.C.security.JwtAuthenticationFilter   : token from Request: null
-2025-07-24T15:43:03.747Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-4] o.y.C.security.JwtAuthenticationFilter   : tokenDecoded: null
-2025-07-24T15:43:03.748Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-4] o.y.ChatApp.security.JwtTokenProvider    : using key to decode token: dkjgjiwejpdsjgssjfsdjofsodfdddfefreg
-2025-07-24T15:43:03.748Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-4] o.y.ChatApp.security.JwtTokenProvider    : using validityInMs to decode token: 36000000
-2025-07-24T15:43:03.748Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-4] o.y.C.security.JwtAuthenticationFilter   : token from Request: null
-2025-07-24T15:43:03.748Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-4] o.y.C.security.JwtAuthenticationFilter   : tokenDecoded: null
-2025-07-24T15:43:03.749Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-4] o.y.C.interceptor.LocaleInterceptor      : Set locale: en_US for request: /v3/api-docs/swagger-config
-2025-07-24T15:43:03.749Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-4] o.y.C.interceptor.LocaleInterceptor      : Current locale: en for request: /v3/api-docs/swagger-config
-2025-07-24T15:43:03.824Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-5] o.y.ChatApp.security.JwtTokenProvider    : using key to decode token: dkjgjiwejpdsjgssjfsdjofsodfdddfefreg
-2025-07-24T15:43:03.825Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-5] o.y.ChatApp.security.JwtTokenProvider    : using validityInMs to decode token: 36000000
-2025-07-24T15:43:03.825Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-5] o.y.C.security.JwtAuthenticationFilter   : token from Request: null
-2025-07-24T15:43:03.825Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-5] o.y.C.security.JwtAuthenticationFilter   : tokenDecoded: null
-2025-07-24T15:43:03.826Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-5] o.y.ChatApp.security.JwtTokenProvider    : using key to decode token: dkjgjiwejpdsjgssjfsdjofsodfdddfefreg
-2025-07-24T15:43:03.826Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-5] o.y.ChatApp.security.JwtTokenProvider    : using validityInMs to decode token: 36000000
-2025-07-24T15:43:03.826Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-5] o.y.C.security.JwtAuthenticationFilter   : token from Request: null
-2025-07-24T15:43:03.826Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-5] o.y.C.security.JwtAuthenticationFilter   : tokenDecoded: null
-2025-07-24T15:43:03.827Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-5] o.y.C.interceptor.LocaleInterceptor      : Set locale: en_US for request: /v3/api-docs
-2025-07-24T15:43:03.828Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-5] o.y.C.interceptor.LocaleInterceptor      : Current locale: en for request: /v3/api-docs
-2025-07-24T15:43:04.271Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-5] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 418 ms
-2025-07-24T15:45:52.790Z  INFO 1 --- [do-an-tot-nghiep-2025] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
-2025-07-24T15:45:52.794Z  INFO 1 --- [do-an-tot-nghiep-2025] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
-2025-07-24T15:45:52.798Z  INFO 1 --- [do-an-tot-nghiep-2025] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2025-07-24T15:45:52.801Z  INFO 1 --- [do-an-tot-nghiep-2025] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2025-07-24T15:45:52.809Z  INFO 1 --- [do-an-tot-nghiep-2025] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-07-25T14:06:12.329Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-25T14:06:12.490Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-07-25T14:06:12.495Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] f.a.AutowiredAnnotationBeanPostProcessor : Autowired annotation is not supported on static fields: public static java.lang.String org.yenln8.ChatApp.StrongStrongApplication.passwordSender
+2025-07-25T14:06:12.938Z  WARN 1 --- [do-an-tot-nghiep-2025] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-07-25T14:06:13.582Z  WARN 1 --- [do-an-tot-nghiep-2025] [main] thorizationManagerRequestMatcherRegistry : One of the patterns in [/swagger-ui/**, v3/api-docs/**] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-25T14:06:14.508Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-07-25T14:06:14.693Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.y.ChatApp.StrongStrongApplication      : Started StrongStrongApplication in 19.046 seconds (process running for 28.79)
+2025-07-25T14:06:15.317Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.y.ChatApp.common.util.MessageBundle    : [ChatApp] - Account Registration OTP Verification
+2025-07-25T14:06:15.318Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.y.ChatApp.StrongStrongApplication      : [ChatApp] - Account Registration OTP Verification
+2025-07-25T14:06:32.224Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-07-25T14:06:32.224Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-07-25T14:06:32.225Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2025-07-25T14:06:32.256Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-1] o.y.ChatApp.security.JwtTokenProvider    : using key to decode token: dkjgjiwejpdsjgssjfsdjofsodfdddfefreg
+2025-07-25T14:06:32.261Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-1] o.y.ChatApp.security.JwtTokenProvider    : using validityInMs to decode token: 36000000
+2025-07-25T14:06:32.261Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-1] o.y.C.security.JwtAuthenticationFilter   : token from Request: null
+2025-07-25T14:06:32.261Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-1] o.y.C.security.JwtAuthenticationFilter   : tokenDecoded: null
+2025-07-25T14:06:32.265Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-1] o.y.ChatApp.security.JwtTokenProvider    : using key to decode token: dkjgjiwejpdsjgssjfsdjofsodfdddfefreg
+2025-07-25T14:06:32.265Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-1] o.y.ChatApp.security.JwtTokenProvider    : using validityInMs to decode token: 36000000
+2025-07-25T14:06:32.265Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-1] o.y.C.security.JwtAuthenticationFilter   : token from Request: null
+2025-07-25T14:06:32.265Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-1] o.y.C.security.JwtAuthenticationFilter   : tokenDecoded: null
+2025-07-25T14:06:32.305Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-1] o.y.C.interceptor.LocaleInterceptor      : Set locale: en_US for request: /swagger-ui/index.html
+2025-07-25T14:06:32.313Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-1] o.y.C.interceptor.LocaleInterceptor      : Current locale: en for request: /swagger-ui/index.html
+2025-07-25T14:06:32.391Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-3] o.y.ChatApp.security.JwtTokenProvider    : using key to decode token: dkjgjiwejpdsjgssjfsdjofsodfdddfefreg
+2025-07-25T14:06:32.390Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-2] o.y.ChatApp.security.JwtTokenProvider    : using key to decode token: dkjgjiwejpdsjgssjfsdjofsodfdddfefreg
+2025-07-25T14:06:32.391Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-2] o.y.ChatApp.security.JwtTokenProvider    : using validityInMs to decode token: 36000000
+2025-07-25T14:06:32.391Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-3] o.y.ChatApp.security.JwtTokenProvider    : using validityInMs to decode token: 36000000
+2025-07-25T14:06:32.391Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-2] o.y.C.security.JwtAuthenticationFilter   : token from Request: null
+2025-07-25T14:06:32.391Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-3] o.y.C.security.JwtAuthenticationFilter   : token from Request: null
+2025-07-25T14:06:32.391Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-2] o.y.C.security.JwtAuthenticationFilter   : tokenDecoded: null
+2025-07-25T14:06:32.391Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-3] o.y.C.security.JwtAuthenticationFilter   : tokenDecoded: null
+2025-07-25T14:06:32.391Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-3] o.y.ChatApp.security.JwtTokenProvider    : using key to decode token: dkjgjiwejpdsjgssjfsdjofsodfdddfefreg
+2025-07-25T14:06:32.391Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-2] o.y.ChatApp.security.JwtTokenProvider    : using key to decode token: dkjgjiwejpdsjgssjfsdjofsodfdddfefreg
+2025-07-25T14:06:32.391Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-3] o.y.ChatApp.security.JwtTokenProvider    : using validityInMs to decode token: 36000000
+2025-07-25T14:06:32.391Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-2] o.y.ChatApp.security.JwtTokenProvider    : using validityInMs to decode token: 36000000
+2025-07-25T14:06:32.392Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-3] o.y.C.security.JwtAuthenticationFilter   : token from Request: null
+2025-07-25T14:06:32.392Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-2] o.y.C.security.JwtAuthenticationFilter   : token from Request: null
+2025-07-25T14:06:32.392Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-3] o.y.C.security.JwtAuthenticationFilter   : tokenDecoded: null
+2025-07-25T14:06:32.392Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-2] o.y.C.security.JwtAuthenticationFilter   : tokenDecoded: null
+2025-07-25T14:06:32.393Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-2] o.y.C.interceptor.LocaleInterceptor      : Set locale: en_US for request: /swagger-ui/swagger-ui-bundle.js
+2025-07-25T14:06:32.393Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-3] o.y.C.interceptor.LocaleInterceptor      : Set locale: en_US for request: /swagger-ui/swagger-initializer.js
+2025-07-25T14:06:32.393Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-3] o.y.C.interceptor.LocaleInterceptor      : Current locale: en for request: /swagger-ui/swagger-initializer.js
+2025-07-25T14:06:32.393Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-2] o.y.C.interceptor.LocaleInterceptor      : Current locale: en for request: /swagger-ui/swagger-ui-bundle.js
+2025-07-25T14:06:32.865Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-4] o.y.ChatApp.security.JwtTokenProvider    : using key to decode token: dkjgjiwejpdsjgssjfsdjofsodfdddfefreg
+2025-07-25T14:06:32.866Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-4] o.y.ChatApp.security.JwtTokenProvider    : using validityInMs to decode token: 36000000
+2025-07-25T14:06:32.866Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-4] o.y.C.security.JwtAuthenticationFilter   : token from Request: null
+2025-07-25T14:06:32.866Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-4] o.y.C.security.JwtAuthenticationFilter   : tokenDecoded: null
+2025-07-25T14:06:32.866Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-4] o.y.ChatApp.security.JwtTokenProvider    : using key to decode token: dkjgjiwejpdsjgssjfsdjofsodfdddfefreg
+2025-07-25T14:06:32.866Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-4] o.y.ChatApp.security.JwtTokenProvider    : using validityInMs to decode token: 36000000
+2025-07-25T14:06:32.866Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-4] o.y.C.security.JwtAuthenticationFilter   : token from Request: null
+2025-07-25T14:06:32.867Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-4] o.y.C.security.JwtAuthenticationFilter   : tokenDecoded: null
+2025-07-25T14:06:32.867Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-4] o.y.C.interceptor.LocaleInterceptor      : Set locale: en_US for request: /v3/api-docs/swagger-config
+2025-07-25T14:06:32.867Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-4] o.y.C.interceptor.LocaleInterceptor      : Current locale: en for request: /v3/api-docs/swagger-config
+2025-07-25T14:06:32.928Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-5] o.y.ChatApp.security.JwtTokenProvider    : using key to decode token: dkjgjiwejpdsjgssjfsdjofsodfdddfefreg
+2025-07-25T14:06:32.928Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-5] o.y.ChatApp.security.JwtTokenProvider    : using validityInMs to decode token: 36000000
+2025-07-25T14:06:32.928Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-5] o.y.C.security.JwtAuthenticationFilter   : token from Request: null
+2025-07-25T14:06:32.928Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-5] o.y.C.security.JwtAuthenticationFilter   : tokenDecoded: null
+2025-07-25T14:06:32.929Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-5] o.y.ChatApp.security.JwtTokenProvider    : using key to decode token: dkjgjiwejpdsjgssjfsdjofsodfdddfefreg
+2025-07-25T14:06:32.929Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-5] o.y.ChatApp.security.JwtTokenProvider    : using validityInMs to decode token: 36000000
+2025-07-25T14:06:32.929Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-5] o.y.C.security.JwtAuthenticationFilter   : token from Request: null
+2025-07-25T14:06:32.929Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-5] o.y.C.security.JwtAuthenticationFilter   : tokenDecoded: null
+2025-07-25T14:06:32.930Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-5] o.y.C.interceptor.LocaleInterceptor      : Set locale: en_US for request: /v3/api-docs
+2025-07-25T14:06:32.931Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-5] o.y.C.interceptor.LocaleInterceptor      : Current locale: en for request: /v3/api-docs
+2025-07-25T14:06:33.244Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-5] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 297 ms
+2025-07-25T14:41:12.650Z  INFO 1 --- [do-an-tot-nghiep-2025] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-07-25T14:41:12.652Z  INFO 1 --- [do-an-tot-nghiep-2025] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-07-25T14:41:12.656Z  INFO 1 --- [do-an-tot-nghiep-2025] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-07-25T14:41:12.658Z  INFO 1 --- [do-an-tot-nghiep-2025] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-07-25T14:41:12.662Z  INFO 1 --- [do-an-tot-nghiep-2025] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-07-25T15:04:48.943Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.y.ChatApp.StrongStrongApplication      : Starting StrongStrongApplication v0.0.1-SNAPSHOT using Java 21 with PID 1 (/app/app.jar started by root in /app)
+2025-07-25T15:04:48.946Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.y.ChatApp.StrongStrongApplication      : The following 1 profile is active: "compose"
+2025-07-25T15:04:49.997Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-07-25T15:04:50.069Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 58 ms. Found 2 JPA repository interfaces.
+2025-07-25T15:04:50.739Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-07-25T15:04:50.756Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-07-25T15:04:50.756Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-07-25T15:04:50.794Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-07-25T15:04:50.794Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1785 ms
+2025-07-25T15:04:51.026Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-07-25T15:04:51.100Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.18.Final
+2025-07-25T15:04:51.146Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-07-25T15:04:51.504Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-07-25T15:04:51.538Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-07-25T15:04:51.950Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@51508029
+2025-07-25T15:04:51.953Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-07-25T15:04:52.008Z  WARN 1 --- [do-an-tot-nghiep-2025] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-07-25T15:04:52.010Z  WARN 1 --- [do-an-tot-nghiep-2025] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-07-25T15:04:52.039Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-07-25T15:04:53.040Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-25T15:04:53.112Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-07-25T15:04:53.118Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] f.a.AutowiredAnnotationBeanPostProcessor : Autowired annotation is not supported on static fields: public static java.lang.String org.yenln8.ChatApp.StrongStrongApplication.passwordSender
+2025-07-25T15:04:53.378Z  WARN 1 --- [do-an-tot-nghiep-2025] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-07-25T15:04:53.766Z  WARN 1 --- [do-an-tot-nghiep-2025] [main] thorizationManagerRequestMatcherRegistry : One of the patterns in [/swagger-ui/**, v3/api-docs/**] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-25T15:04:54.390Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-07-25T15:04:54.409Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.y.ChatApp.StrongStrongApplication      : Started StrongStrongApplication in 6.034 seconds (process running for 6.467)
+2025-07-25T15:04:54.865Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.y.ChatApp.common.util.MessageBundle    : [ChatApp] - Account Registration OTP Verification
+2025-07-25T15:04:54.865Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.y.ChatApp.StrongStrongApplication      : [ChatApp] - Account Registration OTP Verification
+2025-07-25T15:30:42.562Z  INFO 1 --- [do-an-tot-nghiep-2025] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-07-25T15:30:42.565Z  INFO 1 --- [do-an-tot-nghiep-2025] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-07-25T15:30:42.569Z  INFO 1 --- [do-an-tot-nghiep-2025] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-07-25T15:30:42.571Z  INFO 1 --- [do-an-tot-nghiep-2025] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-07-25T15:30:42.575Z  INFO 1 --- [do-an-tot-nghiep-2025] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2025-07-25T15:40:16.766Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.y.ChatApp.StrongStrongApplication      : Starting StrongStrongApplication v0.0.1-SNAPSHOT using Java 21 with PID 1 (/app/app.jar started by root in /app)
+2025-07-25T15:40:16.769Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.y.ChatApp.StrongStrongApplication      : The following 1 profile is active: "compose"
+2025-07-25T15:40:17.993Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-07-25T15:40:18.089Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 74 ms. Found 2 JPA repository interfaces.
+2025-07-25T15:40:18.757Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2025-07-25T15:40:18.780Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2025-07-25T15:40:18.780Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.42]
+2025-07-25T15:40:18.821Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2025-07-25T15:40:18.822Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1978 ms
+2025-07-25T15:40:19.077Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-07-25T15:40:19.155Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.18.Final
+2025-07-25T15:40:19.205Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2025-07-25T15:40:19.593Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-07-25T15:40:19.637Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2025-07-25T15:40:20.075Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@76e00bdb
+2025-07-25T15:40:20.077Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2025-07-25T15:40:20.126Z  WARN 1 --- [do-an-tot-nghiep-2025] [main] org.hibernate.orm.deprecation            : HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-07-25T15:40:20.127Z  WARN 1 --- [do-an-tot-nghiep-2025] [main] org.hibernate.orm.deprecation            : HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-07-25T15:40:20.147Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-07-25T15:40:21.112Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-07-25T15:40:21.200Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-07-25T15:40:21.207Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] f.a.AutowiredAnnotationBeanPostProcessor : Autowired annotation is not supported on static fields: public static java.lang.String org.yenln8.ChatApp.StrongStrongApplication.passwordSender
+2025-07-25T15:40:21.457Z  WARN 1 --- [do-an-tot-nghiep-2025] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-07-25T15:40:21.874Z  WARN 1 --- [do-an-tot-nghiep-2025] [main] thorizationManagerRequestMatcherRegistry : One of the patterns in [/swagger-ui/**, v3/api-docs/**] is missing a leading slash. This is discouraged; please include the leading slash in all your request matcher patterns. In future versions of Spring Security, leaving out the leading slash will result in an exception.
+2025-07-25T15:40:22.549Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2025-07-25T15:40:22.570Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.y.ChatApp.StrongStrongApplication      : Started StrongStrongApplication in 6.427 seconds (process running for 7.016)
+2025-07-25T15:40:23.074Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.y.ChatApp.common.util.MessageBundle    : [ChatApp] - Account Registration OTP Verification
+2025-07-25T15:40:23.074Z  INFO 1 --- [do-an-tot-nghiep-2025] [main] o.y.ChatApp.StrongStrongApplication      : [ChatApp] - Account Registration OTP Verification
+2025-07-25T15:40:33.311Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-07-25T15:40:33.312Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-07-25T15:40:33.314Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2025-07-25T15:40:33.338Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-1] o.y.ChatApp.security.JwtTokenProvider    : using key to decode token: dkjgjiwejpdsjgssjfsdjofsodfdddfefreg
+2025-07-25T15:40:33.338Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-1] o.y.ChatApp.security.JwtTokenProvider    : using validityInMs to decode token: 36000000
+2025-07-25T15:40:33.338Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-1] o.y.C.security.JwtAuthenticationFilter   : token from Request: null
+2025-07-25T15:40:33.338Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-1] o.y.C.security.JwtAuthenticationFilter   : tokenDecoded: null
+2025-07-25T15:40:33.344Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-1] o.y.ChatApp.security.JwtTokenProvider    : using key to decode token: dkjgjiwejpdsjgssjfsdjofsodfdddfefreg
+2025-07-25T15:40:33.344Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-1] o.y.ChatApp.security.JwtTokenProvider    : using validityInMs to decode token: 36000000
+2025-07-25T15:40:33.344Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-1] o.y.C.security.JwtAuthenticationFilter   : token from Request: null
+2025-07-25T15:40:33.344Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-1] o.y.C.security.JwtAuthenticationFilter   : tokenDecoded: null
+2025-07-25T15:40:33.359Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-1] o.y.C.interceptor.LocaleInterceptor      : Set locale: en_US for request: /swagger-ui/index.html
+2025-07-25T15:40:33.360Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-1] o.y.C.interceptor.LocaleInterceptor      : Current locale: en for request: /swagger-ui/index.html
+2025-07-25T15:40:33.403Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-2] o.y.ChatApp.security.JwtTokenProvider    : using key to decode token: dkjgjiwejpdsjgssjfsdjofsodfdddfefreg
+2025-07-25T15:40:33.403Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-3] o.y.ChatApp.security.JwtTokenProvider    : using key to decode token: dkjgjiwejpdsjgssjfsdjofsodfdddfefreg
+2025-07-25T15:40:33.404Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-2] o.y.ChatApp.security.JwtTokenProvider    : using validityInMs to decode token: 36000000
+2025-07-25T15:40:33.404Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-3] o.y.ChatApp.security.JwtTokenProvider    : using validityInMs to decode token: 36000000
+2025-07-25T15:40:33.404Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-2] o.y.C.security.JwtAuthenticationFilter   : token from Request: null
+2025-07-25T15:40:33.404Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-3] o.y.C.security.JwtAuthenticationFilter   : token from Request: null
+2025-07-25T15:40:33.404Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-2] o.y.C.security.JwtAuthenticationFilter   : tokenDecoded: null
+2025-07-25T15:40:33.404Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-3] o.y.C.security.JwtAuthenticationFilter   : tokenDecoded: null
+2025-07-25T15:40:33.405Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-2] o.y.ChatApp.security.JwtTokenProvider    : using key to decode token: dkjgjiwejpdsjgssjfsdjofsodfdddfefreg
+2025-07-25T15:40:33.406Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-2] o.y.ChatApp.security.JwtTokenProvider    : using validityInMs to decode token: 36000000
+2025-07-25T15:40:33.406Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-2] o.y.C.security.JwtAuthenticationFilter   : token from Request: null
+2025-07-25T15:40:33.406Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-3] o.y.ChatApp.security.JwtTokenProvider    : using key to decode token: dkjgjiwejpdsjgssjfsdjofsodfdddfefreg
+2025-07-25T15:40:33.406Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-2] o.y.C.security.JwtAuthenticationFilter   : tokenDecoded: null
+2025-07-25T15:40:33.406Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-3] o.y.ChatApp.security.JwtTokenProvider    : using validityInMs to decode token: 36000000
+2025-07-25T15:40:33.406Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-3] o.y.C.security.JwtAuthenticationFilter   : token from Request: null
+2025-07-25T15:40:33.407Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-3] o.y.C.security.JwtAuthenticationFilter   : tokenDecoded: null
+2025-07-25T15:40:33.408Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-2] o.y.C.interceptor.LocaleInterceptor      : Set locale: en_US for request: /swagger-ui/swagger-ui-bundle.js
+2025-07-25T15:40:33.408Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-3] o.y.C.interceptor.LocaleInterceptor      : Set locale: en_US for request: /swagger-ui/swagger-initializer.js
+2025-07-25T15:40:33.409Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-2] o.y.C.interceptor.LocaleInterceptor      : Current locale: en for request: /swagger-ui/swagger-ui-bundle.js
+2025-07-25T15:40:33.409Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-3] o.y.C.interceptor.LocaleInterceptor      : Current locale: en for request: /swagger-ui/swagger-initializer.js
+2025-07-25T15:40:33.634Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-4] o.y.ChatApp.security.JwtTokenProvider    : using key to decode token: dkjgjiwejpdsjgssjfsdjofsodfdddfefreg
+2025-07-25T15:40:33.634Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-4] o.y.ChatApp.security.JwtTokenProvider    : using validityInMs to decode token: 36000000
+2025-07-25T15:40:33.634Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-4] o.y.C.security.JwtAuthenticationFilter   : token from Request: null
+2025-07-25T15:40:33.635Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-4] o.y.C.security.JwtAuthenticationFilter   : tokenDecoded: null
+2025-07-25T15:40:33.636Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-4] o.y.ChatApp.security.JwtTokenProvider    : using key to decode token: dkjgjiwejpdsjgssjfsdjofsodfdddfefreg
+2025-07-25T15:40:33.636Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-4] o.y.ChatApp.security.JwtTokenProvider    : using validityInMs to decode token: 36000000
+2025-07-25T15:40:33.636Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-4] o.y.C.security.JwtAuthenticationFilter   : token from Request: null
+2025-07-25T15:40:33.636Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-4] o.y.C.security.JwtAuthenticationFilter   : tokenDecoded: null
+2025-07-25T15:40:33.637Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-4] o.y.C.interceptor.LocaleInterceptor      : Set locale: en_US for request: /v3/api-docs/swagger-config
+2025-07-25T15:40:33.637Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-4] o.y.C.interceptor.LocaleInterceptor      : Current locale: en for request: /v3/api-docs/swagger-config
+2025-07-25T15:40:33.722Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-5] o.y.ChatApp.security.JwtTokenProvider    : using key to decode token: dkjgjiwejpdsjgssjfsdjofsodfdddfefreg
+2025-07-25T15:40:33.723Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-5] o.y.ChatApp.security.JwtTokenProvider    : using validityInMs to decode token: 36000000
+2025-07-25T15:40:33.724Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-5] o.y.C.security.JwtAuthenticationFilter   : token from Request: null
+2025-07-25T15:40:33.725Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-5] o.y.C.security.JwtAuthenticationFilter   : tokenDecoded: null
+2025-07-25T15:40:33.725Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-5] o.y.ChatApp.security.JwtTokenProvider    : using key to decode token: dkjgjiwejpdsjgssjfsdjofsodfdddfefreg
+2025-07-25T15:40:33.726Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-5] o.y.ChatApp.security.JwtTokenProvider    : using validityInMs to decode token: 36000000
+2025-07-25T15:40:33.727Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-5] o.y.C.security.JwtAuthenticationFilter   : token from Request: null
+2025-07-25T15:40:33.728Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-5] o.y.C.security.JwtAuthenticationFilter   : tokenDecoded: null
+2025-07-25T15:40:33.730Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-5] o.y.C.interceptor.LocaleInterceptor      : Set locale: en_US for request: /v3/api-docs
+2025-07-25T15:40:33.730Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-5] o.y.C.interceptor.LocaleInterceptor      : Current locale: en for request: /v3/api-docs
+2025-07-25T15:40:34.082Z  INFO 1 --- [do-an-tot-nghiep-2025] [http-nio-8080-exec-5] o.springdoc.api.AbstractOpenApiResource  : Init duration for springdoc-openapi is: 331 ms
+2025-07-25T15:41:48.791Z  INFO 1 --- [do-an-tot-nghiep-2025] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2025-07-25T15:41:48.793Z  INFO 1 --- [do-an-tot-nghiep-2025] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2025-07-25T15:41:48.797Z  INFO 1 --- [do-an-tot-nghiep-2025] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-07-25T15:41:48.800Z  INFO 1 --- [do-an-tot-nghiep-2025] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2025-07-25T15:41:48.806Z  INFO 1 --- [do-an-tot-nghiep-2025] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

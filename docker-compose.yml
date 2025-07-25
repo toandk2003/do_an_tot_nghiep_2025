@@ -18,6 +18,19 @@ services:
     networks:
       - springboot-network
 
+
+  # Redis
+  redis:
+    image: redis:7-alpine
+    container_name: redis
+    restart: always
+    ports:
+      - "6379:6379"
+    tmpfs:
+      - /data
+    networks:
+      - springboot-network
+
   # Spring Boot Application
   springboot-app:
     image: ngocyenptit153/chatapp
@@ -32,6 +45,7 @@ services:
       SPRING_PROFILES_ACTIVE: compose
     depends_on:
       - mysql-db
+      - redis
     networks:
       - springboot-network
 

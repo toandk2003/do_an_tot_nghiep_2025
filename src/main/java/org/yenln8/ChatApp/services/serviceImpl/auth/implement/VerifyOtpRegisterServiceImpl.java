@@ -82,8 +82,6 @@ public class VerifyOtpRegisterServiceImpl implements VerifyOtpRegisterService {
 
         // Them User
         User newUser = this.userRepository.save(User.builder()
-                .firstName(accountPending.getFirstName())
-                .lastName(accountPending.getLastName())
                 .fullName(accountPending.getFullName())
                 .email(accountPending.getEmail())
                 .password(accountPending.getPassword())

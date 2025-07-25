@@ -26,7 +26,7 @@ public class ExpireOTPSchedule {
     @Scheduled(fixedDelay = 1000)
     @Transactional
     public void scheduleExpireOTP() {
-        log.info("Schedule FreedomOTPSchedule is running..............");
+//        log.info("Schedule FreedomOTPSchedule is running..............");
         try {
             List<OTP> otps = otpRepository.findAllByDeletedAtIsNull(PageRequest.of(0, batchSize)).getContent();
             for (OTP otp : otps) {

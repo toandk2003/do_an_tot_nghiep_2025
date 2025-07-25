@@ -15,35 +15,22 @@ import java.time.LocalDateTime;
 @Data
 @Builder
 @Entity
-@Table(name = "users",
+@Table(name = "native_languages",
         uniqueConstraints = {
-                @UniqueConstraint(name = "uk_email_deleted", columnNames = {"email", "deleted"})
-        },
-        indexes = {
-                @Index(name = "idx_email_deleted", columnList = "email, deleted")
-        })
-
-public class User {
+                @UniqueConstraint(name = "uk_name_locale_deleted", columnNames = {"name", "locale", "deleted"})
+        }
+)
+public class NativeLanguage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "email", nullable = false)
-    private String email;
+    @Column(name = "name", nullable = false)
+    private String name;
 
-    @Column(name = "password", nullable = false)
-    private String password;
-
-    @Column(name = "full_name")
-    private String fullName;
-
-    @Column(name = "status", nullable = false)
+    @Column(name = "locale", nullable = false)
     @Enumerated(EnumType.ORDINAL)
-    private STATUS status;
-
-    @Column(name = "role", nullable = false)
-    @Enumerated(EnumType.ORDINAL)
-    private ROLE role;
+    private LOCALE locale;
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
@@ -62,18 +49,8 @@ public class User {
     @Version
     private Integer rowVersion;
 
-    @OneToOne(mappedBy = "user", cascade =  CascadeType.ALL)
-    private Profile profile;
-
-    public enum STATUS{
-        INACTIVE,
-        ACTIVE,
-        LOCK,
-        BAN
-    }
-
-    public enum ROLE{
-        USER,
-        ADMIN
+    public enum LOCALE {
+        ENGLISH,
+        VIETNAMESE
     }
 }

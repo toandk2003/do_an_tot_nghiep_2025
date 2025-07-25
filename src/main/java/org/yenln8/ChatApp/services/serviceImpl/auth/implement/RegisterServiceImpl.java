@@ -84,11 +84,8 @@ public class RegisterServiceImpl implements RegisterService {
     private void save(RegisterAccountRequestDto form, HttpServletRequest request) throws Exception {
         String email = form.getEmail().trim();
         String password = form.getPassword();
-        String firstName = form.getFirstName().trim();
-        String lastName = form.getLastName().trim();
-        String fullName = firstName + " " + lastName;
+        String fullName = form.getFullName();
         String ipAddress = Network.getUserIP(request);
-
 
         // Luu thong tin OTP tao duoc vao bang OTP
         OTP otp = this.OTPRepository.save(OTP.builder()
@@ -108,8 +105,6 @@ public class RegisterServiceImpl implements RegisterService {
                 .role(User.ROLE.USER)
                 .status(AccountPending.STATUS.PENDING)
                 .email(email)
-                .firstName(firstName)
-                .lastName(lastName)
                 .fullName(fullName)
                 .password(passwordEncoder.encode(password))
                 .build());

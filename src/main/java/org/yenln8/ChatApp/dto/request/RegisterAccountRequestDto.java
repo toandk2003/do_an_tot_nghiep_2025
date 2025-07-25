@@ -24,11 +24,6 @@ public class RegisterAccountRequestDto {
     @Size(min = 3, max = 20)
     @NotNull
     @NotBlank
-    private String firstName;
-
-    @NotNull
-    @NotBlank
-    @Size(min = 3, max = 20)
-    private String lastName;
+    private String fullName;
 
 }

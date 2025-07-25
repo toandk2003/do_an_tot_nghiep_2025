@@ -24,7 +24,7 @@ public class SendEmailSchedule {
     @Scheduled(fixedDelay = 1000)
     @Transactional
     public void scheduleFreedomOTPRegister() {
-        log.info("Send email is running background..............");
+//        log.info("Send email is running background..............");
         try {
             List<EmailOutbox> emailOutboxes = this.emailOutboxRepository.findAllByDeletedAtIsNull(PageRequest.of(0, batchSize)).getContent();
             for (EmailOutbox emailOutbox : emailOutboxes) {

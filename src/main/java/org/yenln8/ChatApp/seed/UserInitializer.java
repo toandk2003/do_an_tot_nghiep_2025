@@ -35,11 +35,11 @@ public class UserInitializer {
 
             // User 1 - Admin
             User admin = User.builder()
-                    .email("john@example.com")
+                    .email("ngocyenptit153@gmail.com")
                     .password(passwordEncoder.encode("ChatApp123456@"))
-                    .fullName("John Doe")
+                    .fullName("PTIT")
                     .status(User.STATUS.ACTIVE)
-                    .role(User.ROLE.ADMIN)
+                    .role(User.ROLE.USER)
                     .build();
 
             // User 2 - Normal User

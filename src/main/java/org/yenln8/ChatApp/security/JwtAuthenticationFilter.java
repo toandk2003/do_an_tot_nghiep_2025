@@ -35,13 +35,17 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain filterChain)
             throws IOException, ServletException {
 
-        String tokenFromRequest = getTokenFromRequest(request);
+        String tokenFromRequest = getTokenFromRequest(request) == null ? "" : getTokenFromRequest(request);
+
         Claims tokenDecoded = this.jwtTokenProvider.decodeToken(tokenFromRequest);
 
         log.info("token from Request: {}", tokenFromRequest);
         log.info("tokenDecoded: {}", tokenDecoded);
 
-        if (tokenDecoded != null) {
+        Boolean isValidToken = redisService.getKey(tokenFromRequest, Boolean.class) ;
+        log.info("isValidToken: {}", isValidToken);
+
+        if ( isValidToken != null && tokenDecoded != null ) {
             // if token expire, it's seen as invalid because decode return null
             Long id = this.jwtTokenProvider.getId(tokenDecoded);
             String email = this.jwtTokenProvider.getEmail(tokenDecoded);
@@ -60,6 +64,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             SecurityContextHolder.getContext().setAuthentication(authentication);
 
             // Set last online
+            log.info("set last online");
             this.redisService.setKey(this.redisService.getKeyLastOnlineWithPrefix(email),Instant.now().getEpochSecond());
         }
 

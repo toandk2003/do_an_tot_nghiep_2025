@@ -21,15 +21,12 @@ public class TestController {
 
     @GetMapping("/test")
     public ResponseEntity<?> test() throws IllegalAccessException {
-//        String token = jwtTokenProvider.createToken(1L, "abc@mgila.com", List.of("ADMIN"));
-//        return ResponseEntity.ok(token);
-        LoginRequestDto loginRequestDto = LoginRequestDto.builder().email("sadsdasd").build();
-        loginRequestDto.setEmail("abc@gmail.com");
-        redisService.setKeyInMinutes(loginRequestDto.getEmail(), "ABCCCCC",1);
-        String val = redisService.getKey(loginRequestDto.getEmail(), String.class);
-        System.out.println(">>> Value in Redis: " + val);
-        return ResponseEntity.ok(val);
-//        return  ResponseEntity.ok().build();
+        return  ResponseEntity.ok(1);
+    }
+
+    @GetMapping("/test-need-token")
+    public ResponseEntity<?> test2() throws IllegalAccessException {
+        return  ResponseEntity.ok(1);
     }
 
 }

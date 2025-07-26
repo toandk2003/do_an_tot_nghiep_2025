@@ -36,7 +36,7 @@ public class UserInitializer {
             // User 1 - Admin
             User admin = User.builder()
                     .email("john@example.com")
-                    .password(passwordEncoder.encode("123"))
+                    .password(passwordEncoder.encode("ChatApp123456@"))
                     .fullName("John Doe")
                     .status(User.STATUS.ACTIVE)
                     .role(User.ROLE.ADMIN)
@@ -45,7 +45,7 @@ public class UserInitializer {
             // User 2 - Normal User
             User normalUser = User.builder()
                     .email("jane@example.com")
-                    .password(passwordEncoder.encode("123"))
+                    .password(passwordEncoder.encode("ChatApp123456@"))
                     .fullName("Jane Smith")
                     .status(User.STATUS.ACTIVE)
                     .role(User.ROLE.ADMIN)
@@ -54,7 +54,7 @@ public class UserInitializer {
             // User 3 - Admin User (NORMAL_USER role)
             User adminUser = User.builder()
                     .email("admin@example.com")
-                    .password(passwordEncoder.encode("123"))
+                    .password(passwordEncoder.encode("ChatApp123456@"))
                     .fullName("Admin User")
                     .status(User.STATUS.ACTIVE)
                     .role(User.ROLE.ADMIN)

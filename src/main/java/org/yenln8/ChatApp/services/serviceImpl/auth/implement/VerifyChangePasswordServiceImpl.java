@@ -15,6 +15,7 @@ import org.yenln8.ChatApp.entity.OTP;
 import org.yenln8.ChatApp.entity.PasswordPending;
 import org.yenln8.ChatApp.entity.User;
 import org.yenln8.ChatApp.repository.*;
+import org.yenln8.ChatApp.services.serviceImpl.auth.interfaces.LogOutService;
 import org.yenln8.ChatApp.services.serviceImpl.auth.interfaces.VerifyChangePasswordService;
 
 import java.time.LocalDateTime;
@@ -28,6 +29,7 @@ public class VerifyChangePasswordServiceImpl implements VerifyChangePasswordServ
     private OTPRepository otpRepository;
     private PasswordPendingRepository passwordPendingRepository;
     private PasswordEncoder passwordEncoder;
+    private LogOutService logOutService;
 
     @Override
     public BaseResponseDto call(VerifyOtpRequestDto form, HttpServletRequest request) {
@@ -90,6 +92,7 @@ public class VerifyChangePasswordServiceImpl implements VerifyChangePasswordServ
         this.userRepository.save(user);
         log.info("new User : {}", user);
 
-        //TODO logout all device
+        // logout all device
+        this.logOutService.logOutAllDevice(user.getId());
     }
 }

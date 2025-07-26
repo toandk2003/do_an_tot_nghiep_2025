@@ -9,16 +9,20 @@ import org.springframework.web.server.ResponseStatusException;
 import org.yenln8.ChatApp.common.constant.AuthConstant;
 import org.yenln8.ChatApp.common.util.MessageBundle;
 import org.yenln8.ChatApp.common.util.Network;
+import org.yenln8.ChatApp.common.util.RedisService;
 import org.yenln8.ChatApp.common.util.spam.SpamService;
 import org.yenln8.ChatApp.dto.base.BaseResponseDto;
 import org.yenln8.ChatApp.dto.redis.BlackListLoginDto;
 import org.yenln8.ChatApp.dto.request.LoginRequestDto;
+import org.yenln8.ChatApp.entity.AccessToken;
 import org.yenln8.ChatApp.entity.User;
+import org.yenln8.ChatApp.repository.AccessTokenRepository;
 import org.yenln8.ChatApp.repository.UserRepository;
 import org.yenln8.ChatApp.security.JwtTokenProvider;
-import org.yenln8.ChatApp.common.util.RedisService;
 import org.yenln8.ChatApp.services.serviceImpl.auth.interfaces.LoginService;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.Optional;
 
@@ -30,12 +34,13 @@ public class LoginServiceImpl implements LoginService {
     private PasswordEncoder passwordEncoder;
     private JwtTokenProvider jwtTokenProvider;
     private SpamService spamService;
+    private AccessTokenRepository accessTokenRepository;
 
     @Override
     public BaseResponseDto call(LoginRequestDto loginRequestDto, HttpServletRequest request) {
         User user = validate(loginRequestDto, request);
 
-        String token = save(user,request);
+        String token = save(user, request);
 
         return BaseResponseDto.builder()
                 .success(true)
@@ -93,6 +98,19 @@ public class LoginServiceImpl implements LoginService {
         this.redisService.deleteKey(this.redisService.getKeyLoginWithPrefix(user.getEmail(), Network.getUserIP(request)));
 
         //create token return
-        return this.jwtTokenProvider.createToken(id, email, Collections.singletonList(role.name()));
+        String token = this.jwtTokenProvider.createToken(id, email, Collections.singletonList(role.name()));
+
+        //save db
+        AccessToken accessToken = this.accessTokenRepository.save(AccessToken.builder()
+                .token(token)
+                .isRevoked(false)
+                .expiresAt(LocalDateTime.now().plusMinutes(AuthConstant.ACCESS_TOKEN_EXPIRATION))
+                .ownerId(id)
+                .build());
+
+        // push token to redis
+        redisService.setKeyInMinutes(accessToken.getToken(), Boolean.TRUE, Duration.between(LocalDateTime.now(), accessToken.getExpiresAt()).toMinutes());
+
+        return token;
     }
 }

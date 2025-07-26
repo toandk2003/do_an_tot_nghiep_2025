@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Builder
+@Builder(toBuilder = true)
 @Entity
 @Table(name = "access_tokens",
         uniqueConstraints = {
@@ -28,27 +28,19 @@ public class AccessToken {
     @Column(name = "token", nullable = false, unique = true, length = 512)
     private String token;
 
-    @Column(name = "user_id", nullable = false)
-    private Long userId;
+    @Column(name = "owner_id", nullable = false)
+    private Long ownerId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", insertable = false, updatable = false)
+    @JoinColumn(name = "owner_id",referencedColumnName = "id", insertable = false, updatable = false)
     private User user;
 
     @Column(name = "expires_at", nullable = false)
     private LocalDateTime expiresAt;
 
-    @Column(name = "token_type", nullable = false)
-    private String tokenType = "Bearer";
-
     @Column(name = "is_revoked", nullable = false)
+    @Builder.Default
     private Boolean isRevoked = false;
-
-    @Column(name = "device_info")
-    private String deviceInfo;
-
-    @Column(name = "ip_address", nullable = false)
-    private String ipAddress;
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)

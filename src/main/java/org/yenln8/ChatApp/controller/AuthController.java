@@ -51,4 +51,9 @@ public class AuthController {
     public ResponseEntity<?> verifyOtpChangePassword(@RequestBody @Valid VerifyOtpRequestDto form, HttpServletRequest request) throws Exception {
         return ResponseEntity.ok(this.authService.verifyChangePassword(form, request));
     }
+
+    @PostMapping("/log-out")
+    public ResponseEntity<?> logOut(HttpServletRequest request) throws Exception {
+        return ResponseEntity.ok(this.authService.logout( request));
+    }
 }

@@ -19,7 +19,7 @@ public class AuthServiceImpl implements AuthService {
     private VerifyChangePasswordService verifyChangePasswordService;
     private ResetPasswordService resetPasswordService;
     private VerifyResetPasswordService verifyResetPasswordService;
-
+    private LogOutService logOutService;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -62,7 +62,7 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public BaseResponseDto logout() {
-        return null;
+    public BaseResponseDto logout(HttpServletRequest request) {
+        return this.logOutService.call(request);
     }
 }

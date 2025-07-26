@@ -19,6 +19,6 @@ public interface AuthService {
 
     BaseResponseDto verifyOtpResetPassword(VerifyOtpRequestDto form, HttpServletRequest request) throws Exception;
 
-    BaseResponseDto logout();
+    BaseResponseDto logout(HttpServletRequest request);
 
 }

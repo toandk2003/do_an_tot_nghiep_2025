@@ -30,7 +30,7 @@ public class EmailOutbox {// table chua cac OTP da gui di
     private String otpCode;
 
     @Column(name = "type" , nullable = false)
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private TYPE type;
 
     @CreationTimestamp

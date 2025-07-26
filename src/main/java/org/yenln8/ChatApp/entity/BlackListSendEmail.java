@@ -36,11 +36,11 @@ public class BlackListSendEmail {
     private Integer userId;
 
     @Column(name = "type", nullable = false)
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private TYPE type;
 
     @Column(name = "status", nullable = false)
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private STATUS status;
 
     @Column(name = "free_to_send_at")

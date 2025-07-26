@@ -29,7 +29,7 @@ public class NativeLanguage {
     private String name;
 
     @Column(name = "locale", nullable = false)
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
     private LOCALE locale;
 
     @CreationTimestamp

@@ -9,29 +9,36 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
-import java.util.Random;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Builder(toBuilder = true)
+@Builder
 @Entity
-@Table(name = "email_outboxs")
+@Table(name = "password_pendings")
 
-public class EmailOutbox {// table chua cac OTP da gui di
+public class PasswordPending {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "to_email" , nullable = false)
-    private String toEmail;
+    @Column(name = "otp_id", nullable = false)
+    private Long otpId;
 
-    @Column(name = "otp_code" , nullable = false)
-    private String otpCode;
+    @ManyToOne
+    @JoinColumn(name = "user_id",referencedColumnName = "id", nullable = false)
+    private User user;
 
-    @Column(name = "type" , nullable = false)
+    @Column(name = "new_password", nullable = false)
+    private String newPassword;
+
+    @Column(name = "type", nullable = false)
     @Enumerated(EnumType.ORDINAL)
     private TYPE type;
+
+    @Column(name = "status", nullable = false)
+    @Enumerated(EnumType.ORDINAL)
+    private STATUS status;
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
@@ -51,9 +58,14 @@ public class EmailOutbox {// table chua cac OTP da gui di
     @Version
     private Integer rowVersion;
 
-    public enum TYPE {
-        REGISTER_ACCOUNT,
-        CHANGE_PASSWORD,
-        FORGOT_PASSWORD
+    public enum TYPE{
+        FORGOT,
+        CHANGE,
+    }
+
+    public enum STATUS{
+        PENDING,
+        DONE,
+        EXPIRED
     }
 }

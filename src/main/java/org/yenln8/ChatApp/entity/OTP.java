@@ -27,9 +27,6 @@ public class OTP {// table chua cac OTP da gui di
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "user_id")
-    private Integer userId;
-
     @Column(name = "from_ip_address", nullable = false)
     private String fromIpAddress;
 
@@ -61,7 +58,8 @@ public class OTP {// table chua cac OTP da gui di
     @Column(name = "deleted_at")
     private LocalDateTime deletedAt;
 
-    @Column(name = "deleted", columnDefinition = "BIGINT DEFAULT 0")
+    @Builder.Default
+    @Column(name = "deleted", columnDefinition = "BIGINT DEFAULT 0", nullable = false)
     private Long deleted = 0L;
 
     @Version

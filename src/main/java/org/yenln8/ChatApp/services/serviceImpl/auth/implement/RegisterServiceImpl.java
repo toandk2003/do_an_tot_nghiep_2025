@@ -124,7 +124,7 @@ public class RegisterServiceImpl implements RegisterService {
     }
 
 
-    private boolean containsDigit(String s) {
+    public boolean containsDigit(String s) {
         if (s == null) return false;
         for (char c : s.toCharArray()) {
             if (Character.isDigit(c)) return true;
@@ -133,7 +133,7 @@ public class RegisterServiceImpl implements RegisterService {
         return false;
     }
 
-    private boolean containsUppercase(String s) {
+    public boolean containsUppercase(String s) {
         if (s == null) return false;
         for (char c : s.toCharArray()) {
             if (Character.isUpperCase(c)) return true;
@@ -142,7 +142,7 @@ public class RegisterServiceImpl implements RegisterService {
         return false;
     }
 
-    private boolean containsLowercase(String s) {
+    public boolean containsLowercase(String s) {
         if (s == null) return false;
         for (char c : s.toCharArray()) {
             if (Character.isLowerCase(c)) return true;

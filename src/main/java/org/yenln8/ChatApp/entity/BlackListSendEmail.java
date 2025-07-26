@@ -57,7 +57,8 @@ public class BlackListSendEmail {
     @Column(name = "deleted_at")
     private LocalDateTime deletedAt;
 
-    @Column(name = "deleted", columnDefinition = "BIGINT DEFAULT 0")
+    @Builder.Default
+    @Column(name = "deleted", columnDefinition = "BIGINT DEFAULT 0", nullable = false)
     private Long deleted = 0L;
 
     @Version

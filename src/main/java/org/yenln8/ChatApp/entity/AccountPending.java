@@ -31,12 +31,6 @@ public class AccountPending {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "first_name")
-    private String firstName;
-
-    @Column(name = "last_name")
-    private String lastName;
-
     @Column(name = "full_name")
     private String fullName;
 
@@ -59,7 +53,8 @@ public class AccountPending {
     @Column(name = "deleted_at")
     private LocalDateTime deletedAt;
 
-    @Column(name = "deleted", columnDefinition = "BIGINT DEFAULT 0")
+    @Builder.Default
+    @Column(name = "deleted", columnDefinition = "BIGINT DEFAULT 0", nullable = false)
     private Long deleted = 0L;
 
     @Version

@@ -23,11 +23,7 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**") // Cho phép tất cả endpoints
-                .allowedOrigins("*") // Cho phép tất cả origins
-                .allowedMethods("*") // Cho phép tất cả HTTP methods
-                .allowedHeaders("*") // Cho phép tất cả headers
-                .allowCredentials(false); // Phải set false khi dùng allowedOrigins("*")
+        registry.addMapping("/**");
     }
 
 }

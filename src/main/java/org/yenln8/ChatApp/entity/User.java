@@ -63,7 +63,7 @@ public class User {
     @Version
     private Integer rowVersion;
 
-    @OneToOne(mappedBy = "user", cascade =  CascadeType.ALL)
+    @OneToOne(mappedBy = "user", cascade =  CascadeType.PERSIST)
     private Profile profile;
 
     public enum STATUS{

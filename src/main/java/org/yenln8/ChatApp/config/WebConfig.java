@@ -2,6 +2,7 @@ package org.yenln8.ChatApp.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.yenln8.ChatApp.interceptor.LocaleInterceptor;
@@ -18,6 +19,15 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addInterceptor(localeInterceptor)
                 .addPathPatterns("/**") // Áp dụng cho tất cả đường dẫn
                 .excludePathPatterns("/static/**", "/css/**", "/js/**", "/images/**"); // Loại trừ static resources
+    }
+
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**") // Cho phép tất cả endpoints
+                .allowedOrigins("*") // Cho phép tất cả origins
+                .allowedMethods("*") // Cho phép tất cả HTTP methods
+                .allowedHeaders("*") // Cho phép tất cả headers
+                .allowCredentials(false); // Phải set false khi dùng allowedOrigins("*")
     }
 
 }

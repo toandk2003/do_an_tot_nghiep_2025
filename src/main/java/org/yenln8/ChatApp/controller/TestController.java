@@ -32,7 +32,7 @@ public class TestController {
 //        return  ResponseEntity.ok().build();
     }
 
-    @GetMapping("/tevst-exception")
+    @GetMapping("/test-exception")
     public ResponseEntity<?> exceptions(HttpServletRequest request) throws Exception {
         System.out.println(this.redisService.getKey(RedisService.LAST_ONLINE_PREFIX + "ngocyenptit153@gmail.com", Long.class));
         return ResponseEntity.ok(1);

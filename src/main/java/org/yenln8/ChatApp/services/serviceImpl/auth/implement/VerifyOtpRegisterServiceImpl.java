@@ -86,7 +86,7 @@ public class VerifyOtpRegisterServiceImpl implements VerifyOtpRegisterService {
                 .email(accountPending.getEmail())
                 .password(accountPending.getPassword())
                 .role(accountPending.getRole())
-                .status(User.STATUS.ACTIVE)
+                .status(User.STATUS.NO_ONBOARDING)
                 .build());
         log.info("new User : {}", newUser);
 

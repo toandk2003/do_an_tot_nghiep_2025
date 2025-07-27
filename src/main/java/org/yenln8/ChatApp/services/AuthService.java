@@ -21,4 +21,7 @@ public interface AuthService {
 
     BaseResponseDto logout(HttpServletRequest request);
 
+    BaseResponseDto getProfile(HttpServletRequest request);
+
+
 }

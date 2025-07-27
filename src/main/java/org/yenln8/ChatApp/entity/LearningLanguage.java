@@ -1,5 +1,6 @@
 package org.yenln8.ChatApp.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -45,6 +46,7 @@ public class LearningLanguage {
 
     @Builder.Default
     @Column(name = "deleted", columnDefinition = "BIGINT DEFAULT 0", nullable = false)
+    @JsonIgnore
     private Long deleted = 0L;
 
     @Version

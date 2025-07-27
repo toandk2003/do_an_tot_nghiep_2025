@@ -1,5 +1,6 @@
 package org.yenln8.ChatApp.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,7 +14,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Builder
+@Builder(toBuilder = true)
 @Entity
 @Table(name = "users",
         uniqueConstraints = {
@@ -58,15 +59,17 @@ public class User {
 
     @Builder.Default
     @Column(name = "deleted", columnDefinition = "BIGINT DEFAULT 0", nullable = false)
+    @JsonIgnore
     private Long deleted = 0L;
 
     @Version
     private Integer rowVersion;
 
-    @OneToOne(mappedBy = "user", cascade =  CascadeType.PERSIST)
+    @OneToOne(fetch = FetchType.LAZY)
     private Profile profile;
 
     public enum STATUS{
+        NO_ONBOARDING,
         INACTIVE,
         ACTIVE,
         LOCK,

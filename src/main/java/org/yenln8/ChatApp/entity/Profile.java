@@ -1,5 +1,6 @@
 package org.yenln8.ChatApp.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,10 +29,6 @@ public class Profile {
     @Column(name = "location", nullable = true)
     private String location;
 
-    @OneToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
-    private User user;
-
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
@@ -45,8 +42,17 @@ public class Profile {
 
     @Builder.Default
     @Column(name = "deleted", columnDefinition = "BIGINT DEFAULT 0", nullable = false)
+    @JsonIgnore
     private Long deleted = 0L;
 
     @Version
     private Integer rowVersion;
+
+    @OneToOne
+    @JoinColumn(name = "native_language_id", referencedColumnName = "id", nullable = false)
+    private NativeLanguage nativeLanguage;
+
+    @OneToOne
+    @JoinColumn(name = "learning_language_id", referencedColumnName = "id", nullable = false)
+    private LearningLanguage learningLanguage;
 }

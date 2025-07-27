@@ -52,8 +52,13 @@ public class AuthController {
         return ResponseEntity.ok(this.authService.verifyChangePassword(form, request));
     }
 
-    @PostMapping("/log-out")
+    @PostMapping("/logout")
     public ResponseEntity<?> logOut(HttpServletRequest request) throws Exception {
         return ResponseEntity.ok(this.authService.logout( request));
+    }
+
+    @PostMapping("/me")
+    public ResponseEntity<?> getProfile(HttpServletRequest request) throws Exception {
+        return ResponseEntity.ok(this.authService.getProfile( request));
     }
 }

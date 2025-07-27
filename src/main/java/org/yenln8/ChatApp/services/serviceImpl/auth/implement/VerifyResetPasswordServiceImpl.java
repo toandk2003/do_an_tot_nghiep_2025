@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.yenln8.ChatApp.common.util.MessageBundle;
 import org.yenln8.ChatApp.dto.base.BaseResponseDto;
 import org.yenln8.ChatApp.dto.request.VerifyOtpRequestDto;
+import org.yenln8.ChatApp.dto.request.VerifyOtpResetPasswordRequestDto;
 import org.yenln8.ChatApp.entity.OTP;
 import org.yenln8.ChatApp.entity.PasswordPending;
 import org.yenln8.ChatApp.entity.User;
@@ -16,6 +17,7 @@ import org.yenln8.ChatApp.repository.OTPRepository;
 import org.yenln8.ChatApp.repository.PasswordPendingRepository;
 import org.yenln8.ChatApp.repository.UserRepository;
 import org.yenln8.ChatApp.services.serviceImpl.auth.interfaces.LogOutService;
+import org.yenln8.ChatApp.services.serviceImpl.auth.interfaces.RegisterService;
 import org.yenln8.ChatApp.services.serviceImpl.auth.interfaces.VerifyResetPasswordService;
 
 import java.time.LocalDateTime;
@@ -30,9 +32,10 @@ public class VerifyResetPasswordServiceImpl implements VerifyResetPasswordServic
     private PasswordPendingRepository passwordPendingRepository;
     private PasswordEncoder passwordEncoder;
     private LogOutService logOutService;
+    private RegisterServiceImpl registerService;
 
     @Override
-    public BaseResponseDto call(VerifyOtpRequestDto form, HttpServletRequest request) {
+    public BaseResponseDto call(VerifyOtpResetPasswordRequestDto form, HttpServletRequest request) {
         OTP otp = validate(form, request);
 
         save(form, otp, request);
@@ -44,7 +47,27 @@ public class VerifyResetPasswordServiceImpl implements VerifyResetPasswordServic
                 .build();
     }
 
-    private OTP validate(VerifyOtpRequestDto form, HttpServletRequest request) {
+    private OTP validate(VerifyOtpResetPasswordRequestDto form, HttpServletRequest request) {
+
+        String newPassword = form.getNewPassword();
+
+        // kiem tra password moi co hop format khong
+        // - password it nhat 1 ki tu so
+        if (!registerService.containsDigit(newPassword))
+            throw new IllegalArgumentException(MessageBundle.getMessage("error.password.contains.digit"));
+
+        // + password it nhat 1 ki tu chu cai viet thuong
+        if (!registerService.containsLowercase(newPassword))
+            throw new IllegalArgumentException(MessageBundle.getMessage("error.password.contains.lowercase"));
+
+        // + password it nhat 1 ki tu chu cai viet hoa
+        if (!registerService.containsUppercase(newPassword))
+            throw new IllegalArgumentException(MessageBundle.getMessage("error.password.contains.uppercase"));
+
+        // + password it nhat 1 ki tu dac biet thuoc !@#$%^&*()_+-=[]{};\\':\"|,./<>?`~
+        if (!registerService.containsSpecialChar(newPassword))
+            throw new IllegalArgumentException(MessageBundle.getMessage("error.password.contains.character"));
+
         // Tim ban ghi ung voi OTP trong bang OTP va type REGISTER_ACCOUNT, neu khong ton tai hoac ton tai nhung het han, nem loi
         String otpCode = form.getOtp();
 
@@ -63,7 +86,7 @@ public class VerifyResetPasswordServiceImpl implements VerifyResetPasswordServic
         return otp;
     }
 
-    private void save(VerifyOtpRequestDto form, OTP otp, HttpServletRequest request) {
+    private void save(VerifyOtpResetPasswordRequestDto form, OTP otp, HttpServletRequest request) {
         // Cap nhat OTP tu trang thai BE_SENT thanh VERIFIED va deletedAt = now()  + deleted = id
         otp.setStatus(OTP.STATUS.VERIFIED);
         otp.setDeletedAt(LocalDateTime.now());
@@ -87,7 +110,7 @@ public class VerifyResetPasswordServiceImpl implements VerifyResetPasswordServic
         // Update password
 
         User user = this.userRepository.findById(passwordPending.getUser().getId()).orElseThrow(() -> new IllegalArgumentException(MessageBundle.getMessage("error.object.not.found", "PasswordPending", "otpId", otp.getId())));
-        user.setPassword(passwordEncoder.encode(passwordPending.getNewPassword()));
+        user.setPassword(passwordEncoder.encode(form.getNewPassword()));
 
         this.userRepository.save(user);
         log.info("new User : {}", user);

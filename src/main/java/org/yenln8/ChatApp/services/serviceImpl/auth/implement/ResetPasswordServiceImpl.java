@@ -6,13 +6,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 import org.yenln8.ChatApp.common.constant.EmailConstant;
 import org.yenln8.ChatApp.common.util.MessageBundle;
 import org.yenln8.ChatApp.common.util.Network;
 import org.yenln8.ChatApp.common.util.spam.SpamService;
 import org.yenln8.ChatApp.dto.base.BaseResponseDto;
-import org.yenln8.ChatApp.dto.request.ChangePasswordAccountRequestDto;
 import org.yenln8.ChatApp.dto.request.ResetPasswordAccountRequestDto;
 import org.yenln8.ChatApp.entity.*;
 import org.yenln8.ChatApp.repository.*;
@@ -50,24 +48,6 @@ public class ResetPasswordServiceImpl implements ResetPasswordService {
 
     private void validate(ResetPasswordAccountRequestDto form, HttpServletRequest request) {
         String email = form.getEmail();
-        String newPassword = form.getNewPassword();
-
-        // kiem tra password moi co hop format khong
-        // - password it nhat 1 ki tu so
-        if (!registerService.containsDigit(newPassword))
-            throw new IllegalArgumentException(MessageBundle.getMessage("error.password.contains.digit"));
-
-        // + password it nhat 1 ki tu chu cai viet thuong
-        if (!registerService.containsLowercase(newPassword))
-            throw new IllegalArgumentException(MessageBundle.getMessage("error.password.contains.lowercase"));
-
-        // + password it nhat 1 ki tu chu cai viet hoa
-        if (!registerService.containsUppercase(newPassword))
-            throw new IllegalArgumentException(MessageBundle.getMessage("error.password.contains.uppercase"));
-
-        // + password it nhat 1 ki tu dac biet thuoc !@#$%^&*()_+-=[]{};\\':\"|,./<>?`~
-        if (!registerService.containsSpecialChar(newPassword))
-            throw new IllegalArgumentException(MessageBundle.getMessage("error.password.contains.character"));
 
         // kiem tra co spam email k
         Optional<BlackListSendEmail> blackListSendEmail = this.blackListSendEmailRepository.findByFromIpAddressAndToEmailAndType(Network.getUserIP(request), email, BlackListSendEmail.TYPE.FORGOT_PASSWORD);
@@ -82,7 +62,6 @@ public class ResetPasswordServiceImpl implements ResetPasswordService {
 
     private void save(ResetPasswordAccountRequestDto form, HttpServletRequest request) {
         String email = form.getEmail().trim();
-        String newPassword = form.getNewPassword().trim();
         String ipAddress = Network.getUserIP(request);
 
         // Luu thong tin OTP tao duoc vao bang OTP
@@ -102,7 +81,7 @@ public class ResetPasswordServiceImpl implements ResetPasswordService {
         // Luu thong tin vao bang Password Pending
         PasswordPending passwordPending = this.passwordPendingRepository.save(PasswordPending.builder()
                 .otpId(otp.getId())
-                .newPassword(newPassword)
+                .newPassword("")
                 .user(user)
                 .type(PasswordPending.TYPE.FORGOT)
                 .status(PasswordPending.STATUS.PENDING)

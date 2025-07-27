@@ -35,7 +35,7 @@ public class AuthController {
     }
 
     @PostMapping("/reset-password/verify-otp")
-    public ResponseEntity<?> verifyOtpResetPassword(@RequestBody @Valid VerifyOtpRequestDto form, HttpServletRequest request) throws Exception {
+    public ResponseEntity<?> verifyOtpResetPassword(@RequestBody @Valid VerifyOtpResetPasswordRequestDto form, HttpServletRequest request) throws Exception {
         return ResponseEntity.ok(this.authService.verifyOtpResetPassword(form, request));
     }
 

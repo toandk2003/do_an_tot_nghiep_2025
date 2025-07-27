@@ -57,7 +57,7 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public BaseResponseDto verifyOtpResetPassword(VerifyOtpRequestDto form, HttpServletRequest request) throws Exception {
+    public BaseResponseDto verifyOtpResetPassword(VerifyOtpResetPasswordRequestDto form, HttpServletRequest request) throws Exception {
         return this.verifyResetPasswordService.call(form,request);
     }
 

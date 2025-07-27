@@ -47,6 +47,7 @@ public class GetProfileServiceImpl implements GetProfileService {
                     .isOnboarded(user.getStatus().equals(User.STATUS.NO_ONBOARDING) ? Boolean.FALSE : Boolean.TRUE)
                     .nativeLanguage(NativeLanguage.builder().id(nativeLanguage.getId()).name(nativeLanguage.getName()).build())
                     .learningLanguage(LearningLanguage.builder().id(learningLanguage.getId()).name(learningLanguage.getName()).build())
+                    .rowVersion(user.getRowVersion())
                     .build();
 
             return BaseResponseDto.builder()

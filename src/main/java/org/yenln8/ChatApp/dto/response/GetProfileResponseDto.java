@@ -25,4 +25,5 @@ public class GetProfileResponseDto implements Serializable {
     private Boolean isOnboarded;
     private NativeLanguage nativeLanguage;
     private LearningLanguage learningLanguage;
+    private Integer rowVersion;
 }

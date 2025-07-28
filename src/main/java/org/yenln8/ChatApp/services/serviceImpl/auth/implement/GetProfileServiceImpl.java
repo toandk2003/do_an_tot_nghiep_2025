@@ -18,6 +18,8 @@ import org.yenln8.ChatApp.entity.User;
 import org.yenln8.ChatApp.repository.UserRepository;
 import org.yenln8.ChatApp.services.serviceImpl.auth.interfaces.GetProfileService;
 
+import java.util.Optional;
+
 @Slf4j
 @AllArgsConstructor
 @Service
@@ -33,23 +35,46 @@ public class GetProfileServiceImpl implements GetProfileService {
 
             User user = userRepository.findByUserIdWithProfileAndNativeAndLearning(userId).orElse(null);
 
-            if(user == null) {
+            if (user == null) {
                 throw new IllegalArgumentException(MessageBundle.getMessage("error.object.not.found", "User", "id", userId));
             }
 
+            Long id = user.getId();
+            String email = user.getEmail().trim();
+            String fullName = user.getFullName().trim();
+            Boolean isOnboarded = user.getStatus().equals(User.STATUS.NO_ONBOARDING) ? Boolean.FALSE : Boolean.TRUE;
+
             Profile profile = user.getProfile();
-            NativeLanguage nativeLanguage = profile != null ? profile.getNativeLanguage() : null;
-            LearningLanguage learningLanguage = profile != null ? profile.getLearningLanguage() : null;
+
+            String location = Optional.ofNullable(profile).map(Profile::getLocation).orElse(null);
+            String bio = Optional.ofNullable(profile).map(Profile::getBio).orElse(null);
+
+            NativeLanguage nativeLanguage = Optional.ofNullable(profile)
+                    .map(Profile::getNativeLanguage)
+                    .map(x -> NativeLanguage.builder()
+                            .id(x.getId())
+                            .name(x.getName())
+                            .build())
+                    .orElse(null);
+
+            LearningLanguage learningLanguage = Optional.ofNullable(profile).
+                    map(Profile::getLearningLanguage)
+                    .map(x -> LearningLanguage.builder()
+                            .id(x.getId())
+                            .name(x.getName())
+                            .build())
+                    .orElse(null);
+
 
             GetProfileResponseDto response = GetProfileResponseDto.builder()
-                    .id(user.getId())
-                    .email(user.getEmail())
-                    .fullName(user.getFullName())
-                    .location(profile != null ? profile.getLocation() : null)
-                    .bio(profile != null ? profile.getBio() : null)
-                    .isOnboarded(user.getStatus().equals(User.STATUS.NO_ONBOARDING) ? Boolean.FALSE : Boolean.TRUE)
-                    .nativeLanguage(nativeLanguage == null ? null : NativeLanguage.builder().id(nativeLanguage.getId()).name(nativeLanguage.getName()).build())
-                    .learningLanguage(learningLanguage == null ? null : LearningLanguage.builder().id(learningLanguage.getId()).name(learningLanguage.getName()).build())
+                    .id(id)
+                    .email(email)
+                    .fullName(fullName)
+                    .isOnboarded(isOnboarded)
+                    .location(location)
+                    .bio(bio)
+                    .nativeLanguage(nativeLanguage)
+                    .learningLanguage(learningLanguage)
                     .rowVersion(user.getRowVersion())
                     .build();
 

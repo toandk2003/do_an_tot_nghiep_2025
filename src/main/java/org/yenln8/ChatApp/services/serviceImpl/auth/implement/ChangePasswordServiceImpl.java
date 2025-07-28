@@ -4,6 +4,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -12,6 +14,7 @@ import org.yenln8.ChatApp.common.util.MessageBundle;
 import org.yenln8.ChatApp.common.util.Network;
 import org.yenln8.ChatApp.common.util.spam.SpamService;
 import org.yenln8.ChatApp.dto.base.BaseResponseDto;
+import org.yenln8.ChatApp.dto.other.CurrentUser;
 import org.yenln8.ChatApp.dto.request.ChangePasswordAccountRequestDto;
 import org.yenln8.ChatApp.entity.*;
 import org.yenln8.ChatApp.repository.*;
@@ -28,7 +31,6 @@ public class ChangePasswordServiceImpl implements ChangePasswordService {
     private UserRepository userRepository;
     private OTPRepository OTPRepository;
     private BlackListSendEmailRepository blackListSendEmailRepository;
-    private AccountPendingRepository accountPendingRepository;
     private PasswordEncoder passwordEncoder;
     private EmailOutboxRepository emailOutboxRepository;
     private SpamService spamService;
@@ -49,7 +51,10 @@ public class ChangePasswordServiceImpl implements ChangePasswordService {
     }
 
     private User validate(ChangePasswordAccountRequestDto form, HttpServletRequest request) {
-        String email = form.getEmail();
+        Authentication securityContextHolder = SecurityContextHolder.getContext().getAuthentication();
+        CurrentUser currentUser = (CurrentUser) securityContextHolder.getPrincipal();
+
+        String email = currentUser.getEmail();
         String oldPassword = form.getOldPassword();
         String newPassword = form.getNewPassword();
 

@@ -15,7 +15,7 @@ public class AuthController {
     private AuthService authService;
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody @Valid LoginRequestDto form,HttpServletRequest request) {
+    public ResponseEntity<?> login(@RequestBody @Valid LoginRequestDto form, HttpServletRequest request) {
         return ResponseEntity.ok(this.authService.login(form, request));
     }
 
@@ -51,11 +51,16 @@ public class AuthController {
 
     @PostMapping("/logout")
     public ResponseEntity<?> logOut(HttpServletRequest request) throws Exception {
-        return ResponseEntity.ok(this.authService.logout( request));
+        return ResponseEntity.ok(this.authService.logout(request));
     }
 
     @GetMapping("/me")
     public ResponseEntity<?> getProfile(HttpServletRequest request) throws Exception {
-        return ResponseEntity.ok(this.authService.getProfile( request));
+        return ResponseEntity.ok(this.authService.getProfile(request));
+    }
+
+    @PutMapping("/onboarding")
+    public ResponseEntity<?> onBoarding(OnBoardingRequestDto form, HttpServletRequest request) throws Exception {
+        return ResponseEntity.ok(this.authService.onBoarding(form, request));
     }
 }

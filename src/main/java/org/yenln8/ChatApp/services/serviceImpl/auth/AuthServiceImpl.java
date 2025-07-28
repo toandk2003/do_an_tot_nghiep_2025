@@ -21,6 +21,7 @@ public class AuthServiceImpl implements AuthService {
     private VerifyResetPasswordService verifyResetPasswordService;
     private LogOutService logOutService;
     private GetProfileService getProfileService;
+    private OnBoardingService onBoardingService;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -31,7 +32,8 @@ public class AuthServiceImpl implements AuthService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public BaseResponseDto register(RegisterAccountRequestDto form, HttpServletRequest request) throws Exception {
-        return this.registerService.call(form, request);}
+        return this.registerService.call(form, request);
+    }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -42,23 +44,23 @@ public class AuthServiceImpl implements AuthService {
     @Transactional(rollbackFor = Exception.class)
     @Override
     public BaseResponseDto changePassword(ChangePasswordAccountRequestDto form, HttpServletRequest request) {
-        return this.changePasswordService.call(form,request);
+        return this.changePasswordService.call(form, request);
     }
 
     @Override
     public BaseResponseDto verifyChangePassword(VerifyOtpRequestDto form, HttpServletRequest request) throws Exception {
-        return this.verifyChangePasswordService.call(form,request);
+        return this.verifyChangePasswordService.call(form, request);
     }
 
     @Transactional(rollbackFor = Exception.class)
     @Override
     public BaseResponseDto resetPassword(ResetPasswordAccountRequestDto form, HttpServletRequest request) {
-        return this.resetPasswordService.call(form,request);
+        return this.resetPasswordService.call(form, request);
     }
 
     @Override
     public BaseResponseDto verifyOtpResetPassword(VerifyOtpResetPasswordRequestDto form, HttpServletRequest request) throws Exception {
-        return this.verifyResetPasswordService.call(form,request);
+        return this.verifyResetPasswordService.call(form, request);
     }
 
     @Override
@@ -71,5 +73,11 @@ public class AuthServiceImpl implements AuthService {
     @Transactional(rollbackFor = Exception.class)
     public BaseResponseDto getProfile(HttpServletRequest request) {
         return this.getProfileService.call(request);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public BaseResponseDto onBoarding(OnBoardingRequestDto form, HttpServletRequest request) {
+        return this.onBoardingService.call(form, request);
     }
 }

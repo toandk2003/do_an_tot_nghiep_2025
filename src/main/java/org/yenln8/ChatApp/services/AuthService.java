@@ -23,5 +23,5 @@ public interface AuthService {
 
     BaseResponseDto getProfile(HttpServletRequest request);
 
-
+    BaseResponseDto onBoarding(OnBoardingRequestDto form, HttpServletRequest request) throws Exception;
 }

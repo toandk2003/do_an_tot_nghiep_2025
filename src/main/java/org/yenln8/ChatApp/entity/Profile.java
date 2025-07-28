@@ -48,11 +48,11 @@ public class Profile {
     @Version
     private Integer rowVersion;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "native_language_id", referencedColumnName = "id", nullable = false)
     private NativeLanguage nativeLanguage;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "learning_language_id", referencedColumnName = "id", nullable = false)
     private LearningLanguage learningLanguage;
 }

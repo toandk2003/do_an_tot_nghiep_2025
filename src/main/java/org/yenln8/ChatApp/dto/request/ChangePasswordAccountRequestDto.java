@@ -12,10 +12,6 @@ import lombok.NoArgsConstructor;
 @Builder
 @Data
 public class ChangePasswordAccountRequestDto {
-    @Size(min = 1, max = 255)
-    @Email
-    private String email;
-
     @Size(min = 8, max = 16)
     private String oldPassword;
 

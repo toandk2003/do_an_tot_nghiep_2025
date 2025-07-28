@@ -13,6 +13,7 @@ import org.yenln8.ChatApp.dto.other.CurrentUser;
 import org.yenln8.ChatApp.dto.response.GetProfileResponseDto;
 import org.yenln8.ChatApp.entity.LearningLanguage;
 import org.yenln8.ChatApp.entity.NativeLanguage;
+import org.yenln8.ChatApp.entity.Profile;
 import org.yenln8.ChatApp.entity.User;
 import org.yenln8.ChatApp.repository.UserRepository;
 import org.yenln8.ChatApp.services.serviceImpl.auth.interfaces.GetProfileService;
@@ -35,18 +36,20 @@ public class GetProfileServiceImpl implements GetProfileService {
             if(user == null) {
                 throw new IllegalArgumentException(MessageBundle.getMessage("error.object.not.found", "User", "id", userId));
             }
-            NativeLanguage nativeLanguage = user.getProfile().getNativeLanguage();
-            LearningLanguage learningLanguage = user.getProfile().getLearningLanguage();
+
+            Profile profile = user.getProfile();
+            NativeLanguage nativeLanguage = profile != null ? profile.getNativeLanguage() : null;
+            LearningLanguage learningLanguage = profile != null ? profile.getLearningLanguage() : null;
 
             GetProfileResponseDto response = GetProfileResponseDto.builder()
                     .id(user.getId())
                     .email(user.getEmail())
                     .fullName(user.getFullName())
-                    .location(user.getProfile().getLocation())
-                    .bio(user.getProfile().getBio())
+                    .location(profile != null ? profile.getLocation() : null)
+                    .bio(profile != null ? profile.getBio() : null)
                     .isOnboarded(user.getStatus().equals(User.STATUS.NO_ONBOARDING) ? Boolean.FALSE : Boolean.TRUE)
-                    .nativeLanguage(NativeLanguage.builder().id(nativeLanguage.getId()).name(nativeLanguage.getName()).build())
-                    .learningLanguage(LearningLanguage.builder().id(learningLanguage.getId()).name(learningLanguage.getName()).build())
+                    .nativeLanguage(nativeLanguage == null ? null : NativeLanguage.builder().id(nativeLanguage.getId()).name(nativeLanguage.getName()).build())
+                    .learningLanguage(learningLanguage == null ? null : LearningLanguage.builder().id(learningLanguage.getId()).name(learningLanguage.getName()).build())
                     .rowVersion(user.getRowVersion())
                     .build();
 

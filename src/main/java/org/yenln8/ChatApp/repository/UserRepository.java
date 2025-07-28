@@ -15,8 +15,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query("select distinct u from  User u " +
             "left join fetch  u.profile p " +
-            "inner join fetch p.learningLanguage  ll " +
-            "inner join fetch p.nativeLanguage nl " +
+            "left join fetch p.learningLanguage  ll " +
+            "left join fetch p.nativeLanguage nl " +
             "where u.id = :id " +
             "and u.deleted = 0 ")
     Optional<User> findByUserIdWithProfileAndNativeAndLearning(Long id);

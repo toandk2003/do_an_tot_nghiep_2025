@@ -60,7 +60,7 @@ public class AuthController {
     }
 
     @PutMapping("/onboarding")
-    public ResponseEntity<?> onBoarding(OnBoardingRequestDto form, HttpServletRequest request) throws Exception {
+    public ResponseEntity<?> onBoarding(@RequestBody @Valid OnBoardingRequestDto form, HttpServletRequest request) throws Exception {
         return ResponseEntity.ok(this.authService.onBoarding(form, request));
     }
 }

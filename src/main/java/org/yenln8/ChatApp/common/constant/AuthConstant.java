@@ -1,8 +1,5 @@
 package org.yenln8.ChatApp.common.constant;
 
-import lombok.NoArgsConstructor;
-
-@NoArgsConstructor
 public final class AuthConstant {
     public static final String BEARER_PREFIX = "Bearer ";
     public static final String AUTHORIZATION_HEADER = "Authorization";

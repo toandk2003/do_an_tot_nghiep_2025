@@ -3,7 +3,7 @@ package org.yenln8.ChatApp.services.serviceImpl.email;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.yenln8.ChatApp.dto.response.SendEmailResponseDto;
-import org.yenln8.ChatApp.services.EmailService;
+import org.yenln8.ChatApp.services.interfaces.EmailService;
 import org.yenln8.ChatApp.services.serviceImpl.email.intefaces.SendEmailService;
 import org.yenln8.ChatApp.services.serviceImpl.email.intefaces.SendOTPChangePasswordService;
 import org.yenln8.ChatApp.services.serviceImpl.email.intefaces.SendOTPRegistrationService;

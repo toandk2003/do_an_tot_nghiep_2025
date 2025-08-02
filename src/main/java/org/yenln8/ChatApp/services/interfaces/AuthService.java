@@ -1,4 +1,4 @@
-package org.yenln8.ChatApp.services;
+package org.yenln8.ChatApp.services.interfaces;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.yenln8.ChatApp.dto.base.BaseResponseDto;

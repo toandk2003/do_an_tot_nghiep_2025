@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.yenln8.ChatApp.entity.EmailOutbox;
 import org.yenln8.ChatApp.repository.EmailOutboxRepository;
-import org.yenln8.ChatApp.services.EmailService;
+import org.yenln8.ChatApp.services.interfaces.EmailService;
 
 import java.time.LocalDateTime;
 import java.util.List;

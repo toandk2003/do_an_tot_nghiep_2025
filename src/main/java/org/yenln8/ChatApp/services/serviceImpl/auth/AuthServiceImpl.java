@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.yenln8.ChatApp.dto.base.BaseResponseDto;
 import org.yenln8.ChatApp.dto.request.*;
-import org.yenln8.ChatApp.services.*;
+import org.yenln8.ChatApp.services.interfaces.AuthService;
 import org.yenln8.ChatApp.services.serviceImpl.auth.interfaces.*;
 
 @Service

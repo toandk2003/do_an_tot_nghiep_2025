@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.yenln8.ChatApp.dto.request.*;
-import org.yenln8.ChatApp.services.AuthService;
+import org.yenln8.ChatApp.services.interfaces.AuthService;
 
 @RestController
 @RequestMapping("/api/auth")

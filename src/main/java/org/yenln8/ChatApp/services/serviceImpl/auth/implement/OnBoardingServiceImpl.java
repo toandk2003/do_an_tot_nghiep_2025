@@ -36,8 +36,6 @@ public class OnBoardingServiceImpl implements OnBoardingService {
         CurrentUser currentUser = (CurrentUser) securityContextHolder.getPrincipal();
         Long userId = currentUser.getId();
 
-        System.out.println("xinchao" + form);
-
         User user = this.userRepository.findById(userId).orElseThrow(() -> new IllegalArgumentException(MessageBundle.getMessage("error.object.not.found", "User", "id", userId)));
 
         if (user.getProfile() != null) {

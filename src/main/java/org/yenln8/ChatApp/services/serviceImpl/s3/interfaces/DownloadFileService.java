@@ -1,8 +1,8 @@
 package org.yenln8.ChatApp.services.serviceImpl.s3.interfaces;
 
-import org.yenln8.ChatApp.dto.S3.DownloadFileDto;
+import org.yenln8.ChatApp.dto.S3.DownloadFileResponseDto;
 
 public interface DownloadFileService {
 
-    DownloadFileDto call(String fileNameInS3, String bucketName);
+    DownloadFileResponseDto call(String fileNameInS3, String bucketName);
 }

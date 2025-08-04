@@ -1,13 +1,13 @@
 package org.yenln8.ChatApp.services.interfaces;
 
 import org.springframework.web.multipart.MultipartFile;
-import org.yenln8.ChatApp.dto.S3.DownloadFileDto;
-import org.yenln8.ChatApp.dto.S3.UploadFileDto;
+import org.yenln8.ChatApp.dto.S3.DownloadFileResponseDto;
+import org.yenln8.ChatApp.dto.S3.UploadFileResponseDto;
 
 public interface S3Service {
-    UploadFileDto uploadFile(MultipartFile file, String bucketName);
+    UploadFileResponseDto uploadFile(MultipartFile file,String checkSum, String bucketName);
 
-    DownloadFileDto downloadFile(String fileNameInS3, String bucketName);
+    DownloadFileResponseDto downloadFile(String fileNameInS3, String bucketName);
 
     void deleteFile(String fileName, String bucketName);
 

@@ -6,8 +6,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.yenln8.ChatApp.common.constant.S3Constant;
-import org.yenln8.ChatApp.dto.S3.DownloadFileDto;
-import org.yenln8.ChatApp.dto.S3.UploadFileDto;
+import org.yenln8.ChatApp.dto.S3.DownloadFileResponseDto;
+import org.yenln8.ChatApp.dto.S3.UploadFileResponseDto;
 import org.yenln8.ChatApp.services.interfaces.S3Service;
 import org.yenln8.ChatApp.services.serviceImpl.s3.interfaces.DeleteFileService;
 import org.yenln8.ChatApp.services.serviceImpl.s3.interfaces.DownloadFileService;
@@ -25,12 +25,12 @@ public class S3ServiceImpl implements S3Service {
     private FileExistsService fileExistsService;
 
     @Override
-    public UploadFileDto uploadFile(MultipartFile file, String bucketName) {
-        return this.uploadFileService.call(file, bucketName);
+    public UploadFileResponseDto uploadFile(MultipartFile file, String checkSum, String bucketName) {
+        return this.uploadFileService.call(file, checkSum, bucketName);
     }
 
     @Override
-    public DownloadFileDto downloadFile(String fileNameInS3, String bucketName) {
+    public DownloadFileResponseDto downloadFile(String fileNameInS3, String bucketName) {
         return this.downloadFileService.call(fileNameInS3, bucketName);
     }
 

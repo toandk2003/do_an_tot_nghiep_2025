@@ -5,12 +5,9 @@ import lombok.Data;
 
 @Builder(toBuilder = true)
 @Data
-public class UploadFileDto {
+public class DownloadFileResponseDto {
     private String originalFileName;
-    private String fileNameInS3;
-    private String size;
-    private String contentType;
     private String method;
     private String expiresIn;
-    private String uploadUrl;
+    private String downloadUrl;
 }

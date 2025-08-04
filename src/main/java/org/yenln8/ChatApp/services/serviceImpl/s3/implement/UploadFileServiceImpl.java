@@ -6,18 +6,16 @@ import com.amazonaws.services.s3.model.GeneratePresignedUrlRequest;
 import com.fasterxml.uuid.Generators;
 import com.fasterxml.uuid.impl.TimeBasedEpochGenerator;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.yenln8.ChatApp.common.constant.S3Constant;
 import org.yenln8.ChatApp.common.util.MessageBundle;
-import org.yenln8.ChatApp.dto.S3.UploadFileDto;
+import org.yenln8.ChatApp.dto.S3.UploadFileResponseDto;
 import org.yenln8.ChatApp.services.serviceImpl.s3.interfaces.UploadFileService;
 
 import java.net.URL;
-import java.nio.file.Files;
 import java.util.Date;
 
 @Service
@@ -27,7 +25,7 @@ public class UploadFileServiceImpl implements UploadFileService {
     private AmazonS3 s3Client;
 
     @Override
-    public UploadFileDto call(MultipartFile multipartFile, String bucketName) {
+    public UploadFileResponseDto call(MultipartFile multipartFile,String checkSum, String bucketName) {
         this.validateFile(multipartFile);
 
         // Tạo tên file unique
@@ -50,9 +48,14 @@ public class UploadFileServiceImpl implements UploadFileService {
         log.info("fileNameInS3: {}", fileNameInS3);
         log.info("contentType: {}", contentType);
 
+        generatePresignedUrlRequest.addRequestParameter("x-amz-meta-sha256-checksum", checkSum);
+        generatePresignedUrlRequest.putCustomRequestHeader("x-amz-content-sha256", checkSum);
+        generatePresignedUrlRequest.addRequestParameter("x-amz-meta-file-size", String.valueOf(multipartFile.getSize()));
+        generatePresignedUrlRequest.addRequestParameter("x-amz-meta-original-filename", originalFileName);
+
         URL presignedUrl = s3Client.generatePresignedUrl(generatePresignedUrlRequest);
-        System.out.println("presignedUrl: " + presignedUrl);
-        return UploadFileDto.builder()
+        log.info("presignedUrl: " + presignedUrl);
+        return UploadFileResponseDto.builder()
                 .uploadUrl(presignedUrl.toString())
                 .originalFileName(originalFileName)
                 .fileNameInS3(fileNameInS3)

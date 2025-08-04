@@ -3,15 +3,12 @@ package org.yenln8.ChatApp.services.serviceImpl.s3.implement;
 import com.amazonaws.HttpMethod;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.GeneratePresignedUrlRequest;
-import com.fasterxml.uuid.Generators;
-import com.fasterxml.uuid.impl.TimeBasedEpochGenerator;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-import org.springframework.web.multipart.MultipartFile;
 import org.yenln8.ChatApp.common.constant.S3Constant;
 import org.yenln8.ChatApp.common.util.MessageBundle;
-import org.yenln8.ChatApp.dto.S3.DownloadFileDto;
+import org.yenln8.ChatApp.dto.S3.DownloadFileResponseDto;
 import org.yenln8.ChatApp.services.serviceImpl.s3.interfaces.DownloadFileService;
 
 import java.net.URL;
@@ -23,7 +20,7 @@ public class DownloadFileServiceImpl implements DownloadFileService {
     private AmazonS3 s3Client;
 
     @Override
-    public DownloadFileDto call(String fileNameInS3, String bucketName) {
+    public DownloadFileResponseDto call(String fileNameInS3, String bucketName) {
             this.validateFile(fileNameInS3);
 
             // Kiểm tra file có tồn tại trong S3 không
@@ -40,7 +37,7 @@ public class DownloadFileServiceImpl implements DownloadFileService {
 
             URL presignedUrl = s3Client.generatePresignedUrl(request);
 
-            return DownloadFileDto.builder()
+            return DownloadFileResponseDto.builder()
                     .downloadUrl(presignedUrl.toString())
                     .originalFileName(fileNameInS3) // Sử dụng tên file trong S3
                     .method("GET")

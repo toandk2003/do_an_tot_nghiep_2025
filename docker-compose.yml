@@ -1,44 +1,50 @@
 # docker-compose.yml
-version: '3.8'
-
 services:
   # Database MySQL
   mysql-db:
     image: mysql:8.0
-    container_name: springboot-mysql
+    container_name: mysql-compose
     restart: always
+    pull_policy: missing
+    network_mode: host  # ← Host network
     environment:
       MYSQL_DATABASE: my_database
       MYSQL_ROOT_PASSWORD: Yenmysql153@
-    ports:
-      - "3307:3306"
     volumes:
       - mysql_data:/var/lib/mysql
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql  # Optional: SQL scripts to run on startup
-    networks:
-      - springboot-network
-
 
   # Redis
   redis:
     image: redis:7-alpine
-    container_name: redis
+    container_name: redis-compose
     restart: always
-    ports:
-      - "6379:6379"
+    pull_policy: missing
+    network_mode: host  # ← Host network
     tmpfs:
       - /data
-    networks:
-      - springboot-network
+
+  #MinIO
+  minio:
+    image: minio/minio:RELEASE.2025-07-23T15-54-02Z
+    container_name: minio-compose
+    restart: always
+    pull_policy: missing
+    network_mode: host  # ← Host network
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin123
+    volumes:
+      - minio_data:/data
+    command: server /data --console-address ":9001"
 
   # Spring Boot Application
   springboot-app:
     image: ngocyenptit153/chatapp
-    container_name: springboot-demo
+    container_name: springboot-compose
     pull_policy: always
     restart: always
-    ports:
-      - "8080:8080"
+    network_mode: host  # ← Host network
     volumes:
       - ./logs:/app/logs  # Mount logs directory to host
     environment:
@@ -46,12 +52,9 @@ services:
     depends_on:
       - mysql-db
       - redis
-    networks:
-      - springboot-network
+      - minio
 
 volumes:
   mysql_data:
+  minio_data:
 
-networks:
-  springboot-network:
-    driver: bridge

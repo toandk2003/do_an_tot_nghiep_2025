@@ -25,10 +25,10 @@ public class SimpleUploadController {
     private S3Service s3Service;
 
     // Upload file
+    @Operation(summary = "Upload file to S3")
     @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<UploadFileResponseDto> uploadFile( @ModelAttribute @Valid UploadFileRequestDto form) {
-        log.info("xinchao " + form.getCheckSum());
-        return ResponseEntity.ok(this.s3Service.uploadFile(form.getFile(), form.getCheckSum(), S3Constant.AVATAR_GROUP_BUCKET));
+        return ResponseEntity.ok(this.s3Service.uploadFile(form.getFile(), S3Constant.AVATAR_GROUP_BUCKET));
     }
 
     // Download file

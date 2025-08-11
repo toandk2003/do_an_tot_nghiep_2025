@@ -37,8 +37,9 @@ public class S3Config {
         if (StringUtils.hasText(endpoint)) {
             // MinIO configuration
             builder.withEndpointConfiguration(
-                    new AwsClientBuilder.EndpointConfiguration(endpoint, region)
-            ).withPathStyleAccessEnabled(true); // MinIO cần path-style
+                            new AwsClientBuilder.EndpointConfiguration(endpoint, region)
+                    )
+                    .withPathStyleAccessEnabled(true); // MinIO cần path-style
         } else {
             // AWS S3 configuration
             builder.withRegion(Regions.fromName(region));

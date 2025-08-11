@@ -25,8 +25,8 @@ public class S3ServiceImpl implements S3Service {
     private FileExistsService fileExistsService;
 
     @Override
-    public UploadFileResponseDto uploadFile(MultipartFile file, String checkSum, String bucketName) {
-        return this.uploadFileService.call(file, checkSum, bucketName);
+    public UploadFileResponseDto uploadFile(MultipartFile file, String bucketName) {
+        return this.uploadFileService.call(file, bucketName);
     }
 
     @Override

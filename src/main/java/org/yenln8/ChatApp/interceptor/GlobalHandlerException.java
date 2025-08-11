@@ -50,7 +50,7 @@ public class GlobalHandlerException {
     @ExceptionHandler(HttpMediaTypeNotAcceptableException.class)
     public ResponseEntity<ErrorResponse> handleHttpMediaTypeNotAcceptableException(
             HttpMediaTypeNotAcceptableException ex, WebRequest request) {
-        log.error("Illegal argument: {}", ex.getMessage());
+        log.error("HttpMediaTypeNotAcceptableException: {}", ex.getMessage());
 
         ErrorResponse response = ErrorResponse.builder()
                 .success(false)
@@ -67,7 +67,7 @@ public class GlobalHandlerException {
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<ErrorResponse> handleRuntimeException(
             RuntimeException ex, WebRequest request) {
-        log.error("Illegal argument: {}", ex.getMessage());
+        log.error("Runtime Exception: {}", ex.getMessage());
 
         ErrorResponse response = ErrorResponse.builder()
                 .success(false)
@@ -83,7 +83,7 @@ public class GlobalHandlerException {
 
     @ExceptionHandler(ResponseStatusException.class)
     public ResponseEntity<?> handleNotFound(ResponseStatusException ex) {
-        System.out.println(ex.getMessage());
+        log.error("ResponseStatusException: {}", ex.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(BaseResponseDto.builder()
                         .success(false)
@@ -129,7 +129,7 @@ public class GlobalHandlerException {
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<ErrorResponse> handleHttpMessageNotReadableException(
             HttpMessageNotReadableException ex, WebRequest request) {
-        log.error("Message not readable: {}", ex.getMessage());
+        log.error("HttpMessageNotReadableException: {}", ex.getMessage());
 
         ErrorResponse response = ErrorResponse.builder()
                 .success(false)
@@ -146,7 +146,7 @@ public class GlobalHandlerException {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorResponse> handleMethodArgumentNotValidException(
             MethodArgumentNotValidException ex, WebRequest request) {
-        log.error("Validation failed: {}", ex.getMessage());
+        log.error("MethodArgumentNotValidException: {}", ex.getMessage());
 
         Map<String, String> errors = new HashMap<>();
         ex.getBindingResult().getAllErrors().forEach(error -> {
@@ -198,7 +198,7 @@ public class GlobalHandlerException {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleGlobalException(
             Exception ex, WebRequest request) {
-        log.error("Unexpected exception: {}", ex.getMessage(), ex);
+        log.error("Exception: {}", ex.getMessage(), ex);
 
         ErrorResponse response = ErrorResponse.builder()
                 .success(false)
@@ -215,7 +215,7 @@ public class GlobalHandlerException {
     @ExceptionHandler(ExpiredJwtException.class)
     public ResponseEntity<ErrorResponse> handleExpiredJwtException(
             ExpiredJwtException ex, WebRequest request) {
-        log.error("JWT token expired: {}", ex.getMessage());
+        log.error("ExpiredJwtException: {}", ex.getMessage());
 
         ErrorResponse response = ErrorResponse.builder()
                 .success(false)
@@ -232,7 +232,7 @@ public class GlobalHandlerException {
     @ExceptionHandler(JwtException.class)
     public ResponseEntity<ErrorResponse> handleInvalidJwtException(
             JwtException ex, WebRequest request) {
-        log.error("Invalid JWT token: {}", ex.getMessage());
+        log.error("JwtException: {}", ex.getMessage());
 
         ErrorResponse response = ErrorResponse.builder()
                 .success(false)
@@ -249,7 +249,7 @@ public class GlobalHandlerException {
     @ExceptionHandler(AccessDeniedException.class)
     public ResponseEntity<ErrorResponse> handleAccessDeniedException(
             AccessDeniedException ex, WebRequest request) {
-        log.error("Access denied: {}", ex.getMessage());
+        log.error("AccessDeniedException: {}", ex.getMessage());
 
         ErrorResponse response = ErrorResponse.builder()
                 .success(false)

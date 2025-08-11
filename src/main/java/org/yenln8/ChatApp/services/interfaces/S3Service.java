@@ -5,7 +5,7 @@ import org.yenln8.ChatApp.dto.S3.DownloadFileResponseDto;
 import org.yenln8.ChatApp.dto.S3.UploadFileResponseDto;
 
 public interface S3Service {
-    UploadFileResponseDto uploadFile(MultipartFile file,String checkSum, String bucketName);
+    UploadFileResponseDto uploadFile(MultipartFile file, String bucketName);
 
     DownloadFileResponseDto downloadFile(String fileNameInS3, String bucketName);
 

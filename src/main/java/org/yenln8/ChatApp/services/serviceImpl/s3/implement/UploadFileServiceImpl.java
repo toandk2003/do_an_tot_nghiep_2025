@@ -25,7 +25,7 @@ public class UploadFileServiceImpl implements UploadFileService {
     private AmazonS3 s3Client;
 
     @Override
-    public UploadFileResponseDto call(MultipartFile multipartFile,String checkSum, String bucketName) {
+    public UploadFileResponseDto call(MultipartFile multipartFile, String bucketName) {
         this.validateFile(multipartFile);
 
         // Tạo tên file unique
@@ -38,23 +38,19 @@ public class UploadFileServiceImpl implements UploadFileService {
         // Thời gian hết hạn
         Date expiration = new Date(System.currentTimeMillis() + S3Constant.PRESIGN_URL_UPLOAD_MEDIA_EXPIRE_TIME);
 
+        log.info("fileNameInS3: {}", fileNameInS3);
+        log.info("contentType: {}", contentType);
         // Tạo presigned URL cho PUT request
+
         GeneratePresignedUrlRequest generatePresignedUrlRequest =
                 new GeneratePresignedUrlRequest(bucketName, fileNameInS3)
                         .withMethod(HttpMethod.PUT)
                         .withExpiration(expiration)
                         .withContentType(contentType);
-
-        log.info("fileNameInS3: {}", fileNameInS3);
-        log.info("contentType: {}", contentType);
-
-        generatePresignedUrlRequest.addRequestParameter("x-amz-meta-sha256-checksum", checkSum);
-        generatePresignedUrlRequest.putCustomRequestHeader("x-amz-content-sha256", checkSum);
-        generatePresignedUrlRequest.addRequestParameter("x-amz-meta-file-size", String.valueOf(multipartFile.getSize()));
-        generatePresignedUrlRequest.addRequestParameter("x-amz-meta-original-filename", originalFileName);
+        generatePresignedUrlRequest.putCustomRequestHeader("Content-Length", String.valueOf(multipartFile.getSize() ));
 
         URL presignedUrl = s3Client.generatePresignedUrl(generatePresignedUrlRequest);
-        log.info("presignedUrl: " + presignedUrl);
+
         return UploadFileResponseDto.builder()
                 .uploadUrl(presignedUrl.toString())
                 .originalFileName(originalFileName)
@@ -67,7 +63,6 @@ public class UploadFileServiceImpl implements UploadFileService {
     }
 
     private void validateFile(MultipartFile multipartFile) {
-        // TODO need add interceptor to limit file size before access Controller
         // Validate fileName
         String originalFileName = multipartFile.getOriginalFilename();
 

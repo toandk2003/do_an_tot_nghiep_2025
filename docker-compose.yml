@@ -6,7 +6,8 @@ services:
     container_name: mysql-compose
     restart: always
     pull_policy: missing
-    network_mode: host  # ← Host network
+    ports:
+      - "3307:3306"
     environment:
       MYSQL_DATABASE: my_database
       MYSQL_ROOT_PASSWORD: Yenmysql153@
@@ -20,7 +21,8 @@ services:
     container_name: redis-compose
     restart: always
     pull_policy: missing
-    network_mode: host  # ← Host network
+    ports:
+      - "6379:6379"
     tmpfs:
       - /data
 
@@ -30,7 +32,9 @@ services:
     container_name: minio-compose
     restart: always
     pull_policy: missing
-    network_mode: host  # ← Host network
+    ports:
+      - "9000:9000"
+      - "9001:9001"
     environment:
       MINIO_ROOT_USER: minioadmin
       MINIO_ROOT_PASSWORD: minioadmin123
@@ -38,21 +42,6 @@ services:
       - minio_data:/data
     command: server /data --console-address ":9001"
 
-  # Spring Boot Application
-  springboot-app:
-    image: ngocyenptit153/chatapp
-    container_name: springboot-compose
-    pull_policy: always
-    restart: always
-    network_mode: host  # ← Host network
-    volumes:
-      - ./logs:/app/logs  # Mount logs directory to host
-    environment:
-      SPRING_PROFILES_ACTIVE: compose
-    depends_on:
-      - mysql-db
-      - redis
-      - minio
 
 volumes:
   mysql_data:

@@ -16,22 +16,32 @@ import java.time.LocalDateTime;
 @Data
 @Builder
 @Entity
-@Table(name = "profiles")
+@Table(name = "limit_resources")
 
-public class Profile {
+public class LimitResource {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "bio")
-    private String bio;
+    @Column(name = "user_id", nullable = false)
+    private Integer userId;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "avatar_attachment_id", unique = true)
-    private Attachment avatar;
+    @Column(name = "maxLimit", nullable = false)
+    private Integer maxLimit;
 
-    @Column(name = "location")
-    private String location;
+    @Column(name = "current_usage", nullable = false)
+    private Integer currentUsage;
+
+    @Column(name = "type", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private TYPE type;
+
+    @Column(name = "status", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private STATUS status;
+
+    @Column(name = "free_at")
+    private LocalDateTime freeAt;
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
@@ -52,11 +62,12 @@ public class Profile {
     @Version
     private Integer rowVersion;
 
-    @ManyToOne
-    @JoinColumn(name = "native_language_id", referencedColumnName = "id", nullable = false)
-    private NativeLanguage nativeLanguage;
+    public enum STATUS{
+        FREE,
+        BLOCKED
+    }
 
-    @ManyToOne
-    @JoinColumn(name = "learning_language_id", referencedColumnName = "id", nullable = false)
-    private LearningLanguage learningLanguage;
+    public enum TYPE{
+        MEDIA
+    }
 }

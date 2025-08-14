@@ -4,6 +4,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.yenln8.ChatApp.dto.S3.UploadFileRequestDto;
+import org.yenln8.ChatApp.dto.S3.UploadFileResponseDto;
 import org.yenln8.ChatApp.dto.base.BaseResponseDto;
 import org.yenln8.ChatApp.dto.request.*;
 import org.yenln8.ChatApp.services.interfaces.AuthService;
@@ -22,6 +24,7 @@ public class AuthServiceImpl implements AuthService {
     private LogOutService logOutService;
     private GetProfileService getProfileService;
     private OnBoardingService onBoardingService;
+    private GeneratePresignedURLOnboarding generatePresignedURLOnboarding;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -79,5 +82,10 @@ public class AuthServiceImpl implements AuthService {
     @Transactional(rollbackFor = Exception.class)
     public BaseResponseDto onBoarding(OnBoardingRequestDto form, HttpServletRequest request) {
         return this.onBoardingService.call(form, request);
+    }
+
+    @Override
+    public BaseResponseDto generatePresignedURLOnboarding(UploadFileRequestDto form, HttpServletRequest request) throws Exception {
+        return this.generatePresignedURLOnboarding.call(form, request);
     }
 }

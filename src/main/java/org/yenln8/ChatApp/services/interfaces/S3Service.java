@@ -4,8 +4,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.yenln8.ChatApp.dto.S3.DownloadFileResponseDto;
 import org.yenln8.ChatApp.dto.S3.UploadFileResponseDto;
 
+import java.util.List;
+
 public interface S3Service {
-    UploadFileResponseDto uploadFile(MultipartFile file, String bucketName);
+    UploadFileResponseDto uploadFile(MultipartFile file, String bucketName, List<String> allowedExtensions , List<String> allowedContentTypes, Long limitFileSize);
 
     DownloadFileResponseDto downloadFile(String fileNameInS3, String bucketName);
 

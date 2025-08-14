@@ -14,6 +14,8 @@ import org.yenln8.ChatApp.services.serviceImpl.s3.interfaces.DownloadFileService
 import org.yenln8.ChatApp.services.serviceImpl.s3.interfaces.FileExistsService;
 import org.yenln8.ChatApp.services.serviceImpl.s3.interfaces.UploadFileService;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class S3ServiceImpl implements S3Service {
@@ -25,8 +27,8 @@ public class S3ServiceImpl implements S3Service {
     private FileExistsService fileExistsService;
 
     @Override
-    public UploadFileResponseDto uploadFile(MultipartFile file, String bucketName) {
-        return this.uploadFileService.call(file, bucketName);
+    public UploadFileResponseDto uploadFile(MultipartFile file,String bucketName, List<String> allowedExtensions , List<String> allowedContentTypes, Long limitFileSize) {
+        return this.uploadFileService.call(file, bucketName,allowedExtensions,allowedContentTypes,limitFileSize);
     }
 
     @Override

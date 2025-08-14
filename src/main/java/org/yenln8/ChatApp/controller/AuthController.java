@@ -3,8 +3,11 @@ package org.yenln8.ChatApp.controller;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.yenln8.ChatApp.dto.S3.UploadFileRequestDto;
 import org.yenln8.ChatApp.dto.request.*;
 import org.yenln8.ChatApp.services.interfaces.AuthService;
 
@@ -59,8 +62,13 @@ public class AuthController {
         return ResponseEntity.ok(this.authService.getProfile(request));
     }
 
-    @PutMapping("/onboarding")
+    @PutMapping(value = "/onboarding")
     public ResponseEntity<?> onBoarding(@RequestBody @Valid OnBoardingRequestDto form, HttpServletRequest request) throws Exception {
-        return ResponseEntity.ok(this.authService.onBoarding(form, request));
+        return ResponseEntity.ok(this.authService.onBoarding(form,request));
+    }
+
+    @PostMapping(value = "/onboarding/generate-presignedURL", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<?> generatePresignURLOnboarding(@ModelAttribute @Valid UploadFileRequestDto form, HttpServletRequest request) throws Exception {
+        return ResponseEntity.ok(this.authService.generatePresignedURLOnboarding(form,request));
     }
 }

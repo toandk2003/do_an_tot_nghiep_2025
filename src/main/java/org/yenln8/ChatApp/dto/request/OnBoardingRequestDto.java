@@ -22,7 +22,7 @@ public class OnBoardingRequestDto {
     @NotNull
     private String location;
 
-    @Min(Long.MIN_VALUE)
+    @Min(1)
     @Max(Long.MAX_VALUE)
     @NotNull
     private Long nativeLanguageId;
@@ -31,4 +31,9 @@ public class OnBoardingRequestDto {
     @Max(Long.MAX_VALUE)
     @NotNull
     private Long learningLanguageId;
+
+    @Min(1)
+    @Max(Long.MAX_VALUE)
+    @NotNull
+    private Long attachmentId;
 }

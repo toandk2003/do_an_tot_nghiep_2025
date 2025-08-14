@@ -1,6 +1,9 @@
 package org.yenln8.ChatApp.services.interfaces;
 
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.web.multipart.MultipartFile;
+import org.yenln8.ChatApp.dto.S3.UploadFileRequestDto;
+import org.yenln8.ChatApp.dto.S3.UploadFileResponseDto;
 import org.yenln8.ChatApp.dto.base.BaseResponseDto;
 import org.yenln8.ChatApp.dto.request.*;
 
@@ -24,4 +27,7 @@ public interface AuthService {
     BaseResponseDto getProfile(HttpServletRequest request);
 
     BaseResponseDto onBoarding(OnBoardingRequestDto form, HttpServletRequest request) throws Exception;
+
+    BaseResponseDto generatePresignedURLOnboarding(UploadFileRequestDto form, HttpServletRequest request) throws Exception;
+
 }

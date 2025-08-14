@@ -24,10 +24,10 @@ public class LimitResource {
     private Long id;
 
     @Column(name = "user_id", nullable = false)
-    private Integer userId;
+    private Long userId;
 
     @Column(name = "maxLimit", nullable = false)
-    private Integer maxLimit;
+    private Long maxLimit;
 
     @Column(name = "current_usage", nullable = false)
     private Integer currentUsage;
@@ -39,9 +39,6 @@ public class LimitResource {
     @Column(name = "status", nullable = false)
     @Enumerated(EnumType.STRING)
     private STATUS status;
-
-    @Column(name = "free_at")
-    private LocalDateTime freeAt;
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)

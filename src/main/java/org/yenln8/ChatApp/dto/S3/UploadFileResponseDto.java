@@ -6,6 +6,7 @@ import lombok.Data;
 @Builder(toBuilder = true)
 @Data
 public class UploadFileResponseDto {
+    private Long attachmentId;
     private String originalFileName;
     private String fileNameInS3;
     private String size;

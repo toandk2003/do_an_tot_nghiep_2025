@@ -136,6 +136,7 @@ public class UploadFileServiceImpl implements UploadFileService {
                 .contentType(contentType)
                 .status(Attachment.STATUS.WAITING_CONFIRM)
                 .expireAt(LocalDateTime.now().plusDays(S3Constant.EXPIRE_TIME_ATTACHMENT))
+                .createdBy(currentUser.getId())
                 .build();
         this.attachmentRepository.save(attachmentToSave);
 

@@ -26,7 +26,6 @@ public class OnBoardingServiceImpl implements OnBoardingService {
     private LearningLanguageRepository learningLanguageRepository;
     private UserRepository userRepository;
     private AttachmentRepository attachmentRepository;
-    private LimitResourceRepository limitResourceRepository;
 
     @Override
     public BaseResponseDto call(OnBoardingRequestDto form, HttpServletRequest request) {
@@ -66,9 +65,6 @@ public class OnBoardingServiceImpl implements OnBoardingService {
         user.setProfile(profile);
         user.setStatus(User.STATUS.ACTIVE);
         this.userRepository.save(user);
-
-        // insert limit resource for new user
-
 
         return BaseResponseDto.builder()
                 .success(true)

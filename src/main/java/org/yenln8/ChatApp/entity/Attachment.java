@@ -60,6 +60,9 @@ public class Attachment {
     @Column(name = "deleted_at")
     private LocalDateTime deletedAt;
 
+    @Column(name = "created_by", nullable = false)
+    private Long createdBy;
+
     @Builder.Default
     @Column(name = "deleted", columnDefinition = "BIGINT DEFAULT 0", nullable = false)
     @JsonIgnore

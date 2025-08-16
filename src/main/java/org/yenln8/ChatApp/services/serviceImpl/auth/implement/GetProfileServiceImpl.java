@@ -1,5 +1,6 @@
 package org.yenln8.ChatApp.services.serviceImpl.auth.implement;
 
+import jakarta.annotation.Nullable;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -7,15 +8,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.yenln8.ChatApp.common.constant.S3Constant;
 import org.yenln8.ChatApp.common.util.MessageBundle;
+import org.yenln8.ChatApp.dto.S3.DownloadFileResponseDto;
 import org.yenln8.ChatApp.dto.base.BaseResponseDto;
 import org.yenln8.ChatApp.dto.other.CurrentUser;
 import org.yenln8.ChatApp.dto.response.GetProfileResponseDto;
-import org.yenln8.ChatApp.entity.LearningLanguage;
-import org.yenln8.ChatApp.entity.NativeLanguage;
-import org.yenln8.ChatApp.entity.Profile;
-import org.yenln8.ChatApp.entity.User;
+import org.yenln8.ChatApp.entity.*;
 import org.yenln8.ChatApp.repository.UserRepository;
+import org.yenln8.ChatApp.services.interfaces.S3Service;
 import org.yenln8.ChatApp.services.serviceImpl.auth.interfaces.GetProfileService;
 
 import java.util.Optional;
@@ -25,6 +26,7 @@ import java.util.Optional;
 @Service
 public class GetProfileServiceImpl implements GetProfileService {
     private UserRepository userRepository;
+    private S3Service s3Service;
 
     @Override
     public BaseResponseDto call(HttpServletRequest request) {
@@ -66,6 +68,12 @@ public class GetProfileServiceImpl implements GetProfileService {
                     .orElse(null);
 
 
+            String fileNameInS3 = Optional.ofNullable(profile).map(Profile::getAvatar).map(Attachment::getFileNameInS3).orElse(null);
+
+            DownloadFileResponseDto downloadFileResponse = this.s3Service.downloadFile(fileNameInS3, S3Constant.AVATAR_PRIVATE_BUCKET);
+
+            String profilePic = downloadFileResponse.getDownloadUrl();
+
             GetProfileResponseDto response = GetProfileResponseDto.builder()
                     .id(id)
                     .email(email)
@@ -75,6 +83,7 @@ public class GetProfileServiceImpl implements GetProfileService {
                     .bio(bio)
                     .nativeLanguage(nativeLanguage)
                     .learningLanguage(learningLanguage)
+                    .profilePic(profilePic)
                     .rowVersion(user.getRowVersion())
                     .build();
 

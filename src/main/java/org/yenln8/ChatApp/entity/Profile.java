@@ -26,7 +26,7 @@ public class Profile {
     @Column(name = "bio")
     private String bio;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "avatar_attachment_id", unique = true)
     private Attachment avatar;
 

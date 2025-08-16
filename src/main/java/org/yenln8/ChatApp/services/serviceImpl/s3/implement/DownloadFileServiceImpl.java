@@ -21,7 +21,7 @@ public class DownloadFileServiceImpl implements DownloadFileService {
 
     @Override
     public DownloadFileResponseDto call(String fileNameInS3, String bucketName) {
-            this.validateFile(fileNameInS3);
+//            this.validateFile(fileNameInS3);
 
             // Kiểm tra file có tồn tại trong S3 không
             if (!s3Client.doesObjectExist(bucketName, fileNameInS3)) {

@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Builder
+@Builder(toBuilder = true)
 @Entity
 @Table(name = "limit_resources")
 
@@ -30,15 +30,12 @@ public class LimitResource {
     private Long maxLimit;
 
     @Column(name = "current_usage", nullable = false)
-    private Integer currentUsage;
+    private Long currentUsage;
 
     @Column(name = "type", nullable = false)
     @Enumerated(EnumType.STRING)
     private TYPE type;
 
-    @Column(name = "status", nullable = false)
-    @Enumerated(EnumType.STRING)
-    private STATUS status;
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
@@ -58,11 +55,6 @@ public class LimitResource {
 
     @Version
     private Integer rowVersion;
-
-    public enum STATUS{
-        FREE,
-        BLOCKED
-    }
 
     public enum TYPE{
         MEDIA

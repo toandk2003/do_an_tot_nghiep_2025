@@ -10,7 +10,8 @@ public final class S3Constant {
     public static final long PRESIGN_URL_UPLOAD_MEDIA_EXPIRE_TIME = 24 * 60 * 60 * 1000;
     public static final long PRESIGN_URL_DOWNLOAD_MEDIA_EXPIRE_TIME = 24 * 60 * 60 * 1000;
     public static final long MAX_LIMIT_RESOURCE = 1 * 1024 * 1024 * 1024;      // 1GB
-    public static final long MAX_FILE_SIZE_AVATAR = 100 * 1024 * 1024;      // 100MB
+    public static final long MAX_FILE_SIZE_AVATAR = 1 * 1024 * 1024;      // 1MB
+    public static final int EXPIRE_TIME_ATTACHMENT = 1;      // 1 day
 
     public static final List<String> ALLOWED_CONTENT_TYPES = List.of(
             // Images - Hình ảnh

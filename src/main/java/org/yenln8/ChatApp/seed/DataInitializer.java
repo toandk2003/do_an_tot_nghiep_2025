@@ -4,14 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
-import org.yenln8.ChatApp.entity.LearningLanguage;
-import org.yenln8.ChatApp.entity.NativeLanguage;
-import org.yenln8.ChatApp.entity.Profile;
-import org.yenln8.ChatApp.entity.User;
-import org.yenln8.ChatApp.repository.LearningLanguageRepository;
-import org.yenln8.ChatApp.repository.NativeLanguageRepository;
-import org.yenln8.ChatApp.repository.ProfileRepository;
-import org.yenln8.ChatApp.repository.UserRepository;
+import org.yenln8.ChatApp.common.constant.S3Constant;
+import org.yenln8.ChatApp.entity.*;
+import org.yenln8.ChatApp.repository.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,7 +22,7 @@ public class DataInitializer {
     private ProfileRepository profileRepository;
     private NativeLanguageRepository nativeLanguageRepository;
     private LearningLanguageRepository learningLanguageRepository;
-
+    private LimitResourceRepository limitResourceRepository;
 
     @Bean
     @Transactional
@@ -56,6 +51,15 @@ public class DataInitializer {
 
             // Lưu cả 3 bản ghi vào database
             userRepository.save(admin);
+
+            LimitResource limitResource = LimitResource.builder()
+                    .maxLimit(S3Constant.MAX_LIMIT_RESOURCE)
+                    .type(LimitResource.TYPE.MEDIA)
+                    .currentUsage(0L)
+                    .userId(admin.getId())
+                    .build();
+            this.limitResourceRepository.save(limitResource);
+
             log.info("✅ Đã khởi tạo 3 bản ghi User vào database:");
             log.info("   - admin (ADMIN role)");
             log.info("   - user (NORMAL_USER role)");

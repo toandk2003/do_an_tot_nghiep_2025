@@ -5,13 +5,16 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.yenln8.ChatApp.common.constant.S3Constant;
 import org.yenln8.ChatApp.common.util.MessageBundle;
 import org.yenln8.ChatApp.dto.base.BaseResponseDto;
 import org.yenln8.ChatApp.dto.request.VerifyOtpRequestDto;
 import org.yenln8.ChatApp.entity.AccountPending;
+import org.yenln8.ChatApp.entity.LimitResource;
 import org.yenln8.ChatApp.entity.OTP;
 import org.yenln8.ChatApp.entity.User;
 import org.yenln8.ChatApp.repository.AccountPendingRepository;
+import org.yenln8.ChatApp.repository.LimitResourceRepository;
 import org.yenln8.ChatApp.repository.OTPRepository;
 import org.yenln8.ChatApp.repository.UserRepository;
 import org.yenln8.ChatApp.services.serviceImpl.auth.interfaces.VerifyOtpRegisterService;
@@ -26,6 +29,7 @@ public class VerifyOtpRegisterServiceImpl implements VerifyOtpRegisterService {
     private UserRepository userRepository;
     private OTPRepository otpRepository;
     private AccountPendingRepository accountPendingRepository;
+    private LimitResourceRepository limitResourceRepository;
 
     @Override
     public BaseResponseDto call(VerifyOtpRequestDto form, HttpServletRequest request) throws Exception {
@@ -88,7 +92,16 @@ public class VerifyOtpRegisterServiceImpl implements VerifyOtpRegisterService {
                 .role(accountPending.getRole())
                 .status(User.STATUS.NO_ONBOARDING)
                 .build());
-        log.info("new User : {}", newUser);
 
+        //Them limit resource cho user
+        LimitResource limitResource = LimitResource.builder()
+                .maxLimit(S3Constant.MAX_LIMIT_RESOURCE)
+                .type(LimitResource.TYPE.MEDIA)
+                .currentUsage(0L)
+                .userId(newUser.getId())
+                .build();
+        this.limitResourceRepository.save(limitResource);
+
+        log.info("new User : {}", newUser);
     }
 }

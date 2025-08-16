@@ -26,7 +26,7 @@ public class Attachment {
     @Column(name = "original_file_name", nullable = false)
     private String originalFileName;
 
-    @Column(name = "owner_id", nullable = false)
+    @Column(name = "owner_id", nullable = true)
     private Long ownerId;
 
     @Column(name = "file_name_in_s3", nullable = false)
@@ -40,10 +40,6 @@ public class Attachment {
 
     @Column(name = "file_size", nullable = false)
     private Long fileSize;
-
-    @Column(name = "type", nullable = false)
-    @Enumerated(EnumType.STRING)
-    private TYPE type;
 
     @CreationTimestamp
     @Column(name = "expire_at", updatable = false, nullable = false)
@@ -71,12 +67,6 @@ public class Attachment {
 
     @Version
     private Integer rowVersion;
-
-    public enum TYPE {
-        IMAGE,
-        VIDEO,
-        DOCUMENT
-    }
 
     public enum STATUS {
         WAITING_CONFIRM,

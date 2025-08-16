@@ -59,22 +59,16 @@ public class OnBoardingServiceImpl implements OnBoardingService {
 
         //update attachment
         attachment.setOwnerId(profile.getId());
+        attachment.setStatus(Attachment.STATUS.CONFIRMED);
         this.attachmentRepository.save(attachment);
 
-        // insert user
+        // update user
         user.setProfile(profile);
         user.setStatus(User.STATUS.ACTIVE);
         this.userRepository.save(user);
 
         // insert limit resource for new user
-        LimitResource limitResource = LimitResource.builder()
-                .maxLimit(S3Constant.MAX_LIMIT_RESOURCE)
-                .type(LimitResource.TYPE.MEDIA)
-                .currentUsage(0)
-                .status(LimitResource.STATUS.FREE)
-                .userId(userId)
-                .build();
-        this.limitResourceRepository.save(limitResource);
+
 
         return BaseResponseDto.builder()
                 .success(true)

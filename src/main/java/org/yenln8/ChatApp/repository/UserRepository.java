@@ -25,8 +25,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
             "left join fetch u.profile p " +
             "left join fetch p.learningLanguage ll " +
             "left join fetch p.nativeLanguage nl " +
-            "where nl.id = :nativeLanguageId " +
-            "and ll.id = :learningLanguageId " +
+            "where (nl.id = :nativeLanguageId or ll.id = :nativeLanguageId or nl.id = :learningLanguageId or ll.id = :learningLanguageId ) " +
             "and u.status = :status " +
             "and u.deletedAt is NULL " +
             "order by function('MD5', concat(u.id, :currentDate))"

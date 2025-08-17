@@ -16,4 +16,14 @@ public class UserServiceImpl implements UserService {
     public BaseResponseDto explore(ExploreRequestDto form) {
         return this.exploreService.call(form);
     }
+
+    @Override
+    public BaseResponseDto block(ExploreRequestDto form) {
+        return null;
+    }
+
+    @Override
+    public BaseResponseDto unblock(ExploreRequestDto form) {
+        return null;
+    }
 }

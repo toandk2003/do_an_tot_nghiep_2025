@@ -5,4 +5,7 @@ import org.yenln8.ChatApp.dto.request.ExploreRequestDto;
 
 public interface UserService {
     BaseResponseDto explore(ExploreRequestDto form);
+    BaseResponseDto block(ExploreRequestDto form);
+    BaseResponseDto unblock(ExploreRequestDto form);
+
 }

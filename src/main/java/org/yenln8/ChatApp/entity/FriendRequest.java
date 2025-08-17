@@ -10,42 +10,37 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Builder(toBuilder = true)
 @Entity
-@Table(name = "users",
+@Table(name = "friend_requests",
         uniqueConstraints = {
-                @UniqueConstraint(name = "uk_email_deleted", columnNames = {"email", "deleted"})
-        },
-        indexes = {
-                @Index(name = "idx_email_deleted", columnList = "email, deleted")
-        })
+                @UniqueConstraint(name = "uk_sender_id_receiver_id_deleted", columnNames = {"sender_id", "receiver_id", "deleted"})
+        }
+)
 
-public class User {
+public class FriendRequest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "email", nullable = false)
-    private String email;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "sender_id", nullable = false)
+    private User sender;
 
-    @Column(name = "password", nullable = false)
-    private String password;
-
-    @Column(name = "full_name")
-    private String fullName;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "receiver_id", nullable = false)
+    private User receiver;
 
     @Column(name = "status", nullable = false)
     @Enumerated(EnumType.STRING)
     private STATUS status;
 
-    @Column(name = "role", nullable = false)
-    @Enumerated(EnumType.STRING)
-    private ROLE role;
+    @Column(name = "responsed_at")
+    private LocalDateTime responsedAt;
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
@@ -66,25 +61,10 @@ public class User {
     @Version
     private Integer rowVersion;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    private Profile profile;
-
-    @OneToMany(mappedBy = "user1", fetch = FetchType.LAZY)
-    private List<Friend> friendsIMade;
-
-    @OneToMany(mappedBy = "user2", fetch = FetchType.LAZY)
-    private List<Friend> friendsIReceived;
-
-    public enum STATUS{
-        NO_ONBOARDING,
-        INACTIVE,
-        ACTIVE,
-        LOCK,
-        BAN
-    }
-
-    public enum ROLE{
-        USER,
-        ADMIN
+    public enum STATUS {
+        PENDING,
+        ACCEPTED,
+        REJECTED,
+        CANCEL
     }
 }

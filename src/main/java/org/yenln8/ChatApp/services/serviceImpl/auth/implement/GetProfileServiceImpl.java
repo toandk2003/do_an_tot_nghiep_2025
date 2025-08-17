@@ -69,6 +69,26 @@ public class GetProfileServiceImpl implements GetProfileService {
 
 
             String fileNameInS3 = Optional.ofNullable(profile).map(Profile::getAvatar).map(Attachment::getFileNameInS3).orElse(null);
+            if(fileNameInS3 == null){
+                GetProfileResponseDto response = GetProfileResponseDto.builder()
+                        .id(id)
+                        .email(email)
+                        .fullName(fullName)
+                        .isOnboarded(isOnboarded)
+                        .location(location)
+                        .bio(bio)
+                        .nativeLanguage(nativeLanguage)
+                        .learningLanguage(learningLanguage)
+                        .rowVersion(user.getRowVersion())
+                        .build();
+
+                return BaseResponseDto.builder()
+                        .success(true)
+                        .statusCode(HttpStatus.OK.value())
+                        .message(MessageBundle.getMessage("message.get.profile.success"))
+                        .data(response)
+                        .build();
+            }
 
             DownloadFileResponseDto downloadFileResponse = this.s3Service.downloadFile(fileNameInS3, S3Constant.AVATAR_PRIVATE_BUCKET);
 

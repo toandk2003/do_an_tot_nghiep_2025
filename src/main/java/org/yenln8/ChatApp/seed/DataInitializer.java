@@ -23,6 +23,7 @@ public class DataInitializer {
     private NativeLanguageRepository nativeLanguageRepository;
     private LearningLanguageRepository learningLanguageRepository;
     private LimitResourceRepository limitResourceRepository;
+    private AttachmentRepository attachmentRepository;
 
     @Bean
     @Transactional
@@ -30,8 +31,8 @@ public class DataInitializer {
         return args -> {
             this.seedLang();
             this.seedNative();
-            this.seedProfile();
-            this.seedUser();
+//            this.seedProfile();
+//            this.seedUser();
         };
     }
 
@@ -89,7 +90,19 @@ public class DataInitializer {
 
             profileRepository.saveAll(List.of(record1));
 
+//            Attachment attachment = Attachment.builder()
+//                    .createdBy(1L)
+//                    .ownerId(record1.getId())
+//                    .fileNameInS3("aaaaaa")
+//                    .s3BucketName("test")
+//                    .
+//                    .build();
+//
+//            this.attachmentRepository.save(attachment);
+
             log.info("✅ Seeded Profile Record:");
+            log.info("✅ Seeded Attachment Record:");
+
         } else {
             log.info("📋 Database đã có dữ liệu Profile, bỏ qua việc seed");
         }

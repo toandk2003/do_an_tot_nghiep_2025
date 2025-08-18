@@ -4,16 +4,20 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.yenln8.ChatApp.dto.base.BaseResponseDto;
 import org.yenln8.ChatApp.dto.request.ExploreRequestDto;
+import org.yenln8.ChatApp.dto.request.MakeFriendRequestDto;
 import org.yenln8.ChatApp.services.interfaces.FriendService;
 import org.yenln8.ChatApp.services.interfaces.UserService;
+import org.yenln8.ChatApp.services.serviceImpl.friend.interfaces.MakeFriendService;
 import org.yenln8.ChatApp.services.serviceImpl.user.interfaces.ExploreService;
 
 @Service
 @AllArgsConstructor
 public class FriendServiceImpl implements FriendService {
+    private MakeFriendService makeFriendService;
+
     @Override
-    public BaseResponseDto makeFriendRequest() {
-        return null;
+    public BaseResponseDto makeFriendRequest(Long receiverId) {
+        return this.makeFriendService.call(receiverId);
     }
 
     @Override

@@ -38,4 +38,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
             long currentDate,
             Pageable pageable
     );
+
+    Optional<User> findByIdAndStatus(Long userId, User.STATUS status);
 }

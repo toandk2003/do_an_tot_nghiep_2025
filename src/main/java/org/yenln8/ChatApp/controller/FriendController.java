@@ -1,12 +1,16 @@
 package org.yenln8.ChatApp.controller;
 
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.yenln8.ChatApp.dto.base.BaseResponseDto;
 import org.yenln8.ChatApp.dto.request.ExploreRequestDto;
+import org.yenln8.ChatApp.dto.request.MakeFriendRequestDto;
 import org.yenln8.ChatApp.services.interfaces.FriendService;
 import org.yenln8.ChatApp.services.interfaces.UserService;
 
@@ -27,9 +31,13 @@ public class FriendController {
         return ResponseEntity.ok(this.friendService.removeFriend());
     }
 
-    @PostMapping
-    public ResponseEntity<?> makeFriendRequest(@RequestBody @Valid ExploreRequestDto form) {
-        return ResponseEntity.ok(this.friendService.makeFriendRequest());
+    @PostMapping("/{id}")
+    public ResponseEntity<?> makeFriendRequest(@PathVariable("id")
+                                               @Min(1)
+                                               @Max(Long.MAX_VALUE)
+                                               @NotNull
+                                               Long receiverId) {
+        return ResponseEntity.ok(this.friendService.makeFriendRequest(receiverId));
     }
 
     @PutMapping("/{id}/accept")

@@ -54,7 +54,7 @@ public class MakeFriendServiceImpl implements MakeFriendService {
         return BaseResponseDto.builder()
                 .success(true)
                 .statusCode(200)
-                .message("Success")//Bundle
+                .message("Send friend request successfully")
                 .build();
     }
 

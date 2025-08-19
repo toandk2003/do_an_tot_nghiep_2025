@@ -5,12 +5,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.yenln8.ChatApp.dto.base.BaseResponseDto;
 import org.yenln8.ChatApp.services.interfaces.FriendService;
+import org.yenln8.ChatApp.services.serviceImpl.friend.interfaces.CancelFriendRequestService;
 import org.yenln8.ChatApp.services.serviceImpl.friend.interfaces.MakeFriendService;
 
 @Service
 @AllArgsConstructor
 public class FriendServiceImpl implements FriendService {
     private MakeFriendService makeFriendService;
+    private CancelFriendRequestService cancelFriendRequestService;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -32,8 +34,8 @@ public class FriendServiceImpl implements FriendService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public BaseResponseDto cancelFriendRequest() {
-        return null;
+    public BaseResponseDto cancelFriendRequest(Long friendRequestId) {
+        return this.cancelFriendRequestService.call(friendRequestId);
     }
 
     @Override

@@ -8,11 +8,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.yenln8.ChatApp.dto.base.BaseResponseDto;
 import org.yenln8.ChatApp.dto.request.ExploreRequestDto;
-import org.yenln8.ChatApp.dto.request.MakeFriendRequestDto;
 import org.yenln8.ChatApp.services.interfaces.FriendService;
-import org.yenln8.ChatApp.services.interfaces.UserService;
 
 @RestController
 @RequestMapping("/api/friends")
@@ -51,8 +48,12 @@ public class FriendController {
     }
 
     @PutMapping("/{id}/cancel")
-    public ResponseEntity<?> cancelFriendRequest(@RequestBody @Valid ExploreRequestDto form) {
-        return ResponseEntity.ok(this.friendService.cancelFriendRequest());
+    public ResponseEntity<?> cancelFriendRequest(@PathVariable("id")
+                                                 @Min(1)
+                                                 @Max(Long.MAX_VALUE)
+                                                 @NotNull
+                                                 Long friendRequestId) {
+        return ResponseEntity.ok(this.friendService.cancelFriendRequest(friendRequestId));
     }
 
     @GetMapping("/friend-requests-sent")

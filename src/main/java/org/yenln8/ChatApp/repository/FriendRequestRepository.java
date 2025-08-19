@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import org.yenln8.ChatApp.entity.FriendRequest;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface FriendRequestRepository extends JpaRepository<FriendRequest, Long> {
@@ -42,4 +43,6 @@ public interface FriendRequestRepository extends JpaRepository<FriendRequest, Lo
             "fr.sender.id = :userId "
     )
     List<Long> getFriendRequestsSent(@Param("userId") Long userId);
+
+    Optional<FriendRequest> findByIdAndStatusAndDeletedAtIsNull(Long friendRequestId, FriendRequest.STATUS status);
 }

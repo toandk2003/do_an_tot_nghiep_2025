@@ -55,9 +55,9 @@ public class ExploreServiceImpl implements ExploreService {
         User.STATUS userStatus = User.STATUS.ACTIVE;
 
         PageRequest pageRequest = PageRequest.of(currentPage.intValue(), pageSize.intValue());
-        // TODO retrieve other user not myself
-        // TODO retrieve other user not friend
-        // TODO retrieve other user not in list request friend
+        //  retrieve other user not myself
+        //  retrieve other user not friend
+        //  retrieve other user not in list request friend
 
         List<Long> friendIds = this.friendRepository.getFriends(userId);
         List<Long> friendRequestSentIds = this.friendRequestRepository.getFriendRequestsSent(userId);

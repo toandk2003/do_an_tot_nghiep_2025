@@ -15,11 +15,14 @@ import org.yenln8.ChatApp.dto.other.CurrentUser;
 import org.yenln8.ChatApp.dto.request.ExploreRequestDto;
 import org.yenln8.ChatApp.dto.response.GetProfileResponseDto;
 import org.yenln8.ChatApp.entity.*;
+import org.yenln8.ChatApp.repository.FriendRepository;
+import org.yenln8.ChatApp.repository.FriendRequestRepository;
 import org.yenln8.ChatApp.repository.UserRepository;
 import org.yenln8.ChatApp.services.interfaces.S3Service;
 import org.yenln8.ChatApp.services.serviceImpl.user.interfaces.ExploreService;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,6 +31,9 @@ import java.util.Optional;
 public class ExploreServiceImpl implements ExploreService {
     private UserRepository userRepository;
     private S3Service s3Service;
+    private FriendRepository friendRepository;
+    private FriendRequestRepository friendRequestRepository;
+
 
     @Override
     public BaseResponseDto call(ExploreRequestDto form) {
@@ -51,11 +57,22 @@ public class ExploreServiceImpl implements ExploreService {
         PageRequest pageRequest = PageRequest.of(currentPage.intValue(), pageSize.intValue());
         // TODO retrieve other user not myself
         // TODO retrieve other user not friend
-        Page<User> userRecommends = this.userRepository.findByNativeLanguageIdAndLearningLanguageIdAndStatusAndDeletedAtIsNull(
+        // TODO retrieve other user not in list request friend
+
+        List<Long> friendIds = this.friendRepository.getFriends(userId);
+        List<Long> friendRequestSentIds = this.friendRequestRepository.getFriendRequestsSent(userId);
+
+        List<Long> avoidUserIds = new ArrayList<>();
+        avoidUserIds.add(userId);
+        avoidUserIds.addAll(friendIds);
+        avoidUserIds.addAll(friendRequestSentIds);
+
+        Page<User> userRecommends = this.userRepository.findByNativeLanguageIdAndLearningLanguageIdAndStatusAndIdNotInAndDeletedAtIsNull(
                 nativeLanguageId,
                 learningLanguageId,
                 userStatus,
                 currentDay,
+                avoidUserIds,
                 pageRequest);
 
         List<GetProfileResponseDto> usersAfterConvert = this.convert(userRecommends.getContent());

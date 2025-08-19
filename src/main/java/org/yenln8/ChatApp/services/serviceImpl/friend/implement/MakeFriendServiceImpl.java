@@ -1,27 +1,34 @@
 package org.yenln8.ChatApp.services.serviceImpl.friend.implement;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.yenln8.ChatApp.common.constant.FriendConstant;
 import org.yenln8.ChatApp.common.util.ContextService;
 import org.yenln8.ChatApp.common.util.MessageBundle;
 import org.yenln8.ChatApp.dto.base.BaseResponseDto;
 import org.yenln8.ChatApp.dto.other.CurrentUser;
+import org.yenln8.ChatApp.entity.Friend;
+import org.yenln8.ChatApp.entity.FriendRequest;
 import org.yenln8.ChatApp.entity.User;
 import org.yenln8.ChatApp.repository.BlockRepository;
 import org.yenln8.ChatApp.repository.FriendRepository;
+import org.yenln8.ChatApp.repository.FriendRequestRepository;
 import org.yenln8.ChatApp.services.interfaces.UserService;
 import org.yenln8.ChatApp.services.serviceImpl.friend.interfaces.MakeFriendService;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class MakeFriendServiceImpl implements MakeFriendService {
 
     private UserService userService;
     private FriendRepository friendRepository;
     private BlockRepository blockRepository;
+    private FriendRequestRepository friendRequestRepository;
 
 
     @Override
@@ -36,8 +43,13 @@ public class MakeFriendServiceImpl implements MakeFriendService {
         // Kiem tra so luong friend-request cua it nhat 1 trong 2 nguoi co dat gioi han khong
 
         CurrentUser currentUser = ContextService.getCurrentUser();
-        this.validate(currentUser, receiverId);
-//        this.save(form,currentUser);
+
+        List<User> senderAndReceiver = this.validate(currentUser, receiverId);
+
+        User sender = senderAndReceiver.get(0);
+        User receiver = senderAndReceiver.get(1);
+
+        this.save(sender, receiver);
 
         return BaseResponseDto.builder()
                 .success(true)
@@ -46,7 +58,39 @@ public class MakeFriendServiceImpl implements MakeFriendService {
                 .build();
     }
 
-    private void validate(CurrentUser currentUser, Long receiverId) {
+    private void save(User sender, User receiver) {
+
+        // Kiem tra 2 nguoi co vo tinh gui ket ban cho nhau khong, neu co thi dong y luon
+        if (this.friendRequestRepository.alreadySentFriendRequest(receiver.getId(), sender.getId())) {
+            // accept friend
+            // Delete friend request
+            FriendRequest friendRequest = this.friendRequestRepository.getFriendRequestBetweenTwoUser(receiver.getId(), sender.getId());
+            friendRequest.setStatus(FriendRequest.STATUS.ACCEPTED);
+            friendRequest.setResponsedAt(LocalDateTime.now());
+            friendRequest.setDeletedAt(LocalDateTime.now());
+            friendRequest.setDeleted(friendRequest.getId());
+
+            friendRequestRepository.save(friendRequest);
+
+            // Insert Friend
+            Friend friendToSave = Friend.builder()
+                    .user1(receiver)
+                    .user2(sender)
+                    .build();
+            this.friendRepository.save(friendToSave);
+
+            return;
+        }
+
+        //Save FriendRequest
+        this.friendRequestRepository.save(FriendRequest.builder()
+                .sender(sender)
+                .receiver(receiver)
+                .status(FriendRequest.STATUS.PENDING)
+                .build());
+    }
+
+    private List<User> validate(CurrentUser currentUser, Long receiverId) {
         Long senderId = currentUser.getId();
 
         // Kiem tra tai khoan cua 2 nguoi co ACTIVE khong
@@ -61,40 +105,51 @@ public class MakeFriendServiceImpl implements MakeFriendService {
         }
 
         // Kiem tra 2 nguoi da la ban hay chua
-        if(this.friendRepository.areFriends(senderId,receiverId)){
+        if (this.friendRepository.areFriends(senderId, receiverId)) {
             throw new IllegalArgumentException(MessageBundle.getMessage("message.error.friend.already"));
         }
 
         // Kiem tra 2 nguoi co block nhau khong
-        if(this.blockRepository.areBlockMutualFriends(senderId,receiverId)){
+        if (this.blockRepository.areBlockMutualFriends(senderId, receiverId)) {
             throw new IllegalArgumentException(MessageBundle.getMessage("message.error.friend.block"));
         }
-        // Kiem tra 2 nguoi co vo tinh gui ket ban cho nhau khong, neu co thi dong y luon
-        //TODO
 
         // Kiem tra gioi han ban be cua 2 nguoi co thoa man khong
-        if(this.friendRepository.countFriends(senderId) >= FriendConstant.MAX_FRIEND_NUM){
-            throw new IllegalArgumentException(MessageBundle.getMessage("message.error.friend.reach.limit.sender",  FriendConstant.MAX_FRIEND_NUM));
+        if (this.friendRepository.countFriends(senderId) >= FriendConstant.MAX_FRIEND_NUM) {
+            throw new IllegalArgumentException(MessageBundle.getMessage("message.error.friend.reach.limit.sender", FriendConstant.MAX_FRIEND_NUM));
         }
 
-        if(this.friendRepository.countFriends(receiverId) >= FriendConstant.MAX_FRIEND_NUM){
-            throw new IllegalArgumentException(MessageBundle.getMessage("message.error.friend.reach.limit.receive",  FriendConstant.MAX_FRIEND_NUM));
+        if (this.friendRepository.countFriends(receiverId) >= FriendConstant.MAX_FRIEND_NUM) {
+            throw new IllegalArgumentException(MessageBundle.getMessage("message.error.friend.reach.limit.receive", FriendConstant.MAX_FRIEND_NUM));
         }
 
-        // Kiem tra da ton tai friend-request chua
-        // Kiem tra so luong friend-request cua it nhat 1 trong 2 nguoi co dat gioi han khong
+        //  Kiem tra da ton tai friend-request chua
+        if (this.friendRequestRepository.alreadySentFriendRequest(senderId, receiverId)) {
+            throw new IllegalArgumentException(MessageBundle.getMessage("message.error.friend.request.sent.already"));
+        }
+
+        //  Kiem tra so luong friend-request cua it nhat 1 trong 2 nguoi co dat gioi han khong
+        if (this.friendRequestRepository.countFriendRequestSent(senderId) >= FriendConstant.MAX_FRIEND_REQUEST_NUM) {
+            throw new IllegalArgumentException(MessageBundle.getMessage("message.error.friend.reach.limit.request.sender", FriendConstant.MAX_FRIEND_REQUEST_NUM));
+        }
+
+        if (this.friendRequestRepository.countFriendRequestReceived(receiverId) > FriendConstant.MAX_FRIEND_REQUEST_NUM) {
+            throw new IllegalArgumentException(MessageBundle.getMessage("message.error.friend.reach.limit.request.receiver", FriendConstant.MAX_FRIEND_REQUEST_NUM));
+        }
+
+        return List.of(senderUser, receiverUser);
     }
 
 
     private List<User> validateActiveUser(Long senderId, Long receiverId) {
         User senderUser = this.userService.getUserActive(senderId);
         if (senderUser == null) {
-            throw new IllegalArgumentException(MessageBundle.getMessage("error.object.not.found", "User", "id", senderId));
+            throw new IllegalArgumentException(MessageBundle.getMessage("message.error.friend.not.exist"));
         }
 
         User receiverUser = this.userService.getUserActive(receiverId);
         if (receiverUser == null) {
-            throw new IllegalArgumentException(MessageBundle.getMessage("error.object.not.found", "User", "id", receiverId));
+            throw new IllegalArgumentException(MessageBundle.getMessage("message.error.friend.not.exist"));
         }
 
         return List.of(senderUser, receiverUser);

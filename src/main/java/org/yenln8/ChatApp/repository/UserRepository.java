@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.yenln8.ChatApp.entity.User;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -27,15 +28,17 @@ public interface UserRepository extends JpaRepository<User, Long> {
             "left join fetch p.nativeLanguage nl " +
             "where (nl.id = :nativeLanguageId or ll.id = :nativeLanguageId or nl.id = :learningLanguageId or ll.id = :learningLanguageId ) " +
             "and u.status = :status " +
+            "and u.id not in (:avoidUserIds)" +
             "and u.deletedAt is NULL " +
             "order by function('MD5', concat(u.id, :currentDate))"
 
     )
-    Page<User> findByNativeLanguageIdAndLearningLanguageIdAndStatusAndDeletedAtIsNull(
+    Page<User> findByNativeLanguageIdAndLearningLanguageIdAndStatusAndIdNotInAndDeletedAtIsNull(
             Long nativeLanguageId,
             Long learningLanguageId,
             User.STATUS status,
             long currentDate,
+            List<Long> avoidUserIds,
             Pageable pageable
     );
 

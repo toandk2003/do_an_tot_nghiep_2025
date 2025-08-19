@@ -15,5 +15,5 @@ public interface BlockRepository extends JpaRepository<Block, Long> {
                     "((b.user.id = :userId1 AND b.blockedUser.id = :userId2) " +
                     "OR (b.user.id = :userId2 AND b.blockedUser.id = :userId1))"
     )
-    boolean areBlockMutualFriends(@Param("user1") Long userId1, @Param("user2") Long userId2);
+    boolean areBlockMutualFriends(@Param("userId1") Long userId1, @Param("userId2") Long userId2);
 }

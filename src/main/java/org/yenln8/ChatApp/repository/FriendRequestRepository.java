@@ -44,5 +44,11 @@ public interface FriendRequestRepository extends JpaRepository<FriendRequest, Lo
     )
     List<Long> getFriendRequestsSent(@Param("userId") Long userId);
 
+    @Query("SELECT fr.sender.id  FROM FriendRequest fr WHERE " +
+            "fr.deleted = 0 AND " +
+            "fr.receiver.id = :userId "
+    )
+    List<Long> getFriendRequestsReceived(@Param("userId") Long userId);
+
     Optional<FriendRequest> findByIdAndStatusAndDeletedAtIsNull(Long friendRequestId, FriendRequest.STATUS status);
 }

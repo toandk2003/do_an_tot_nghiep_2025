@@ -57,15 +57,18 @@ public class ExploreServiceImpl implements ExploreService {
         PageRequest pageRequest = PageRequest.of(currentPage.intValue(), pageSize.intValue());
         //  retrieve other user not myself
         //  retrieve other user not friend
-        //  retrieve other user not in list request friend
+        //  retrieve other user not in list request friend sent
+        //  retrieve other user not in list request friend receive
 
         List<Long> friendIds = this.friendRepository.getFriends(userId);
         List<Long> friendRequestSentIds = this.friendRequestRepository.getFriendRequestsSent(userId);
+        List<Long> friendRequestReceivedIds = this.friendRequestRepository.getFriendRequestsReceived(userId);
 
         List<Long> avoidUserIds = new ArrayList<>();
         avoidUserIds.add(userId);
         avoidUserIds.addAll(friendIds);
         avoidUserIds.addAll(friendRequestSentIds);
+        avoidUserIds.addAll(friendRequestReceivedIds);
 
         Page<User> userRecommends = this.userRepository.findByNativeLanguageIdAndLearningLanguageIdAndStatusAndIdNotInAndDeletedAtIsNull(
                 nativeLanguageId,

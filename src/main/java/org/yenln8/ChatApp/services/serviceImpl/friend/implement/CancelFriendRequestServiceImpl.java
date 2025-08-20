@@ -41,7 +41,7 @@ public class CancelFriendRequestServiceImpl implements CancelFriendRequestServic
                 .success(true)
                 .statusCode(200)
                 .data(responseDto)
-                .message("Cancel friend request successfully")//Bundle
+                .message("Cancel friend request successfully")
                 .build();
     }
 
@@ -70,6 +70,4 @@ public class CancelFriendRequestServiceImpl implements CancelFriendRequestServic
 
         return friendRequest;
     }
-
-
 }

@@ -7,6 +7,8 @@ import org.yenln8.ChatApp.common.util.ContextService;
 import org.yenln8.ChatApp.common.util.MessageBundle;
 import org.yenln8.ChatApp.dto.base.BaseResponseDto;
 import org.yenln8.ChatApp.dto.other.CurrentUser;
+import org.yenln8.ChatApp.dto.response.CancelFriendResponseDto;
+import org.yenln8.ChatApp.dto.response.MakeFriendResponseDto;
 import org.yenln8.ChatApp.entity.FriendRequest;
 import org.yenln8.ChatApp.repository.FriendRequestRepository;
 import org.yenln8.ChatApp.services.serviceImpl.friend.interfaces.CancelFriendRequestService;
@@ -28,9 +30,17 @@ public class CancelFriendRequestServiceImpl implements CancelFriendRequestServic
 
         this.save(friendRequest);
 
+        CancelFriendResponseDto responseDto = CancelFriendResponseDto.builder()
+                .id(friendRequest.getId())
+                .senderId(friendRequest.getSender().getId())
+                .receiverId(friendRequest.getReceiver().getId())
+                .status(friendRequest.getStatus())
+                .build();
+
         return BaseResponseDto.builder()
                 .success(true)
                 .statusCode(200)
+                .data(responseDto)
                 .message("Cancel friend request successfully")//Bundle
                 .build();
     }
@@ -53,8 +63,6 @@ public class CancelFriendRequestServiceImpl implements CancelFriendRequestServic
                 FriendRequest.STATUS.PENDING
         ).orElseThrow(() -> new IllegalArgumentException(
                 MessageBundle.getMessage("error.object.not.found", "FriendRequest", "id", friendRequestId)));
-
-        log.info("xinchao:{}", friendRequest.getSender().getId());
 
         if (!friendRequest.getSender().getId().equals(userId)) {
             throw new IllegalArgumentException(MessageBundle.getMessage("message.error.friend.is.not.owner.request"));

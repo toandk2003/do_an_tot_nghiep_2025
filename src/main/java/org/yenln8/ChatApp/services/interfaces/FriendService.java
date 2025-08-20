@@ -1,6 +1,8 @@
 package org.yenln8.ChatApp.services.interfaces;
 
 import org.yenln8.ChatApp.dto.base.BaseResponseDto;
+import org.yenln8.ChatApp.dto.request.GetListFriendRequestReceivedRequestDto;
+import org.yenln8.ChatApp.dto.request.GetListFriendRequestSentRequestDto;
 
 public interface FriendService {
     BaseResponseDto makeFriendRequest(Long receiverId);
@@ -11,9 +13,9 @@ public interface FriendService {
 
     BaseResponseDto cancelFriendRequest(Long friendRequestId);
 
-    BaseResponseDto getListFriendRequestIMade();
+    BaseResponseDto getListFriendRequestIMade(GetListFriendRequestSentRequestDto from);
 
-    BaseResponseDto getListFriendRequestIReceived();
+    BaseResponseDto getListFriendRequestIReceived(GetListFriendRequestReceivedRequestDto form);
 
     BaseResponseDto removeFriend();
 

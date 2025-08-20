@@ -12,10 +12,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder(toBuilder = true)
 @Data
-public class MakeFriendRequestDto {
+public class GetListFriendRequestSentRequestDto {
+    @Min(0)
+    @Max(Long.MAX_VALUE)
+    @NotNull
+    @Builder.Default
+    private Long currentPage = 0L;
 
     @Min(1)
     @Max(Long.MAX_VALUE)
     @NotNull
-    private Long receiverId ;
+    @Builder.Default
+    private Long pageSize = 10L;
+
 }

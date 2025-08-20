@@ -1,5 +1,7 @@
 package org.yenln8.ChatApp.repository;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -42,13 +44,25 @@ public interface FriendRequestRepository extends JpaRepository<FriendRequest, Lo
             "fr.deleted = 0 AND " +
             "fr.sender.id = :userId "
     )
-    List<Long> getFriendRequestsSent(@Param("userId") Long userId);
+    List<Long> getFriendRequestIdsSent(@Param("userId") Long userId);
 
     @Query("SELECT fr.sender.id  FROM FriendRequest fr WHERE " +
             "fr.deleted = 0 AND " +
             "fr.receiver.id = :userId "
     )
-    List<Long> getFriendRequestsReceived(@Param("userId") Long userId);
+    List<Long> getFriendRequestIdsReceived(@Param("userId") Long userId);
+
+    @Query("SELECT fr  FROM FriendRequest fr WHERE " +
+            "fr.deleted = 0 AND " +
+            "fr.sender.id = :userId "
+    )
+    Page<FriendRequest> getFriendRequestsSent(@Param("userId") Long userId, Pageable pageable);
+
+    @Query("SELECT fr  FROM FriendRequest fr WHERE " +
+            "fr.deleted = 0 AND " +
+            "fr.receiver.id = :userId "
+    )
+    Page<FriendRequest> getFriendRequestsReceived(@Param("userId") Long userId, Pageable pageable);
 
     Optional<FriendRequest> findByIdAndStatusAndDeletedAtIsNull(Long friendRequestId, FriendRequest.STATUS status);
 }

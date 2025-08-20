@@ -1,0 +1,81 @@
+package org.yenln8.ChatApp.services.serviceImpl.user.implement;
+
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.yenln8.ChatApp.common.constant.S3Constant;
+import org.yenln8.ChatApp.dto.S3.DownloadFileResponseDto;
+import org.yenln8.ChatApp.dto.response.GetProfileResponseDto;
+import org.yenln8.ChatApp.entity.*;
+import org.yenln8.ChatApp.services.interfaces.S3Service;
+import org.yenln8.ChatApp.services.serviceImpl.user.interfaces.GetFullInfoAboutUserService;
+
+import java.util.Optional;
+
+@Service
+@AllArgsConstructor
+public class GetFullInfoAboutUserServiceImpl implements GetFullInfoAboutUserService {
+    private S3Service s3Service;
+
+    @Override
+    public GetProfileResponseDto call(User user) {
+        Long userId = user.getId();
+        String email = user.getEmail().trim();
+        String fullName = user.getFullName().trim();
+        Boolean isOnboarded = user.getStatus().equals(User.STATUS.NO_ONBOARDING) ? Boolean.FALSE : Boolean.TRUE;
+
+        Profile profile = user.getProfile();
+
+        String location = Optional.ofNullable(profile).map(Profile::getLocation).orElse(null);
+        String bio = Optional.ofNullable(profile).map(Profile::getBio).orElse(null);
+
+        NativeLanguage nativeLanguage = Optional.ofNullable(profile)
+                .map(Profile::getNativeLanguage)
+                .map(x -> NativeLanguage.builder()
+                        .id(x.getId())
+                        .name(x.getName())
+                        .build())
+                .orElse(null);
+
+        LearningLanguage learningLanguage = Optional.ofNullable(profile).
+                map(Profile::getLearningLanguage)
+                .map(x -> LearningLanguage.builder()
+                        .id(x.getId())
+                        .name(x.getName())
+                        .build())
+                .orElse(null);
+
+
+        String fileNameInS3 = Optional.ofNullable(profile).map(Profile::getAvatar).map(Attachment::getFileNameInS3).orElse(null);
+
+        if (fileNameInS3 == null) {
+            return GetProfileResponseDto.builder()
+                    .id(userId)
+                    .email(email)
+                    .fullName(fullName)
+                    .isOnboarded(isOnboarded)
+                    .location(location)
+                    .bio(bio)
+                    .nativeLanguage(nativeLanguage)
+                    .learningLanguage(learningLanguage)
+                    .rowVersion(user.getRowVersion())
+                    .build();
+        }
+
+        DownloadFileResponseDto downloadFileResponse = this.s3Service.downloadFile(fileNameInS3, S3Constant.AVATAR_PRIVATE_BUCKET);
+
+        String profilePic = downloadFileResponse.getDownloadUrl();
+
+        return GetProfileResponseDto.builder()
+                .id(userId)
+                .email(email)
+                .fullName(fullName)
+                .isOnboarded(isOnboarded)
+                .location(location)
+                .bio(bio)
+                .nativeLanguage(nativeLanguage)
+                .learningLanguage(learningLanguage)
+                .profilePic(profilePic)
+                .rowVersion(user.getRowVersion())
+                .build();
+    }
+}

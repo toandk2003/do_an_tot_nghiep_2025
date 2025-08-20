@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.yenln8.ChatApp.dto.request.ExploreRequestDto;
+import org.yenln8.ChatApp.dto.request.GetListFriendRequestReceivedRequestDto;
+import org.yenln8.ChatApp.dto.request.GetListFriendRequestSentRequestDto;
 import org.yenln8.ChatApp.services.interfaces.FriendService;
 
 @RestController
@@ -57,13 +59,13 @@ public class FriendController {
     }
 
     @GetMapping("/friend-requests-sent")
-    public ResponseEntity<?> getListFriendRequestIMade(ExploreRequestDto form) {
-        return ResponseEntity.ok(this.friendService.getListFriendRequestIMade());
+    public ResponseEntity<?> getListFriendRequestSent(GetListFriendRequestSentRequestDto form) {
+        return ResponseEntity.ok(this.friendService.getListFriendRequestIMade(form));
     }
 
     @GetMapping("/friend-requests-received")
-    public ResponseEntity<?> getListFriendRequestIReceived(ExploreRequestDto form) {
-        return ResponseEntity.ok(this.friendService.getListFriendRequestIReceived());
+    public ResponseEntity<?> getListFriendRequestReceived(GetListFriendRequestReceivedRequestDto form) {
+        return ResponseEntity.ok(this.friendService.getListFriendRequestIReceived(form));
     }
 
 }

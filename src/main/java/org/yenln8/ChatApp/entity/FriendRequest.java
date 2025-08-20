@@ -1,6 +1,7 @@
 package org.yenln8.ChatApp.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,6 +23,7 @@ import java.time.LocalDateTime;
         }
 )
 
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class FriendRequest {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

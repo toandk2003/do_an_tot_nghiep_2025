@@ -22,7 +22,6 @@ public class CancelFriendRequestServiceImpl implements CancelFriendRequestServic
     @Override
     public BaseResponseDto call(Long friendRequestId) {
         // Kiem tra friend-request co ton tai + co trang thai pending + deleted = 0 + co phai cua current user khong
-        // Xu li row-version: khong can thiet vi Hibernate tu dong kiem tra  trong cau UPDATE
         CurrentUser currentUser = ContextService.getCurrentUser();
 
         FriendRequest friendRequest = this.validate(currentUser, friendRequestId);

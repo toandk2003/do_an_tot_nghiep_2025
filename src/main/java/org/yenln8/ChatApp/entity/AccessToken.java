@@ -66,8 +66,4 @@ public class AccessToken {
     public boolean isExpired() {
         return LocalDateTime.now().isAfter(this.expiresAt);
     }
-
-    public boolean isActive() {
-        return !isRevoked && !isExpired() && deleted == 0;
-    }
 }

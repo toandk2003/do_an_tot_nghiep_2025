@@ -45,6 +45,7 @@ public class GetListFriendRequestReceivedServiceImpl implements GetListFriendReq
             GetProfileResponseDto senderFullInfo = this.getFullInfoAboutUserService.call(sender);
 
             return GetListFriendRequestReceivedResponseDto.builder()
+                    .id(friendRequest.getId())
                     .sender(senderFullInfo)
                     .status(friendRequest.getStatus())
                     .sentAt(friendRequest.getCreatedAt())

@@ -41,12 +41,20 @@ public class FriendController {
     }
 
     @PutMapping("/{id}/accept")
-    public ResponseEntity<?> acceptFriendRequest(@RequestBody @Valid ExploreRequestDto form) {
+    public ResponseEntity<?> acceptFriendRequest(@PathVariable("id")
+                                                     @Min(1)
+                                                     @Max(Long.MAX_VALUE)
+                                                     @NotNull
+                                                     Long friendRequestId) {
         return ResponseEntity.ok(this.friendService.acceptFriendRequest());
     }
 
     @PutMapping("/{id}/reject")
-    public ResponseEntity<?> rejectFriendRequest(@RequestBody @Valid ExploreRequestDto form) {
+    public ResponseEntity<?> rejectFriendRequest(@PathVariable("id")
+                                                     @Min(1)
+                                                     @Max(Long.MAX_VALUE)
+                                                     @NotNull
+                                                     Long friendRequestId) {
         return ResponseEntity.ok(this.friendService.rejectFriendRequest());
     }
 

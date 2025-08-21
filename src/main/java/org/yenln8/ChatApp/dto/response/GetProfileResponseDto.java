@@ -10,6 +10,7 @@ import org.yenln8.ChatApp.entity.Profile;
 import org.yenln8.ChatApp.entity.User;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @AllArgsConstructor
@@ -26,5 +27,6 @@ public class GetProfileResponseDto implements Serializable {
     private NativeLanguage nativeLanguage;
     private LearningLanguage learningLanguage;
     private String profilePic;
+    private LocalDateTime lastOnline;
     private Integer rowVersion;
 }

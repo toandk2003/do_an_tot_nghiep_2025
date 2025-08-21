@@ -10,6 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.yenln8.ChatApp.common.constant.S3Constant;
 import org.yenln8.ChatApp.common.util.MessageBundle;
+import org.yenln8.ChatApp.common.util.RedisService;
 import org.yenln8.ChatApp.dto.S3.DownloadFileResponseDto;
 import org.yenln8.ChatApp.dto.base.BaseResponseDto;
 import org.yenln8.ChatApp.dto.other.CurrentUser;
@@ -19,6 +20,9 @@ import org.yenln8.ChatApp.repository.UserRepository;
 import org.yenln8.ChatApp.services.interfaces.S3Service;
 import org.yenln8.ChatApp.services.serviceImpl.auth.interfaces.GetProfileService;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Optional;
 
 @Slf4j
@@ -27,6 +31,7 @@ import java.util.Optional;
 public class GetProfileServiceImpl implements GetProfileService {
     private UserRepository userRepository;
     private S3Service s3Service;
+    private RedisService redisService;
 
     @Override
     public BaseResponseDto call(HttpServletRequest request) {
@@ -94,6 +99,12 @@ public class GetProfileServiceImpl implements GetProfileService {
 
             String profilePic = downloadFileResponse.getDownloadUrl();
 
+            Long lastOnlineSecondFromEpoch = this.redisService.getKey(this.redisService.getKeyLastOnlineWithPrefix(email), Long.class);
+
+            LocalDateTime lastOnlineTime = LocalDateTime.ofInstant(
+                    Instant.ofEpochSecond(lastOnlineSecondFromEpoch),
+                    ZoneId.systemDefault());
+
             GetProfileResponseDto response = GetProfileResponseDto.builder()
                     .id(id)
                     .email(email)
@@ -104,6 +115,7 @@ public class GetProfileServiceImpl implements GetProfileService {
                     .nativeLanguage(nativeLanguage)
                     .learningLanguage(learningLanguage)
                     .profilePic(profilePic)
+                    .lastOnline(lastOnlineTime)
                     .rowVersion(user.getRowVersion())
                     .build();
 

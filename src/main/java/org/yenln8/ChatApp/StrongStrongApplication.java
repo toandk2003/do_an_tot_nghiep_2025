@@ -14,8 +14,8 @@ import java.util.TimeZone;
 public class StrongStrongApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(StrongStrongApplication.class, args);
         TimeZone.setDefault(TimeZone.getTimeZone("Asia/Ho_Chi_Minh"));
+        SpringApplication.run(StrongStrongApplication.class, args);
         log.info("PROJECT BACKEND IS RUNNING IN PORT 8080 <3");
         log.info("ACCESS http://localhost:8080/swagger-ui/index.html TO SEE SWAGGER");
 

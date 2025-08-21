@@ -20,7 +20,12 @@ public class RedisService {
     public <T> T getKey(String key, Class<T> type) {
         try {
             Object value = redisTemplate.opsForValue().get(key);
-
+            log.info("getKey: key={}, value={}", key, value);
+            if(type.equals(Long.class) && value instanceof Integer) {
+                String valueStr = String.valueOf(value);
+                return (T) Long.valueOf(valueStr);
+            }
+            log.info("getKey: key={}, value={}", key, value);
             return (T) value;
         } catch (Exception e) {
             log.error(e.getMessage());

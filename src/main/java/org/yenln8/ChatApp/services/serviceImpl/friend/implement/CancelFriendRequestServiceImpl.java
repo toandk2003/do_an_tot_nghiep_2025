@@ -22,7 +22,7 @@ public class CancelFriendRequestServiceImpl implements CancelFriendRequestServic
 
     @Override
     public BaseResponseDto call(Long friendRequestId) {
-        // Kiem tra friend-request co ton tai + co trang thai pending + deleted = 0 + co phai cua current user khong
+        // Kiem tra friend-request co ton tai + co trang thai pending + deleted = 0
         // Kiem tra ban than co phai la nguoi gui request k
         CurrentUser currentUser = ContextService.getCurrentUser();
 
@@ -65,6 +65,7 @@ public class CancelFriendRequestServiceImpl implements CancelFriendRequestServic
         ).orElseThrow(() -> new IllegalArgumentException(
                 MessageBundle.getMessage("error.object.not.found", "FriendRequest", "id", friendRequestId)));
 
+        // Kiem tra ban than co phai la nguoi gui request k
         if (!friendRequest.getSender().getId().equals(userId)) {
             throw new IllegalArgumentException(MessageBundle.getMessage("message.error.friend.is.not.owner.request"));
         }

@@ -18,7 +18,7 @@ public interface FriendService {
 
     BaseResponseDto getListFriendRequestIReceived(GetListFriendRequestReceivedRequestDto form);
 
-    BaseResponseDto removeFriend();
+    BaseResponseDto removeFriend(Long friendId);
 
     BaseResponseDto getListFriend(GetListFriendRequestDto form);
 }

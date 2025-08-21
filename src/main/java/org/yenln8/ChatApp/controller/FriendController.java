@@ -27,8 +27,12 @@ public class FriendController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> removeFriend(ExploreRequestDto form) {
-        return ResponseEntity.ok(this.friendService.removeFriend());
+    public ResponseEntity<?> removeFriend(@PathVariable("id")
+                                              @Min(1)
+                                              @Max(Long.MAX_VALUE)
+                                              @NotNull
+                                              Long friendId) {
+        return ResponseEntity.ok(this.friendService.removeFriend(friendId));
     }
 
     @PostMapping("/{id}")

@@ -22,7 +22,7 @@ public class RejectFriendRequestServiceImpl implements RejectFriendRequestServic
 
     @Override
     public BaseResponseDto call(Long friendRequestId) {
-        // Kiem tra friend-request co ton tai + co trang thai pending + deleted = 0 + co phai cua current user khong
+        // Kiem tra friend-request co ton tai + co trang thai pending + deleted = 0
         // Kiem tra ban than co phai la nguoi nhan request k
         CurrentUser currentUser = ContextService.getCurrentUser();
 
@@ -57,7 +57,7 @@ public class RejectFriendRequestServiceImpl implements RejectFriendRequestServic
 
     private FriendRequest validate(CurrentUser currentUser, Long friendRequestId) {
         Long userId = currentUser.getId();
-        // Kiem tra friend-request co ton tai + co trang thai pending + deleted = 0 + co phai cua current user khong
+        // Kiem tra friend-request co ton tai + co trang thai pending + deleted = 0
 
         FriendRequest friendRequest = this.friendRequestRepository.findByIdAndStatusAndDeletedAtIsNull(
                 friendRequestId,

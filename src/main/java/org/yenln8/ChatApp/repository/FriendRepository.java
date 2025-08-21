@@ -6,11 +6,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import org.yenln8.ChatApp.entity.Attachment;
 import org.yenln8.ChatApp.entity.Friend;
-import org.yenln8.ChatApp.entity.User;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface FriendRepository extends JpaRepository<Friend, Long> {
@@ -39,4 +38,6 @@ public interface FriendRepository extends JpaRepository<Friend, Long> {
             "f.deleted = 0 AND " +
             "(f.user1.id = :userId OR f.user2.id = :userId)")
     Page<Friend> getFriends(@Param("userId") Long userId, Pageable pageable);
+
+    Optional<Friend> findByIdAndDeletedAtIsNull(Long friendId);
 }

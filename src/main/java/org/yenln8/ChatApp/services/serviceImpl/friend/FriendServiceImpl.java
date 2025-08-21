@@ -20,6 +20,7 @@ public class FriendServiceImpl implements FriendService {
     private GetListFriendService getListFriendService;
     private AcceptFriendRequestService acceptFriendRequestService;
     private RejectFriendRequestService rejectFriendRequestService;
+    private RemoveFriendService removeFriendService;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -59,8 +60,8 @@ public class FriendServiceImpl implements FriendService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public BaseResponseDto removeFriend() {
-        return null;
+    public BaseResponseDto removeFriend(Long friendId) {
+        return this.removeFriendService.call(friendId);
     }
 
     @Override

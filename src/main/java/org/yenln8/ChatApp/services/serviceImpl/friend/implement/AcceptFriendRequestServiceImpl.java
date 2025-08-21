@@ -7,14 +7,13 @@ import org.yenln8.ChatApp.common.util.ContextService;
 import org.yenln8.ChatApp.common.util.MessageBundle;
 import org.yenln8.ChatApp.dto.base.BaseResponseDto;
 import org.yenln8.ChatApp.dto.other.CurrentUser;
-import org.yenln8.ChatApp.dto.response.CancelFriendResponseDto;
+import org.yenln8.ChatApp.dto.response.AcceptFriendResponseDto;
 import org.yenln8.ChatApp.entity.Friend;
 import org.yenln8.ChatApp.entity.FriendRequest;
 import org.yenln8.ChatApp.entity.User;
 import org.yenln8.ChatApp.repository.FriendRepository;
 import org.yenln8.ChatApp.repository.FriendRequestRepository;
 import org.yenln8.ChatApp.services.serviceImpl.friend.interfaces.AcceptFriendRequestService;
-import org.yenln8.ChatApp.services.serviceImpl.friend.interfaces.CancelFriendRequestService;
 
 import java.time.LocalDateTime;
 
@@ -29,17 +28,18 @@ public class AcceptFriendRequestServiceImpl implements AcceptFriendRequestServic
     @Override
     public BaseResponseDto call(Long friendRequestId) {
         // Kiem tra friend-request co ton tai + co trang thai pending + deleted = 0 + co phai cua current user khong
+        // Kiem tra ban than co phai la nguoi nhan request k
+
         CurrentUser currentUser = ContextService.getCurrentUser();
 
         FriendRequest friendRequest = this.validate(currentUser, friendRequestId);
 
-        this.save(friendRequest);
+        Friend friend = this.save(friendRequest);
 
-        CancelFriendResponseDto responseDto = CancelFriendResponseDto.builder()
-                .id(friendRequest.getId())
-                .senderId(friendRequest.getSender().getId())
-                .receiverId(friendRequest.getReceiver().getId())
-                .status(friendRequest.getStatus())
+        AcceptFriendResponseDto responseDto = AcceptFriendResponseDto.builder()
+                .id(friend.getId())
+                .senderId(friend.getUser1().getId())
+                .receiverId(friend.getUser2().getId())
                 .build();
 
         return BaseResponseDto.builder()
@@ -50,9 +50,10 @@ public class AcceptFriendRequestServiceImpl implements AcceptFriendRequestServic
                 .build();
     }
 
-    private void save(FriendRequest friendRequest) {
+    private Friend save(FriendRequest friendRequest) {
         // Update friend request
         friendRequest.setStatus(FriendRequest.STATUS.ACCEPTED);
+        friendRequest.setResponsedAt(LocalDateTime.now());
         friendRequest.setDeletedAt(LocalDateTime.now());
         friendRequest.setDeleted(friendRequest.getId());
 
@@ -66,7 +67,7 @@ public class AcceptFriendRequestServiceImpl implements AcceptFriendRequestServic
                 .user2(receiver)
                 .build();
 
-        this.friendRepository.save(friendToSave);
+        return this.friendRepository.save(friendToSave);
     }
 
     private FriendRequest validate(CurrentUser currentUser, Long friendRequestId) {
@@ -79,8 +80,9 @@ public class AcceptFriendRequestServiceImpl implements AcceptFriendRequestServic
         ).orElseThrow(() -> new IllegalArgumentException(
                 MessageBundle.getMessage("error.object.not.found", "FriendRequest", "id", friendRequestId)));
 
-        if (!friendRequest.getSender().getId().equals(userId)) {
-            throw new IllegalArgumentException(MessageBundle.getMessage("message.error.friend.is.not.owner.request"));
+        // Kiem tra ban than co phai la nguoi nhan request k
+        if (!friendRequest.getReceiver().getId().equals(userId)) {
+            throw new IllegalArgumentException(MessageBundle.getMessage("message.error.friend.is.not.receiver.request"));
         }
 
         return friendRequest;

@@ -8,9 +8,9 @@ import org.yenln8.ChatApp.dto.request.GetListFriendRequestSentRequestDto;
 public interface FriendService {
     BaseResponseDto makeFriendRequest(Long receiverId);
 
-    BaseResponseDto acceptFriendRequest();
+    BaseResponseDto acceptFriendRequest(Long friendRequestId);
 
-    BaseResponseDto rejectFriendRequest();
+    BaseResponseDto rejectFriendRequest(Long friendRequestId);
 
     BaseResponseDto cancelFriendRequest(Long friendRequestId);
 

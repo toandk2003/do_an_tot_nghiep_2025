@@ -46,7 +46,7 @@ public class FriendController {
                                                      @Max(Long.MAX_VALUE)
                                                      @NotNull
                                                      Long friendRequestId) {
-        return ResponseEntity.ok(this.friendService.acceptFriendRequest());
+        return ResponseEntity.ok(this.friendService.acceptFriendRequest(friendRequestId));
     }
 
     @PutMapping("/{id}/reject")
@@ -55,7 +55,7 @@ public class FriendController {
                                                      @Max(Long.MAX_VALUE)
                                                      @NotNull
                                                      Long friendRequestId) {
-        return ResponseEntity.ok(this.friendService.rejectFriendRequest());
+        return ResponseEntity.ok(this.friendService.rejectFriendRequest(friendRequestId));
     }
 
     @PutMapping("/{id}/cancel")

@@ -18,6 +18,8 @@ public class FriendServiceImpl implements FriendService {
     private GetListFriendRequestSentService getListFriendRequestSentService;
     private GetListFriendRequestReceivedService getListFriendRequestReceivedService;
     private GetListFriendService getListFriendService;
+    private AcceptFriendRequestService acceptFriendRequestService;
+    private RejectFriendRequestService rejectFriendRequestService;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -27,14 +29,14 @@ public class FriendServiceImpl implements FriendService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public BaseResponseDto acceptFriendRequest() {
-        return null;
+    public BaseResponseDto acceptFriendRequest(Long friendRequestId) {
+        return this.acceptFriendRequestService.call(friendRequestId);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public BaseResponseDto rejectFriendRequest() {
-        return null;
+    public BaseResponseDto rejectFriendRequest(Long friendRequestId) {
+        return this.rejectFriendRequestService.call(friendRequestId);
     }
 
     @Override

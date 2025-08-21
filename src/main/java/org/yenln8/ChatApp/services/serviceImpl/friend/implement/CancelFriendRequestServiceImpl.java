@@ -8,7 +8,6 @@ import org.yenln8.ChatApp.common.util.MessageBundle;
 import org.yenln8.ChatApp.dto.base.BaseResponseDto;
 import org.yenln8.ChatApp.dto.other.CurrentUser;
 import org.yenln8.ChatApp.dto.response.CancelFriendResponseDto;
-import org.yenln8.ChatApp.dto.response.MakeFriendResponseDto;
 import org.yenln8.ChatApp.entity.FriendRequest;
 import org.yenln8.ChatApp.repository.FriendRequestRepository;
 import org.yenln8.ChatApp.services.serviceImpl.friend.interfaces.CancelFriendRequestService;
@@ -24,6 +23,7 @@ public class CancelFriendRequestServiceImpl implements CancelFriendRequestServic
     @Override
     public BaseResponseDto call(Long friendRequestId) {
         // Kiem tra friend-request co ton tai + co trang thai pending + deleted = 0 + co phai cua current user khong
+        // Kiem tra ban than co phai la nguoi gui request k
         CurrentUser currentUser = ContextService.getCurrentUser();
 
         FriendRequest friendRequest = this.validate(currentUser, friendRequestId);
@@ -48,6 +48,7 @@ public class CancelFriendRequestServiceImpl implements CancelFriendRequestServic
     private void save(FriendRequest friendRequest) {
         // Update friend request
         friendRequest.setStatus(FriendRequest.STATUS.CANCEL);
+        friendRequest.setResponsedAt(LocalDateTime.now());
         friendRequest.setDeletedAt(LocalDateTime.now());
         friendRequest.setDeleted(friendRequest.getId());
 

@@ -1,11 +1,14 @@
 package org.yenln8.ChatApp.repository;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.yenln8.ChatApp.entity.Attachment;
 import org.yenln8.ChatApp.entity.Friend;
+import org.yenln8.ChatApp.entity.User;
 
 import java.util.List;
 
@@ -29,6 +32,11 @@ public interface FriendRepository extends JpaRepository<Friend, Long> {
             "FROM Friend f WHERE " +
             "f.deleted = 0 AND " +
             "(f.user1.id = :userId OR f.user2.id = :userId)")
-    List<Long> getFriends(@Param("userId") Long userId);
+    List<Long> getFriendIds(@Param("userId") Long userId);
 
+    @Query("SELECT f " +
+            "FROM Friend f WHERE " +
+            "f.deleted = 0 AND " +
+            "(f.user1.id = :userId OR f.user2.id = :userId)")
+    Page<Friend> getFriends(@Param("userId") Long userId, Pageable pageable);
 }

@@ -60,7 +60,7 @@ public class ExploreServiceImpl implements ExploreService {
         //  retrieve other user not in list request friend sent
         //  retrieve other user not in list request friend receive
 
-        List<Long> friendIds = this.friendRepository.getFriends(userId);
+        List<Long> friendIds = this.friendRepository.getFriendIds(userId);
         List<Long> friendRequestSentIds = this.friendRequestRepository.getFriendRequestIdsSent(userId);
         List<Long> friendRequestReceivedIds = this.friendRequestRepository.getFriendRequestIdsReceived(userId);
 

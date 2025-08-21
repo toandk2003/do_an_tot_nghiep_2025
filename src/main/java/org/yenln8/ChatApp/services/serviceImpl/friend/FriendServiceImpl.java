@@ -4,13 +4,11 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.yenln8.ChatApp.dto.base.BaseResponseDto;
+import org.yenln8.ChatApp.dto.request.GetListFriendRequestDto;
 import org.yenln8.ChatApp.dto.request.GetListFriendRequestReceivedRequestDto;
 import org.yenln8.ChatApp.dto.request.GetListFriendRequestSentRequestDto;
 import org.yenln8.ChatApp.services.interfaces.FriendService;
-import org.yenln8.ChatApp.services.serviceImpl.friend.interfaces.CancelFriendRequestService;
-import org.yenln8.ChatApp.services.serviceImpl.friend.interfaces.GetListFriendRequestReceivedService;
-import org.yenln8.ChatApp.services.serviceImpl.friend.interfaces.GetListFriendRequestSentService;
-import org.yenln8.ChatApp.services.serviceImpl.friend.interfaces.MakeFriendService;
+import org.yenln8.ChatApp.services.serviceImpl.friend.interfaces.*;
 
 @Service
 @AllArgsConstructor
@@ -19,6 +17,7 @@ public class FriendServiceImpl implements FriendService {
     private CancelFriendRequestService cancelFriendRequestService;
     private GetListFriendRequestSentService getListFriendRequestSentService;
     private GetListFriendRequestReceivedService getListFriendRequestReceivedService;
+    private GetListFriendService getListFriendService;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -64,7 +63,7 @@ public class FriendServiceImpl implements FriendService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public BaseResponseDto getListFriend() {
-        return null;
+    public BaseResponseDto getListFriend(GetListFriendRequestDto form) {
+        return this.getListFriendService.call(form);
     }
 }

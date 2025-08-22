@@ -6,13 +6,17 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.yenln8.ChatApp.entity.FriendRequest;
 
+import java.time.LocalDateTime;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder(toBuilder = true)
 @Data
 public class RejectFriendResponseDto {
     private Long id;
-    private Long senderId;
-    private Long receiverId;
+    private GetProfileResponseDto sender;
+    private GetProfileResponseDto receiver;
     private FriendRequest.STATUS status;
+    private LocalDateTime sentAt;
+    private LocalDateTime responseAt;
 }

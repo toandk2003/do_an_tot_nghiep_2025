@@ -14,9 +14,10 @@ import java.time.LocalDateTime;
 @Data
 public class MakeFriendResponseDto {
     private Long id;
-    private Long senderId;
-    private Long receiverId;
+    private GetProfileResponseDto sender;
+    private GetProfileResponseDto receiver;
     private FriendRequest.STATUS status;
     private LocalDateTime sentAt;
+    private LocalDateTime responseAt;
     private boolean autoAccepted;
 }

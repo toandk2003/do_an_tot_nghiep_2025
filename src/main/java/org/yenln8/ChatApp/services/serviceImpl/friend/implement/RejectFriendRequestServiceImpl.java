@@ -9,8 +9,10 @@ import org.yenln8.ChatApp.dto.base.BaseResponseDto;
 import org.yenln8.ChatApp.dto.other.CurrentUser;
 import org.yenln8.ChatApp.dto.response.RejectFriendResponseDto;
 import org.yenln8.ChatApp.entity.FriendRequest;
+import org.yenln8.ChatApp.entity.User;
 import org.yenln8.ChatApp.repository.FriendRequestRepository;
 import org.yenln8.ChatApp.services.serviceImpl.friend.interfaces.RejectFriendRequestService;
+import org.yenln8.ChatApp.services.serviceImpl.user.interfaces.GetFullInfoAboutUserService;
 
 import java.time.LocalDateTime;
 
@@ -19,6 +21,7 @@ import java.time.LocalDateTime;
 @Slf4j
 public class RejectFriendRequestServiceImpl implements RejectFriendRequestService {
     private FriendRequestRepository friendRequestRepository;
+    private GetFullInfoAboutUserService getFullInfoAboutUserService;
 
     @Override
     public BaseResponseDto call(Long friendRequestId) {
@@ -28,13 +31,17 @@ public class RejectFriendRequestServiceImpl implements RejectFriendRequestServic
 
         FriendRequest friendRequest = this.validate(currentUser, friendRequestId);
 
-        this.save(friendRequest);
+        FriendRequest friendRequestSaved = this.save(friendRequest);
+        User sender = friendRequestSaved.getSender();
+        User receiver = friendRequestSaved.getReceiver();
 
         RejectFriendResponseDto responseDto = RejectFriendResponseDto.builder()
-                .id(friendRequest.getId())
-                .senderId(friendRequest.getSender().getId())
-                .receiverId(friendRequest.getReceiver().getId())
-                .status(friendRequest.getStatus())
+                .id(friendRequestSaved.getId())
+                .sender(this.getFullInfoAboutUserService.call(sender))
+                .receiver(this.getFullInfoAboutUserService.call(receiver))
+                .status(friendRequestSaved.getStatus())
+                .sentAt(friendRequestSaved.getCreatedAt())
+                .responseAt(friendRequestSaved.getResponsedAt())
                 .build();
 
         return BaseResponseDto.builder()
@@ -45,14 +52,14 @@ public class RejectFriendRequestServiceImpl implements RejectFriendRequestServic
                 .build();
     }
 
-    private void save(FriendRequest friendRequest) {
+    private FriendRequest save(FriendRequest friendRequest) {
         // Update friend request
         friendRequest.setStatus(FriendRequest.STATUS.REJECTED);
         friendRequest.setResponsedAt(LocalDateTime.now());
         friendRequest.setDeletedAt(LocalDateTime.now());
         friendRequest.setDeleted(friendRequest.getId());
 
-        friendRequestRepository.save(friendRequest);
+        return friendRequestRepository.save(friendRequest);
     }
 
     private FriendRequest validate(CurrentUser currentUser, Long friendRequestId) {

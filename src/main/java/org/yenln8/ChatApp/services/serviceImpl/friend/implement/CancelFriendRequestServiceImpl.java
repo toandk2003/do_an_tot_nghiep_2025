@@ -8,9 +8,12 @@ import org.yenln8.ChatApp.common.util.MessageBundle;
 import org.yenln8.ChatApp.dto.base.BaseResponseDto;
 import org.yenln8.ChatApp.dto.other.CurrentUser;
 import org.yenln8.ChatApp.dto.response.CancelFriendResponseDto;
+import org.yenln8.ChatApp.dto.response.GetProfileResponseDto;
 import org.yenln8.ChatApp.entity.FriendRequest;
+import org.yenln8.ChatApp.entity.User;
 import org.yenln8.ChatApp.repository.FriendRequestRepository;
 import org.yenln8.ChatApp.services.serviceImpl.friend.interfaces.CancelFriendRequestService;
+import org.yenln8.ChatApp.services.serviceImpl.user.interfaces.GetFullInfoAboutUserService;
 
 import java.time.LocalDateTime;
 
@@ -19,6 +22,7 @@ import java.time.LocalDateTime;
 @Slf4j
 public class CancelFriendRequestServiceImpl implements CancelFriendRequestService {
     private FriendRequestRepository friendRequestRepository;
+    private GetFullInfoAboutUserService getFullInfoAboutUserService;
 
     @Override
     public BaseResponseDto call(Long friendRequestId) {
@@ -28,13 +32,20 @@ public class CancelFriendRequestServiceImpl implements CancelFriendRequestServic
 
         FriendRequest friendRequest = this.validate(currentUser, friendRequestId);
 
-        this.save(friendRequest);
+        FriendRequest friendRequestSaved = this.save(friendRequest);
+
+        User sender = friendRequestSaved.getSender();
+        User receiver = friendRequestSaved.getReceiver();
+
+        GetProfileResponseDto senderFullInfo = this.getFullInfoAboutUserService.call(sender);
+        GetProfileResponseDto receiverFullInfo = this.getFullInfoAboutUserService.call(receiver);
 
         CancelFriendResponseDto responseDto = CancelFriendResponseDto.builder()
-                .id(friendRequest.getId())
-                .senderId(friendRequest.getSender().getId())
-                .receiverId(friendRequest.getReceiver().getId())
-                .status(friendRequest.getStatus())
+                .id(friendRequestSaved.getId())
+                .sender(senderFullInfo)
+                .receiver(receiverFullInfo)
+                .status(friendRequestSaved.getStatus())
+                .sentAt(friendRequestSaved.getCreatedAt())
                 .build();
 
         return BaseResponseDto.builder()
@@ -45,14 +56,14 @@ public class CancelFriendRequestServiceImpl implements CancelFriendRequestServic
                 .build();
     }
 
-    private void save(FriendRequest friendRequest) {
+    private FriendRequest save(FriendRequest friendRequest) {
         // Update friend request
         friendRequest.setStatus(FriendRequest.STATUS.CANCEL);
         friendRequest.setResponsedAt(LocalDateTime.now());
         friendRequest.setDeletedAt(LocalDateTime.now());
         friendRequest.setDeleted(friendRequest.getId());
 
-        friendRequestRepository.save(friendRequest);
+        return friendRequestRepository.save(friendRequest);
     }
 
     private FriendRequest validate(CurrentUser currentUser, Long friendRequestId) {

@@ -8,12 +8,14 @@ import org.yenln8.ChatApp.common.util.MessageBundle;
 import org.yenln8.ChatApp.dto.base.BaseResponseDto;
 import org.yenln8.ChatApp.dto.other.CurrentUser;
 import org.yenln8.ChatApp.dto.response.AcceptFriendResponseDto;
+import org.yenln8.ChatApp.dto.response.GetProfileResponseDto;
 import org.yenln8.ChatApp.entity.Friend;
 import org.yenln8.ChatApp.entity.FriendRequest;
 import org.yenln8.ChatApp.entity.User;
 import org.yenln8.ChatApp.repository.FriendRepository;
 import org.yenln8.ChatApp.repository.FriendRequestRepository;
 import org.yenln8.ChatApp.services.serviceImpl.friend.interfaces.AcceptFriendRequestService;
+import org.yenln8.ChatApp.services.serviceImpl.user.interfaces.GetFullInfoAboutUserService;
 
 import java.time.LocalDateTime;
 
@@ -23,7 +25,7 @@ import java.time.LocalDateTime;
 public class AcceptFriendRequestServiceImpl implements AcceptFriendRequestService {
     private FriendRequestRepository friendRequestRepository;
     private FriendRepository friendRepository;
-
+    private GetFullInfoAboutUserService getFullInfoAboutUserService;
 
     @Override
     public BaseResponseDto call(Long friendRequestId) {
@@ -34,23 +36,31 @@ public class AcceptFriendRequestServiceImpl implements AcceptFriendRequestServic
 
         FriendRequest friendRequest = this.validate(currentUser, friendRequestId);
 
-        Friend friend = this.save(friendRequest);
+        FriendRequest friendRequestSaved = this.save(friendRequest);
+        User sender = friendRequestSaved.getSender();
+        User receiver = friendRequestSaved.getReceiver();
+
+        GetProfileResponseDto senderFullInfo = this.getFullInfoAboutUserService.call(sender);
+        GetProfileResponseDto receiverFullInfo = this.getFullInfoAboutUserService.call(receiver);
 
         AcceptFriendResponseDto responseDto = AcceptFriendResponseDto.builder()
-                .id(friend.getId())
-                .senderId(friend.getUser1().getId())
-                .receiverId(friend.getUser2().getId())
+                .id(friendRequestSaved.getId())
+                .sender(senderFullInfo)
+                .receiver(receiverFullInfo)
+                .status(friendRequestSaved.getStatus())
+                .sentAt(friendRequestSaved.getCreatedAt())
+                .responseAt(friendRequestSaved.getResponsedAt())
                 .build();
 
         return BaseResponseDto.builder()
                 .success(true)
                 .statusCode(200)
                 .data(responseDto)
-                .message("Accept friend request successfully")
+                .message("Accept friend request successfully.")
                 .build();
     }
 
-    private Friend save(FriendRequest friendRequest) {
+    private FriendRequest save(FriendRequest friendRequest) {
         // Update friend request
         friendRequest.setStatus(FriendRequest.STATUS.ACCEPTED);
         friendRequest.setResponsedAt(LocalDateTime.now());
@@ -67,7 +77,9 @@ public class AcceptFriendRequestServiceImpl implements AcceptFriendRequestServic
                 .user2(receiver)
                 .build();
 
-        return this.friendRepository.save(friendToSave);
+        this.friendRepository.save(friendToSave);
+
+        return friendRequest;
     }
 
     private FriendRequest validate(CurrentUser currentUser, Long friendRequestId) {

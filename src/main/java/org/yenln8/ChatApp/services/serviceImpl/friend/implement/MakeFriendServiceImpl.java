@@ -17,6 +17,7 @@ import org.yenln8.ChatApp.repository.FriendRepository;
 import org.yenln8.ChatApp.repository.FriendRequestRepository;
 import org.yenln8.ChatApp.services.interfaces.UserService;
 import org.yenln8.ChatApp.services.serviceImpl.friend.interfaces.MakeFriendService;
+import org.yenln8.ChatApp.services.serviceImpl.user.interfaces.GetFullInfoAboutUserService;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -30,7 +31,7 @@ public class MakeFriendServiceImpl implements MakeFriendService {
     private FriendRepository friendRepository;
     private BlockRepository blockRepository;
     private FriendRequestRepository friendRequestRepository;
-
+    private GetFullInfoAboutUserService getFullInfoAboutUserService;
 
     @Override
     public BaseResponseDto call(Long receiverId) {
@@ -50,30 +51,31 @@ public class MakeFriendServiceImpl implements MakeFriendService {
         User sender = senderAndReceiver.get(0);
         User receiver = senderAndReceiver.get(1);
 
-        MakeFriendResponseDto result = this.save(sender, receiver);
+        FriendRequest friendRequestSaved = this.save(sender, receiver);
+
+        MakeFriendResponseDto data = MakeFriendResponseDto.builder()
+                .id(friendRequestSaved.getId())
+                .sender(this.getFullInfoAboutUserService.call(sender))
+                .receiver(this.getFullInfoAboutUserService.call(receiver))
+                .sentAt(friendRequestSaved.getCreatedAt())
+                .responseAt(friendRequestSaved.getResponsedAt())
+                .status(friendRequestSaved.getStatus())
+                .autoAccepted(friendRequestSaved.getStatus().equals(FriendRequest.STATUS.ACCEPTED))
+                .build();
 
         return BaseResponseDto.builder()
                 .success(true)
                 .statusCode(200)
-                .data(result)
+                .data(data)
                 .message("Send friend request successfully")
                 .build();
     }
 
-    private MakeFriendResponseDto save(User sender, User receiver) {
+    private FriendRequest save(User sender, User receiver) {
 
         // Kiem tra 2 nguoi co vo tinh gui ket ban cho nhau khong, neu co thi dong y luon
         if (this.friendRequestRepository.alreadySentFriendRequest(receiver.getId(), sender.getId())) {
             // accept friend
-            // Update friend request
-            FriendRequest friendRequest = this.friendRequestRepository.getFriendRequestBetweenTwoUser(receiver.getId(), sender.getId());
-            friendRequest.setStatus(FriendRequest.STATUS.ACCEPTED);
-            friendRequest.setResponsedAt(LocalDateTime.now());
-            friendRequest.setDeletedAt(LocalDateTime.now());
-            friendRequest.setDeleted(friendRequest.getId());
-
-            friendRequestRepository.save(friendRequest);
-
             // Insert Friend
             Friend friendToSave = Friend.builder()
                     .user1(receiver)
@@ -81,31 +83,22 @@ public class MakeFriendServiceImpl implements MakeFriendService {
                     .build();
             this.friendRepository.save(friendToSave);
 
-            return MakeFriendResponseDto.builder()
-                    .id(friendRequest.getId())
-                    .senderId(receiver.getId())
-                    .receiverId(sender.getId())
-                    .sentAt(friendRequest.getCreatedAt())
-                    .status(FriendRequest.STATUS.ACCEPTED)
-                    .autoAccepted(true)
-                    .build();
+            // Update friend request
+            FriendRequest friendRequest = this.friendRequestRepository.getFriendRequestBetweenTwoUser(receiver.getId(), sender.getId());
+            friendRequest.setStatus(FriendRequest.STATUS.ACCEPTED);
+            friendRequest.setResponsedAt(LocalDateTime.now());
+            friendRequest.setDeletedAt(LocalDateTime.now());
+            friendRequest.setDeleted(friendRequest.getId());
+
+            return friendRequestRepository.save(friendRequest);
         }
 
         //Save FriendRequest
-        FriendRequest friendRequest = this.friendRequestRepository.save(FriendRequest.builder()
+        return  this.friendRequestRepository.save(FriendRequest.builder()
                 .sender(sender)
                 .receiver(receiver)
                 .status(FriendRequest.STATUS.PENDING)
                 .build());
-
-        return MakeFriendResponseDto.builder()
-                .id(friendRequest.getId())
-                .senderId(sender.getId())
-                .receiverId(receiver.getId())
-                .sentAt(friendRequest.getCreatedAt())
-                .status(friendRequest.getStatus())
-                .autoAccepted(false)
-                .build();
     }
 
     private List<User> validate(CurrentUser currentUser, Long receiverId) {

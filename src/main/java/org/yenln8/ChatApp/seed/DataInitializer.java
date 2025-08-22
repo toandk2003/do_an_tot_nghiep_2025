@@ -8,23 +8,20 @@ import com.fasterxml.uuid.Generators;
 import com.fasterxml.uuid.impl.TimeBasedEpochGenerator;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.transaction.annotation.Transactional;
-import org.yenln8.ChatApp.common.constant.S3Constant;
-import org.yenln8.ChatApp.entity.*;
-import org.yenln8.ChatApp.repository.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.mock.web.MockMultipartFile;
-
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
+import org.yenln8.ChatApp.common.constant.S3Constant;
+import org.yenln8.ChatApp.entity.*;
+import org.yenln8.ChatApp.repository.*;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
@@ -52,10 +49,10 @@ public class DataInitializer {
     }
 
     private void seedAttachment() throws IOException {
-        if (attachmentRepository.count() == 0 ) {
+        if (attachmentRepository.count() == 0) {
             // Inline code - chỉ cần thay "sample.jpg" thành tên ảnh của bạn
             // Upload file
-            for(int i = 0 ; i < 21; i++){
+            for (int i = 0; i < 21; i++) {
                 ClassPathResource resource = new ClassPathResource("image/abc.png");
                 byte[] imageBytes = resource.getInputStream().readAllBytes();
                 MultipartFile multipartFile = new MockMultipartFile("image", "abc.png", "image/png", imageBytes);
@@ -107,13 +104,13 @@ public class DataInitializer {
             LearningLanguage learningLanguage = this.learningLanguageRepository.findById(1L).orElse(null);
             NativeLanguage nativeLanguage = this.nativeLanguageRepository.findById(1L).orElse(null);
 
-            for(int i = 0 ; i < 21; i++){
+            for (int i = 0; i < 21; i++) {
                 Profile profile = this.profileRepository.save(Profile.builder()
-                                .bio("XinchaoChatApp")
-                                .location("VN")
-                                .avatar(attachments.get(i))
-                                .learningLanguage(learningLanguage)
-                                .nativeLanguage(nativeLanguage)
+                        .bio("XinchaoChatApp")
+                        .location("VN")
+                        .avatar(attachments.get(i))
+                        .learningLanguage(learningLanguage)
+                        .nativeLanguage(nativeLanguage)
                         .build());
 
                 User user = User.builder()

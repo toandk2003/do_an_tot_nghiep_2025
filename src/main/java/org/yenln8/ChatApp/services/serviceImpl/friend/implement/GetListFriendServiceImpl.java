@@ -41,10 +41,15 @@ public class GetListFriendServiceImpl implements GetListFriendService {
         int pageSize = form.getPageSize().intValue();
         PageRequest pageRequest = PageRequest.of(currentPage, pageSize);
 
-        Page<Friend> friendsPageable = this.friendRepository.getFriends(userId, pageRequest);
+        String fullName = form.getFullName();
+
+        Page<Friend> friendsPageable = fullName == null ?
+                this.friendRepository.getFriendsNoSearch(userId, pageRequest) :
+                this.friendRepository.getFriendsWithSearchFullName(userId, fullName, pageRequest);
+
         List<Friend> friends = friendsPageable.getContent();
         List<GetListFriendResponseDto> result = friends.stream().map(friend -> {
-            User myFriend = friend.getUser1().getId().equals(userId) ? friend.getUser2() :friend.getUser1();
+            User myFriend = friend.getUser1().getId().equals(userId) ? friend.getUser2() : friend.getUser1();
 
             GetProfileResponseDto myFriendFullInfo = this.getFullInfoAboutUserService.call(myFriend);
 

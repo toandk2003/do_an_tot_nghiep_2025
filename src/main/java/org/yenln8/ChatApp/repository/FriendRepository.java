@@ -37,7 +37,14 @@ public interface FriendRepository extends JpaRepository<Friend, Long> {
             "FROM Friend f WHERE " +
             "f.deleted = 0 AND " +
             "(f.user1.id = :userId OR f.user2.id = :userId)")
-    Page<Friend> getFriends(@Param("userId") Long userId, Pageable pageable);
+    Page<Friend> getFriendsNoSearch(@Param("userId") Long userId, Pageable pageable);
+
+    @Query("SELECT f " +
+            "FROM Friend f " +
+            "WHERE f.deleted = 0 AND " +
+            "((f.user1.id = :userId AND LOWER(f.user2.fullName) LIKE LOWER(CONCAT('%', :fullName, '%'))) OR " +
+            "(f.user2.id = :userId AND LOWER(f.user1.fullName) LIKE LOWER(CONCAT('%', :fullName, '%'))))")
+    Page<Friend> getFriendsWithSearchFullName(@Param("userId") Long userId, @Param("fullName") String fullName, Pageable pageable);
 
     Optional<Friend> findByIdAndDeletedAtIsNull(Long friendId);
 }

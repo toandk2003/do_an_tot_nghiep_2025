@@ -113,7 +113,7 @@ public class DataInitializer {
                 while (true) {
                     learningLanguage = learningLanguages.get(random.nextInt(learningLanguages.size()));
                     nativeLanguage = nativeLanguages.get(random.nextInt(nativeLanguages.size()));
-                    if (nativeLanguage.getCode().toString().equals(learningLanguage.getCode().toString())) break;
+                    if (nativeLanguage.getLocale().toString().equals(learningLanguage.getLocale().toString())) break;
                 }
 
                 Profile profile = this.profileRepository.save(Profile.builder()

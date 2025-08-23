@@ -15,9 +15,7 @@ import org.yenln8.ChatApp.dto.other.CurrentUser;
 import org.yenln8.ChatApp.dto.request.ExploreRequestDto;
 import org.yenln8.ChatApp.dto.response.GetProfileResponseDto;
 import org.yenln8.ChatApp.entity.*;
-import org.yenln8.ChatApp.repository.FriendRepository;
-import org.yenln8.ChatApp.repository.FriendRequestRepository;
-import org.yenln8.ChatApp.repository.UserRepository;
+import org.yenln8.ChatApp.repository.*;
 import org.yenln8.ChatApp.services.interfaces.S3Service;
 import org.yenln8.ChatApp.services.serviceImpl.user.interfaces.ExploreService;
 
@@ -33,7 +31,8 @@ public class ExploreServiceImpl implements ExploreService {
     private S3Service s3Service;
     private FriendRepository friendRepository;
     private FriendRequestRepository friendRequestRepository;
-
+    private LearningLanguageRepository learningLanguageRepository;
+    private NativeLanguageRepository nativeLanguageRepository;
 
     @Override
     public BaseResponseDto call(ExploreRequestDto form) {
@@ -47,6 +46,8 @@ public class ExploreServiceImpl implements ExploreService {
 
         Long learningLanguageId = learningLanguage.getId();
         Long nativeLanguageId = nativeLanguage.getId();
+        LearningLanguage.CODE learningLanguageCode = learningLanguage.getCode();
+        NativeLanguage.CODE nativeLanguageCode = nativeLanguage.getCode();
 
         long currentDay = LocalDateTime.now().toLocalDate().toEpochDay();
         Long currentPage = form.getCurrentPage();
@@ -55,6 +56,10 @@ public class ExploreServiceImpl implements ExploreService {
         User.STATUS userStatus = User.STATUS.ACTIVE;
 
         PageRequest pageRequest = PageRequest.of(currentPage.intValue(), pageSize.intValue());
+
+        List<LearningLanguage> learningLanguages = this.learningLanguageRepository.findAllByCode(learningLanguageCode);
+        List<NativeLanguage> nativeLanguages = this.nativeLanguageRepository.findAllByCode(nativeLanguageCode);
+
         //  retrieve other user not myself
         //  retrieve other user not friend
         //  retrieve other user not in list request friend sent
@@ -63,6 +68,9 @@ public class ExploreServiceImpl implements ExploreService {
         List<Long> friendIds = this.friendRepository.getFriendIds(userId);
         List<Long> friendRequestSentIds = this.friendRequestRepository.getFriendRequestIdsSent(userId);
         List<Long> friendRequestReceivedIds = this.friendRequestRepository.getFriendRequestIdsReceived(userId);
+        List<Long> learningLanguageIds = learningLanguages.stream().map(LearningLanguage::getId).toList();
+        List<Long> nativeLanguageIds = nativeLanguages.stream().map(NativeLanguage::getId).toList();
+
 
         List<Long> avoidUserIds = new ArrayList<>();
         avoidUserIds.add(userId);
@@ -71,8 +79,8 @@ public class ExploreServiceImpl implements ExploreService {
         avoidUserIds.addAll(friendRequestReceivedIds);
 
         Page<User> userRecommends = this.userRepository.findByNativeLanguageIdAndLearningLanguageIdAndStatusAndIdNotInAndDeletedAtIsNull(
-                nativeLanguageId,
-                learningLanguageId,
+                nativeLanguageIds,
+                learningLanguageIds,
                 userStatus,
                 currentDay,
                 avoidUserIds,

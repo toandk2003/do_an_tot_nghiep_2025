@@ -142,25 +142,32 @@ public class DataInitializer {
 
     private void seedLang() {
         if (learningLanguageRepository.count() == 0) {
+
             LearningLanguage record1 = LearningLanguage.builder()
-                    .name("Vietnamese")
+                    .name("English")
                     .locale(LearningLanguage.LOCALE.ENGLISH)
+                    .code(LearningLanguage.CODE.EN)
                     .build();
 
             LearningLanguage record2 = LearningLanguage.builder()
-                    .name("English")
-                    .locale(LearningLanguage.LOCALE.ENGLISH)
+                    .name("Nước Anh")
+                    .locale(LearningLanguage.LOCALE.VIETNAMESE)
+                    .code(LearningLanguage.CODE.EN)
                     .build();
 
             LearningLanguage record3 = LearningLanguage.builder()
-                    .name("Việt Nam")
-                    .locale(LearningLanguage.LOCALE.VIETNAMESE)
+                    .name("Vietnamese")
+                    .locale(LearningLanguage.LOCALE.ENGLISH)
+                    .code(LearningLanguage.CODE.VN)
                     .build();
 
             LearningLanguage record4 = LearningLanguage.builder()
-                    .name("Nước Anh")
+                    .name("Việt Nam")
                     .locale(LearningLanguage.LOCALE.VIETNAMESE)
+                    .code(LearningLanguage.CODE.VN)
                     .build();
+
+
 
             learningLanguageRepository.saveAll(List.of(record1, record2, record3, record4));
 
@@ -174,24 +181,30 @@ public class DataInitializer {
         if (nativeLanguageRepository.count() == 0) {
 
             NativeLanguage nativeLanguage1 = NativeLanguage.builder()
-                    .name("Vietnamese")
+                    .name("English")
                     .locale(NativeLanguage.LOCALE.ENGLISH)
+                    .code(NativeLanguage.CODE.EN)
                     .build();
 
             NativeLanguage nativeLanguage2 = NativeLanguage.builder()
-                    .name("English")
-                    .locale(NativeLanguage.LOCALE.ENGLISH)
+                    .name("Nước Anh")
+                    .locale(NativeLanguage.LOCALE.VIETNAMESE)
+                    .code(NativeLanguage.CODE.EN)
                     .build();
 
             NativeLanguage nativeLanguage3 = NativeLanguage.builder()
                     .name("Việt Nam")
                     .locale(NativeLanguage.LOCALE.VIETNAMESE)
+                    .code(NativeLanguage.CODE.VN)
                     .build();
 
             NativeLanguage nativeLanguage4 = NativeLanguage.builder()
-                    .name("Nước Anh")
-                    .locale(NativeLanguage.LOCALE.VIETNAMESE)
+                    .name("Vietnamese")
+                    .locale(NativeLanguage.LOCALE.ENGLISH)
+                    .code(NativeLanguage.CODE.VN)
                     .build();
+
+
 
             nativeLanguageRepository.saveAll(List.of(nativeLanguage1, nativeLanguage2, nativeLanguage3, nativeLanguage4));
 

@@ -26,7 +26,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
             "left join fetch u.profile p " +
             "left join fetch p.learningLanguage ll " +
             "left join fetch p.nativeLanguage nl " +
-            "where (nl.id = :nativeLanguageId or ll.id = :nativeLanguageId or nl.id = :learningLanguageId or ll.id = :learningLanguageId ) " +
+            "where (nl.id IN (:nativeLanguageIds) or ll.id IN (:nativeLanguageIds) or nl.id IN (:learningLanguageIds) or ll.id IN (:learningLanguageIds) ) " +
             "and u.status = :status " +
             "and u.id not in (:avoidUserIds)" +
             "and u.deletedAt is NULL " +
@@ -34,8 +34,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     )
     Page<User> findByNativeLanguageIdAndLearningLanguageIdAndStatusAndIdNotInAndDeletedAtIsNull(
-            Long nativeLanguageId,
-            Long learningLanguageId,
+            List<Long> nativeLanguageIds,
+            List<Long> learningLanguageIds,
             User.STATUS status,
             long currentDate,
             List<Long> avoidUserIds,

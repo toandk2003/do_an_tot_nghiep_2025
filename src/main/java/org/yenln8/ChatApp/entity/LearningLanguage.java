@@ -33,6 +33,10 @@ public class LearningLanguage {
     @Enumerated(EnumType.STRING)
     private LOCALE locale;
 
+    @Column(name = "code", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private CODE code;
+
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
@@ -55,5 +59,10 @@ public class LearningLanguage {
     public enum LOCALE {
         ENGLISH,
         VIETNAMESE
+    }
+
+    public enum CODE {
+        EN,
+        VN
     }
 }

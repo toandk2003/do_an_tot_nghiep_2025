@@ -23,6 +23,7 @@ import org.yenln8.ChatApp.repository.*;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Random;
 
 @Configuration
 @AllArgsConstructor
@@ -101,10 +102,20 @@ public class DataInitializer {
     private void seedUser() {
         if (userRepository.count() == 0) {
             List<Attachment> attachments = this.attachmentRepository.findAll();
-            LearningLanguage learningLanguage = this.learningLanguageRepository.findById(1L).orElse(null);
-            NativeLanguage nativeLanguage = this.nativeLanguageRepository.findById(1L).orElse(null);
+            List<NativeLanguage> nativeLanguages = this.nativeLanguageRepository.findAll();
+            List<LearningLanguage> learningLanguages = this.learningLanguageRepository.findAll();
 
             for (int i = 0; i < 21; i++) {
+                Random random = new Random();
+                LearningLanguage learningLanguage;
+                NativeLanguage nativeLanguage;
+
+                while (true) {
+                    learningLanguage = learningLanguages.get(random.nextInt(learningLanguages.size()));
+                    nativeLanguage = nativeLanguages.get(random.nextInt(nativeLanguages.size()));
+                    if (nativeLanguage.getCode().toString().equals(learningLanguage.getCode().toString())) break;
+                }
+
                 Profile profile = this.profileRepository.save(Profile.builder()
                         .bio("XinchaoChatApp")
                         .location("VN")
@@ -168,7 +179,6 @@ public class DataInitializer {
                     .build();
 
 
-
             learningLanguageRepository.saveAll(List.of(record1, record2, record3, record4));
 
             log.info("✅ Seeded Learning Language Record:");
@@ -203,7 +213,6 @@ public class DataInitializer {
                     .locale(NativeLanguage.LOCALE.ENGLISH)
                     .code(NativeLanguage.CODE.VN)
                     .build();
-
 
 
             nativeLanguageRepository.saveAll(List.of(nativeLanguage1, nativeLanguage2, nativeLanguage3, nativeLanguage4));

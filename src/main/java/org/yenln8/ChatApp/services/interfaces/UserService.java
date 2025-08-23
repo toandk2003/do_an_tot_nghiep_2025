@@ -6,7 +6,7 @@ import org.yenln8.ChatApp.entity.User;
 
 public interface UserService {
     BaseResponseDto explore(ExploreRequestDto form);
-    BaseResponseDto block(ExploreRequestDto form);
-    BaseResponseDto unblock(ExploreRequestDto form);
+    BaseResponseDto block(Long userId);
+    BaseResponseDto unblock(Long blockId);
     User getUserActive(Long userId);
 }

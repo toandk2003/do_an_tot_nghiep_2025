@@ -16,4 +16,12 @@ public interface BlockRepository extends JpaRepository<Block, Long> {
                     "OR (b.user.id = :userId2 AND b.blockedUser.id = :userId1))"
     )
     boolean areBlockMutualFriends(@Param("userId1") Long userId1, @Param("userId2") Long userId2);
+
+    @Query(
+            "SELECT b FROM Block b " +
+                    "WHERE b.deleted = 0 AND " +
+                    "(b.user.id = :id AND b.blockedUser.id = :userId) ")
+    Block findBlock(Long id, Long userId);
+
+    Block findByIdAndDeletedAtIsNull(Long blockId);
 }

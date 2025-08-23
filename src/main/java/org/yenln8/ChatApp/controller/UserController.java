@@ -1,12 +1,12 @@
 package org.yenln8.ChatApp.controller;
 
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.yenln8.ChatApp.dto.request.ExploreRequestDto;
 import org.yenln8.ChatApp.services.interfaces.UserService;
 
@@ -23,13 +23,21 @@ public class UserController {
     }
 
     @PostMapping("/{id}/block")
-    public ResponseEntity<?> block(ExploreRequestDto form) {
-        return ResponseEntity.ok(this.userService.block(form));
+    public ResponseEntity<?> block(@PathVariable("id")
+                                       @Min(1)
+                                       @Max(Long.MAX_VALUE)
+                                       @NotNull
+                                       Long userId) {
+        return ResponseEntity.ok(this.userService.block(userId));
     }
 
-    @PostMapping("/{id}/unblock")
-    public ResponseEntity<?> unblock(ExploreRequestDto form) {
-        return ResponseEntity.ok(this.userService.unblock(form));
+    @PutMapping("/{id}/unblock")
+    public ResponseEntity<?> unblock(@PathVariable("id")
+                                         @Min(1)
+                                         @Max(Long.MAX_VALUE)
+                                         @NotNull
+                                         Long blockId) {
+        return ResponseEntity.ok(this.userService.unblock(blockId));
     }
 
 }

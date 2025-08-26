@@ -14,12 +14,20 @@ public class ExploreRequestDto {
     @Min(0)
     @Max(Long.MAX_VALUE)
     @NotNull
-    @Builder.Default
     private Long currentPage = 0L;
 
     @Min(1)
     @Max(Long.MAX_VALUE)
     @NotNull
-    @Builder.Default
     private Long pageSize = 10L;
+
+    @Min(1)
+    @Max(Long.MAX_VALUE)
+    @NotNull
+    private Long learningLanguageId;
+
+    @Min(1)
+    @Max(Long.MAX_VALUE)
+    @NotNull
+    private Long nativeLanguageId;
 }

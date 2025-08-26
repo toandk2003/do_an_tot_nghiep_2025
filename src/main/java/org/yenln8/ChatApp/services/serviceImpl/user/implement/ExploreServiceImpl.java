@@ -39,13 +39,13 @@ public class ExploreServiceImpl implements ExploreService {
         Authentication securityContextHolder = SecurityContextHolder.getContext().getAuthentication();
         CurrentUser currentUser = (CurrentUser) securityContextHolder.getPrincipal();
         Long userId = currentUser.getId();
-        User user = this.userRepository.findByUserIdWithProfileAndNativeAndLearning(userId).orElseThrow(() -> new IllegalArgumentException(MessageBundle.getMessage("error.object.not.found", "User", "id", userId)));
+        Long learningLanguageId = form.getLearningLanguageId();
+        Long nativeLanguageId = form.getNativeLanguageId();
+//        User user = this.userRepository.findByUserIdWithProfileAndNativeAndLearning(userId).orElseThrow(() -> new IllegalArgumentException(MessageBundle.getMessage("error.object.not.found", "User", "id", userId)));
 
-        LearningLanguage learningLanguage = Optional.ofNullable(user).map(User::getProfile).map(Profile::getLearningLanguage).orElseThrow(() -> new IllegalArgumentException(MessageBundle.getMessage("error.object.not.found", "LearningLanguage", "id", "null")));
-        NativeLanguage nativeLanguage = Optional.of(user).map(User::getProfile).map(Profile::getNativeLanguage).orElseThrow(() -> new IllegalArgumentException(MessageBundle.getMessage("error.object.not.found", "NativeLanguage", "id", "null")));
+        LearningLanguage learningLanguage = this.learningLanguageRepository.findById(learningLanguageId).orElseThrow(() -> new IllegalArgumentException(MessageBundle.getMessage("error.object.not.found", "LearningLanguage", "id", "null")));
+        NativeLanguage nativeLanguage = this.nativeLanguageRepository.findById(nativeLanguageId).orElseThrow(() -> new IllegalArgumentException(MessageBundle.getMessage("error.object.not.found", "NativeLanguage", "id", "null")));
 
-        Long learningLanguageId = learningLanguage.getId();
-        Long nativeLanguageId = nativeLanguage.getId();
         LearningLanguage.CODE learningLanguageCode = learningLanguage.getCode();
         NativeLanguage.CODE nativeLanguageCode = nativeLanguage.getCode();
 

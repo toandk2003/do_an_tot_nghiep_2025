@@ -17,10 +17,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import org.yenln8.ChatApp.common.constant.S3Constant;
+import org.yenln8.ChatApp.common.util.RedisService;
 import org.yenln8.ChatApp.entity.*;
 import org.yenln8.ChatApp.repository.*;
 
 import java.io.IOException;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Random;
@@ -37,6 +39,7 @@ public class DataInitializer {
     private LearningLanguageRepository learningLanguageRepository;
     private LimitResourceRepository limitResourceRepository;
     private AttachmentRepository attachmentRepository;
+    private RedisService redisService;
 
     @Bean
     @Transactional
@@ -46,7 +49,18 @@ public class DataInitializer {
             this.seedNative();
             this.seedAttachment();
             this.seedUser();
+            this.seedLastOnline();
         };
+    }
+
+    private void seedLastOnline() {
+        for (int i = 0; i < 21; i++) {
+            String email = "fakeUser" + i + "@gmail.com";
+            Long lastOnlineSecondFromEpoch = this.redisService.getKey(this.redisService.getKeyLastOnlineWithPrefix(email), Long.class);
+            if(lastOnlineSecondFromEpoch == null) {
+                this.redisService.setKey(this.redisService.getKeyLastOnlineWithPrefix(email), Instant.now().getEpochSecond());
+            }
+        }
     }
 
     private void seedAttachment() throws IOException {

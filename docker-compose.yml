@@ -23,8 +23,8 @@ services:
     pull_policy: missing
     ports:
       - "6379:6379"
-    tmpfs:
-      - /data
+    volumes:
+      - redis-data:/data
 
   #MinIO
   minio:
@@ -45,4 +45,5 @@ services:
 volumes:
   mysql_data:
   minio_data:
+  redis-data:
 

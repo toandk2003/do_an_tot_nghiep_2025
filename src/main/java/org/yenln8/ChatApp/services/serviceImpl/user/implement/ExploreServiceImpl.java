@@ -41,7 +41,8 @@ public class ExploreServiceImpl implements ExploreService {
         Long userId = currentUser.getId();
         Long learningLanguageId = form.getLearningLanguageId();
         Long nativeLanguageId = form.getNativeLanguageId();
-//        User user = this.userRepository.findByUserIdWithProfileAndNativeAndLearning(userId).orElseThrow(() -> new IllegalArgumentException(MessageBundle.getMessage("error.object.not.found", "User", "id", userId)));
+        String fullName = form.getFullName();
+//        User user = this.userRepository.findByUserIdWithProfileAndNativeAndLearning(userId).orexploreElseThrow(() -> new IllegalArgumentException(MessageBundle.getMessage("error.object.not.found", "User", "id", userId)));
 
         LearningLanguage learningLanguage = this.learningLanguageRepository.findById(learningLanguageId).orElseThrow(() -> new IllegalArgumentException(MessageBundle.getMessage("error.object.not.found", "LearningLanguage", "id", "null")));
         NativeLanguage nativeLanguage = this.nativeLanguageRepository.findById(nativeLanguageId).orElseThrow(() -> new IllegalArgumentException(MessageBundle.getMessage("error.object.not.found", "NativeLanguage", "id", "null")));
@@ -78,13 +79,21 @@ public class ExploreServiceImpl implements ExploreService {
         avoidUserIds.addAll(friendRequestSentIds);
         avoidUserIds.addAll(friendRequestReceivedIds);
 
-        Page<User> userRecommends = this.userRepository.findByNativeLanguageIdAndLearningLanguageIdAndStatusAndIdNotInAndDeletedAtIsNull(
+        Page<User> userRecommends = fullName == null ? this.userRepository.findByNativeLanguageIdAndLearningLanguageIdAndStatusAndIdNotInAndDeletedAtIsNull(
                 nativeLanguageIds,
                 learningLanguageIds,
                 userStatus,
                 currentDay,
                 avoidUserIds,
-                pageRequest);
+                pageRequest) :
+                this.userRepository.findByNativeLanguageIdAndLearningLanguageIdAndStatusAndIdNotInAndDeletedAtIsNullAndFullName(
+                        nativeLanguageIds,
+                        learningLanguageIds,
+                        userStatus,
+                        currentDay,
+                        avoidUserIds,
+                        fullName,
+                        pageRequest);
 
         List<GetProfileResponseDto> usersAfterConvert = this.convert(userRecommends.getContent());
         PaginationResponseDto<User, GetProfileResponseDto> result = PaginationResponseDto.of(userRecommends, usersAfterConvert);

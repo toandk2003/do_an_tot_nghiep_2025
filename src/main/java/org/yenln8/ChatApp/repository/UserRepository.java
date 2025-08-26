@@ -42,5 +42,27 @@ public interface UserRepository extends JpaRepository<User, Long> {
             Pageable pageable
     );
 
+    @Query("select u from User u " +
+            "left join fetch u.profile p " +
+            "left join fetch p.learningLanguage ll " +
+            "left join fetch p.nativeLanguage nl " +
+            "where (nl.id IN (:nativeLanguageIds) or ll.id IN (:nativeLanguageIds) or nl.id IN (:learningLanguageIds) or ll.id IN (:learningLanguageIds) ) " +
+            "and u.status = :status " +
+            "and u.id not in (:avoidUserIds) " +
+            "and lower(u.fullName) like lower(concat('%', :fullName, '%')) " +
+            "and u.deletedAt is NULL " +
+            "order by function('MD5', concat(u.id, :currentDate))"
+
+    )
+    Page<User> findByNativeLanguageIdAndLearningLanguageIdAndStatusAndIdNotInAndDeletedAtIsNullAndFullName(
+            List<Long> nativeLanguageIds,
+            List<Long> learningLanguageIds,
+            User.STATUS status,
+            long currentDate,
+            List<Long> avoidUserIds,
+            String fullName,
+            Pageable pageable
+    );
+
     Optional<User> findByIdAndStatus(Long userId, User.STATUS status);
 }

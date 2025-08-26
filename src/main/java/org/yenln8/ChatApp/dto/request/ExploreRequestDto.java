@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Length;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -30,4 +31,7 @@ public class ExploreRequestDto {
     @Max(Long.MAX_VALUE)
     @NotNull
     private Long nativeLanguageId;
+
+    @Length(max = 255)
+    private String fullName;
 }

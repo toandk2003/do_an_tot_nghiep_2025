@@ -9,8 +9,10 @@ import org.yenln8.ChatApp.common.util.MessageBundle;
 import org.yenln8.ChatApp.dto.base.BaseResponseDto;
 import org.yenln8.ChatApp.dto.other.CurrentUser;
 import org.yenln8.ChatApp.dto.request.UpdateProfileRequestDto;
+import org.yenln8.ChatApp.dto.response.GetProfileResponseDto;
 import org.yenln8.ChatApp.entity.*;
 import org.yenln8.ChatApp.repository.*;
+import org.yenln8.ChatApp.services.serviceImpl.user.interfaces.GetFullInfoAboutUserService;
 import org.yenln8.ChatApp.services.serviceImpl.user.interfaces.UpdateProfileService;
 
 @Service
@@ -21,6 +23,7 @@ public class UpdateProfileServiceImpl implements UpdateProfileService {
     private LearningLanguageRepository learningLanguageRepository;
     private UserRepository userRepository;
     private AttachmentRepository attachmentRepository;
+    private GetFullInfoAboutUserService getFullInfoAboutUserService;
 
     @Override
     public BaseResponseDto call(UpdateProfileRequestDto form) {
@@ -58,10 +61,13 @@ public class UpdateProfileServiceImpl implements UpdateProfileService {
         attachment.setStatus(Attachment.STATUS.CONFIRMED);
         this.attachmentRepository.save(attachment);
 
+        GetProfileResponseDto fullInfoAboutUser = this.getFullInfoAboutUserService.call(user);
+
         return BaseResponseDto.builder()
                 .success(true)
                 .statusCode(HttpStatus.OK.value())
                 .message("Great, Update profile for user successfully.")
+                .data(fullInfoAboutUser)
                 .build();
     }
 }

@@ -51,7 +51,7 @@ public class GetFullInfoAboutUserServiceImpl implements GetFullInfoAboutUserServ
                         .build())
                 .orElse(null);
 
-
+        Long attachmentId = Optional.ofNullable(profile).map(Profile::getAvatar).map(Attachment::getId).orElse(null);
         String fileNameInS3 = Optional.ofNullable(profile).map(Profile::getAvatar).map(Attachment::getFileNameInS3).orElse(null);
 
         if (fileNameInS3 == null) {
@@ -87,6 +87,7 @@ public class GetFullInfoAboutUserServiceImpl implements GetFullInfoAboutUserServ
                 .bio(bio)
                 .nativeLanguage(nativeLanguage)
                 .learningLanguage(learningLanguage)
+                .attachmentId(attachmentId)
                 .profilePic(profilePic)
                 .lastOnline(lastOnlineTime)
                 .rowVersion(user.getRowVersion())

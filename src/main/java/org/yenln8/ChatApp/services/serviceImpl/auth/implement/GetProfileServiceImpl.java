@@ -73,7 +73,9 @@ public class GetProfileServiceImpl implements GetProfileService {
                     .orElse(null);
 
 
+            Long attachmentId = Optional.ofNullable(profile).map(Profile::getAvatar).map(Attachment::getId).orElse(null);
             String fileNameInS3 = Optional.ofNullable(profile).map(Profile::getAvatar).map(Attachment::getFileNameInS3).orElse(null);
+
             if(fileNameInS3 == null){
                 GetProfileResponseDto response = GetProfileResponseDto.builder()
                         .id(id)
@@ -112,8 +114,10 @@ public class GetProfileServiceImpl implements GetProfileService {
                     .isOnboarded(isOnboarded)
                     .location(location)
                     .bio(bio)
+                    .attachmentId(attachmentId)
                     .nativeLanguage(nativeLanguage)
                     .learningLanguage(learningLanguage)
+                    .attachmentId(attachmentId)
                     .profilePic(profilePic)
                     .lastOnline(lastOnlineTime)
                     .rowVersion(user.getRowVersion())

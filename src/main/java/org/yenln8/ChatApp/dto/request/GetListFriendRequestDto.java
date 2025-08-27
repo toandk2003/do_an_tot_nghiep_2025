@@ -28,4 +28,12 @@ public class GetListFriendRequestDto {
 
     @Length(max = 255)
     private String fullName ;
+
+    @Min(1)
+    @Max(Long.MAX_VALUE)
+    private Long learningLanguageId;
+
+    @Min(1)
+    @Max(Long.MAX_VALUE)
+    private Long nativeLanguageId;
 }

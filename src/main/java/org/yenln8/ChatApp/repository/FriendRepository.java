@@ -33,18 +33,25 @@ public interface FriendRepository extends JpaRepository<Friend, Long> {
             "(f.user1.id = :userId OR f.user2.id = :userId)")
     List<Long> getFriendIds(@Param("userId") Long userId);
 
-    @Query("SELECT f " +
-            "FROM Friend f WHERE " +
-            "f.deleted = 0 AND " +
-            "(f.user1.id = :userId OR f.user2.id = :userId)")
-    Page<Friend> getFriendsNoSearch(@Param("userId") Long userId, Pageable pageable);
+    @Query("SELECT f FROM Friend f " +
+            "WHERE f.deleted = 0 " +
+            "AND (" +
+            "(" +
+            "f.user1.id = :userId " +
+            "AND (:fullName IS NULL OR LOWER(f.user2.fullName) LIKE LOWER(CONCAT('%', :fullName, '%'))) " +
+            "AND (:learningLanguageIds IS NULL OR f.user2.profile.learningLanguage.id IN (:learningLanguageIds)) " +
+            "AND (:nativeLanguageIds IS NULL OR f.user2.profile.nativeLanguage.id IN (:nativeLanguageIds))" +
+            ") " +
+            "OR " +
+            "(" +
+            "f.user2.id = :userId " +
+            "AND (:fullName IS NULL OR LOWER(f.user1.fullName) LIKE LOWER(CONCAT('%', :fullName, '%'))) " +
+            "AND (:learningLanguageIds IS NULL OR f.user1.profile.learningLanguage.id IN (:learningLanguageIds)) " +
+            "AND (:nativeLanguageIds IS NULL OR f.user1.profile.nativeLanguage.id IN (:nativeLanguageIds))" +
+            ")" +
+            ")")
+    Page<Friend> getFriends(@Param("userId") Long userId, List<Long> learningLanguageIds, List<Long> nativeLanguageIds, String fullName, Pageable pageable);
 
-    @Query("SELECT f " +
-            "FROM Friend f " +
-            "WHERE f.deleted = 0 AND " +
-            "((f.user1.id = :userId AND LOWER(f.user2.fullName) LIKE LOWER(CONCAT('%', :fullName, '%'))) OR " +
-            "(f.user2.id = :userId AND LOWER(f.user1.fullName) LIKE LOWER(CONCAT('%', :fullName, '%'))))")
-    Page<Friend> getFriendsWithSearchFullName(@Param("userId") Long userId, @Param("fullName") String fullName, Pageable pageable);
 
     Optional<Friend> findByIdAndDeletedAtIsNull(Long friendId);
 }

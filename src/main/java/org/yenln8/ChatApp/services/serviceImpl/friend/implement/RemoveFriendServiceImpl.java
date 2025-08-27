@@ -45,7 +45,7 @@ public class RemoveFriendServiceImpl implements RemoveFriendService {
                 .success(true)
                 .statusCode(200)
                 .data(responseDto)
-                .message("Reject friend request successfully")
+                .message("Remove friend request successfully")
                 .build();
     }
 

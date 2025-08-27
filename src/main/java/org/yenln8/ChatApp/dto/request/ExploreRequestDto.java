@@ -24,12 +24,10 @@ public class ExploreRequestDto {
 
     @Min(1)
     @Max(Long.MAX_VALUE)
-    @NotNull
     private Long learningLanguageId;
 
     @Min(1)
     @Max(Long.MAX_VALUE)
-    @NotNull
     private Long nativeLanguageId;
 
     @Length(max = 255)

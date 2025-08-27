@@ -26,14 +26,15 @@ public interface UserRepository extends JpaRepository<User, Long> {
             "left join fetch u.profile p " +
             "left join fetch p.learningLanguage ll " +
             "left join fetch p.nativeLanguage nl " +
-            "where (nl.id IN (:nativeLanguageIds) or ll.id IN (:nativeLanguageIds) or nl.id IN (:learningLanguageIds) or ll.id IN (:learningLanguageIds) ) " +
+            "where (nl.id IN (:nativeLanguageIds) or ll.id IN (:nativeLanguageIds) or nl.id IN (:learningLanguageIds) or ll.id IN (:learningLanguageIds)) " +
             "and u.status = :status " +
             "and u.id not in (:avoidUserIds)" +
+//            "and (:fullName is null or lower(u.fullName) like lower(concat('%', :fullName, '%'))) " +
             "and u.deletedAt is NULL " +
             "order by function('MD5', concat(u.id, :currentDate))"
 
     )
-    Page<User> findByNativeLanguageIdAndLearningLanguageIdAndStatusAndIdNotInAndDeletedAtIsNull(
+    Page<User> findByUserIdNotInAndStatusAndDeletedAtIsNullAndNotExactNativeAndLanguage(
             List<Long> nativeLanguageIds,
             List<Long> learningLanguageIds,
             User.STATUS status,
@@ -46,15 +47,16 @@ public interface UserRepository extends JpaRepository<User, Long> {
             "left join fetch u.profile p " +
             "left join fetch p.learningLanguage ll " +
             "left join fetch p.nativeLanguage nl " +
-            "where (nl.id IN (:nativeLanguageIds) or ll.id IN (:nativeLanguageIds) or nl.id IN (:learningLanguageIds) or ll.id IN (:learningLanguageIds) ) " +
+            "where ((:nativeLanguageIds ) is null or nl.id in (:nativeLanguageIds)) " +
+            "and ((:learningLanguageIds) is null or ll.id in (:learningLanguageIds))  " +
             "and u.status = :status " +
             "and u.id not in (:avoidUserIds) " +
-            "and lower(u.fullName) like lower(concat('%', :fullName, '%')) " +
+            "and (:fullName is null or lower(u.fullName) like lower(concat('%', :fullName, '%'))) " +
             "and u.deletedAt is NULL " +
             "order by function('MD5', concat(u.id, :currentDate))"
 
     )
-    Page<User> findByNativeLanguageIdAndLearningLanguageIdAndStatusAndIdNotInAndDeletedAtIsNullAndFullName(
+    Page<User> findByUserIdNotInAndStatusAndDeletedAtIsNullAndExactNativeAndLanguage(
             List<Long> nativeLanguageIds,
             List<Long> learningLanguageIds,
             User.STATUS status,

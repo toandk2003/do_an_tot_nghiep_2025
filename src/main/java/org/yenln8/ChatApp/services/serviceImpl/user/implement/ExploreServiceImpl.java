@@ -42,36 +42,43 @@ public class ExploreServiceImpl implements ExploreService {
         Long learningLanguageId = form.getLearningLanguageId();
         Long nativeLanguageId = form.getNativeLanguageId();
         String fullName = form.getFullName();
-//        User user = this.userRepository.findByUserIdWithProfileAndNativeAndLearning(userId).orexploreElseThrow(() -> new IllegalArgumentException(MessageBundle.getMessage("error.object.not.found", "User", "id", userId)));
 
-        LearningLanguage learningLanguage = this.learningLanguageRepository.findById(learningLanguageId).orElseThrow(() -> new IllegalArgumentException(MessageBundle.getMessage("error.object.not.found", "LearningLanguage", "id", "null")));
-        NativeLanguage nativeLanguage = this.nativeLanguageRepository.findById(nativeLanguageId).orElseThrow(() -> new IllegalArgumentException(MessageBundle.getMessage("error.object.not.found", "NativeLanguage", "id", "null")));
-
-        LearningLanguage.CODE learningLanguageCode = learningLanguage.getCode();
-        NativeLanguage.CODE nativeLanguageCode = nativeLanguage.getCode();
+        User user = this.userRepository.findByUserIdWithProfileAndNativeAndLearning(userId).orElseThrow(() -> new IllegalArgumentException(MessageBundle.getMessage("error.object.not.found", "User", "id", userId)));
 
         long currentDay = LocalDateTime.now().toLocalDate().toEpochDay();
         Long currentPage = form.getCurrentPage();
         Long pageSize = form.getPageSize();
+        PageRequest pageRequest = PageRequest.of(currentPage.intValue(), pageSize.intValue());
 
+        List<Long> friendIds = this.friendRepository.getFriendIds(userId);
+        List<Long> friendRequestSentIds = this.friendRequestRepository.getFriendRequestIdsSent(userId);
+        List<Long> friendRequestReceivedIds = this.friendRequestRepository.getFriendRequestIdsReceived(userId);
         User.STATUS userStatus = User.STATUS.ACTIVE;
 
-        PageRequest pageRequest = PageRequest.of(currentPage.intValue(), pageSize.intValue());
+        if (learningLanguageId == null && nativeLanguageId == null && fullName == null) {
+            learningLanguageId = user.getProfile().getLearningLanguage().getId();
+            nativeLanguageId = user.getProfile().getNativeLanguage().getId();
+        }
+
+        assert learningLanguageId != null;
+        assert nativeLanguageId != null;
+
+        LearningLanguage learningLanguage = this.learningLanguageRepository.findById(learningLanguageId).orElse(null);
+        NativeLanguage nativeLanguage = this.nativeLanguageRepository.findById(nativeLanguageId).orElse(null);
+
+        LearningLanguage.CODE learningLanguageCode = Optional.ofNullable(learningLanguage).map(LearningLanguage::getCode).orElse(null);
+        NativeLanguage.CODE nativeLanguageCode = Optional.ofNullable(nativeLanguage).map(NativeLanguage::getCode).orElse(null);
 
         List<LearningLanguage> learningLanguages = this.learningLanguageRepository.findAllByCode(learningLanguageCode);
         List<NativeLanguage> nativeLanguages = this.nativeLanguageRepository.findAllByCode(nativeLanguageCode);
+
+        List<Long> learningLanguageIds = learningLanguages.isEmpty() ? null : learningLanguages.stream().map(LearningLanguage::getId).toList();
+        List<Long> nativeLanguageIds = nativeLanguages.isEmpty() ? null : nativeLanguages.stream().map(NativeLanguage::getId).toList();
 
         //  retrieve other user not myself
         //  retrieve other user not friend
         //  retrieve other user not in list request friend sent
         //  retrieve other user not in list request friend receive
-
-        List<Long> friendIds = this.friendRepository.getFriendIds(userId);
-        List<Long> friendRequestSentIds = this.friendRequestRepository.getFriendRequestIdsSent(userId);
-        List<Long> friendRequestReceivedIds = this.friendRequestRepository.getFriendRequestIdsReceived(userId);
-        List<Long> learningLanguageIds = learningLanguages.stream().map(LearningLanguage::getId).toList();
-        List<Long> nativeLanguageIds = nativeLanguages.stream().map(NativeLanguage::getId).toList();
-
 
         List<Long> avoidUserIds = new ArrayList<>();
         avoidUserIds.add(userId);
@@ -79,21 +86,24 @@ public class ExploreServiceImpl implements ExploreService {
         avoidUserIds.addAll(friendRequestSentIds);
         avoidUserIds.addAll(friendRequestReceivedIds);
 
-        Page<User> userRecommends = fullName == null ? this.userRepository.findByNativeLanguageIdAndLearningLanguageIdAndStatusAndIdNotInAndDeletedAtIsNull(
-                nativeLanguageIds,
-                learningLanguageIds,
-                userStatus,
-                currentDay,
-                avoidUserIds,
-                pageRequest) :
-                this.userRepository.findByNativeLanguageIdAndLearningLanguageIdAndStatusAndIdNotInAndDeletedAtIsNullAndFullName(
-                        nativeLanguageIds,
-                        learningLanguageIds,
-                        userStatus,
-                        currentDay,
-                        avoidUserIds,
-                        fullName,
-                        pageRequest);
+        Page<User> userRecommends =
+                form.getLearningLanguageId() == null && form.getNativeLanguageId() == null && form.getFullName() == null ?
+                        this.userRepository.findByUserIdNotInAndStatusAndDeletedAtIsNullAndNotExactNativeAndLanguage(
+                                nativeLanguageIds,
+                                learningLanguageIds,
+                                userStatus,
+                                currentDay,
+                                avoidUserIds,
+                                pageRequest)
+                        :
+                        this.userRepository.findByUserIdNotInAndStatusAndDeletedAtIsNullAndExactNativeAndLanguage(
+                                nativeLanguageIds,
+                                learningLanguageIds,
+                                userStatus,
+                                currentDay,
+                                avoidUserIds,
+                                fullName,
+                                pageRequest);
 
         List<GetProfileResponseDto> usersAfterConvert = this.convert(userRecommends.getContent());
         PaginationResponseDto<User, GetProfileResponseDto> result = PaginationResponseDto.of(userRecommends, usersAfterConvert);

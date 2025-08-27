@@ -11,9 +11,11 @@ import org.yenln8.ChatApp.dto.response.AcceptFriendResponseDto;
 import org.yenln8.ChatApp.dto.response.GetProfileResponseDto;
 import org.yenln8.ChatApp.entity.Friend;
 import org.yenln8.ChatApp.entity.FriendRequest;
+import org.yenln8.ChatApp.entity.Notification;
 import org.yenln8.ChatApp.entity.User;
 import org.yenln8.ChatApp.repository.FriendRepository;
 import org.yenln8.ChatApp.repository.FriendRequestRepository;
+import org.yenln8.ChatApp.repository.NotificationRepository;
 import org.yenln8.ChatApp.services.serviceImpl.friend.interfaces.AcceptFriendRequestService;
 import org.yenln8.ChatApp.services.serviceImpl.user.interfaces.GetFullInfoAboutUserService;
 
@@ -26,6 +28,7 @@ public class AcceptFriendRequestServiceImpl implements AcceptFriendRequestServic
     private FriendRequestRepository friendRequestRepository;
     private FriendRepository friendRepository;
     private GetFullInfoAboutUserService getFullInfoAboutUserService;
+    private NotificationRepository notificationRepository;
 
     @Override
     public BaseResponseDto call(Long friendRequestId) {
@@ -51,7 +54,16 @@ public class AcceptFriendRequestServiceImpl implements AcceptFriendRequestServic
                 .sentAt(friendRequestSaved.getCreatedAt())
                 .responseAt(friendRequestSaved.getResponsedAt())
                 .build();
+        //sent Noti
+//        this.notificationRepository.save(Notification.builder()
+//                        .senderId(0L)
+//                        .senderType(Notification.SENDER_TYPE.SYSTEM)
+//                        .receiverId(sender.getId())
+//                        .receiverType(Notification.RECEIVER_TYPE.USER)
+//                                .referenceId()
+//                build());
 
+        // TODO send noti to 2 user, remember do for auto accept too
         return BaseResponseDto.builder()
                 .success(true)
                 .statusCode(200)

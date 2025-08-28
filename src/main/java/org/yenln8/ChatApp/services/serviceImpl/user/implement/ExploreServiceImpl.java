@@ -60,20 +60,17 @@ public class ExploreServiceImpl implements ExploreService {
             nativeLanguageId = user.getProfile().getNativeLanguage().getId();
         }
 
-        assert learningLanguageId != null;
-        assert nativeLanguageId != null;
-
-        LearningLanguage learningLanguage = this.learningLanguageRepository.findById(learningLanguageId).orElse(null);
-        NativeLanguage nativeLanguage = this.nativeLanguageRepository.findById(nativeLanguageId).orElse(null);
+        LearningLanguage learningLanguage = learningLanguageId == null ? null : this.learningLanguageRepository.findById(learningLanguageId).orElse(null);
+        NativeLanguage nativeLanguage = nativeLanguageId == null ? null : this.nativeLanguageRepository.findById(nativeLanguageId).orElse(null);
 
         LearningLanguage.CODE learningLanguageCode = Optional.ofNullable(learningLanguage).map(LearningLanguage::getCode).orElse(null);
         NativeLanguage.CODE nativeLanguageCode = Optional.ofNullable(nativeLanguage).map(NativeLanguage::getCode).orElse(null);
 
-        List<LearningLanguage> learningLanguages = this.learningLanguageRepository.findAllByCode(learningLanguageCode);
-        List<NativeLanguage> nativeLanguages = this.nativeLanguageRepository.findAllByCode(nativeLanguageCode);
+        List<LearningLanguage> learningLanguages = learningLanguageCode == null ? null : this.learningLanguageRepository.findAllByCode(learningLanguageCode);
+        List<NativeLanguage> nativeLanguages = nativeLanguageCode == null ? null : this.nativeLanguageRepository.findAllByCode(nativeLanguageCode);
 
-        List<Long> learningLanguageIds = learningLanguages.isEmpty() ? null : learningLanguages.stream().map(LearningLanguage::getId).toList();
-        List<Long> nativeLanguageIds = nativeLanguages.isEmpty() ? null : nativeLanguages.stream().map(NativeLanguage::getId).toList();
+        List<Long> learningLanguageIds = learningLanguages == null ? null : learningLanguages.stream().map(LearningLanguage::getId).toList();
+        List<Long> nativeLanguageIds = nativeLanguages == null ? null : nativeLanguages.stream().map(NativeLanguage::getId).toList();
 
         //  retrieve other user not myself
         //  retrieve other user not friend

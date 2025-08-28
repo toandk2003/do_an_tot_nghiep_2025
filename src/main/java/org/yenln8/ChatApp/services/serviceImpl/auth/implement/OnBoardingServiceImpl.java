@@ -13,9 +13,11 @@ import org.yenln8.ChatApp.common.util.MessageBundle;
 import org.yenln8.ChatApp.dto.base.BaseResponseDto;
 import org.yenln8.ChatApp.dto.other.CurrentUser;
 import org.yenln8.ChatApp.dto.request.OnBoardingRequestDto;
+import org.yenln8.ChatApp.dto.response.GetProfileResponseDto;
 import org.yenln8.ChatApp.entity.*;
 import org.yenln8.ChatApp.repository.*;
 import org.yenln8.ChatApp.services.serviceImpl.auth.interfaces.OnBoardingService;
+import org.yenln8.ChatApp.services.serviceImpl.user.interfaces.GetFullInfoAboutUserService;
 
 @Slf4j
 @AllArgsConstructor
@@ -26,6 +28,7 @@ public class OnBoardingServiceImpl implements OnBoardingService {
     private LearningLanguageRepository learningLanguageRepository;
     private UserRepository userRepository;
     private AttachmentRepository attachmentRepository;
+    private GetFullInfoAboutUserService getFullInfoAboutUserService;
 
     @Override
     public BaseResponseDto call(OnBoardingRequestDto form, HttpServletRequest request) {
@@ -66,10 +69,12 @@ public class OnBoardingServiceImpl implements OnBoardingService {
         user.setStatus(User.STATUS.ACTIVE);
         this.userRepository.save(user);
 
+        GetProfileResponseDto userFullInfo = this.getFullInfoAboutUserService.call(user);
         return BaseResponseDto.builder()
                 .success(true)
                 .statusCode(HttpStatus.OK.value())
                 .message("Great, Onboard successfully, welcome to ChatApp")
+                .data(userFullInfo)
                 .build();
     }
 }

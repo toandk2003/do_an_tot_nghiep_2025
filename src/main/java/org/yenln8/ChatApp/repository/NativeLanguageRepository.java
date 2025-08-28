@@ -8,7 +8,4 @@ import java.util.List;
 
 @Repository
 public interface NativeLanguageRepository extends JpaRepository<NativeLanguage, Long> {
-    List<NativeLanguage> findAllByLocale(NativeLanguage.LOCALE locale);
-
-    List<NativeLanguage> findAllByCode(NativeLanguage.CODE nativeLanguageCode);
 }

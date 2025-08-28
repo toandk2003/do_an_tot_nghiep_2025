@@ -40,13 +40,14 @@ public class DataInitializer {
     private LimitResourceRepository limitResourceRepository;
     private AttachmentRepository attachmentRepository;
     private RedisService redisService;
+    private NativeLanguageLocaleRepository  nativeLanguageLocaleRepository;
+    private LearningLanguageLocaleRepository  learningLanguageLocaleRepository;
 
     @Bean
     @Transactional
     public CommandLineRunner seed(UserRepository userRepository) {
         return args -> {
-            this.seedLang();
-            this.seedNative();
+            this.seedLearningNative();
             this.seedAttachment();
             this.seedUser();
             this.seedLastOnline();
@@ -121,14 +122,8 @@ public class DataInitializer {
 
             for (int i = 0; i < 21; i++) {
                 Random random = new Random();
-                LearningLanguage learningLanguage;
-                NativeLanguage nativeLanguage;
-
-                while (true) {
-                    learningLanguage = learningLanguages.get(random.nextInt(learningLanguages.size()));
-                    nativeLanguage = nativeLanguages.get(random.nextInt(nativeLanguages.size()));
-                    if (nativeLanguage.getLocale().toString().equals(learningLanguage.getLocale().toString())) break;
-                }
+                LearningLanguage learningLanguage =  learningLanguages.get(random.nextInt(learningLanguages.size()));
+                NativeLanguage nativeLanguage = nativeLanguages.get(random.nextInt(nativeLanguages.size()));
 
                 Profile profile = this.profileRepository.save(Profile.builder()
                         .bio("XinchaoChatApp")
@@ -165,35 +160,81 @@ public class DataInitializer {
 
     }
 
-    private void seedLang() {
+    private void seedLearningNative() {
         if (learningLanguageRepository.count() == 0) {
 
-            LearningLanguage record1 = LearningLanguage.builder()
-                    .name("English")
-                    .locale(LearningLanguage.LOCALE.ENGLISH)
+            //--------------------------------------
+            LearningLanguage learningLanguageVN = LearningLanguage.builder()
+                    .code(LearningLanguage.CODE.VN)
+                    .build();
+            LearningLanguage learningLanguageEN = LearningLanguage.builder()
                     .code(LearningLanguage.CODE.EN)
                     .build();
 
-            LearningLanguage record2 = LearningLanguage.builder()
-                    .name("Nước Anh")
-                    .locale(LearningLanguage.LOCALE.VIETNAMESE)
-                    .code(LearningLanguage.CODE.EN)
+            NativeLanguage nativeLanguageVN = NativeLanguage.builder()
+                    .code(NativeLanguage.CODE.VN)
                     .build();
 
-            LearningLanguage record3 = LearningLanguage.builder()
+            NativeLanguage nativeLanguageEN = NativeLanguage.builder()
+                    .code(NativeLanguage.CODE.EN)
+                    .build();
+
+            learningLanguageRepository.save(learningLanguageVN);
+            learningLanguageRepository.save(learningLanguageEN);
+
+            nativeLanguageRepository.save(nativeLanguageVN);
+            nativeLanguageRepository.save(nativeLanguageEN);
+
+            LearningLanguageLocale record1 = LearningLanguageLocale.builder()
+                    .learningLanguage(learningLanguageVN)
                     .name("Vietnamese")
-                    .locale(LearningLanguage.LOCALE.ENGLISH)
-                    .code(LearningLanguage.CODE.VN)
+                    .locale(LearningLanguageLocale.LOCALE.ENGLISH)
                     .build();
 
-            LearningLanguage record4 = LearningLanguage.builder()
+            LearningLanguageLocale record3 = LearningLanguageLocale.builder()
+                    .learningLanguage(learningLanguageVN)
                     .name("Việt Nam")
-                    .locale(LearningLanguage.LOCALE.VIETNAMESE)
-                    .code(LearningLanguage.CODE.VN)
+                    .locale(LearningLanguageLocale.LOCALE.VIETNAMESE)
                     .build();
 
+            LearningLanguageLocale record2 = LearningLanguageLocale.builder()
+                    .learningLanguage(learningLanguageEN)
+                    .name("English")
+                    .locale(LearningLanguageLocale.LOCALE.ENGLISH)
+                    .build();
 
-            learningLanguageRepository.saveAll(List.of(record1, record2, record3, record4));
+            LearningLanguageLocale record4 = LearningLanguageLocale.builder()
+                    .learningLanguage(learningLanguageEN)
+                    .name("Nước Anh")
+                    .locale(LearningLanguageLocale.LOCALE.VIETNAMESE)
+                    .build();
+            this.learningLanguageLocaleRepository.saveAll(List.of(record1, record2, record3, record4));
+
+            //-------------------------------------------------
+            NativeLanguageLocale record5 = NativeLanguageLocale.builder()
+                    .nativeLanguage(nativeLanguageVN)
+                    .name("Vietnamese")
+                    .locale(NativeLanguageLocale.LOCALE.ENGLISH)
+                    .build();
+
+            NativeLanguageLocale record6 = NativeLanguageLocale.builder()
+                    .nativeLanguage(nativeLanguageVN)
+                    .name("Việt Nam")
+                    .locale(NativeLanguageLocale.LOCALE.VIETNAMESE)
+                    .build();
+
+            NativeLanguageLocale record7 = NativeLanguageLocale.builder()
+                    .nativeLanguage(nativeLanguageEN)
+                    .name("English")
+                    .locale(NativeLanguageLocale.LOCALE.ENGLISH)
+                    .build();
+
+            NativeLanguageLocale record8 = NativeLanguageLocale.builder()
+                    .nativeLanguage(nativeLanguageEN)
+                    .name("Nước Anh")
+                    .locale(NativeLanguageLocale.LOCALE.VIETNAMESE)
+                    .build();
+            this.nativeLanguageLocaleRepository.saveAll(List.of(record5, record6, record7, record8));
 
             log.info("✅ Seeded Learning Language Record:");
         } else {
@@ -201,39 +242,4 @@ public class DataInitializer {
         }
     }
 
-    private void seedNative() {
-        if (nativeLanguageRepository.count() == 0) {
-
-            NativeLanguage nativeLanguage1 = NativeLanguage.builder()
-                    .name("English")
-                    .locale(NativeLanguage.LOCALE.ENGLISH)
-                    .code(NativeLanguage.CODE.EN)
-                    .build();
-
-            NativeLanguage nativeLanguage2 = NativeLanguage.builder()
-                    .name("Nước Anh")
-                    .locale(NativeLanguage.LOCALE.VIETNAMESE)
-                    .code(NativeLanguage.CODE.EN)
-                    .build();
-
-            NativeLanguage nativeLanguage3 = NativeLanguage.builder()
-                    .name("Việt Nam")
-                    .locale(NativeLanguage.LOCALE.VIETNAMESE)
-                    .code(NativeLanguage.CODE.VN)
-                    .build();
-
-            NativeLanguage nativeLanguage4 = NativeLanguage.builder()
-                    .name("Vietnamese")
-                    .locale(NativeLanguage.LOCALE.ENGLISH)
-                    .code(NativeLanguage.CODE.VN)
-                    .build();
-
-
-            nativeLanguageRepository.saveAll(List.of(nativeLanguage1, nativeLanguage2, nativeLanguage3, nativeLanguage4));
-
-            log.info("✅ Seeded Native Language Record:");
-        } else {
-            log.info("📋 Database đã có dữ liệu Native Language, bỏ qua việc seed");
-        }
-    }
 }

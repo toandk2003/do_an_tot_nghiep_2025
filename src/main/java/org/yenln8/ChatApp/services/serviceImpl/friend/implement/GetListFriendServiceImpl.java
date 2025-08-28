@@ -47,19 +47,7 @@ public class GetListFriendServiceImpl implements GetListFriendService {
         int pageSize = form.getPageSize().intValue();
         PageRequest pageRequest = PageRequest.of(currentPage, pageSize);
 
-        LearningLanguage learningLanguage = learningLanguageId == null ? null : this.learningLanguageRepository.findById(learningLanguageId).orElse(null);
-        NativeLanguage nativeLanguage = nativeLanguageId == null ? null : this.nativeLanguageRepository.findById(nativeLanguageId).orElse(null);
-
-        LearningLanguage.CODE learningLanguageCode = Optional.ofNullable(learningLanguage).map(LearningLanguage::getCode).orElse(null);
-        NativeLanguage.CODE nativeLanguageCode = Optional.ofNullable(nativeLanguage).map(NativeLanguage::getCode).orElse(null);
-
-        List<LearningLanguage> learningLanguages = this.learningLanguageRepository.findAllByCode(learningLanguageCode);
-        List<NativeLanguage> nativeLanguages = this.nativeLanguageRepository.findAllByCode(nativeLanguageCode);
-
-        List<Long> learningLanguageIds = learningLanguages.isEmpty() ? null : learningLanguages.stream().map(LearningLanguage::getId).toList();
-        List<Long> nativeLanguageIds = nativeLanguages.isEmpty() ? null : nativeLanguages.stream().map(NativeLanguage::getId).toList();
-
-        Page<Friend> friendsPageable = this.friendRepository.getFriends(userId, learningLanguageIds, nativeLanguageIds, fullName, pageRequest);
+        Page<Friend> friendsPageable = this.friendRepository.getFriends(userId, learningLanguageId, nativeLanguageId, fullName, pageRequest);
 
         List<Friend> friends = friendsPageable.getContent();
         List<GetListFriendResponseDto> result = friends.stream().map(friend -> {

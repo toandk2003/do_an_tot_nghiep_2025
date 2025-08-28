@@ -10,32 +10,25 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Builder
 @Entity
-@Table(name = "learning_languages",
-        uniqueConstraints = {
-                @UniqueConstraint(name = "uk_name_locale_deleted", columnNames = {"name", "locale", "deleted"})
-        }
-)
+@Table(name = "learning_languages")
 public class LearningLanguage {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", nullable = false)
-    private String name;
-
-    @Column(name = "locale", nullable = false)
-    @Enumerated(EnumType.STRING)
-    private LOCALE locale;
-
     @Column(name = "code", nullable = false)
     @Enumerated(EnumType.STRING)
     private CODE code;
+
+    @OneToMany(mappedBy = "learningLanguage", fetch = FetchType.LAZY)
+    private List<LearningLanguageLocale> learningLanguageLocales;
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
@@ -55,11 +48,6 @@ public class LearningLanguage {
 
     @Version
     private Integer rowVersion;
-
-    public enum LOCALE {
-        ENGLISH,
-        VIETNAMESE
-    }
 
     public enum CODE {
         EN,

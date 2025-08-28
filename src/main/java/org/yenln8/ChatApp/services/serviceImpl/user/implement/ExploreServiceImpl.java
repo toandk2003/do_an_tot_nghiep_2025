@@ -1,6 +1,7 @@
 package org.yenln8.ChatApp.services.serviceImpl.user.implement;
 
 import lombok.AllArgsConstructor;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.Authentication;
@@ -13,6 +14,8 @@ import org.yenln8.ChatApp.dto.base.BaseResponseDto;
 import org.yenln8.ChatApp.dto.base.PaginationResponseDto;
 import org.yenln8.ChatApp.dto.other.CurrentUser;
 import org.yenln8.ChatApp.dto.request.ExploreRequestDto;
+import org.yenln8.ChatApp.dto.request.LearningLanguageMiniDto;
+import org.yenln8.ChatApp.dto.request.NativeLanguageMiniDto;
 import org.yenln8.ChatApp.dto.response.GetProfileResponseDto;
 import org.yenln8.ChatApp.entity.*;
 import org.yenln8.ChatApp.repository.*;
@@ -60,17 +63,8 @@ public class ExploreServiceImpl implements ExploreService {
             nativeLanguageId = user.getProfile().getNativeLanguage().getId();
         }
 
-        LearningLanguage learningLanguage = learningLanguageId == null ? null : this.learningLanguageRepository.findById(learningLanguageId).orElse(null);
-        NativeLanguage nativeLanguage = nativeLanguageId == null ? null : this.nativeLanguageRepository.findById(nativeLanguageId).orElse(null);
-
-        LearningLanguage.CODE learningLanguageCode = Optional.ofNullable(learningLanguage).map(LearningLanguage::getCode).orElse(null);
-        NativeLanguage.CODE nativeLanguageCode = Optional.ofNullable(nativeLanguage).map(NativeLanguage::getCode).orElse(null);
-
-        List<LearningLanguage> learningLanguages = learningLanguageCode == null ? null : this.learningLanguageRepository.findAllByCode(learningLanguageCode);
-        List<NativeLanguage> nativeLanguages = nativeLanguageCode == null ? null : this.nativeLanguageRepository.findAllByCode(nativeLanguageCode);
-
-        List<Long> learningLanguageIds = learningLanguages == null ? null : learningLanguages.stream().map(LearningLanguage::getId).toList();
-        List<Long> nativeLanguageIds = nativeLanguages == null ? null : nativeLanguages.stream().map(NativeLanguage::getId).toList();
+//        LearningLanguage learningLanguage = learningLanguageId == null ? null : this.learningLanguageRepository.findById(learningLanguageId).orElse(null);
+//        NativeLanguage nativeLanguage = nativeLanguageId == null ? null : this.nativeLanguageRepository.findById(nativeLanguageId).orElse(null);
 
         //  retrieve other user not myself
         //  retrieve other user not friend
@@ -86,16 +80,16 @@ public class ExploreServiceImpl implements ExploreService {
         Page<User> userRecommends =
                 form.getLearningLanguageId() == null && form.getNativeLanguageId() == null && form.getFullName() == null ?
                         this.userRepository.findByUserIdNotInAndStatusAndDeletedAtIsNullAndNotExactNativeAndLanguage(
-                                nativeLanguageIds,
-                                learningLanguageIds,
+                                nativeLanguageId,
+                                learningLanguageId,
                                 userStatus,
                                 currentDay,
                                 avoidUserIds,
                                 pageRequest)
                         :
                         this.userRepository.findByUserIdNotInAndStatusAndDeletedAtIsNullAndExactNativeAndLanguage(
-                                nativeLanguageIds,
-                                learningLanguageIds,
+                                nativeLanguageId,
+                                learningLanguageId,
                                 userStatus,
                                 currentDay,
                                 avoidUserIds,
@@ -114,7 +108,11 @@ public class ExploreServiceImpl implements ExploreService {
 
     private List<GetProfileResponseDto> convert(List<User> userRecommends) {
         return userRecommends.stream().map((user) -> {
-                    Long userId = user.getId();
+
+            LearningLanguageLocale.LOCALE learningLocale = LocaleContextHolder.getLocale().getLanguage().equals("en") ? LearningLanguageLocale.LOCALE.ENGLISH : LearningLanguageLocale.LOCALE.VIETNAMESE  ;
+            NativeLanguageLocale.LOCALE nativeLocale = LocaleContextHolder.getLocale().getLanguage().equals("en") ? NativeLanguageLocale.LOCALE.ENGLISH : NativeLanguageLocale.LOCALE.VIETNAMESE  ;
+
+            Long userId = user.getId();
                     String email = user.getEmail().trim();
                     String fullName = user.getFullName().trim();
                     Boolean isOnboarded = user.getStatus().equals(User.STATUS.NO_ONBOARDING) ? Boolean.FALSE : Boolean.TRUE;
@@ -124,21 +122,33 @@ public class ExploreServiceImpl implements ExploreService {
                     String location = Optional.ofNullable(profile).map(Profile::getLocation).orElse(null);
                     String bio = Optional.ofNullable(profile).map(Profile::getBio).orElse(null);
 
-                    NativeLanguage nativeLanguage = Optional.ofNullable(profile)
-                            .map(Profile::getNativeLanguage)
-                            .map(x -> NativeLanguage.builder()
-                                    .id(x.getId())
-                                    .name(x.getName())
-                                    .build())
-                            .orElse(null);
+            NativeLanguageMiniDto nativeLanguage = Optional.ofNullable(profile)
+                    .map(Profile::getNativeLanguage)
+                    .map(x -> NativeLanguageMiniDto.builder()
+                            .id(x.getId())
+                            .name(x.getNativeLanguageLocales()
+                                    .stream()
+                                    .filter(item -> item.getLocale().equals(nativeLocale))
+                                    .findFirst()
+                                    .map(NativeLanguageLocale::getName)
+                                    .get()
+                            )
+                            .build())
+                    .orElse(null);
 
-                    LearningLanguage learningLanguage = Optional.ofNullable(profile).
-                            map(Profile::getLearningLanguage)
-                            .map(x -> LearningLanguage.builder()
-                                    .id(x.getId())
-                                    .name(x.getName())
-                                    .build())
-                            .orElse(null);
+            LearningLanguageMiniDto learningLanguage = Optional.ofNullable(profile)
+                    .map(Profile::getLearningLanguage)
+                    .map(x -> LearningLanguageMiniDto.builder()
+                            .id(x.getId())
+                            .name(x.getLearningLanguageLocales()
+                                    .stream()
+                                    .filter(item -> item.getLocale().equals(learningLocale))
+                                    .findFirst()
+                                    .map(LearningLanguageLocale::getName)
+                                    .get()
+                            )
+                            .build())
+                    .orElse(null);
 
 
                     String fileNameInS3 = Optional.ofNullable(profile).map(Profile::getAvatar).map(Attachment::getFileNameInS3).orElse(null);

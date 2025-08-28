@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.yenln8.ChatApp.dto.base.BaseResponseDto;
 import org.yenln8.ChatApp.entity.LearningLanguage;
 import org.yenln8.ChatApp.entity.NativeLanguage;
+import org.yenln8.ChatApp.entity.NativeLanguageLocale;
 import org.yenln8.ChatApp.repository.NativeLanguageRepository;
 import org.yenln8.ChatApp.services.serviceImpl.category.interfaces.GetListLearningLanguageService;
 import org.yenln8.ChatApp.services.serviceImpl.category.interfaces.GetListNativeLanguageService;
@@ -19,15 +20,15 @@ public class GetListNativeLanguageServiceImpl implements GetListNativeLanguageSe
 
     @Override
     public BaseResponseDto call() {
-        NativeLanguage.LOCALE locale = LocaleContextHolder.getLocale().getLanguage().equals("en") ? NativeLanguage.LOCALE.ENGLISH : NativeLanguage.LOCALE.VIETNAMESE  ;
+        NativeLanguageLocale.LOCALE locale = LocaleContextHolder.getLocale().getLanguage().equals("en") ? NativeLanguageLocale.LOCALE.ENGLISH : NativeLanguageLocale.LOCALE.VIETNAMESE  ;
 
-        List<NativeLanguage> nativeLanguages = this.nativeLanguageRepository.findAllByLocale(locale);
+        List<NativeLanguage> nativeLanguages = this.nativeLanguageRepository.findAll();
 
         return BaseResponseDto.builder()
                 .success(true)
                 .message("success")
                 .statusCode(200)
-                .data(nativeLanguages)
+                .data(nativeLanguages.stream().map(item -> item.getNativeLanguageLocales().stream().filter(languageLocale -> languageLocale.getLocale().equals(locale) )))
                 .build();
     }
 }

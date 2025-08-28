@@ -10,25 +10,24 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Builder
 @Entity
-@Table(name = "native_languages")
-public class NativeLanguage {
+@Table(name = "native_language_locales")
+public class NativeLanguageLocale {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "code", nullable = false)
-    @Enumerated(EnumType.STRING)
-    private CODE code;
+    @Column(name = "name", nullable = false)
+    private String name;
 
-    @OneToMany(mappedBy = "nativeLanguage", fetch = FetchType.LAZY)
-    private List<NativeLanguageLocale> nativeLanguageLocales;
+    @Column(name = "locale", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private LOCALE locale;
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
@@ -49,8 +48,13 @@ public class NativeLanguage {
     @Version
     private Integer rowVersion;
 
-    public enum CODE {
-        EN,
-        VN
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "native_language_id", nullable = false)
+    @JsonIgnore
+    private NativeLanguage nativeLanguage;
+
+    public enum LOCALE {
+        ENGLISH,
+        VIETNAMESE
     }
 }

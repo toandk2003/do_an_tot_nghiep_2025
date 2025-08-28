@@ -5,6 +5,9 @@ import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Service;
 import org.yenln8.ChatApp.dto.base.BaseResponseDto;
 import org.yenln8.ChatApp.entity.LearningLanguage;
+import org.yenln8.ChatApp.entity.LearningLanguageLocale;
+import org.yenln8.ChatApp.entity.NativeLanguage;
+import org.yenln8.ChatApp.entity.NativeLanguageLocale;
 import org.yenln8.ChatApp.repository.LearningLanguageRepository;
 import org.yenln8.ChatApp.services.serviceImpl.category.interfaces.GetListLearningLanguageService;
 
@@ -17,15 +20,15 @@ public class GetListLearningLanguageServiceImpl  implements GetListLearningLangu
 
     @Override
     public BaseResponseDto call() {
-        LearningLanguage.LOCALE locale = LocaleContextHolder.getLocale().getLanguage().equals("en") ? LearningLanguage.LOCALE.ENGLISH : LearningLanguage.LOCALE.VIETNAMESE  ;
+        LearningLanguageLocale.LOCALE locale = LocaleContextHolder.getLocale().getLanguage().equals("en") ? LearningLanguageLocale.LOCALE.ENGLISH : LearningLanguageLocale.LOCALE.VIETNAMESE  ;
 
-        List<LearningLanguage> learningLanguages = this.learningLanguageRepository.findAllByLocale(locale);
-
+        List<LearningLanguage> learningLanguages = this.learningLanguageRepository.findAll();
+        var data = learningLanguages.stream().map(item -> item.getLearningLanguageLocales().stream().filter(languageLocale -> languageLocale.getLocale().equals(locale) ));
         return BaseResponseDto.builder()
                 .success(true)
                 .message("success")
                 .statusCode(200)
-                .data(learningLanguages)
+                .data(data)
                 .build();
     }
 }

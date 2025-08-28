@@ -5,6 +5,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import org.yenln8.ChatApp.entity.LearningLanguage;
+import org.yenln8.ChatApp.entity.NativeLanguage;
 import org.yenln8.ChatApp.entity.User;
 
 import java.util.List;
@@ -26,7 +28,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
             "left join fetch u.profile p " +
             "left join fetch p.learningLanguage ll " +
             "left join fetch p.nativeLanguage nl " +
-            "where (nl.id IN (:nativeLanguageIds) or ll.id IN (:nativeLanguageIds) or nl.id IN (:learningLanguageIds) or ll.id IN (:learningLanguageIds)) " +
+            "where (nl.id = :nativeLanguageId or ll.id = :nativeLanguageId or nl.id = :learningLanguageId or ll.id = :learningLanguageId) " +
             "and u.status = :status " +
             "and u.id not in (:avoidUserIds)" +
 //            "and (:fullName is null or lower(u.fullName) like lower(concat('%', :fullName, '%'))) " +
@@ -35,8 +37,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     )
     Page<User> findByUserIdNotInAndStatusAndDeletedAtIsNullAndNotExactNativeAndLanguage(
-            List<Long> nativeLanguageIds,
-            List<Long> learningLanguageIds,
+            Long nativeLanguageId,
+            Long learningLanguageId,
             User.STATUS status,
             long currentDate,
             List<Long> avoidUserIds,
@@ -47,8 +49,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
             "left join fetch u.profile p " +
             "left join fetch p.learningLanguage ll " +
             "left join fetch p.nativeLanguage nl " +
-            "where ((:nativeLanguageIds ) is null or nl.id in (:nativeLanguageIds)) " +
-            "and ((:learningLanguageIds) is null or ll.id in (:learningLanguageIds))  " +
+            "where (:nativeLanguageId  is null or nl.id = :nativeLanguageId) " +
+            "and (:learningLanguageId is null or ll.id = :learningLanguageId)  " +
             "and u.status = :status " +
             "and u.id not in (:avoidUserIds) " +
             "and (:fullName is null or lower(u.fullName) like lower(concat('%', :fullName, '%'))) " +
@@ -57,8 +59,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     )
     Page<User> findByUserIdNotInAndStatusAndDeletedAtIsNullAndExactNativeAndLanguage(
-            List<Long> nativeLanguageIds,
-            List<Long> learningLanguageIds,
+            Long nativeLanguageId,
+            Long learningLanguageId,
             User.STATUS status,
             long currentDate,
             List<Long> avoidUserIds,

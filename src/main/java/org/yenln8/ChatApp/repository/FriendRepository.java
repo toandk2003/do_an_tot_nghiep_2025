@@ -39,18 +39,18 @@ public interface FriendRepository extends JpaRepository<Friend, Long> {
             "(" +
             "f.user1.id = :userId " +
             "AND (:fullName IS NULL OR LOWER(f.user2.fullName) LIKE LOWER(CONCAT('%', :fullName, '%'))) " +
-            "AND (:learningLanguageIds IS NULL OR f.user2.profile.learningLanguage.id IN (:learningLanguageIds)) " +
-            "AND (:nativeLanguageIds IS NULL OR f.user2.profile.nativeLanguage.id IN (:nativeLanguageIds))" +
+            "AND (:learningLanguageId IS NULL OR f.user2.profile.learningLanguage.id = :learningLanguageId) " +
+            "AND (:nativeLanguageId IS NULL OR f.user2.profile.nativeLanguage.id = :nativeLanguageId)" +
             ") " +
             "OR " +
             "(" +
             "f.user2.id = :userId " +
             "AND (:fullName IS NULL OR LOWER(f.user1.fullName) LIKE LOWER(CONCAT('%', :fullName, '%'))) " +
-            "AND (:learningLanguageIds IS NULL OR f.user1.profile.learningLanguage.id IN (:learningLanguageIds)) " +
-            "AND (:nativeLanguageIds IS NULL OR f.user1.profile.nativeLanguage.id IN (:nativeLanguageIds))" +
+            "AND (:learningLanguageId IS NULL OR f.user1.profile.learningLanguage.id = :learningLanguageId) " +
+            "AND (:nativeLanguageId IS NULL OR f.user1.profile.nativeLanguage.id = :nativeLanguageId)" +
             ")" +
             ")")
-    Page<Friend> getFriends(@Param("userId") Long userId, List<Long> learningLanguageIds, List<Long> nativeLanguageIds, String fullName, Pageable pageable);
+    Page<Friend> getFriends(@Param("userId") Long userId, Long learningLanguageId, Long nativeLanguageId, String fullName, Pageable pageable);
 
 
     Optional<Friend> findByIdAndDeletedAtIsNull(Long friendId);

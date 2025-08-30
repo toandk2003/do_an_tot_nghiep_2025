@@ -51,8 +51,10 @@ public class GetNotificationServiceImpl implements GetNotificationService {
             return NotificationConvertedFromEntityDto.builder()
                     .id(notification.getId())
                     .content(notification.getContent())
-                    .userReference(userReferenceFullInfo)
+                    .status(notification.getStatus())
                     .createdAt(notification.getCreatedAt())
+                    .seenAt(notification.getSeenAt())
+                    .userReference(userReferenceFullInfo)
                     .build();
         }).toList();
 

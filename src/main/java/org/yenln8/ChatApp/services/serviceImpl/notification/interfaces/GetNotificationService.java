@@ -5,4 +5,5 @@ import org.yenln8.ChatApp.dto.request.GetNotificationRequestDto;
 
 public interface GetNotificationService {
     BaseResponseDto call(GetNotificationRequestDto form);
+
 }

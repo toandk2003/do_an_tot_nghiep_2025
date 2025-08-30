@@ -54,14 +54,30 @@ public class AcceptFriendRequestServiceImpl implements AcceptFriendRequestServic
                 .sentAt(friendRequestSaved.getCreatedAt())
                 .responseAt(friendRequestSaved.getResponsedAt())
                 .build();
-        //sent Noti
-//        this.notificationRepository.save(Notification.builder()
-//                        .senderId(0L)
-//                        .senderType(Notification.SENDER_TYPE.SYSTEM)
-//                        .receiverId(sender.getId())
-//                        .receiverType(Notification.RECEIVER_TYPE.USER)
-//                                .referenceId()
-//                build());
+
+        //   sent Noti for sender friend request
+        this.notificationRepository.save(Notification.builder()
+                .senderType(Notification.SENDER_TYPE.SYSTEM)
+                .receiverId(sender.getId())
+                .receiverType(Notification.RECEIVER_TYPE.USER)
+                .referenceId(receiver.getId())
+                .referenceType(Notification.REFERENCE_TYPE.USER)
+                .content(MessageBundle.getMessage("message.notification.accept.friend.sender", receiverFullInfo.getFullName()))
+                .status(Notification.STATUS.NOT_SEEN)
+                .createdBy(0L)
+                .build());
+
+        //   sent Noti for receiver friend request
+        this.notificationRepository.save(Notification.builder()
+                .senderType(Notification.SENDER_TYPE.SYSTEM)
+                .receiverId(receiver.getId())
+                .receiverType(Notification.RECEIVER_TYPE.USER)
+                .referenceType(Notification.REFERENCE_TYPE.USER)
+                .referenceId(sender.getId())
+                .content(MessageBundle.getMessage("message.notification.accept.friend.receiver", senderFullInfo.getFullName()))
+                .status(Notification.STATUS.NOT_SEEN)
+                .createdBy(0L)
+                .build());
 
         // TODO send noti to 2 user, remember do for auto accept too
         return BaseResponseDto.builder()

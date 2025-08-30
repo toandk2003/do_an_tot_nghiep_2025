@@ -92,6 +92,7 @@ public class Notification {
     }
 
     public enum RECEIVER_TYPE {
-        USER
+        USER,
+        GROUP
     }
 }

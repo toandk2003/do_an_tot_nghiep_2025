@@ -3,10 +3,10 @@ package org.yenln8.ChatApp.common.constant;
 import java.util.List;
 
 public final class S3Constant {
-    public static final String AVATAR_PRIVATE_BUCKET = "avatar-private-bucket";
-    public static final String AVATAR_GROUP_BUCKET = "avatar-group-bucket";
-    public static final String CHAT_MEDIA_BUCKET = "chat-media-bucket";
-    public static final String COUNTRY_BUCKET = "country-bucket";
+    public static final String AVATAR_PRIVATE_BUCKET = "avatar-private-chat-app-bucket";
+    public static final String AVATAR_GROUP_BUCKET = "avatar-group-chat-app-bucket";
+    public static final String CHAT_MEDIA_BUCKET = "chat-media-chat-app-bucket";
+    public static final String COUNTRY_BUCKET = "country-chat-app-bucket";
     public static final long PRESIGN_URL_UPLOAD_MEDIA_EXPIRE_TIME = 24 * 60 * 60 * 1000;
     public static final long PRESIGN_URL_DOWNLOAD_MEDIA_EXPIRE_TIME = 24 * 60 * 60 * 1000;
     public static final long MAX_LIMIT_RESOURCE = 1 * 1024 * 1024 * 1024;      // 1GB

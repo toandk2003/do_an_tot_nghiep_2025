@@ -64,6 +64,7 @@ public class AcceptFriendRequestServiceImpl implements AcceptFriendRequestServic
                 .referenceType(Notification.REFERENCE_TYPE.USER)
                 .content(MessageBundle.getMessage("message.notification.accept.friend.sender", receiverFullInfo.getFullName()))
                 .status(Notification.STATUS.NOT_SEEN)
+                .type(Notification.TYPE.ACCEPT_FRIEND_REQUEST)
                 .createdBy(0L)
                 .build());
 
@@ -76,6 +77,7 @@ public class AcceptFriendRequestServiceImpl implements AcceptFriendRequestServic
                 .referenceId(sender.getId())
                 .content(MessageBundle.getMessage("message.notification.accept.friend.receiver", senderFullInfo.getFullName()))
                 .status(Notification.STATUS.NOT_SEEN)
+                .type(Notification.TYPE.ACCEPT_FRIEND_REQUEST)
                 .createdBy(0L)
                 .build());
 

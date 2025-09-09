@@ -51,6 +51,10 @@ public class Notification {
     @Enumerated(EnumType.STRING)
     private STATUS status;
 
+    @Column(name = "type", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private TYPE type;
+
     @UpdateTimestamp
     @Column(name = "seen_at")
     private LocalDateTime seenAt;
@@ -94,5 +98,9 @@ public class Notification {
     public enum RECEIVER_TYPE {
         USER,
         GROUP
+    }
+
+    public enum TYPE {
+        ACCEPT_FRIEND_REQUEST
     }
 }

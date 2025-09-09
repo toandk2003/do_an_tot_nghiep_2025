@@ -52,6 +52,7 @@ public class GetNotificationServiceImpl implements GetNotificationService {
                     .id(notification.getId())
                     .content(notification.getContent())
                     .status(notification.getStatus())
+                    .type(notification.getType())
                     .createdAt(notification.getCreatedAt())
                     .seenAt(notification.getSeenAt())
                     .userReference(userReferenceFullInfo)

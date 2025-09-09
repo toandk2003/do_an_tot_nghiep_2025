@@ -102,6 +102,7 @@ public class MakeFriendServiceImpl implements MakeFriendService {
                     .referenceType(Notification.REFERENCE_TYPE.USER)
                     .content(MessageBundle.getMessage("message.notification.accept.friend.sender", sender.getFullName()))
                     .status(Notification.STATUS.NOT_SEEN)
+                    .type(Notification.TYPE.ACCEPT_FRIEND_REQUEST)
                     .createdBy(0L)
                     .build());
 
@@ -114,6 +115,7 @@ public class MakeFriendServiceImpl implements MakeFriendService {
                     .referenceType(Notification.REFERENCE_TYPE.USER)
                     .content(MessageBundle.getMessage("message.notification.accept.friend.sender", receiver.getFullName()))
                     .status(Notification.STATUS.NOT_SEEN)
+                    .type(Notification.TYPE.ACCEPT_FRIEND_REQUEST)
                     .createdBy(0L)
                     .build());
 

@@ -1,19 +1,23 @@
 package org.yenln8.ChatApp.services.serviceImpl.auth.implement;
 
+import io.swagger.v3.core.util.Json;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-import org.yenln8.ChatApp.common.constant.S3Constant;
+import org.yenln8.ChatApp.common.util.ApiClient;
 import org.yenln8.ChatApp.common.util.MessageBundle;
+import org.yenln8.ChatApp.common.util.Network;
 import org.yenln8.ChatApp.dto.base.BaseResponseDto;
 import org.yenln8.ChatApp.dto.other.CurrentUser;
 import org.yenln8.ChatApp.dto.request.OnBoardingRequestDto;
 import org.yenln8.ChatApp.dto.response.GetProfileResponseDto;
+import org.yenln8.ChatApp.dto.synchronize.SynchronizeUserDto;
 import org.yenln8.ChatApp.entity.*;
 import org.yenln8.ChatApp.repository.*;
 import org.yenln8.ChatApp.services.serviceImpl.auth.interfaces.OnBoardingService;
@@ -21,14 +25,18 @@ import org.yenln8.ChatApp.services.serviceImpl.user.interfaces.GetFullInfoAboutU
 
 @Slf4j
 @AllArgsConstructor
+@NoArgsConstructor
 @Service
 public class OnBoardingServiceImpl implements OnBoardingService {
+    @Value("${url.synchronize.chat-service}")
+    private String chatServiceUrl;
     private ProfileRepository profileRepository;
     private NativeLanguageRepository nativeLanguageRepository;
     private LearningLanguageRepository learningLanguageRepository;
     private UserRepository userRepository;
     private AttachmentRepository attachmentRepository;
     private GetFullInfoAboutUserService getFullInfoAboutUserService;
+    private ApiClient apiClient;
 
     @Override
     public BaseResponseDto call(OnBoardingRequestDto form, HttpServletRequest request) {
@@ -70,6 +78,11 @@ public class OnBoardingServiceImpl implements OnBoardingService {
         this.userRepository.save(user);
 
         GetProfileResponseDto userFullInfo = this.getFullInfoAboutUserService.call(user);
+        SynchronizeUserDto synchronizeUserDto = SynchronizeUserDto.builder()
+                .id("122223333333L")
+                .build();
+
+        this.apiClient.callPostExternalApi(chatServiceUrl + "/users", Json.pretty(synchronizeUserDto), Network.getTokenFromRequest(request));
         return BaseResponseDto.builder()
                 .success(true)
                 .statusCode(HttpStatus.OK.value())

@@ -2,6 +2,7 @@ package org.yenln8.ChatApp.common.util;
 
 
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.util.StringUtils;
 
 public class Network {
     public static String getUserIP(HttpServletRequest request) {
@@ -10,5 +11,12 @@ public class Network {
             ip = request.getRemoteAddr();
         }
         return ip;
+    }
+    public static String getTokenFromRequest(HttpServletRequest request) {
+        String bearerToken = request.getHeader("Authorization");
+        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {
+            return bearerToken.substring(7).trim();
+        }
+        return null;
     }
 }

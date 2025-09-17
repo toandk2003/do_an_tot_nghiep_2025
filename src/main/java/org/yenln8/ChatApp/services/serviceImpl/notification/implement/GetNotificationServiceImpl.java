@@ -37,7 +37,7 @@ public class GetNotificationServiceImpl implements GetNotificationService {
         PageRequest pageRequest = PageRequest.of(currentPage, pageSize);
 
         long countNotSeen = notificationRepository.countByReceiverIdAndStatus(userId, Notification.STATUS.NOT_SEEN);
-        Page<Notification> notificationPageable = notificationRepository.findByReceiverIdOrderByCreatedAtDesc(userId,pageRequest);
+        Page<Notification> notificationPageable = notificationRepository.findByReceiverIdAndStatusNotOrderByCreatedAtDesc(userId, Notification.STATUS.DELETED, pageRequest);
 
         List<Notification> notifications = notificationPageable.getContent();
 

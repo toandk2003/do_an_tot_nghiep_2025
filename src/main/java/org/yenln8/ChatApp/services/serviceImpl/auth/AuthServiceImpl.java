@@ -80,7 +80,7 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public BaseResponseDto onBoarding(OnBoardingRequestDto form, HttpServletRequest request) {
+    public BaseResponseDto onBoarding(OnBoardingRequestDto form, HttpServletRequest request) throws Exception {
         return this.onBoardingService.call(form, request);
     }
 

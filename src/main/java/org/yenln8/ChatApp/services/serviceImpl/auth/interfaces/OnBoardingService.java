@@ -6,5 +6,5 @@ import org.yenln8.ChatApp.dto.base.BaseResponseDto;
 import org.yenln8.ChatApp.dto.request.OnBoardingRequestDto;
 
 public interface OnBoardingService {
-    BaseResponseDto call(OnBoardingRequestDto form,HttpServletRequest request);
+    BaseResponseDto call(OnBoardingRequestDto form,HttpServletRequest request) throws  Exception;
 }

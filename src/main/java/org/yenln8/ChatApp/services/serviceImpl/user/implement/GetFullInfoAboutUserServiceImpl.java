@@ -107,6 +107,7 @@ public class GetFullInfoAboutUserServiceImpl implements GetFullInfoAboutUserServ
                 .nativeLanguage(nativeLanguage)
                 .learningLanguage(learningLanguage)
                 .attachmentId(attachmentId)
+                .fileNameInS3(fileNameInS3)
                 .profilePic(profilePic)
                 .lastOnline(lastOnlineTime)
                 .rowVersion(user.getRowVersion())

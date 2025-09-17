@@ -1,15 +1,18 @@
 package org.yenln8.ChatApp.services.serviceImpl.auth.implement;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.v3.core.util.Json;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.yenln8.ChatApp.common.constant.S3Constant;
 import org.yenln8.ChatApp.common.util.ApiClient;
 import org.yenln8.ChatApp.common.util.MessageBundle;
 import org.yenln8.ChatApp.common.util.Network;
@@ -23,23 +26,42 @@ import org.yenln8.ChatApp.repository.*;
 import org.yenln8.ChatApp.services.serviceImpl.auth.interfaces.OnBoardingService;
 import org.yenln8.ChatApp.services.serviceImpl.user.interfaces.GetFullInfoAboutUserService;
 
+import java.time.LocalDateTime;
+
 @Slf4j
-@AllArgsConstructor
+//@AllArgsConstructor
 @NoArgsConstructor
 @Service
 public class OnBoardingServiceImpl implements OnBoardingService {
     @Value("${url.synchronize.chat-service}")
     private String chatServiceUrl;
+
+    @Autowired
     private ProfileRepository profileRepository;
+
+    @Autowired
     private NativeLanguageRepository nativeLanguageRepository;
+
+    @Autowired
     private LearningLanguageRepository learningLanguageRepository;
+
+    @Autowired
     private UserRepository userRepository;
+
+    @Autowired
     private AttachmentRepository attachmentRepository;
+
+    @Autowired
     private GetFullInfoAboutUserService getFullInfoAboutUserService;
+
+    @Autowired
     private ApiClient apiClient;
 
+    @Autowired
+    private ObjectMapper objectMapper;
+
     @Override
-    public BaseResponseDto call(OnBoardingRequestDto form, HttpServletRequest request) {
+    public BaseResponseDto call(OnBoardingRequestDto form, HttpServletRequest request) throws  Exception {
         Authentication securityContextHolder = SecurityContextHolder.getContext().getAuthentication();
         CurrentUser currentUser = (CurrentUser) securityContextHolder.getPrincipal();
         Long userId = currentUser.getId();
@@ -78,11 +100,32 @@ public class OnBoardingServiceImpl implements OnBoardingService {
         this.userRepository.save(user);
 
         GetProfileResponseDto userFullInfo = this.getFullInfoAboutUserService.call(user);
+
         SynchronizeUserDto synchronizeUserDto = SynchronizeUserDto.builder()
-                .id("122223333333L")
+                .userId(userFullInfo.getId())
+                .email(userFullInfo.getEmail())
+                .fullName(userFullInfo.getFullName())
+                .bio(userFullInfo.getBio())
+                .location(userFullInfo.getLocation())
+                .learningLanguageId(userFullInfo.getLearningLanguage().getId())
+                .nativeLanguageId(userFullInfo.getNativeLanguage().getId())
+                .nativeLanguageName(userFullInfo.getNativeLanguage().getName())
+                .learningLanguageName(userFullInfo.getLearningLanguage().getName())
+                .avatar(userFullInfo.getFileNameInS3())
+                .bucket(S3Constant.AVATAR_PRIVATE_BUCKET)
+                .status(User.STATUS.ACTIVE.toString())
+                .role(User.ROLE.USER.toString())
+                .maxLimitResourceMedia(S3Constant.MAX_LIMIT_RESOURCE)
+                .currentUsageResourceMedia(0L)
+                .createdAt(user.getCreatedAt())
+                .updatedAt(user.getUpdatedAt())
+                .rowVersion(userFullInfo.getRowVersion())
+                .deleted(0)
                 .build();
 
-        this.apiClient.callPostExternalApi(chatServiceUrl + "/users", Json.pretty(synchronizeUserDto), Network.getTokenFromRequest(request));
+        String body =  objectMapper.writeValueAsString(synchronizeUserDto);
+        log.info("SynchronizeUserDto: {}", body);
+        this.apiClient.callPostExternalApi(chatServiceUrl + "/users", body, Network.getTokenFromRequest(request));
         return BaseResponseDto.builder()
                 .success(true)
                 .statusCode(HttpStatus.OK.value())

@@ -29,6 +29,7 @@ public class GetProfileResponseDto implements Serializable {
     private NativeLanguageMiniDto nativeLanguage;
     private LearningLanguageMiniDto learningLanguage;
     private Long attachmentId;
+    private String fileNameInS3;
     private String profilePic;
     private LocalDateTime lastOnline;
     private Integer rowVersion;

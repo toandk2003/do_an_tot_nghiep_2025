@@ -1,5 +1,6 @@
 package org.yenln8.ChatApp.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -40,8 +41,8 @@ public class FriendController {
                                                @Min(1)
                                                @Max(Long.MAX_VALUE)
                                                @NotNull
-                                               Long receiverId) {
-        return ResponseEntity.ok(this.friendService.makeFriendRequest(receiverId));
+                                               Long receiverId, HttpServletRequest request) {
+        return ResponseEntity.ok(this.friendService.makeFriendRequest(receiverId, request));
     }
 
     @PutMapping("/{id}/accept")
@@ -49,8 +50,10 @@ public class FriendController {
                                                      @Min(1)
                                                      @Max(Long.MAX_VALUE)
                                                      @NotNull
-                                                     Long friendRequestId) {
-        return ResponseEntity.ok(this.friendService.acceptFriendRequest(friendRequestId));
+                                                     Long friendRequestId,
+                                                 HttpServletRequest request
+    ) {
+        return ResponseEntity.ok(this.friendService.acceptFriendRequest(friendRequestId,request));
     }
 
     @PutMapping("/{id}/reject")

@@ -1,13 +1,19 @@
 package org.yenln8.ChatApp.services.serviceImpl.friend.implement;
 
-import lombok.AllArgsConstructor;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.yenln8.ChatApp.common.constant.FriendConstant;
+import org.yenln8.ChatApp.common.util.ApiClient;
 import org.yenln8.ChatApp.common.util.ContextService;
 import org.yenln8.ChatApp.common.util.MessageBundle;
+import org.yenln8.ChatApp.common.util.Network;
 import org.yenln8.ChatApp.dto.base.BaseResponseDto;
 import org.yenln8.ChatApp.dto.other.CurrentUser;
+import org.yenln8.ChatApp.dto.synchronize.SynchronizeConversationDto;
 import org.yenln8.ChatApp.dto.response.MakeFriendResponseDto;
 import org.yenln8.ChatApp.entity.Friend;
 import org.yenln8.ChatApp.entity.FriendRequest;
@@ -25,19 +31,38 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
-@AllArgsConstructor
 @Slf4j
 public class MakeFriendServiceImpl implements MakeFriendService {
 
+    @Value("${url.synchronize.chat-service}")
+    private String chatServiceUrl;
+
+    @Autowired
     private UserService userService;
+
+    @Autowired
     private FriendRepository friendRepository;
+
+    @Autowired
     private BlockRepository blockRepository;
+
+    @Autowired
     private FriendRequestRepository friendRequestRepository;
+
+    @Autowired
     private GetFullInfoAboutUserService getFullInfoAboutUserService;
+
+    @Autowired
     private NotificationRepository notificationRepository;
 
+    @Autowired
+    private ApiClient apiClient;
+
+    @Autowired
+    private ObjectMapper objectMapper;
+
     @Override
-    public BaseResponseDto call(Long receiverId) {
+    public BaseResponseDto call(Long receiverId, HttpServletRequest request) {
         // Kiem tra tai khoan cua 2 nguoi co ACTIVE khong
         // Kiem tra co phai gui ket ban cho chinh minh khong
         // Kiem tra 2 nguoi da la ban hay chua
@@ -54,7 +79,7 @@ public class MakeFriendServiceImpl implements MakeFriendService {
         User sender = senderAndReceiver.get(0);
         User receiver = senderAndReceiver.get(1);
 
-        FriendRequest friendRequestSaved = this.save(sender, receiver);
+        FriendRequest friendRequestSaved = this.save(sender, receiver, request);
 
         MakeFriendResponseDto data = MakeFriendResponseDto.builder()
                 .id(friendRequestSaved.getId())
@@ -74,7 +99,7 @@ public class MakeFriendServiceImpl implements MakeFriendService {
                 .build();
     }
 
-    private FriendRequest save(User sender, User receiver) {
+    private FriendRequest save(User sender, User receiver, HttpServletRequest request) {
 
         // Kiem tra 2 nguoi co vo tinh gui ket ban cho nhau khong, neu co thi dong y luon
         if (this.friendRequestRepository.alreadySentFriendRequest(receiver.getId(), sender.getId())) {
@@ -118,6 +143,20 @@ public class MakeFriendServiceImpl implements MakeFriendService {
                     .type(Notification.TYPE.ACCEPT_FRIEND_REQUEST)
                     .createdBy(0L)
                     .build());
+
+            try{
+                SynchronizeConversationDto synchronizeConversationDto = SynchronizeConversationDto.builder()
+                        .participants(List.of(sender.getId(), receiver.getId()))
+                        .type("private")
+                        .build();
+
+                String body =  objectMapper.writeValueAsString(synchronizeConversationDto);
+                log.info("synchronizeConversationDto: {}", body);
+                this.apiClient.callPostExternalApi(chatServiceUrl + "/synchronize/conversations/private", body, Network.getTokenFromRequest(request));
+            }
+            catch (Exception e){
+                log.error("SynchronizeUserDto: {}", e.getMessage());
+            }
 
             return friendRequestRepository.save(friendRequest);
         }

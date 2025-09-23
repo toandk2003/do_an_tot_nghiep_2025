@@ -1,14 +1,23 @@
 package org.yenln8.ChatApp.services.serviceImpl.friend.implement;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.yenln8.ChatApp.common.util.ApiClient;
 import org.yenln8.ChatApp.common.util.ContextService;
 import org.yenln8.ChatApp.common.util.MessageBundle;
+import org.yenln8.ChatApp.common.util.Network;
 import org.yenln8.ChatApp.dto.base.BaseResponseDto;
 import org.yenln8.ChatApp.dto.other.CurrentUser;
 import org.yenln8.ChatApp.dto.response.AcceptFriendResponseDto;
 import org.yenln8.ChatApp.dto.response.GetProfileResponseDto;
+import org.yenln8.ChatApp.dto.synchronize.SynchronizeConversationDto;
 import org.yenln8.ChatApp.entity.Friend;
 import org.yenln8.ChatApp.entity.FriendRequest;
 import org.yenln8.ChatApp.entity.Notification;
@@ -20,18 +29,35 @@ import org.yenln8.ChatApp.services.serviceImpl.friend.interfaces.AcceptFriendReq
 import org.yenln8.ChatApp.services.serviceImpl.user.interfaces.GetFullInfoAboutUserService;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @AllArgsConstructor
+@NoArgsConstructor
 @Slf4j
 public class AcceptFriendRequestServiceImpl implements AcceptFriendRequestService {
+    @Value("${url.synchronize.chat-service}")
+    private String chatServiceUrl;
+    @Autowired
     private FriendRequestRepository friendRequestRepository;
+
+    @Autowired
     private FriendRepository friendRepository;
+
+    @Autowired
     private GetFullInfoAboutUserService getFullInfoAboutUserService;
+
+    @Autowired
     private NotificationRepository notificationRepository;
 
+    @Autowired
+    private ApiClient apiClient;
+
+    @Autowired
+    private ObjectMapper objectMapper;
+
     @Override
-    public BaseResponseDto call(Long friendRequestId) {
+    public BaseResponseDto call(Long friendRequestId, HttpServletRequest request) {
         // Kiem tra friend-request co ton tai + co trang thai pending + deleted = 0
         // Kiem tra ban than co phai la nguoi nhan request k
 
@@ -67,6 +93,20 @@ public class AcceptFriendRequestServiceImpl implements AcceptFriendRequestServic
                 .type(Notification.TYPE.ACCEPT_FRIEND_REQUEST)
                 .createdBy(0L)
                 .build());
+
+        try{
+            SynchronizeConversationDto synchronizeConversationDto = SynchronizeConversationDto.builder()
+                    .participants(List.of(sender.getId(), receiver.getId()))
+                    .type("private")
+                    .build();
+
+            String body =  objectMapper.writeValueAsString(synchronizeConversationDto);
+            log.info("synchronizeConversationDto: {}", body);
+            apiClient.callPostExternalApi(chatServiceUrl + "/synchronize/conversations/private", body, Network.getTokenFromRequest(request));
+        }
+        catch (Exception e){
+            log.error("SynchronizeUserDto: {}", e.getMessage());
+        }
 
         //   sent Noti for receiver friend request
         this.notificationRepository.save(Notification.builder()

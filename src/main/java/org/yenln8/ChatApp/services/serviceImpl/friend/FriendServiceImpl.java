@@ -1,5 +1,6 @@
 package org.yenln8.ChatApp.services.serviceImpl.friend;
 
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,14 +25,14 @@ public class FriendServiceImpl implements FriendService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public BaseResponseDto makeFriendRequest(Long receiverId) {
-        return this.makeFriendService.call(receiverId);
+    public BaseResponseDto makeFriendRequest(Long receiverId, HttpServletRequest request) {
+        return this.makeFriendService.call(receiverId, request);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public BaseResponseDto acceptFriendRequest(Long friendRequestId) {
-        return this.acceptFriendRequestService.call(friendRequestId);
+    public BaseResponseDto acceptFriendRequest(Long friendRequestId, HttpServletRequest request) {
+        return this.acceptFriendRequestService.call(friendRequestId, request);
     }
 
     @Override

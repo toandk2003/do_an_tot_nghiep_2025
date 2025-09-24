@@ -18,14 +18,11 @@ import org.yenln8.ChatApp.dto.base.BaseResponseDto;
 import org.yenln8.ChatApp.dto.other.CurrentUser;
 import org.yenln8.ChatApp.dto.request.OnBoardingRequestDto;
 import org.yenln8.ChatApp.dto.response.GetProfileResponseDto;
-import org.yenln8.ChatApp.dto.synchronize.SynchronizeConversationDto;
 import org.yenln8.ChatApp.dto.synchronize.SynchronizeUserDto;
 import org.yenln8.ChatApp.entity.*;
 import org.yenln8.ChatApp.repository.*;
 import org.yenln8.ChatApp.services.serviceImpl.auth.interfaces.OnBoardingService;
 import org.yenln8.ChatApp.services.serviceImpl.user.interfaces.GetFullInfoAboutUserService;
-
-import java.util.List;
 
 @Slf4j
 //@AllArgsConstructor
@@ -125,16 +122,6 @@ public class OnBoardingServiceImpl implements OnBoardingService {
         String body = objectMapper.writeValueAsString(synchronizeUserDto);
         log.info("SynchronizeUserDto: {}", body);
         this.apiClient.callPostExternalApi(chatServiceUrl + "/users", body, Network.getTokenFromRequest(request));
-
-        SynchronizeConversationDto synchronizeConversationDto = SynchronizeConversationDto.builder()
-                .name("BOT")
-                .type("bot")
-                .build();
-
-        String bodySync = objectMapper.writeValueAsString(synchronizeConversationDto);
-        log.info("synchronizeConversationDto: {}", bodySync);
-        apiClient.callPostExternalApi(chatServiceUrl + "/synchronize/conversations/bot", bodySync, Network.getTokenFromRequest(request));
-
 
         return BaseResponseDto.builder()
                 .success(true)

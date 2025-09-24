@@ -69,4 +69,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
     );
 
     Optional<User> findByIdAndStatus(Long userId, User.STATUS status);
+
+    @Query("select user from User user join fetch user.profile p where user.id = :userId and user.status = :status")
+    Optional<User> findByIdAndStatusWithAttachment(Long userId, User.STATUS status);
+
 }

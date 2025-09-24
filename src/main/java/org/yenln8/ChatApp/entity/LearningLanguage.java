@@ -27,7 +27,7 @@ public class LearningLanguage {
     @Enumerated(EnumType.STRING)
     private CODE code;
 
-    @OneToMany(mappedBy = "learningLanguage", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "learningLanguage", fetch = FetchType.EAGER)
     private List<LearningLanguageLocale> learningLanguageLocales;
 
     @CreationTimestamp

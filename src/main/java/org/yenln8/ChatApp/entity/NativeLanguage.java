@@ -27,7 +27,7 @@ public class NativeLanguage {
     @Enumerated(EnumType.STRING)
     private CODE code;
 
-    @OneToMany(mappedBy = "nativeLanguage", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "nativeLanguage", fetch = FetchType.EAGER)
     private List<NativeLanguageLocale> nativeLanguageLocales;
 
     @CreationTimestamp

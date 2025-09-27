@@ -4,24 +4,19 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.yenln8.ChatApp.common.util.ApiClient;
 import org.yenln8.ChatApp.common.util.ContextService;
 import org.yenln8.ChatApp.common.util.MessageBundle;
-import org.yenln8.ChatApp.common.util.Network;
 import org.yenln8.ChatApp.dto.base.BaseResponseDto;
 import org.yenln8.ChatApp.dto.other.CurrentUser;
 import org.yenln8.ChatApp.dto.response.AcceptFriendResponseDto;
 import org.yenln8.ChatApp.dto.response.GetProfileResponseDto;
-import org.yenln8.ChatApp.dto.synchronize.SynchronizeConversationDto;
-import org.yenln8.ChatApp.entity.Friend;
-import org.yenln8.ChatApp.entity.FriendRequest;
-import org.yenln8.ChatApp.entity.Notification;
-import org.yenln8.ChatApp.entity.User;
+import org.yenln8.ChatApp.entity.*;
+import org.yenln8.ChatApp.event.synchronize.SynchronizeConversationEvent;
+import org.yenln8.ChatApp.repository.EventRepository;
 import org.yenln8.ChatApp.repository.FriendRepository;
 import org.yenln8.ChatApp.repository.FriendRequestRepository;
 import org.yenln8.ChatApp.repository.NotificationRepository;
@@ -36,8 +31,12 @@ import java.util.List;
 @NoArgsConstructor
 @Slf4j
 public class AcceptFriendRequestServiceImpl implements AcceptFriendRequestService {
-    @Value("${url.synchronize.chat-service}")
-    private String chatServiceUrl;
+    @Value("${app.redis.streams.sync-stream}")
+    private String syncStream;
+
+    @Autowired
+    private EventRepository eventRepository;
+
     @Autowired
     private FriendRequestRepository friendRequestRepository;
 
@@ -49,9 +48,6 @@ public class AcceptFriendRequestServiceImpl implements AcceptFriendRequestServic
 
     @Autowired
     private NotificationRepository notificationRepository;
-
-    @Autowired
-    private ApiClient apiClient;
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -94,20 +90,6 @@ public class AcceptFriendRequestServiceImpl implements AcceptFriendRequestServic
                 .createdBy(0L)
                 .build());
 
-        try{
-            SynchronizeConversationDto synchronizeConversationDto = SynchronizeConversationDto.builder()
-                    .participants(List.of(sender.getId(), receiver.getId()))
-                    .type("private")
-                    .build();
-
-            String body =  objectMapper.writeValueAsString(synchronizeConversationDto);
-            log.info("synchronizeConversationDto: {}", body);
-            apiClient.callPostExternalApi(chatServiceUrl + "/synchronize/conversations/private", body, Network.getTokenFromRequest(request));
-        }
-        catch (Exception e){
-            log.error("SynchronizeUserDto: {}", e.getMessage());
-        }
-
         //   sent Noti for receiver friend request
         this.notificationRepository.save(Notification.builder()
                 .senderType(Notification.SENDER_TYPE.SYSTEM)
@@ -121,7 +103,27 @@ public class AcceptFriendRequestServiceImpl implements AcceptFriendRequestServic
                 .createdBy(0L)
                 .build());
 
-        // TODO send noti to 2 user, remember do for auto accept too
+        try {
+            SynchronizeConversationEvent synchronizeConversationEvent = SynchronizeConversationEvent.builder()
+                    .participants(List.of(sender.getId(), receiver.getId()))
+                    .type("private")
+                    .eventType(Event.TYPE.SYNC_CONVERSATION)
+                    .build();
+
+            String body = objectMapper.writeValueAsString(synchronizeConversationEvent);
+            log.info("synchronizeConversationDto: {}", body);
+
+            eventRepository.save(Event.builder()
+                    .payload(body)
+                    .destination(syncStream)
+                    .status(Event.STATUS.WAIT_TO_SEND)
+                    .createdAt(LocalDateTime.now())
+                    .updatedAt(LocalDateTime.now())
+                    .build());
+        } catch (Exception e) {
+            log.error("SynchronizeUserDto: {}", e.getMessage());
+        }
+
         return BaseResponseDto.builder()
                 .success(true)
                 .statusCode(200)

@@ -7,22 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.yenln8.ChatApp.common.constant.FriendConstant;
-import org.yenln8.ChatApp.common.util.ApiClient;
 import org.yenln8.ChatApp.common.util.ContextService;
 import org.yenln8.ChatApp.common.util.MessageBundle;
-import org.yenln8.ChatApp.common.util.Network;
 import org.yenln8.ChatApp.dto.base.BaseResponseDto;
 import org.yenln8.ChatApp.dto.other.CurrentUser;
-import org.yenln8.ChatApp.dto.synchronize.SynchronizeConversationDto;
 import org.yenln8.ChatApp.dto.response.MakeFriendResponseDto;
-import org.yenln8.ChatApp.entity.Friend;
-import org.yenln8.ChatApp.entity.FriendRequest;
-import org.yenln8.ChatApp.entity.Notification;
-import org.yenln8.ChatApp.entity.User;
-import org.yenln8.ChatApp.repository.BlockRepository;
-import org.yenln8.ChatApp.repository.FriendRepository;
-import org.yenln8.ChatApp.repository.FriendRequestRepository;
-import org.yenln8.ChatApp.repository.NotificationRepository;
+import org.yenln8.ChatApp.entity.*;
+import org.yenln8.ChatApp.event.synchronize.SynchronizeConversationEvent;
+import org.yenln8.ChatApp.repository.*;
 import org.yenln8.ChatApp.services.interfaces.UserService;
 import org.yenln8.ChatApp.services.serviceImpl.friend.interfaces.MakeFriendService;
 import org.yenln8.ChatApp.services.serviceImpl.user.interfaces.GetFullInfoAboutUserService;
@@ -34,8 +26,11 @@ import java.util.List;
 @Slf4j
 public class MakeFriendServiceImpl implements MakeFriendService {
 
-    @Value("${url.synchronize.chat-service}")
-    private String chatServiceUrl;
+    @Value("${app.redis.streams.sync-stream}")
+    private String syncStream;
+
+    @Autowired
+    private EventRepository eventRepository;
 
     @Autowired
     private UserService userService;
@@ -54,9 +49,6 @@ public class MakeFriendServiceImpl implements MakeFriendService {
 
     @Autowired
     private NotificationRepository notificationRepository;
-
-    @Autowired
-    private ApiClient apiClient;
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -145,14 +137,21 @@ public class MakeFriendServiceImpl implements MakeFriendService {
                     .build());
 
             try{
-                SynchronizeConversationDto synchronizeConversationDto = SynchronizeConversationDto.builder()
+                SynchronizeConversationEvent synchronizeConversationEvent = SynchronizeConversationEvent.builder()
                         .participants(List.of(sender.getId(), receiver.getId()))
                         .type("private")
+                        .eventType(Event.TYPE.SYNC_CONVERSATION)
                         .build();
 
-                String body =  objectMapper.writeValueAsString(synchronizeConversationDto);
+                String body =  objectMapper.writeValueAsString(synchronizeConversationEvent);
                 log.info("synchronizeConversationDto: {}", body);
-                this.apiClient.callPostExternalApi(chatServiceUrl + "/synchronize/conversations/private", body, Network.getTokenFromRequest(request));
+                eventRepository.save(Event.builder()
+                        .payload(body)
+                        .destination(syncStream)
+                        .status(Event.STATUS.WAIT_TO_SEND)
+                        .createdAt(LocalDateTime.now())
+                        .updatedAt(LocalDateTime.now())
+                        .build());
             }
             catch (Exception e){
                 log.error("SynchronizeUserDto: {}", e.getMessage());

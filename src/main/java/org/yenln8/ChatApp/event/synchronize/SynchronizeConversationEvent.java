@@ -1,17 +1,15 @@
-package org.yenln8.ChatApp.dto.synchronize;
+package org.yenln8.ChatApp.event.synchronize;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
+@EqualsAndHashCode(callSuper = true)
 @Data
-public class SynchronizeConversationDto {
+@SuperBuilder
+public class SynchronizeConversationEvent extends BaseEvent {
     private String name;
     private List<Long> participants;
     private String type;

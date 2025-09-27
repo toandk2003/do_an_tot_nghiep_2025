@@ -1,18 +1,17 @@
-package org.yenln8.ChatApp.dto.synchronize;
+package org.yenln8.ChatApp.event.synchronize;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
 
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 @Data
-public class SynchronizeUserDto {
+@SuperBuilder
+public class SynchronizeUserEvent extends BaseEvent {
+    private String userFullName;
     private Long userId;
     private String email;
     private String fullName;
@@ -34,6 +33,5 @@ public class SynchronizeUserDto {
     private LocalDateTime updatedAt;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime deletedAt;
-    private Integer rowVersion;
     private Integer deleted;
 }

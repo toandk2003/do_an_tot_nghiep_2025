@@ -11,26 +11,25 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.yenln8.ChatApp.common.constant.S3Constant;
-import org.yenln8.ChatApp.common.util.ApiClient;
 import org.yenln8.ChatApp.common.util.MessageBundle;
-import org.yenln8.ChatApp.common.util.Network;
 import org.yenln8.ChatApp.dto.base.BaseResponseDto;
 import org.yenln8.ChatApp.dto.other.CurrentUser;
 import org.yenln8.ChatApp.dto.request.OnBoardingRequestDto;
 import org.yenln8.ChatApp.dto.response.GetProfileResponseDto;
-import org.yenln8.ChatApp.dto.synchronize.SynchronizeUserDto;
+import org.yenln8.ChatApp.event.synchronize.SynchronizeUserEvent;
 import org.yenln8.ChatApp.entity.*;
 import org.yenln8.ChatApp.repository.*;
 import org.yenln8.ChatApp.services.serviceImpl.auth.interfaces.OnBoardingService;
 import org.yenln8.ChatApp.services.serviceImpl.user.interfaces.GetFullInfoAboutUserService;
 
+import java.time.LocalDateTime;
+
 @Slf4j
-//@AllArgsConstructor
 @NoArgsConstructor
 @Service
 public class OnBoardingServiceImpl implements OnBoardingService {
-    @Value("${url.synchronize.chat-service}")
-    private String chatServiceUrl;
+    @Value("${app.redis.streams.sync-stream}")
+    private String syncStream;
 
     @Autowired
     private ProfileRepository profileRepository;
@@ -51,10 +50,10 @@ public class OnBoardingServiceImpl implements OnBoardingService {
     private GetFullInfoAboutUserService getFullInfoAboutUserService;
 
     @Autowired
-    private ApiClient apiClient;
+    private ObjectMapper objectMapper;
 
     @Autowired
-    private ObjectMapper objectMapper;
+    private EventRepository eventRepository;
 
     @Override
     public BaseResponseDto call(OnBoardingRequestDto form, HttpServletRequest request) throws Exception {
@@ -97,7 +96,8 @@ public class OnBoardingServiceImpl implements OnBoardingService {
 
         GetProfileResponseDto userFullInfo = getFullInfoAboutUserService.call(user);
 
-        SynchronizeUserDto synchronizeUserDto = SynchronizeUserDto.builder()
+        // sync user
+        SynchronizeUserEvent synchronizeUserEvent = SynchronizeUserEvent.builder()
                 .userId(userFullInfo.getId())
                 .email(userFullInfo.getEmail())
                 .fullName(userFullInfo.getFullName())
@@ -119,9 +119,13 @@ public class OnBoardingServiceImpl implements OnBoardingService {
                 .deleted(0)
                 .build();
 
-        String body = objectMapper.writeValueAsString(synchronizeUserDto);
-        log.info("SynchronizeUserDto: {}", body);
-        this.apiClient.callPostExternalApi(chatServiceUrl + "/users", body, Network.getTokenFromRequest(request));
+        eventRepository.save(Event.builder()
+                .payload(objectMapper.writeValueAsString(synchronizeUserEvent))
+                .destination(syncStream)
+                .status(Event.STATUS.WAIT_TO_SEND)
+                .createdAt(LocalDateTime.now())
+                .updatedAt(LocalDateTime.now())
+                .build());
 
         return BaseResponseDto.builder()
                 .success(true)

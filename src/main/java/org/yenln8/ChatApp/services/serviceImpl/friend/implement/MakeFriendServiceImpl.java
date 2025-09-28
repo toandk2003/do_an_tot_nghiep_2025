@@ -138,7 +138,7 @@ public class MakeFriendServiceImpl implements MakeFriendService {
 
             try{
                 SynchronizeConversationEvent synchronizeConversationEvent = SynchronizeConversationEvent.builder()
-                        .participants(List.of(sender.getId(), receiver.getId()))
+                        .participants(List.of(sender.getEmail(), receiver.getEmail()))
                         .type("private")
                         .eventType(Event.TYPE.SYNC_CONVERSATION)
                         .build();

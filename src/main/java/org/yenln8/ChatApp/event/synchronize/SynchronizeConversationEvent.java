@@ -11,7 +11,7 @@ import java.util.List;
 @SuperBuilder
 public class SynchronizeConversationEvent extends BaseEvent {
     private String name;
-    private List<Long> participants;
+    private List<String> participants;
     private String type;
     private Long leader;
     private Long maxMember;

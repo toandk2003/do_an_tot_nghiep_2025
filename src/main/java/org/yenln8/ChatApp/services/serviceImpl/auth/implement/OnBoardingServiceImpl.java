@@ -117,6 +117,7 @@ public class OnBoardingServiceImpl implements OnBoardingService {
                 .updatedAt(user.getUpdatedAt())
                 .rowVersion(userFullInfo.getRowVersion())
                 .deleted(0)
+                .eventType(Event.TYPE.SYNC_USER)
                 .build();
 
         eventRepository.save(Event.builder()

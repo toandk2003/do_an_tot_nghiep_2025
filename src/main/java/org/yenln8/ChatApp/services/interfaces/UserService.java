@@ -11,7 +11,7 @@ public interface UserService {
     BaseResponseDto block(Long userId);
     BaseResponseDto unblock(Long blockId);
     User getUserActive(Long userId);
-    BaseResponseDto updateProfile(UpdateProfileRequestDto form) ;
+    BaseResponseDto updateProfile(UpdateProfileRequestDto form) throws  Exception ;
     BaseResponseDto generatePresignedURLUpdateProfile(UploadFileRequestDto multipartFile) ;
 
 }

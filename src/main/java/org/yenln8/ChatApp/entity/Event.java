@@ -51,6 +51,7 @@ public class Event {
 
     public enum TYPE {
         SYNC_USER,
+        SYNC_UPDATE_USER,
         SYNC_CONVERSATION,
     }
 }

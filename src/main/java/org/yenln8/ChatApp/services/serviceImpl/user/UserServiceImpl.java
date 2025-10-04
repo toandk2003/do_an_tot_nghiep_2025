@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     @Override
-    public BaseResponseDto updateProfile(UpdateProfileRequestDto form) {
+    public BaseResponseDto updateProfile(UpdateProfileRequestDto form) throws  Exception{
         return this.updateProfileService.call(form);
     }
 

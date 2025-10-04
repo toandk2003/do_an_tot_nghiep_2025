@@ -74,8 +74,8 @@ public class DataInitializer {
         return args -> {
             this.seedLearningNative();
             this.seedAttachment();
-            this.seedUser();
             this.seedLastOnline();
+            this.seedUser();
         };
     }
 

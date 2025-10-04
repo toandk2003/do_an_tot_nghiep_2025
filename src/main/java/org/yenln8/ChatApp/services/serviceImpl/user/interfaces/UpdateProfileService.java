@@ -4,5 +4,5 @@ import org.yenln8.ChatApp.dto.base.BaseResponseDto;
 import org.yenln8.ChatApp.dto.request.UpdateProfileRequestDto;
 
 public interface UpdateProfileService {
-    BaseResponseDto call(UpdateProfileRequestDto form);
+    BaseResponseDto call(UpdateProfileRequestDto form) throws  Exception;
 }

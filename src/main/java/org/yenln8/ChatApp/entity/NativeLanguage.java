@@ -50,7 +50,21 @@ public class NativeLanguage {
     private Integer rowVersion;
 
     public enum CODE {
-        EN,
-        VN
+        EN,     // English
+        VN,     // Vietnamese
+        ES,     // Spanish (thay thế cho SP)
+        FR,     // French
+        DE,     // German (thay thế cho GER)
+        CN,     // Chinese (Mandarin)
+        JP,     // Japanese
+        KR,     // Korean
+        IN,     // Hindi
+        RU,     // Russian
+        PT,     // Portuguese
+        SA,     // Arabic
+        IT,     // Italian
+        TR,     // Turkish
+        NL,     // Dutch
+        TH      // Thai
     }
 }

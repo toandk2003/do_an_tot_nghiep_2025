@@ -31,6 +31,7 @@ import org.yenln8.ChatApp.services.serviceImpl.user.interfaces.GetFullInfoAboutU
 import java.io.IOException;
 import java.time.Instant;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -230,77 +231,545 @@ public class DataInitializer {
         if (learningLanguageRepository.count() == 0) {
 
             //--------------------------------------
+            // Tạo đối tượng LearningLanguage cho mỗi mã ngôn ngữ
             LearningLanguage learningLanguageVN = LearningLanguage.builder()
                     .code(LearningLanguage.CODE.VN)
                     .build();
             LearningLanguage learningLanguageEN = LearningLanguage.builder()
                     .code(LearningLanguage.CODE.EN)
                     .build();
+            LearningLanguage learningLanguageES = LearningLanguage.builder()
+                    .code(LearningLanguage.CODE.ES)
+                    .build();
+            LearningLanguage learningLanguageFR = LearningLanguage.builder()
+                    .code(LearningLanguage.CODE.FR)
+                    .build();
+            LearningLanguage learningLanguageDE = LearningLanguage.builder()
+                    .code(LearningLanguage.CODE.DE)
+                    .build();
+            LearningLanguage learningLanguageCN = LearningLanguage.builder()
+                    .code(LearningLanguage.CODE.CN)
+                    .build();
+            LearningLanguage learningLanguageJP = LearningLanguage.builder()
+                    .code(LearningLanguage.CODE.JP)
+                    .build();
+            LearningLanguage learningLanguageKR = LearningLanguage.builder()
+                    .code(LearningLanguage.CODE.KR)
+                    .build();
+            LearningLanguage learningLanguageIN = LearningLanguage.builder()
+                    .code(LearningLanguage.CODE.IN)
+                    .build();
+            LearningLanguage learningLanguageRU = LearningLanguage.builder()
+                    .code(LearningLanguage.CODE.RU)
+                    .build();
+            LearningLanguage learningLanguagePT = LearningLanguage.builder()
+                    .code(LearningLanguage.CODE.PT)
+                    .build();
+            LearningLanguage learningLanguageSA = LearningLanguage.builder()
+                    .code(LearningLanguage.CODE.SA)
+                    .build();
+            LearningLanguage learningLanguageIT = LearningLanguage.builder()
+                    .code(LearningLanguage.CODE.IT)
+                    .build();
+            LearningLanguage learningLanguageTR = LearningLanguage.builder()
+                    .code(LearningLanguage.CODE.TR)
+                    .build();
+            LearningLanguage learningLanguageNL = LearningLanguage.builder()
+                    .code(LearningLanguage.CODE.NL)
+                    .build();
+            LearningLanguage learningLanguageTH = LearningLanguage.builder()
+                    .code(LearningLanguage.CODE.TH)
+                    .build();
 
+            // Tạo đối tượng NativeLanguage cho mỗi mã ngôn ngữ
             NativeLanguage nativeLanguageVN = NativeLanguage.builder()
                     .code(NativeLanguage.CODE.VN)
                     .build();
-
             NativeLanguage nativeLanguageEN = NativeLanguage.builder()
                     .code(NativeLanguage.CODE.EN)
                     .build();
+            NativeLanguage nativeLanguageES = NativeLanguage.builder()
+                    .code(NativeLanguage.CODE.ES)
+                    .build();
+            NativeLanguage nativeLanguageFR = NativeLanguage.builder()
+                    .code(NativeLanguage.CODE.FR)
+                    .build();
+            NativeLanguage nativeLanguageDE = NativeLanguage.builder()
+                    .code(NativeLanguage.CODE.DE)
+                    .build();
+            NativeLanguage nativeLanguageCN = NativeLanguage.builder()
+                    .code(NativeLanguage.CODE.CN)
+                    .build();
+            NativeLanguage nativeLanguageJP = NativeLanguage.builder()
+                    .code(NativeLanguage.CODE.JP)
+                    .build();
+            NativeLanguage nativeLanguageKR = NativeLanguage.builder()
+                    .code(NativeLanguage.CODE.KR)
+                    .build();
+            NativeLanguage nativeLanguageIN = NativeLanguage.builder()
+                    .code(NativeLanguage.CODE.IN)
+                    .build();
+            NativeLanguage nativeLanguageRU = NativeLanguage.builder()
+                    .code(NativeLanguage.CODE.RU)
+                    .build();
+            NativeLanguage nativeLanguagePT = NativeLanguage.builder()
+                    .code(NativeLanguage.CODE.PT)
+                    .build();
+            NativeLanguage nativeLanguageSA = NativeLanguage.builder()
+                    .code(NativeLanguage.CODE.SA)
+                    .build();
+            NativeLanguage nativeLanguageIT = NativeLanguage.builder()
+                    .code(NativeLanguage.CODE.IT)
+                    .build();
+            NativeLanguage nativeLanguageTR = NativeLanguage.builder()
+                    .code(NativeLanguage.CODE.TR)
+                    .build();
+            NativeLanguage nativeLanguageNL = NativeLanguage.builder()
+                    .code(NativeLanguage.CODE.NL)
+                    .build();
+            NativeLanguage nativeLanguageTH = NativeLanguage.builder()
+                    .code(NativeLanguage.CODE.TH)
+                    .build();
 
-            learningLanguageRepository.save(learningLanguageVN);
-            learningLanguageRepository.save(learningLanguageEN);
+            // Lưu tất cả LearningLanguage bằng vòng lặp
+            List<LearningLanguage> learningLanguages = new ArrayList<>();
+            learningLanguages.add(learningLanguageVN);
+            learningLanguages.add(learningLanguageEN);
+            learningLanguages.add(learningLanguageES);
+            learningLanguages.add(learningLanguageFR);
+            learningLanguages.add(learningLanguageDE);
+            learningLanguages.add(learningLanguageCN);
+            learningLanguages.add(learningLanguageJP);
+            learningLanguages.add(learningLanguageKR);
+            learningLanguages.add(learningLanguageIN);
+            learningLanguages.add(learningLanguageRU);
+            learningLanguages.add(learningLanguagePT);
+            learningLanguages.add(learningLanguageSA);
+            learningLanguages.add(learningLanguageIT);
+            learningLanguages.add(learningLanguageTR);
+            learningLanguages.add(learningLanguageNL);
+            learningLanguages.add(learningLanguageTH);
 
-            nativeLanguageRepository.save(nativeLanguageVN);
-            nativeLanguageRepository.save(nativeLanguageEN);
+            for (LearningLanguage language : learningLanguages) {
+                learningLanguageRepository.save(language);
+            }
 
-            LearningLanguageLocale record1 = LearningLanguageLocale.builder()
+// Lưu tất cả NativeLanguage bằng vòng lặp
+            List<NativeLanguage> nativeLanguages = new ArrayList<>();
+            nativeLanguages.add(nativeLanguageVN);
+            nativeLanguages.add(nativeLanguageEN);
+            nativeLanguages.add(nativeLanguageES);
+            nativeLanguages.add(nativeLanguageFR);
+            nativeLanguages.add(nativeLanguageDE);
+            nativeLanguages.add(nativeLanguageCN);
+            nativeLanguages.add(nativeLanguageJP);
+            nativeLanguages.add(nativeLanguageKR);
+            nativeLanguages.add(nativeLanguageIN);
+            nativeLanguages.add(nativeLanguageRU);
+            nativeLanguages.add(nativeLanguagePT);
+            nativeLanguages.add(nativeLanguageSA);
+            nativeLanguages.add(nativeLanguageIT);
+            nativeLanguages.add(nativeLanguageTR);
+            nativeLanguages.add(nativeLanguageNL);
+            nativeLanguages.add(nativeLanguageTH);
+
+            for (NativeLanguage language : nativeLanguages) {
+                nativeLanguageRepository.save(language);
+            }
+
+            // Danh sách các LearningLanguageLocale cho tiếng Anh và tiếng Việt
+            List<LearningLanguageLocale> learningLanguageLocales = new ArrayList<>();
+
+            // Tiếng Việt
+            learningLanguageLocales.add(LearningLanguageLocale.builder()
                     .learningLanguage(learningLanguageVN)
                     .name("Vietnamese")
                     .locale(LearningLanguageLocale.LOCALE.ENGLISH)
-                    .build();
-
-            LearningLanguageLocale record3 = LearningLanguageLocale.builder()
+                    .build());
+            learningLanguageLocales.add(LearningLanguageLocale.builder()
                     .learningLanguage(learningLanguageVN)
-                    .name("Việt Nam")
+                    .name("Tiếng Việt")
                     .locale(LearningLanguageLocale.LOCALE.VIETNAMESE)
-                    .build();
+                    .build());
 
-            LearningLanguageLocale record2 = LearningLanguageLocale.builder()
+            // Tiếng Anh
+            learningLanguageLocales.add(LearningLanguageLocale.builder()
                     .learningLanguage(learningLanguageEN)
                     .name("English")
                     .locale(LearningLanguageLocale.LOCALE.ENGLISH)
-                    .build();
-
-            LearningLanguageLocale record4 = LearningLanguageLocale.builder()
+                    .build());
+            learningLanguageLocales.add(LearningLanguageLocale.builder()
                     .learningLanguage(learningLanguageEN)
-                    .name("Nước Anh")
+                    .name("Tiếng Anh")
                     .locale(LearningLanguageLocale.LOCALE.VIETNAMESE)
-                    .build();
-            this.learningLanguageLocaleRepository.saveAll(List.of(record1, record2, record3, record4));
+                    .build());
 
-            //-------------------------------------------------
-            NativeLanguageLocale record5 = NativeLanguageLocale.builder()
+            // Tiếng Tây Ban Nha
+            learningLanguageLocales.add(LearningLanguageLocale.builder()
+                    .learningLanguage(learningLanguageES)
+                    .name("Spanish")
+                    .locale(LearningLanguageLocale.LOCALE.ENGLISH)
+                    .build());
+            learningLanguageLocales.add(LearningLanguageLocale.builder()
+                    .learningLanguage(learningLanguageES)
+                    .name("Tiếng Tây Ban Nha")
+                    .locale(LearningLanguageLocale.LOCALE.VIETNAMESE)
+                    .build());
+
+            // Tiếng Pháp
+            learningLanguageLocales.add(LearningLanguageLocale.builder()
+                    .learningLanguage(learningLanguageFR)
+                    .name("French")
+                    .locale(LearningLanguageLocale.LOCALE.ENGLISH)
+                    .build());
+            learningLanguageLocales.add(LearningLanguageLocale.builder()
+                    .learningLanguage(learningLanguageFR)
+                    .name("Tiếng Pháp")
+                    .locale(LearningLanguageLocale.LOCALE.VIETNAMESE)
+                    .build());
+
+            // Tiếng Đức
+            learningLanguageLocales.add(LearningLanguageLocale.builder()
+                    .learningLanguage(learningLanguageDE)
+                    .name("German")
+                    .locale(LearningLanguageLocale.LOCALE.ENGLISH)
+                    .build());
+            learningLanguageLocales.add(LearningLanguageLocale.builder()
+                    .learningLanguage(learningLanguageDE)
+                    .name("Tiếng Đức")
+                    .locale(LearningLanguageLocale.LOCALE.VIETNAMESE)
+                    .build());
+
+            // Tiếng Trung Quốc
+            learningLanguageLocales.add(LearningLanguageLocale.builder()
+                    .learningLanguage(learningLanguageCN)
+                    .name("Mandarin")
+                    .locale(LearningLanguageLocale.LOCALE.ENGLISH)
+                    .build());
+            learningLanguageLocales.add(LearningLanguageLocale.builder()
+                    .learningLanguage(learningLanguageCN)
+                    .name("Tiếng Quan Thoại")
+                    .locale(LearningLanguageLocale.LOCALE.VIETNAMESE)
+                    .build());
+
+            // Tiếng Nhật
+            learningLanguageLocales.add(LearningLanguageLocale.builder()
+                    .learningLanguage(learningLanguageJP)
+                    .name("Japanese")
+                    .locale(LearningLanguageLocale.LOCALE.ENGLISH)
+                    .build());
+            learningLanguageLocales.add(LearningLanguageLocale.builder()
+                    .learningLanguage(learningLanguageJP)
+                    .name("Tiếng Nhật")
+                    .locale(LearningLanguageLocale.LOCALE.VIETNAMESE)
+                    .build());
+
+            // Tiếng Hàn
+            learningLanguageLocales.add(LearningLanguageLocale.builder()
+                    .learningLanguage(learningLanguageKR)
+                    .name("Korean")
+                    .locale(LearningLanguageLocale.LOCALE.ENGLISH)
+                    .build());
+            learningLanguageLocales.add(LearningLanguageLocale.builder()
+                    .learningLanguage(learningLanguageKR)
+                    .name("Tiếng Hàn")
+                    .locale(LearningLanguageLocale.LOCALE.VIETNAMESE)
+                    .build());
+
+            // Tiếng Hindi
+            learningLanguageLocales.add(LearningLanguageLocale.builder()
+                    .learningLanguage(learningLanguageIN)
+                    .name("Hindi")
+                    .locale(LearningLanguageLocale.LOCALE.ENGLISH)
+                    .build());
+            learningLanguageLocales.add(LearningLanguageLocale.builder()
+                    .learningLanguage(learningLanguageIN)
+                    .name("Tiếng Hindi")
+                    .locale(LearningLanguageLocale.LOCALE.VIETNAMESE)
+                    .build());
+
+            // Tiếng Nga
+            learningLanguageLocales.add(LearningLanguageLocale.builder()
+                    .learningLanguage(learningLanguageRU)
+                    .name("Russian")
+                    .locale(LearningLanguageLocale.LOCALE.ENGLISH)
+                    .build());
+            learningLanguageLocales.add(LearningLanguageLocale.builder()
+                    .learningLanguage(learningLanguageRU)
+                    .name("Tiếng Nga")
+                    .locale(LearningLanguageLocale.LOCALE.VIETNAMESE)
+                    .build());
+
+            // Tiếng Bồ Đào Nha
+            learningLanguageLocales.add(LearningLanguageLocale.builder()
+                    .learningLanguage(learningLanguagePT)
+                    .name("Portuguese")
+                    .locale(LearningLanguageLocale.LOCALE.ENGLISH)
+                    .build());
+            learningLanguageLocales.add(LearningLanguageLocale.builder()
+                    .learningLanguage(learningLanguagePT)
+                    .name("Tiếng Bồ Đào Nha")
+                    .locale(LearningLanguageLocale.LOCALE.VIETNAMESE)
+                    .build());
+
+            // Tiếng Ả Rập
+            learningLanguageLocales.add(LearningLanguageLocale.builder()
+                    .learningLanguage(learningLanguageSA)
+                    .name("Arabic")
+                    .locale(LearningLanguageLocale.LOCALE.ENGLISH)
+                    .build());
+            learningLanguageLocales.add(LearningLanguageLocale.builder()
+                    .learningLanguage(learningLanguageSA)
+                    .name("Tiếng Ả Rập")
+                    .locale(LearningLanguageLocale.LOCALE.VIETNAMESE)
+                    .build());
+
+            // Tiếng Ý
+            learningLanguageLocales.add(LearningLanguageLocale.builder()
+                    .learningLanguage(learningLanguageIT)
+                    .name("Italian")
+                    .locale(LearningLanguageLocale.LOCALE.ENGLISH)
+                    .build());
+            learningLanguageLocales.add(LearningLanguageLocale.builder()
+                    .learningLanguage(learningLanguageIT)
+                    .name("Tiếng Ý")
+                    .locale(LearningLanguageLocale.LOCALE.VIETNAMESE)
+                    .build());
+
+            // Tiếng Thổ Nhĩ Kỳ
+            learningLanguageLocales.add(LearningLanguageLocale.builder()
+                    .learningLanguage(learningLanguageTR)
+                    .name("Turkish")
+                    .locale(LearningLanguageLocale.LOCALE.ENGLISH)
+                    .build());
+            learningLanguageLocales.add(LearningLanguageLocale.builder()
+                    .learningLanguage(learningLanguageTR)
+                    .name("Tiếng Thổ Nhĩ Kỳ")
+                    .locale(LearningLanguageLocale.LOCALE.VIETNAMESE)
+                    .build());
+
+            // Tiếng Hà Lan
+            learningLanguageLocales.add(LearningLanguageLocale.builder()
+                    .learningLanguage(learningLanguageNL)
+                    .name("Dutch")
+                    .locale(LearningLanguageLocale.LOCALE.ENGLISH)
+                    .build());
+            learningLanguageLocales.add(LearningLanguageLocale.builder()
+                    .learningLanguage(learningLanguageNL)
+                    .name("Tiếng Hà Lan")
+                    .locale(LearningLanguageLocale.LOCALE.VIETNAMESE)
+                    .build());
+
+            // Tiếng Thái
+            learningLanguageLocales.add(LearningLanguageLocale.builder()
+                    .learningLanguage(learningLanguageTH)
+                    .name("Thai")
+                    .locale(LearningLanguageLocale.LOCALE.ENGLISH)
+                    .build());
+            learningLanguageLocales.add(LearningLanguageLocale.builder()
+                    .learningLanguage(learningLanguageTH)
+                    .name("Tiếng Thái")
+                    .locale(LearningLanguageLocale.LOCALE.VIETNAMESE)
+                    .build());
+
+            this.learningLanguageLocaleRepository.saveAll(learningLanguageLocales);
+
+            // Danh sách các NativeLanguageLocale cho tiếng Anh và tiếng Việt
+            List<NativeLanguageLocale> nativeLanguageLocales = new ArrayList<>();
+
+            // Tiếng Việt
+            nativeLanguageLocales.add(NativeLanguageLocale.builder()
                     .nativeLanguage(nativeLanguageVN)
                     .name("Vietnamese")
                     .locale(NativeLanguageLocale.LOCALE.ENGLISH)
-                    .build();
-
-            NativeLanguageLocale record6 = NativeLanguageLocale.builder()
+                    .build());
+            nativeLanguageLocales.add(NativeLanguageLocale.builder()
                     .nativeLanguage(nativeLanguageVN)
-                    .name("Việt Nam")
+                    .name("Tiếng Việt")
                     .locale(NativeLanguageLocale.LOCALE.VIETNAMESE)
-                    .build();
+                    .build());
 
-            NativeLanguageLocale record7 = NativeLanguageLocale.builder()
+            // Tiếng Anh
+            nativeLanguageLocales.add(NativeLanguageLocale.builder()
                     .nativeLanguage(nativeLanguageEN)
                     .name("English")
                     .locale(NativeLanguageLocale.LOCALE.ENGLISH)
-                    .build();
-
-            NativeLanguageLocale record8 = NativeLanguageLocale.builder()
+                    .build());
+            nativeLanguageLocales.add(NativeLanguageLocale.builder()
                     .nativeLanguage(nativeLanguageEN)
-                    .name("Nước Anh")
+                    .name("Tiếng Anh")
                     .locale(NativeLanguageLocale.LOCALE.VIETNAMESE)
-                    .build();
-            this.nativeLanguageLocaleRepository.saveAll(List.of(record5, record6, record7, record8));
+                    .build());
+
+            // Tiếng Tây Ban Nha
+            nativeLanguageLocales.add(NativeLanguageLocale.builder()
+                    .nativeLanguage(nativeLanguageES)
+                    .name("Spanish")
+                    .locale(NativeLanguageLocale.LOCALE.ENGLISH)
+                    .build());
+            nativeLanguageLocales.add(NativeLanguageLocale.builder()
+                    .nativeLanguage(nativeLanguageES)
+                    .name("Tiếng Tây Ban Nha")
+                    .locale(NativeLanguageLocale.LOCALE.VIETNAMESE)
+                    .build());
+
+            // Tiếng Pháp
+            nativeLanguageLocales.add(NativeLanguageLocale.builder()
+                    .nativeLanguage(nativeLanguageFR)
+                    .name("French")
+                    .locale(NativeLanguageLocale.LOCALE.ENGLISH)
+                    .build());
+            nativeLanguageLocales.add(NativeLanguageLocale.builder()
+                    .nativeLanguage(nativeLanguageFR)
+                    .name("Tiếng Pháp")
+                    .locale(NativeLanguageLocale.LOCALE.VIETNAMESE)
+                    .build());
+
+            // Tiếng Đức
+            nativeLanguageLocales.add(NativeLanguageLocale.builder()
+                    .nativeLanguage(nativeLanguageDE)
+                    .name("German")
+                    .locale(NativeLanguageLocale.LOCALE.ENGLISH)
+                    .build());
+            nativeLanguageLocales.add(NativeLanguageLocale.builder()
+                    .nativeLanguage(nativeLanguageDE)
+                    .name("Tiếng Đức")
+                    .locale(NativeLanguageLocale.LOCALE.VIETNAMESE)
+                    .build());
+
+            // Tiếng Trung Quốc
+            nativeLanguageLocales.add(NativeLanguageLocale.builder()
+                    .nativeLanguage(nativeLanguageCN)
+                    .name("Mandarin")
+                    .locale(NativeLanguageLocale.LOCALE.ENGLISH)
+                    .build());
+            nativeLanguageLocales.add(NativeLanguageLocale.builder()
+                    .nativeLanguage(nativeLanguageCN)
+                    .name("Tiếng Quan Thoại")
+                    .locale(NativeLanguageLocale.LOCALE.VIETNAMESE)
+                    .build());
+
+            // Tiếng Nhật
+            nativeLanguageLocales.add(NativeLanguageLocale.builder()
+                    .nativeLanguage(nativeLanguageJP)
+                    .name("Japanese")
+                    .locale(NativeLanguageLocale.LOCALE.ENGLISH)
+                    .build());
+            nativeLanguageLocales.add(NativeLanguageLocale.builder()
+                    .nativeLanguage(nativeLanguageJP)
+                    .name("Tiếng Nhật")
+                    .locale(NativeLanguageLocale.LOCALE.VIETNAMESE)
+                    .build());
+
+            // Tiếng Hàn
+            nativeLanguageLocales.add(NativeLanguageLocale.builder()
+                    .nativeLanguage(nativeLanguageKR)
+                    .name("Korean")
+                    .locale(NativeLanguageLocale.LOCALE.ENGLISH)
+                    .build());
+            nativeLanguageLocales.add(NativeLanguageLocale.builder()
+                    .nativeLanguage(nativeLanguageKR)
+                    .name("Tiếng Hàn")
+                    .locale(NativeLanguageLocale.LOCALE.VIETNAMESE)
+                    .build());
+
+            // Tiếng Hindi
+            nativeLanguageLocales.add(NativeLanguageLocale.builder()
+                    .nativeLanguage(nativeLanguageIN)
+                    .name("Hindi")
+                    .locale(NativeLanguageLocale.LOCALE.ENGLISH)
+                    .build());
+            nativeLanguageLocales.add(NativeLanguageLocale.builder()
+                    .nativeLanguage(nativeLanguageIN)
+                    .name("Tiếng Hindi")
+                    .locale(NativeLanguageLocale.LOCALE.VIETNAMESE)
+                    .build());
+
+            // Tiếng Nga
+            nativeLanguageLocales.add(NativeLanguageLocale.builder()
+                    .nativeLanguage(nativeLanguageRU)
+                    .name("Russian")
+                    .locale(NativeLanguageLocale.LOCALE.ENGLISH)
+                    .build());
+            nativeLanguageLocales.add(NativeLanguageLocale.builder()
+                    .nativeLanguage(nativeLanguageRU)
+                    .name("Tiếng Nga")
+                    .locale(NativeLanguageLocale.LOCALE.VIETNAMESE)
+                    .build());
+
+            // Tiếng Bồ Đào Nha
+            nativeLanguageLocales.add(NativeLanguageLocale.builder()
+                    .nativeLanguage(nativeLanguagePT)
+                    .name("Portuguese")
+                    .locale(NativeLanguageLocale.LOCALE.ENGLISH)
+                    .build());
+            nativeLanguageLocales.add(NativeLanguageLocale.builder()
+                    .nativeLanguage(nativeLanguagePT)
+                    .name("Tiếng Bồ Đào Nha")
+                    .locale(NativeLanguageLocale.LOCALE.VIETNAMESE)
+                    .build());
+
+            // Tiếng Ả Rập
+            nativeLanguageLocales.add(NativeLanguageLocale.builder()
+                    .nativeLanguage(nativeLanguageSA)
+                    .name("Arabic")
+                    .locale(NativeLanguageLocale.LOCALE.ENGLISH)
+                    .build());
+            nativeLanguageLocales.add(NativeLanguageLocale.builder()
+                    .nativeLanguage(nativeLanguageSA)
+                    .name("Tiếng Ả Rập")
+                    .locale(NativeLanguageLocale.LOCALE.VIETNAMESE)
+                    .build());
+
+            // Tiếng Ý
+            nativeLanguageLocales.add(NativeLanguageLocale.builder()
+                    .nativeLanguage(nativeLanguageIT)
+                    .name("Italian")
+                    .locale(NativeLanguageLocale.LOCALE.ENGLISH)
+                    .build());
+            nativeLanguageLocales.add(NativeLanguageLocale.builder()
+                    .nativeLanguage(nativeLanguageIT)
+                    .name("Tiếng Ý")
+                    .locale(NativeLanguageLocale.LOCALE.VIETNAMESE)
+                    .build());
+
+            // Tiếng Thổ Nhĩ Kỳ
+            nativeLanguageLocales.add(NativeLanguageLocale.builder()
+                    .nativeLanguage(nativeLanguageTR)
+                    .name("Turkish")
+                    .locale(NativeLanguageLocale.LOCALE.ENGLISH)
+                    .build());
+            nativeLanguageLocales.add(NativeLanguageLocale.builder()
+                    .nativeLanguage(nativeLanguageTR)
+                    .name("Tiếng Thổ Nhĩ Kỳ")
+                    .locale(NativeLanguageLocale.LOCALE.VIETNAMESE)
+                    .build());
+
+            // Tiếng Hà Lan
+            nativeLanguageLocales.add(NativeLanguageLocale.builder()
+                    .nativeLanguage(nativeLanguageNL)
+                    .name("Dutch")
+                    .locale(NativeLanguageLocale.LOCALE.ENGLISH)
+                    .build());
+            nativeLanguageLocales.add(NativeLanguageLocale.builder()
+                    .nativeLanguage(nativeLanguageNL)
+                    .name("Tiếng Hà Lan")
+                    .locale(NativeLanguageLocale.LOCALE.VIETNAMESE)
+                    .build());
+
+            // Tiếng Thái
+            nativeLanguageLocales.add(NativeLanguageLocale.builder()
+                    .nativeLanguage(nativeLanguageTH)
+                    .name("Thai")
+                    .locale(NativeLanguageLocale.LOCALE.ENGLISH)
+                    .build());
+            nativeLanguageLocales.add(NativeLanguageLocale.builder()
+                    .nativeLanguage(nativeLanguageTH)
+                    .name("Tiếng Thái")
+                    .locale(NativeLanguageLocale.LOCALE.VIETNAMESE)
+                    .build());
+
+            this.nativeLanguageLocaleRepository.saveAll(nativeLanguageLocales);
 
             log.info("✅ Seeded Learning Language Record:");
         } else {

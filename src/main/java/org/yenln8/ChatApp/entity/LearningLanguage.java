@@ -50,7 +50,22 @@ public class LearningLanguage {
     private Integer rowVersion;
 
     public enum CODE {
-        EN,
-        VN
+        EN,     // English
+        VN,     // Vietnamese
+        ES,  // Spanish
+        FR,   // French
+        GER,    // German
+        CN,     // Chinese (Mandarin)
+        JP,     // Japanese
+        KR,     // Korean
+        IN,     // Hindi
+        RU,     // Russian
+        PT,     // Portuguese
+        SA,     // Arabic
+        IT,     // Italian
+        TR,     // Turkish
+        NL,     // Dutch
+        TH,     // Thai,
+        DE
     }
 }

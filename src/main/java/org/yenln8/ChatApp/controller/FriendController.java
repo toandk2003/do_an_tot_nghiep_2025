@@ -9,11 +9,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.yenln8.ChatApp.dto.request.ExploreRequestDto;
-import org.yenln8.ChatApp.dto.request.GetListFriendRequestDto;
-import org.yenln8.ChatApp.dto.request.GetListFriendRequestReceivedRequestDto;
-import org.yenln8.ChatApp.dto.request.GetListFriendRequestSentRequestDto;
+import org.yenln8.ChatApp.dto.request.*;
 import org.yenln8.ChatApp.services.interfaces.FriendService;
+import org.yenln8.ChatApp.services.serviceImpl.friend.implement.CheckFriendStatusServiceImpl;
 
 @RestController
 @RequestMapping("/api/friends")
@@ -21,6 +19,7 @@ import org.yenln8.ChatApp.services.interfaces.FriendService;
 @Validated
 public class FriendController {
     private FriendService friendService;
+    private CheckFriendStatusServiceImpl checkFriendStatusService;
 
     @GetMapping
     public ResponseEntity<?> getListFriend(GetListFriendRequestDto form) {
@@ -82,6 +81,11 @@ public class FriendController {
     @GetMapping("/friend-requests-received")
     public ResponseEntity<?> getListFriendRequestReceived(GetListFriendRequestReceivedRequestDto form) {
         return ResponseEntity.ok(this.friendService.getListFriendRequestIReceived(form));
+    }
+
+    @GetMapping("/check-status")
+    public ResponseEntity<?> getListFriendRequestSent(CheckStatusFriendRequestDto form) {
+        return ResponseEntity.ok(this.checkFriendStatusService.call(form));
     }
 
 }

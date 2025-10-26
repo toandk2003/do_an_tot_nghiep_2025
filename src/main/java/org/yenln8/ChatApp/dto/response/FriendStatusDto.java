@@ -1,11 +1,10 @@
 package org.yenln8.ChatApp.dto.response;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,7 +13,8 @@ import java.util.List;
 public class FriendStatusDto {
     private Long userIdInMySql;
     private String email;
+    @JsonProperty("isFriend")
     private boolean isFriend;
-    private boolean isNotFriendAndNoSentFriendRequest;
-    private boolean isNotFriendAndSentFriendRequest;
+    @JsonProperty("isSendFriendRequest")
+    private boolean isSendFriendRequest;
 }

@@ -52,14 +52,7 @@ public class CheckFriendStatusServiceImpl {
             } else {
                 friendStatusDto.setFriend(false);
                 boolean alreadySentFriendRequest = friendRequestRepository.alreadySentFriendRequest(userId, user.getId());
-
-                if (alreadySentFriendRequest) {
-                    friendStatusDto.setNotFriendAndNoSentFriendRequest(false);
-                    friendStatusDto.setNotFriendAndSentFriendRequest(true);
-                } else {
-                    friendStatusDto.setNotFriendAndNoSentFriendRequest(true);
-                    friendStatusDto.setNotFriendAndSentFriendRequest(false);
-                }
+                friendStatusDto.setSendFriendRequest(alreadySentFriendRequest);
             }
 
             response.getListFriendStatus().add(friendStatusDto);

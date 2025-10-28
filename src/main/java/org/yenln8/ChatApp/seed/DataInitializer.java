@@ -161,9 +161,9 @@ public class DataInitializer {
                             .build());
 
                     User user = User.builder()
-                            .email("fakeUser" + i + "@gmail.com")
+                            .email(i == 4 ? "ChatBot@gmail.com" : "fakeUser" + i + "@gmail.com")
                             .password(passwordEncoder.encode("ChatApp123456@"))
-                            .fullName("fakeUser" + i)
+                            .fullName( i == 4 ? "CHAT BOT":  "fakeUser" + i)
                             .status(User.STATUS.ACTIVE)
                             .role(User.ROLE.USER)
                             .profile(profile)

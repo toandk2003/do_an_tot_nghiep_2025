@@ -91,10 +91,10 @@ public class GetFullInfoAboutUserServiceImpl implements GetFullInfoAboutUserServ
 
         String profilePic = downloadFileResponse.getDownloadUrl();
 
-        Long lastOnlineSecondFromEpoch = this.redisService.getKey(this.redisService.getKeyLastOnlineWithPrefix(email), Long.class);
+        Long lastOnlineSecondFromEpoch = this.redisService.getKey(this.redisService.getKeyLastOnlineWithPrefix(email), Long.class) ;
 
         LocalDateTime lastOnlineTime = LocalDateTime.ofInstant(
-                Instant.ofEpochSecond(lastOnlineSecondFromEpoch),
+                Instant.ofEpochSecond(lastOnlineSecondFromEpoch != null ? lastOnlineSecondFromEpoch : 0),
                 ZoneId.systemDefault()
         );
         return GetProfileResponseDto.builder()

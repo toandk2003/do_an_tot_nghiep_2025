@@ -82,7 +82,7 @@ public class DataInitializer {
 
     private void seedLastOnline() {
         for (int i = 0; i < 21; i++) {
-            String email = "fakeUser" + i + "@gmail.com";
+            String email = i == 4 ? "ChatBot@gmail.com" : "fakeUser" + i + "@gmail.com";
             Long lastOnlineSecondFromEpoch = this.redisService.getKey(this.redisService.getKeyLastOnlineWithPrefix(email), Long.class);
             if (lastOnlineSecondFromEpoch == null) {
                 this.redisService.setKey(this.redisService.getKeyLastOnlineWithPrefix(email), Instant.now().getEpochSecond());

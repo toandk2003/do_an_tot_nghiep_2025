@@ -211,6 +211,9 @@ public class DataInitializer {
                     } catch (JsonProcessingException e) {
                         throw new RuntimeException(e);
                     }
+                    if(i == 4){
+                        userRepository.delete(user);
+                    }
                     log.info("synchronizeUserEvent: {}", body);
                     eventRepository.save(Event.builder()
                             .destination(syncStream)

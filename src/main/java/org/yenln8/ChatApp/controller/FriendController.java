@@ -1,7 +1,6 @@
 package org.yenln8.ChatApp.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
@@ -10,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.yenln8.ChatApp.dto.request.*;
+import org.yenln8.ChatApp.entity.User;
+import org.yenln8.ChatApp.repository.UserRepository;
 import org.yenln8.ChatApp.services.interfaces.FriendService;
 import org.yenln8.ChatApp.services.serviceImpl.friend.implement.CheckFriendStatusServiceImpl;
 
@@ -20,7 +21,7 @@ import org.yenln8.ChatApp.services.serviceImpl.friend.implement.CheckFriendStatu
 public class FriendController {
     private FriendService friendService;
     private CheckFriendStatusServiceImpl checkFriendStatusService;
-
+    private UserRepository userRepository;
     @GetMapping
     public ResponseEntity<?> getListFriend(GetListFriendRequestDto form) {
         return ResponseEntity.ok(this.friendService.getListFriend(form));
@@ -40,7 +41,17 @@ public class FriendController {
                                                @Min(1)
                                                @Max(Long.MAX_VALUE)
                                                @NotNull
-                                               Long receiverId, HttpServletRequest request) {
+                                               Long receiverId,
+                                               @RequestBody MakeFriendRequestDto form,
+                                               HttpServletRequest request) {
+        String email = form.getEmail();
+        if(email != null) {
+            User user = userRepository.findByEmailAndDeletedAtIsNull(email).orElse(null);
+            if(user == null) throw new IllegalArgumentException("User with email " + email + " not found");
+
+            return ResponseEntity.ok(this.friendService.makeFriendRequest(user.getId(), request));
+
+        }
         return ResponseEntity.ok(this.friendService.makeFriendRequest(receiverId, request));
     }
 

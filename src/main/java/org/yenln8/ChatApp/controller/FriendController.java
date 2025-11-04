@@ -38,9 +38,6 @@ public class FriendController {
 
     @PostMapping("/{id}")
     public ResponseEntity<?> makeFriendRequest(@PathVariable("id")
-                                               @Min(1)
-                                               @Max(Long.MAX_VALUE)
-                                               @NotNull
                                                Long receiverId,
                                                @RequestBody MakeFriendRequestDto form,
                                                HttpServletRequest request) {

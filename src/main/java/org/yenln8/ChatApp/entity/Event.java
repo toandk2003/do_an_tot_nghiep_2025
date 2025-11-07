@@ -53,5 +53,6 @@ public class Event {
         SYNC_USER,
         SYNC_UPDATE_USER,
         SYNC_CONVERSATION,
+        NOTI,
     }
 }

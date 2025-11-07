@@ -47,9 +47,6 @@ public class AcceptFriendRequestServiceImpl implements AcceptFriendRequestServic
     private GetFullInfoAboutUserService getFullInfoAboutUserService;
 
     @Autowired
-    private NotificationRepository notificationRepository;
-
-    @Autowired
     private ObjectMapper objectMapper;
 
     @Override
@@ -77,31 +74,7 @@ public class AcceptFriendRequestServiceImpl implements AcceptFriendRequestServic
                 .responseAt(friendRequestSaved.getResponsedAt())
                 .build();
 
-        //   sent Noti for sender friend request
-        this.notificationRepository.save(Notification.builder()
-                .senderType(Notification.SENDER_TYPE.SYSTEM)
-                .receiverId(sender.getId())
-                .receiverType(Notification.RECEIVER_TYPE.USER)
-                .referenceId(receiver.getId())
-                .referenceType(Notification.REFERENCE_TYPE.USER)
-                .content(MessageBundle.getMessage("message.notification.accept.friend.sender", receiverFullInfo.getFullName()))
-                .status(Notification.STATUS.NOT_SEEN)
-                .type(Notification.TYPE.ACCEPT_FRIEND_REQUEST)
-                .createdBy(0L)
-                .build());
 
-        //   sent Noti for receiver friend request
-        this.notificationRepository.save(Notification.builder()
-                .senderType(Notification.SENDER_TYPE.SYSTEM)
-                .receiverId(receiver.getId())
-                .receiverType(Notification.RECEIVER_TYPE.USER)
-                .referenceType(Notification.REFERENCE_TYPE.USER)
-                .referenceId(sender.getId())
-                .content(MessageBundle.getMessage("message.notification.accept.friend.receiver", senderFullInfo.getFullName()))
-                .status(Notification.STATUS.NOT_SEEN)
-                .type(Notification.TYPE.ACCEPT_FRIEND_REQUEST)
-                .createdBy(0L)
-                .build());
 
         try {
             SynchronizeConversationEvent synchronizeConversationEvent = SynchronizeConversationEvent.builder()
@@ -120,8 +93,55 @@ public class AcceptFriendRequestServiceImpl implements AcceptFriendRequestServic
                     .createdAt(LocalDateTime.now())
                     .updatedAt(LocalDateTime.now())
                     .build());
+
+            //--------------------------------------------------
+            //   sent Noti for sender friend request
+            Notification notiEvent1 = Notification.builder()
+                    .senderType(Notification.SENDER_TYPE.SYSTEM)
+                    .receiverEmail(sender.getEmail())
+                    .receiverType(Notification.RECEIVER_TYPE.USER)
+                    .referenceEmail(receiver.getEmail())
+                    .referenceType(Notification.REFERENCE_TYPE.USER)
+                    .content(MessageBundle.getMessage("message.notification.accept.friend.sender", receiverFullInfo.getFullName()))
+                    .status(Notification.STATUS.NOT_SEEN)
+                    .type(Notification.TYPE.ACCEPT_FRIEND_REQUEST)
+                    .createdBy(0L)
+                    .eventType(Event.TYPE.NOTI)
+                    .build();
+
+            eventRepository.save(Event.builder()
+                    .payload(objectMapper.writeValueAsString(notiEvent1))
+                    .destination(syncStream)
+                    .status(Event.STATUS.WAIT_TO_SEND)
+                    .createdAt(LocalDateTime.now())
+                    .updatedAt(LocalDateTime.now())
+                    .build());
+
+            //   sent Noti for receiver friend request
+            Notification notiEvent2 = Notification.builder()
+                    .senderType(Notification.SENDER_TYPE.SYSTEM)
+                    .receiverEmail(receiver.getEmail())
+                    .receiverType(Notification.RECEIVER_TYPE.USER)
+                    .referenceType(Notification.REFERENCE_TYPE.USER)
+                    .referenceEmail(sender.getEmail())
+                    .content(MessageBundle.getMessage("message.notification.accept.friend.receiver", senderFullInfo.getFullName()))
+                    .status(Notification.STATUS.NOT_SEEN)
+                    .type(Notification.TYPE.ACCEPT_FRIEND_REQUEST)
+                    .createdBy(0L)
+                    .eventType(Event.TYPE.NOTI)
+                    .build();
+
+            eventRepository.save(Event.builder()
+                    .payload(objectMapper.writeValueAsString(notiEvent2))
+                    .destination(syncStream)
+                    .status(Event.STATUS.WAIT_TO_SEND)
+                    .createdAt(LocalDateTime.now())
+                    .updatedAt(LocalDateTime.now())
+                    .build());
+
+
         } catch (Exception e) {
-            log.error("SynchronizeUserDto: {}", e.getMessage());
+            log.error("Sent event fail : {}", e.getMessage());
         }
 
         return BaseResponseDto.builder()

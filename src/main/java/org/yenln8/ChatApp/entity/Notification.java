@@ -1,84 +1,45 @@
 package org.yenln8.ChatApp.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
+import org.yenln8.ChatApp.event.synchronize.BaseEvent;
 import java.time.LocalDateTime;
 
-@AllArgsConstructor
-@NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 @Data
-@Builder(toBuilder = true)
-@Entity
-@Table(name = "notifications")
-
-public class Notification {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+@SuperBuilder
+ public class Notification extends BaseEvent {
     private Long id;
-
-    @Column(name = "content", nullable = false)
     private String content;
+    private String senderEmail;
 
-    @Column(name = "sender_id")
-    private Long senderId;
-
-    @Column(name = "sender_type")
     @Enumerated(EnumType.STRING)
     private SENDER_TYPE senderType;
 
-    @Column(name = "receiver_id")
-    private Long receiverId;
+    private String receiverEmail;
 
-    @Column(name = "receive_type")
     @Enumerated(EnumType.STRING)
     private RECEIVER_TYPE receiverType;
 
-    @Column(name = "reference_type")
     @Enumerated(EnumType.STRING)
     private REFERENCE_TYPE referenceType;
 
-    @Column(name = "reference_id")
-    private Long referenceId;
+    private String referenceEmail;
 
-    @Column(name = "status", nullable = false)
     @Enumerated(EnumType.STRING)
     private STATUS status;
 
-    @Column(name = "type", nullable = false)
     @Enumerated(EnumType.STRING)
     private TYPE type;
 
-    @UpdateTimestamp
-    @Column(name = "seen_at")
     private LocalDateTime seenAt;
-
-    @CreationTimestamp
-    @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
-
-    @UpdateTimestamp
-    @Column(name = "updated_at")
     private LocalDateTime updatedAt;
-
-    @Column(name = "deleted_at")
     private LocalDateTime deletedAt;
-
-    @Column(name = "created_by", nullable = false)
     private Long createdBy;
-
-    @Builder.Default
-    @Column(name = "deleted", columnDefinition = "BIGINT DEFAULT 0", nullable = false)
-    @JsonIgnore
     private Long deleted = 0L;
-
-    @Version
     private Integer rowVersion;
 
     public enum STATUS {

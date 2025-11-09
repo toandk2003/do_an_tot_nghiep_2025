@@ -3,6 +3,7 @@ package org.yenln8.ChatApp.dto.base;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 import org.springframework.http.HttpStatus;
+import org.yenln8.ChatApp.entity.Event;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,4 +16,5 @@ public class BaseResponseDto {
     private int statusCode;
     private String message;
     private Object data;
+    private Event.TYPE eventType;
 }

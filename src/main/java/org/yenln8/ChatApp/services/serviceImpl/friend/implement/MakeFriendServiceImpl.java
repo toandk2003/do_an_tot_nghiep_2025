@@ -14,7 +14,10 @@ import org.yenln8.ChatApp.dto.other.CurrentUser;
 import org.yenln8.ChatApp.dto.response.MakeFriendResponseDto;
 import org.yenln8.ChatApp.entity.*;
 import org.yenln8.ChatApp.event.synchronize.SynchronizeConversationEvent;
-import org.yenln8.ChatApp.repository.*;
+import org.yenln8.ChatApp.repository.BlockRepository;
+import org.yenln8.ChatApp.repository.EventRepository;
+import org.yenln8.ChatApp.repository.FriendRepository;
+import org.yenln8.ChatApp.repository.FriendRequestRepository;
 import org.yenln8.ChatApp.services.interfaces.UserService;
 import org.yenln8.ChatApp.services.serviceImpl.friend.interfaces.MakeFriendService;
 import org.yenln8.ChatApp.services.serviceImpl.user.interfaces.GetFullInfoAboutUserService;
@@ -80,12 +83,27 @@ public class MakeFriendServiceImpl implements MakeFriendService {
                 .autoAccepted(friendRequestSaved.getStatus().equals(FriendRequest.STATUS.ACCEPTED))
                 .build();
 
-        return BaseResponseDto.builder()
+        var response = BaseResponseDto.builder()
                 .success(true)
                 .statusCode(200)
                 .data(data)
                 .message("Send friend request successfully")
+                .eventType(Event.TYPE.RECEIVE_FRIEND_REQUEST)
                 .build();
+
+        try {
+            eventRepository.save(Event.builder()
+                    .payload(objectMapper.writeValueAsString(response))
+                    .destination(syncStream)
+                    .status(Event.STATUS.WAIT_TO_SEND)
+                    .createdAt(LocalDateTime.now())
+                    .updatedAt(LocalDateTime.now())
+                    .build());
+        } catch (Exception e) {
+            log.info(e.getMessage());
+        }
+
+        return response;
     }
 
     private FriendRequest save(User sender, User receiver, HttpServletRequest request) {
@@ -107,14 +125,14 @@ public class MakeFriendServiceImpl implements MakeFriendService {
             friendRequest.setDeletedAt(LocalDateTime.now());
             friendRequest.setDeleted(friendRequest.getId());
 
-            try{
+            try {
                 SynchronizeConversationEvent synchronizeConversationEvent = SynchronizeConversationEvent.builder()
                         .participants(List.of(sender.getEmail(), receiver.getEmail()))
                         .type("private")
                         .eventType(Event.TYPE.SYNC_CONVERSATION)
                         .build();
 
-                String body =  objectMapper.writeValueAsString(synchronizeConversationEvent);
+                String body = objectMapper.writeValueAsString(synchronizeConversationEvent);
                 log.info("synchronizeConversationDto: {}", body);
                 eventRepository.save(Event.builder()
                         .payload(body)
@@ -168,8 +186,7 @@ public class MakeFriendServiceImpl implements MakeFriendService {
                         .updatedAt(LocalDateTime.now())
                         .build());
 
-            }
-            catch (Exception e){
+            } catch (Exception e) {
                 log.error("SynchronizeUserDto: {}", e.getMessage());
             }
 

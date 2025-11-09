@@ -62,6 +62,7 @@ import java.time.LocalDateTime;
     }
 
     public enum TYPE {
-        ACCEPT_FRIEND_REQUEST
+        ACCEPT_FRIEND_REQUEST,
+        RECEIVE_FRIEND_REQUEST
     }
 }

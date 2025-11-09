@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.yenln8.ChatApp.entity.Event;
 import org.yenln8.ChatApp.entity.FriendRequest;
 
 import java.time.LocalDateTime;

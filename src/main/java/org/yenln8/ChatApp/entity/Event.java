@@ -23,7 +23,7 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @Column(name = "payload", length = 1000, nullable = false)
+    @Column(name = "payload",columnDefinition = "TEXT", length = 1000, nullable = false)
     private String payload;
 
     @Column(name = "destination", nullable = false)
@@ -54,5 +54,6 @@ public class Event {
         SYNC_UPDATE_USER,
         SYNC_CONVERSATION,
         NOTI,
+        RECEIVE_FRIEND_REQUEST,
     }
 }

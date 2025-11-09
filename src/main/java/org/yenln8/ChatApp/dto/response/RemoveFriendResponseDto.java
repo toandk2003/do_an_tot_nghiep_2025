@@ -13,4 +13,6 @@ public class RemoveFriendResponseDto {
     private Long id;
     private Long senderId;
     private Long receiverId;
+    private GetProfileResponseDto sender;
+    private GetProfileResponseDto receiver;
 }

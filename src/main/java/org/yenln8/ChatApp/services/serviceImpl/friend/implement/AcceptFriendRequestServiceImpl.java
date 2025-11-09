@@ -73,6 +73,24 @@ public class AcceptFriendRequestServiceImpl implements AcceptFriendRequestServic
                 .responseAt(friendRequestSaved.getResponsedAt())
                 .build();
 
+        var response = BaseResponseDto.builder()
+                .success(true)
+                .statusCode(200)
+                .data(responseDto)
+                .message("Accept friend request successfully.")
+                .eventType(Event.TYPE.ACCEPT_FRIEND_REQUEST)
+                .build();
+        try {
+            eventRepository.save(Event.builder()
+                    .payload(objectMapper.writeValueAsString(response))
+                    .destination("sync-stream")
+                    .status(Event.STATUS.WAIT_TO_SEND)
+                    .createdAt(LocalDateTime.now())
+                    .updatedAt(LocalDateTime.now())
+                    .build());
+        } catch (Exception e) {
+            log.info(e.getMessage());
+        }
 
 
         try {
@@ -143,12 +161,7 @@ public class AcceptFriendRequestServiceImpl implements AcceptFriendRequestServic
             log.error("Sent event fail : {}", e.getMessage());
         }
 
-        return BaseResponseDto.builder()
-                .success(true)
-                .statusCode(200)
-                .data(responseDto)
-                .message("Accept friend request successfully.")
-                .build();
+        return response;
     }
 
     private FriendRequest save(FriendRequest friendRequest) {

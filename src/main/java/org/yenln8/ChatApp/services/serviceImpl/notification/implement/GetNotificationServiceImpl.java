@@ -33,11 +33,11 @@ public class GetNotificationServiceImpl implements GetNotificationService {
 
 //        CurrentUser currentUser = ContextService.getCurrentUser();
 //        Long userId = currentUser.getId();
-//
+
 //        int currentPage = form.getCurrentPage().intValue();
 //        int pageSize = form.getPageSize().intValue();
 //        PageRequest pageRequest = PageRequest.of(currentPage, pageSize);
-//
+
 //        long countNotSeen = notificationRepository.countByReceiverIdAndStatus(userId, Notification.STATUS.NOT_SEEN);
 //        Page<Notification> notificationPageable = notificationRepository.findByReceiverIdAndStatusNotOrderByCreatedAtDesc(userId, Notification.STATUS.DELETED, pageRequest);
 //

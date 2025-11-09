@@ -8,6 +8,7 @@ import org.yenln8.ChatApp.dto.base.BaseResponseDto;
 import org.yenln8.ChatApp.dto.request.ExploreRequestDto;
 import org.yenln8.ChatApp.dto.request.UpdateProfileRequestDto;
 import org.yenln8.ChatApp.entity.User;
+import org.yenln8.ChatApp.repository.UserRepository;
 import org.yenln8.ChatApp.services.interfaces.UserService;
 import org.yenln8.ChatApp.services.serviceImpl.user.interfaces.*;
 
@@ -20,6 +21,8 @@ public class UserServiceImpl implements UserService {
     private UnBlockService unBlockService;
     private UpdateProfileService updateProfileService;
     private GeneratePresignedURLUpdateProfileService generatePresignedURLUpdateProfileService;
+    private UserRepository userRepository;
+    private GetFullInfoAboutUserService getFullInfoAboutUserService;
 
     @Override
     public BaseResponseDto explore(ExploreRequestDto form) {
@@ -30,6 +33,18 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public BaseResponseDto block(Long userId) {
         return blockService.call(userId);
+    }
+
+    public BaseResponseDto getDetail(String email) {
+        User user = userRepository.findByEmailAndDeletedAtIsNull(email).orElseThrow(() -> new IllegalArgumentException("User not found"));
+
+        return BaseResponseDto.builder()
+                .success(true)
+                .message("success")
+                .statusCode(200)
+                .data(getFullInfoAboutUserService.call(user))
+                .build();
+
     }
 
     @Override
@@ -45,7 +60,7 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     @Override
-    public BaseResponseDto updateProfile(UpdateProfileRequestDto form) throws  Exception{
+    public BaseResponseDto updateProfile(UpdateProfileRequestDto form) throws Exception {
         return this.updateProfileService.call(form);
     }
 

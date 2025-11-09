@@ -1,6 +1,5 @@
 package org.yenln8.ChatApp.controller;
 
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -12,9 +11,9 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.yenln8.ChatApp.dto.S3.UploadFileRequestDto;
 import org.yenln8.ChatApp.dto.request.ExploreRequestDto;
-import org.yenln8.ChatApp.dto.request.OnBoardingRequestDto;
 import org.yenln8.ChatApp.dto.request.UpdateProfileRequestDto;
 import org.yenln8.ChatApp.services.interfaces.UserService;
+import org.yenln8.ChatApp.services.serviceImpl.user.UserServiceImpl;
 
 @RestController
 @RequestMapping("/api/user")
@@ -22,6 +21,7 @@ import org.yenln8.ChatApp.services.interfaces.UserService;
 @Validated
 public class UserController {
     private UserService userService;
+    private UserServiceImpl userServiceImpl;
 
     @PutMapping
     public ResponseEntity<?> updateProfile(@RequestBody @Valid UpdateProfileRequestDto form) throws Exception {
@@ -31,6 +31,11 @@ public class UserController {
     @GetMapping("/explore")
     public ResponseEntity<?> explore(ExploreRequestDto form) {
         return ResponseEntity.ok(this.userService.explore(form));
+    }
+
+    @GetMapping("/detail")
+    public ResponseEntity<?> detail(@RequestParam("email") String email) {
+        return ResponseEntity.ok(this.userServiceImpl.getDetail(email));
     }
 
     @PostMapping("/{id}/block")

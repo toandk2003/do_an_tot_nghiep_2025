@@ -19,7 +19,6 @@ import org.yenln8.ChatApp.event.synchronize.SynchronizeConversationEvent;
 import org.yenln8.ChatApp.repository.EventRepository;
 import org.yenln8.ChatApp.repository.FriendRepository;
 import org.yenln8.ChatApp.repository.FriendRequestRepository;
-import org.yenln8.ChatApp.repository.NotificationRepository;
 import org.yenln8.ChatApp.services.serviceImpl.friend.interfaces.AcceptFriendRequestService;
 import org.yenln8.ChatApp.services.serviceImpl.user.interfaces.GetFullInfoAboutUserService;
 

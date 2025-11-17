@@ -1,6 +1,7 @@
 package org.yenln8.ChatApp.services.serviceImpl.user;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.yenln8.ChatApp.dto.S3.UploadFileRequestDto;
@@ -12,6 +13,7 @@ import org.yenln8.ChatApp.repository.UserRepository;
 import org.yenln8.ChatApp.services.interfaces.UserService;
 import org.yenln8.ChatApp.services.serviceImpl.user.interfaces.*;
 
+@Slf4j
 @Service
 @AllArgsConstructor
 public class UserServiceImpl implements UserService {
@@ -36,6 +38,7 @@ public class UserServiceImpl implements UserService {
     }
 
     public BaseResponseDto getDetail(String email) {
+        log.info("email: {}", email);
         User user = userRepository.findByEmailAndDeletedAtIsNull(email).orElseThrow(() -> new IllegalArgumentException("User not found"));
 
         return BaseResponseDto.builder()

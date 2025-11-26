@@ -16,26 +16,23 @@ import java.util.List;
 @Data
 @Builder(toBuilder = true)
 @Entity
-@Table(name = "question_tests")
+@Table(name = "test_histories")
 
-public class QuestionTests {
+public class TestHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "order_number", nullable = false)
-    private Long orderNumber;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private TopicTest topicTest;
 
-    @Column(name = "content", nullable = false)
-    private String content;
-
-    @OneToMany(mappedBy = "questionTest", fetch = FetchType.EAGER)
-    private List<QuestionOptions> questionOptions;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private User user;
 
     @ManyToOne(fetch = FetchType.EAGER)
     private Test test;
 
-    @OneToMany(mappedBy = "questionTest", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "testHistory", fetch = FetchType.EAGER)
     private List<QuestionHistory> questionHistories;
 
     @CreationTimestamp

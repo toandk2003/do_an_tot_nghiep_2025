@@ -41,6 +41,9 @@ public class Test {
     @OneToMany(mappedBy = "test", fetch = FetchType.EAGER)
     private List<QuestionTests> questionTests;
 
+    @OneToMany(mappedBy = "test", fetch = FetchType.LAZY)
+    private List<TestHistory> testHistories;
+
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;

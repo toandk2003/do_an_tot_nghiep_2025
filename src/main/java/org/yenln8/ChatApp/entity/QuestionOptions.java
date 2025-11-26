@@ -9,6 +9,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -27,6 +28,9 @@ public class QuestionOptions {
 
     @ManyToOne(fetch = FetchType.EAGER)
     private QuestionTests questionTest;
+
+    @OneToMany(mappedBy = "questionOption", fetch = FetchType.EAGER)
+    private List<QuestionHistory> questionHistories;
 
     @Column(name = "is_answer", nullable = false)
     private Long isAnswer;

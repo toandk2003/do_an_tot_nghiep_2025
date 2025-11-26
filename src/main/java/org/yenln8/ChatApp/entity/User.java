@@ -76,6 +76,9 @@ public class User {
     @OneToMany(mappedBy = "user2", fetch = FetchType.LAZY)
     private List<Friend> friendsIReceived;
 
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<TestHistory> testHistories;
+
     public enum STATUS{
         NO_ONBOARDING,
         INACTIVE,

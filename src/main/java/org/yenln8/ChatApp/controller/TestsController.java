@@ -5,9 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.yenln8.ChatApp.dto.base.BaseResponseDto;
 import org.yenln8.ChatApp.dto.base.PaginationResponseDto;
 import org.yenln8.ChatApp.dto.request.GetListTestRequestDto;
@@ -65,7 +63,8 @@ public class TestsController {
                         .id(questionTest.getId())
                         .question(questionTest.getContent())
                         .options(questionTest.getQuestionOptions().stream().map(QuestionOptions::getContent).toList())
-                        .answer(questionTest.getQuestionOptions().stream().filter(option -> option.getIsAnswer().equals(1L)).findFirst().get().getContent())
+//                        .answer(questionTest.getQuestionOptions().stream().filter(option -> option.getIsAnswer().equals(1L)).findFirst().get().getContent())
+                        .answer(null)
                         .myAnswer(null)
                         .build()).toList())
                 .build()).toList();
@@ -77,6 +76,24 @@ public class TestsController {
                 .message("success")
                 .statusCode(200)
                 .data(data)
+                .build());
+    }
+
+    @PostMapping("/tests")
+    public ResponseEntity<?> submitTest( @RequestBody TestDTOChange form) {
+        var testId = form.getId();
+        var test = testRepository.findById(testId).orElseThrow(() -> new IllegalArgumentException("Test not found with ID = " + testId));
+        form.getQuestions().forEach(question -> {
+            var questionId =  question.getId();
+            var questionEntity = questionTestRepository.findById(questionId).orElseThrow(() -> new IllegalArgumentException("Question not found with ID = " + questionId));
+            var answer =  questionEntity.getQuestionOptions().stream().filter(option -> option.getIsAnswer().equals(1L)).findFirst().get().getContent();
+            question.setAnswer(answer);
+        });
+        return ResponseEntity.ok(BaseResponseDto.builder()
+                .success(true)
+                .message("success")
+                .statusCode(200)
+                .data(form)
                 .build());
     }
 }

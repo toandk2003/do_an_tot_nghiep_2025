@@ -9,34 +9,27 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Builder(toBuilder = true)
 @Entity
-@Table(name = "question_tests")
+@Table(name = "question_histories")
 
-public class QuestionTests {
+public class QuestionHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "order_number", nullable = false)
-    private Long orderNumber;
-
-    @Column(name = "content", nullable = false)
-    private String content;
-
-    @OneToMany(mappedBy = "questionTest", fetch = FetchType.EAGER)
-    private List<QuestionOptions> questionOptions;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private TestHistory testHistory;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    private Test test;
+    private QuestionTests questionTest;
 
-    @OneToMany(mappedBy = "questionTest", fetch = FetchType.EAGER)
-    private List<QuestionHistory> questionHistories;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private QuestionOptions questionOption;
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)

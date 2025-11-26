@@ -71,7 +71,12 @@ public class DataInitializer {
     private TopicTestRepository topicTestRepository;
     @Autowired
     private DifficultyTestRepository difficultyTestRepository;
-
+    @Autowired
+    private TestRepository testRepository;
+    @Autowired
+    private QuestionTestRepository questionTestRepository;
+    @Autowired
+    private QuestionOptionRepository questionOptionRepository;
     @Bean
     @Transactional
     public CommandLineRunner seed(UserRepository userRepository) {
@@ -82,6 +87,9 @@ public class DataInitializer {
             this.seedUser();
             this.seedTopic();
             this.seedDifficulty();
+            this.seedTest();
+//            this.seedQuestionTest();
+//            this.seedQuestionOption();
         };
     }
 
@@ -192,6 +200,72 @@ public class DataInitializer {
             e.printStackTrace();
         }
     }
+    private void seedTest() throws Exception {
+        var diffs = difficultyTestRepository.findAll();
+        var topics = topicTestRepository.findAll();
+        var learningLanguages = learningLanguageRepository.findAll();
+        try {
+            if (testRepository.count() == 0) {
+                List<Test> tests = new ArrayList<>();
+                for(int i = 1; i <= 21 ; i++){
+                    var test = Test.builder()
+                            .title("Title " + i)
+                            .subTitle("Subtitle " + i)
+                            .difficultyTests(diffs.get(new Random().nextInt(diffs.size())))
+                            .topicTest(topics.get(new Random().nextInt(topics.size())))
+                            .learningLanguage(learningLanguages.get(new Random().nextInt(learningLanguages.size())))
+                            .build();
+                    tests.add(test);
+                }
+                testRepository.saveAll(tests);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    private void seedQuestionTest() throws Exception {
+        try {
+            if (difficultyTestRepository.count() == 0) {
+                var diff1 = DifficultyTests.builder()
+                        .name("Easy")
+                        .build();
+                var diff2 = DifficultyTests.builder()
+                        .name("Medium")
+                        .build();
+                var diff3 = DifficultyTests.builder()
+                        .name("Hard")
+                        .build();
+                difficultyTestRepository.save(diff1);
+                difficultyTestRepository.save(diff2);
+                difficultyTestRepository.save(diff3);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    private void seedQuestionOption() throws Exception {
+        try {
+            if (difficultyTestRepository.count() == 0) {
+                var diff1 = DifficultyTests.builder()
+                        .name("Easy")
+                        .build();
+                var diff2 = DifficultyTests.builder()
+                        .name("Medium")
+                        .build();
+                var diff3 = DifficultyTests.builder()
+                        .name("Hard")
+                        .build();
+                difficultyTestRepository.save(diff1);
+                difficultyTestRepository.save(diff2);
+                difficultyTestRepository.save(diff3);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     private void seedUser() throws Exception {
         try {

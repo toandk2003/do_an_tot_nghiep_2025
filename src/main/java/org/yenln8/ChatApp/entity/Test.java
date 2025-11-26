@@ -23,22 +23,19 @@ public class Test {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", nullable = false)
-    private String name;
-
     @Column(name = "title", nullable = false)
     private String title;
 
     @Column(name = "sub_title", nullable = false)
     private String subTitle;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     private TopicTest topicTest;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     private DifficultyTests difficultyTests;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     private LearningLanguage learningLanguage;
 
     @OneToMany(mappedBy = "test", fetch = FetchType.EAGER)

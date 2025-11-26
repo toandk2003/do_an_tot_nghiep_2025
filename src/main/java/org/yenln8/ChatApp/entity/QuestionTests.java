@@ -27,7 +27,7 @@ public class QuestionTests {
     private Long orderNumber;
 
     @Column(name = "content", nullable = false)
-    private Long content;
+    private String content;
 
     @OneToMany(mappedBy = "questionTest", fetch = FetchType.EAGER)
     private List<QuestionOptions> questionOptions;

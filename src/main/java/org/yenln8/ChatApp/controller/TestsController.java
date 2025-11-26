@@ -2,7 +2,6 @@ package org.yenln8.ChatApp.controller;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,9 +13,9 @@ import org.yenln8.ChatApp.dto.other.CurrentUser;
 import org.yenln8.ChatApp.dto.request.GetListTestRequestDto;
 import org.yenln8.ChatApp.dto.request.QuestionDTO;
 import org.yenln8.ChatApp.dto.request.TestDTOChange;
-import org.yenln8.ChatApp.dto.response.GetListFriendResponseDto;
-import org.yenln8.ChatApp.dto.response.GetProfileResponseDto;
-import org.yenln8.ChatApp.entity.*;
+import org.yenln8.ChatApp.entity.QuestionHistory;
+import org.yenln8.ChatApp.entity.QuestionOptions;
+import org.yenln8.ChatApp.entity.TestHistory;
 import org.yenln8.ChatApp.repository.*;
 import org.yenln8.ChatApp.services.interfaces.CategoryService;
 
@@ -75,6 +74,61 @@ public class TestsController {
                 .build()).toList();
 
         var data = PaginationResponseDto.of(testPageable, result);
+
+        return ResponseEntity.ok(BaseResponseDto.builder()
+                .success(true)
+                .message("success")
+                .statusCode(200)
+                .data(data)
+                .build());
+    }
+
+    @GetMapping("/tests/history")
+    public ResponseEntity<?> getListTestHistory(GetListTestRequestDto form) {
+        var topicId = form.getTopicId();
+        var learningLanguageId = form.getLearningLanguageId();
+        var difficulty = form.getDifficulty();
+        log.info("learningLanguageId: " + learningLanguageId + " difficulty: " + difficulty);
+        CurrentUser currentUser = ContextService.getCurrentUser();
+        Long userId = currentUser.getId();
+
+        var topic = topicId == null ? null : topicTestRepository.findById(topicId).orElseThrow(() -> new IllegalArgumentException("Topic not found with ID = " + topicId));
+        var learningLanguage = learningLanguageId == null ? null : learningLanguageRepository.findById(learningLanguageId).orElseThrow(() -> new IllegalArgumentException("Learning language not found with ID = " + learningLanguageId));
+        var difficultyEntity = difficulty == null ? null : topicTestRepository.findById(difficulty).orElseThrow(() -> new IllegalArgumentException("Difficulty not found with ID = " + difficulty));
+
+        int currentPage = form.getCurrentPage().intValue();
+        int pageSize = form.getPageSize().intValue();
+        PageRequest pageRequest = PageRequest.of(currentPage, pageSize);
+
+        var testHistoryPageable = this.testHistoryRepository.getListTestHistory(userId, topicId, difficulty, learningLanguageId, pageRequest);
+
+        var testHistories = testHistoryPageable.getContent();
+        var result = testHistories.stream().map(testHistory -> {
+            var test = testHistory.getTest();
+            return TestDTOChange.builder()
+                    .code(test.getLearningLanguage().getCode().name())
+                    .id(test.getId())
+                    .title(test.getTitle())
+                    .subtitle(test.getSubTitle())
+                    .difficulty(test.getDifficultyTests().getId())
+                    .topic(test.getTopicTest().getName())
+                    .questions(test.getQuestionTests().stream().map(questionTest -> {
+                        var quest = testHistory.getQuestionHistories().stream().filter(questionHistory -> questionHistory.getQuestionTest().getId().equals(questionTest.getId())).findFirst().orElse(null);
+                        if(quest == null) throw new IllegalArgumentException("Question not found with ID = " + questionTest.getId());
+
+                        String myAnswer =quest.getQuestionOption() == null ? null : quest.getQuestionOption().getContent();
+                        return QuestionDTO.builder()
+                                .id(questionTest.getId())
+                                .question(questionTest.getContent())
+                                .options(questionTest.getQuestionOptions().stream().map(QuestionOptions::getContent).toList())
+                                .answer(questionTest.getQuestionOptions().stream().filter(option -> option.getIsAnswer().equals(1L)).findFirst().get().getContent())
+                                .myAnswer(myAnswer)
+                                .build();
+                    }).toList())
+                    .build();
+        }).toList();
+
+        var data = PaginationResponseDto.of(testHistoryPageable, result);
 
         return ResponseEntity.ok(BaseResponseDto.builder()
                 .success(true)

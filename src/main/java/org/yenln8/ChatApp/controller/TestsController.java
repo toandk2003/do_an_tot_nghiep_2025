@@ -5,20 +5,22 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import org.yenln8.ChatApp.common.util.ContextService;
 import org.yenln8.ChatApp.dto.base.BaseResponseDto;
 import org.yenln8.ChatApp.dto.base.PaginationResponseDto;
+import org.yenln8.ChatApp.dto.other.CurrentUser;
 import org.yenln8.ChatApp.dto.request.GetListTestRequestDto;
 import org.yenln8.ChatApp.dto.request.QuestionDTO;
 import org.yenln8.ChatApp.dto.request.TestDTOChange;
 import org.yenln8.ChatApp.dto.response.GetListFriendResponseDto;
 import org.yenln8.ChatApp.dto.response.GetProfileResponseDto;
-import org.yenln8.ChatApp.entity.Friend;
-import org.yenln8.ChatApp.entity.QuestionOptions;
-import org.yenln8.ChatApp.entity.User;
+import org.yenln8.ChatApp.entity.*;
 import org.yenln8.ChatApp.repository.*;
 import org.yenln8.ChatApp.services.interfaces.CategoryService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -33,12 +35,15 @@ public class TestsController {
     private TestRepository testRepository;
     private QuestionTestRepository questionTestRepository;
     private QuestionOptionRepository questionOptionRepository;
+    private QuestionHistoryRepository questionHistoryRepository;
+    private TestHistoryRepository testHistoryRepository;
+    private UserRepository userRepository;
 
     @GetMapping("/tests")
     public ResponseEntity<?> getListTest(GetListTestRequestDto form) {
-        var topicId =  form.getTopicId();
-        var learningLanguageId =  form.getLearningLanguageId();
-        var difficulty =   form.getDifficulty();
+        var topicId = form.getTopicId();
+        var learningLanguageId = form.getLearningLanguageId();
+        var difficulty = form.getDifficulty();
         log.info(topicId + " " + learningLanguageId + " " + difficulty);
 
         var topic = topicId == null ? null : topicTestRepository.findById(topicId).orElseThrow(() -> new IllegalArgumentException("Topic not found with ID = " + topicId));
@@ -80,15 +85,52 @@ public class TestsController {
     }
 
     @PostMapping("/tests")
-    public ResponseEntity<?> submitTest( @RequestBody TestDTOChange form) {
+    @Transactional
+    public ResponseEntity<?> submitTest(@RequestBody TestDTOChange form) {
         var testId = form.getId();
+        CurrentUser currentUser = ContextService.getCurrentUser();
+        Long userId = currentUser.getId();
+        var user = userRepository.findById(userId).orElseThrow(() -> new IllegalArgumentException("User not found with ID = " + userId));
         var test = testRepository.findById(testId).orElseThrow(() -> new IllegalArgumentException("Test not found with ID = " + testId));
+
+        TestHistory testHistory = TestHistory.builder()
+                .user(user)
+                .test(test)
+                .build();
+        testHistoryRepository.save(testHistory);
+
+        List<QuestionHistory> questionHistories = new ArrayList<>();
+
         form.getQuestions().forEach(question -> {
-            var questionId =  question.getId();
+            var questionId = question.getId();
+            log.info("questionId" + " " + questionId);
+
             var questionEntity = questionTestRepository.findById(questionId).orElseThrow(() -> new IllegalArgumentException("Question not found with ID = " + questionId));
-            var answer =  questionEntity.getQuestionOptions().stream().filter(option -> option.getIsAnswer().equals(1L)).findFirst().get().getContent();
+            log.info("1" );
+
+//            log.info("questionEntity" + " " + questionEntity);
+
+            var answerOption = questionEntity.getQuestionOptions().stream().filter(option -> option.getIsAnswer().equals(1L)).findFirst().get();
+//            log.info("answerOption" + " " + answerOption);
+            log.info("2" );
+
+            var myAnswerOption = question.getMyAnswer() == null ? null : questionEntity.getQuestionOptions().stream().filter(option -> option.getContent().equals(question.getMyAnswer())).findFirst().get();
+//            log.info("myAnswerOption" + " " + myAnswerOption);
+            log.info("3" );
+
+            var answer = answerOption.getContent();
+            log.info("answer" + " " + answer);
             question.setAnswer(answer);
+
+            questionHistories.add(QuestionHistory.builder()
+                    .testHistory(testHistory)
+                    .questionTest(questionEntity)
+                    .questionOption(myAnswerOption)
+                    .build());
         });
+
+        questionHistoryRepository.saveAll((questionHistories));
+
         return ResponseEntity.ok(BaseResponseDto.builder()
                 .success(true)
                 .message("success")

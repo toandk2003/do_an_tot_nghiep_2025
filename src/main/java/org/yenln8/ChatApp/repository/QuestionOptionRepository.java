@@ -5,6 +5,9 @@ import org.springframework.stereotype.Repository;
 import org.yenln8.ChatApp.entity.QuestionOptions;
 import org.yenln8.ChatApp.entity.TopicTest;
 
+import java.util.Optional;
+
 @Repository
 public interface QuestionOptionRepository extends JpaRepository<QuestionOptions, Long> {
+    Optional<QuestionOptions> findByContent(String content);
 }

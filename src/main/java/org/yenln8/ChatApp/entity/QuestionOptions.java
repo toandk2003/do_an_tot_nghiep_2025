@@ -26,10 +26,10 @@ public class QuestionOptions {
     @Column(name = "content", nullable = false)
     private String content;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private QuestionTests questionTest;
 
-    @OneToMany(mappedBy = "questionOption", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "questionOption", fetch = FetchType.LAZY)
     private List<QuestionHistory> questionHistories;
 
     @Column(name = "is_answer", nullable = false)

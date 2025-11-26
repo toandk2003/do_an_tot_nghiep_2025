@@ -23,16 +23,13 @@ public class TestHistory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    private TopicTest topicTest;
-
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Test test;
 
-    @OneToMany(mappedBy = "testHistory", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "testHistory", fetch = FetchType.LAZY)
     private List<QuestionHistory> questionHistories;
 
     @CreationTimestamp

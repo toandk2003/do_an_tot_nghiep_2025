@@ -29,13 +29,13 @@ public class QuestionTests {
     @Column(name = "content", nullable = false)
     private String content;
 
-    @OneToMany(mappedBy = "questionTest", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "questionTest", fetch = FetchType.LAZY)
     private List<QuestionOptions> questionOptions;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Test test;
 
-    @OneToMany(mappedBy = "questionTest", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "questionTest", fetch = FetchType.LAZY)
     private List<QuestionHistory> questionHistories;
 
     @CreationTimestamp

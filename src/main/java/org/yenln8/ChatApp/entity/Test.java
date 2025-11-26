@@ -29,16 +29,16 @@ public class Test {
     @Column(name = "sub_title", nullable = false)
     private String subTitle;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private TopicTest topicTest;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private DifficultyTests difficultyTests;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private LearningLanguage learningLanguage;
 
-    @OneToMany(mappedBy = "test", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "test", fetch = FetchType.LAZY)
     private List<QuestionTests> questionTests;
 
     @OneToMany(mappedBy = "test", fetch = FetchType.LAZY)

@@ -13,8 +13,6 @@ import org.yenln8.ChatApp.dto.request.GetListFriendRequestDto;
 import org.yenln8.ChatApp.dto.response.GetListFriendResponseDto;
 import org.yenln8.ChatApp.dto.response.GetProfileResponseDto;
 import org.yenln8.ChatApp.entity.Friend;
-import org.yenln8.ChatApp.entity.LearningLanguage;
-import org.yenln8.ChatApp.entity.NativeLanguage;
 import org.yenln8.ChatApp.entity.User;
 import org.yenln8.ChatApp.repository.FriendRepository;
 import org.yenln8.ChatApp.repository.LearningLanguageRepository;
@@ -22,9 +20,7 @@ import org.yenln8.ChatApp.repository.NativeLanguageRepository;
 import org.yenln8.ChatApp.services.serviceImpl.friend.interfaces.GetListFriendService;
 import org.yenln8.ChatApp.services.serviceImpl.user.interfaces.GetFullInfoAboutUserService;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor

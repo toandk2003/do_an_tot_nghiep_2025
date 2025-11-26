@@ -90,7 +90,7 @@ public class DataInitializer {
             this.seedDifficulty();
             this.seedTest();
             this.seedQuestionTest();
-//            this.seedQuestionOption();
+            this.seedQuestionOption();
         };
     }
 
@@ -250,21 +250,21 @@ public class DataInitializer {
 
     private void seedQuestionOption() throws Exception {
         try {
-            if (difficultyTestRepository.count() == 0) {
-                var diff1 = DifficultyTests.builder()
-                        .name("Easy")
-                        .build();
-                var diff2 = DifficultyTests.builder()
-                        .name("Medium")
-                        .build();
-                var diff3 = DifficultyTests.builder()
-                        .name("Hard")
-                        .build();
-                difficultyTestRepository.save(diff1);
-                difficultyTestRepository.save(diff2);
-                difficultyTestRepository.save(diff3);
+            if (questionOptionRepository.count() == 0) {
+                var questionTests = questionTestRepository.findAll();
+                for (var questionTest : questionTests) {
+                    List<QuestionOptions> questionOptions = new ArrayList<>();
+                    for (int i = 1; i <= 4; i++) {
+                        questionOptions.add(QuestionOptions.builder()
+                                .content("content of option " + i)
+                                .questionTest(questionTest)
+                                .isAnswer(0L)
+                                .build());
+                    }
+                    questionOptions.get((new Random().nextInt(questionOptions.size()))).setIsAnswer(1L);
+                    questionOptionRepository.saveAll(questionOptions);
+                }
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -23,7 +23,7 @@ public class QuestionOptions {
     private Long id;
 
     @Column(name = "content", nullable = false)
-    private Long content;
+    private String content;
 
     @ManyToOne(fetch = FetchType.EAGER)
     private QuestionTests questionTest;

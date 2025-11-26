@@ -8,7 +8,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.uuid.Generators;
 import com.fasterxml.uuid.impl.TimeBasedEpochGenerator;
-import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -68,6 +67,10 @@ public class DataInitializer {
     private ObjectMapper objectMapper;
     @Autowired
     private EventRepository eventRepository;
+    @Autowired
+    private TopicTestRepository topicTestRepository;
+    @Autowired
+    private DifficultyTestRepository difficultyTestRepository;
 
     @Bean
     @Transactional
@@ -77,6 +80,8 @@ public class DataInitializer {
             this.seedAttachment();
             this.seedLastOnline();
             this.seedUser();
+            this.seedTopic();
+            this.seedDifficulty();
         };
     }
 
@@ -140,6 +145,54 @@ public class DataInitializer {
         }
     }
 
+    private void seedTopic() throws Exception {
+        try {
+            if (topicTestRepository.count() == 0) {
+                var topic1 = TopicTest.builder()
+                        .name("Family")
+                        .build();
+                var topic2 = TopicTest.builder()
+                        .name("Work")
+                        .build();
+                var topic3 = TopicTest.builder()
+                        .name("Education")
+                        .build();
+                var topic4 = TopicTest.builder()
+                        .name("Music")
+                        .build();
+                var topic5 = TopicTest.builder()
+                        .name("Entertainment")
+                        .build();
+                topicTestRepository.saveAll(List.of(topic1, topic2, topic3,topic4,topic5));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void seedDifficulty() throws Exception {
+        try {
+            if (difficultyTestRepository.count() == 0) {
+                var diff1 = DifficultyTests.builder()
+                        .name("Easy")
+                        .build();
+                var diff2 = DifficultyTests.builder()
+                        .name("Medium")
+                        .build();
+                var diff3 = DifficultyTests.builder()
+                        .name("Hard")
+                        .build();
+                difficultyTestRepository.save(diff1);
+                difficultyTestRepository.save(diff2);
+                difficultyTestRepository.save(diff3);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     private void seedUser() throws Exception {
         try {
             if (userRepository.count() == 0) {
@@ -163,7 +216,7 @@ public class DataInitializer {
                     User user = User.builder()
                             .email(i == 4 ? "ChatBot@gmail.com" : "fakeUser" + i + "@gmail.com")
                             .password(passwordEncoder.encode("ChatApp123456@"))
-                            .fullName( i == 4 ? "CHAT BOT":  "fakeUser" + i)
+                            .fullName(i == 4 ? "CHAT BOT" : "fakeUser" + i)
                             .status(User.STATUS.ACTIVE)
                             .role(User.ROLE.USER)
                             .profile(profile)
@@ -211,7 +264,7 @@ public class DataInitializer {
                     } catch (JsonProcessingException e) {
                         throw new RuntimeException(e);
                     }
-                    if(i == 4){
+                    if (i == 4) {
                         userRepository.delete(user);
                     }
                     log.info("synchronizeUserEvent: {}", body);

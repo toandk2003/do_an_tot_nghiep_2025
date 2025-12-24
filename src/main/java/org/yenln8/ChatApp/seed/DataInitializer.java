@@ -88,9 +88,12 @@ public class DataInitializer {
             this.seedUser();
             this.seedTopic();
             this.seedDifficulty();
-            this.seedTest();
-            this.seedQuestionTest();
-            this.seedQuestionOption();
+            testRepository.deleteAll();
+            questionTestRepository.deleteAll();
+            questionOptionRepository.deleteAll();
+            this.seedTestForVietNam();
+//            this.seedQuestionTest();
+//            this.seedQuestionOption();
         };
     }
 
@@ -202,75 +205,253 @@ public class DataInitializer {
         }
     }
 
-    private void seedTest() throws Exception {
+    private void seedTestForVietNam() throws Exception {
+        var easy = difficultyTestRepository.findById(1L).get();
+        var medium = difficultyTestRepository.findById(2L).get();
+        var hard = difficultyTestRepository.findById(3L).get();
 
-        try {
-            if (testRepository.count() == 0) {
-                var diffs = difficultyTestRepository.findAll();
-                var topics = topicTestRepository.findAll();
-                var learningLanguages = learningLanguageRepository.findAll();
-                List<Test> tests = new ArrayList<>();
-                for (int i = 1; i <= 21; i++) {
-                    var test = Test.builder()
-                            .title("Title " + i)
-                            .subTitle("Subtitle " + i)
-                            .difficultyTests(diffs.get(new Random().nextInt(diffs.size())))
-                            .topicTest(topics.get(new Random().nextInt(topics.size())))
-                            .learningLanguage(learningLanguages.get(new Random().nextInt(learningLanguages.size())))
-                            .build();
-                    tests.add(test);
+        var topicFamily = topicTestRepository.findById(1L).get();//Family
+        var topicWork = topicTestRepository.findById(2L).get(); //Work
+        var topicEducation = topicTestRepository.findById(3L).get(); //Education
+        var topicMusic = topicTestRepository.findById(4L).get(); //Music
+        var topicEntertainment = topicTestRepository.findById(5L).get(); //Entertainment
+
+        var learningLanguage = learningLanguageRepository.findById(1L).get(); // Vietnam
+
+        // easy -> topicFamily -> 2 bai test
+        // medium -> topicFamily -> 2 bai test
+        // hard -> topicFamily -> 2 bai test
+        var test1 = Test.builder()
+                .title("Gia đình")
+                .subTitle("Dễ - 20 câu hỏi")
+                .difficultyTests(easy)
+                .topicTest(topicFamily)
+                .learningLanguage(learningLanguage)
+                .build();
+        var test2 = Test.builder()
+                .title("Gia đình")
+                .subTitle("Trung bình - 20 câu hỏi")
+                .difficultyTests(medium)
+                .topicTest(topicFamily)
+                .learningLanguage(learningLanguage)
+                .build();
+        var test3 = Test.builder()
+                .title("Gia đình")
+                .subTitle("Khó - 20 câu hỏi")
+                .difficultyTests(hard)
+                .topicTest(topicFamily)
+                .learningLanguage(learningLanguage)
+                .build();
+        testRepository.saveAll(List.of(test1, test2, test3));
+        String[][] questions = {
+                {
+                        "Gia đình là gì?",
+                        "Nhóm người sống chung một nơi",
+                        "Nhóm người có quan hệ bạn bè",
+                        "Tập hợp người gắn bó bằng hôn nhân, huyết thống hoặc nuôi dưỡng",
+                        "Tổ chức xã hội tự do",
+                        "Tập hợp người gắn bó bằng hôn nhân, huyết thống hoặc nuôi dưỡng"
+                },
+                {
+                        "Gia đình được hình thành chủ yếu dựa trên mối quan hệ nào?",
+                        "Quan hệ kinh tế",
+                        "Quan hệ huyết thống, hôn nhân, nuôi dưỡng",
+                        "Quan hệ xã hội",
+                        "Quan hệ bạn bè",
+                        "Quan hệ huyết thống, hôn nhân, nuôi dưỡng"
+                },
+                {
+                        "Vì sao gia đình được coi là tế bào của xã hội?",
+                        "Vì gia đình đông người",
+                        "Vì gia đình tồn tại lâu đời",
+                        "Vì gia đình là nền tảng hình thành xã hội",
+                        "Vì gia đình quản lý xã hội",
+                        "Vì gia đình là nền tảng hình thành xã hội"
+                },
+                {
+                        "Chức năng nào sau đây KHÔNG phải của gia đình?",
+                        "Chức năng sinh sản",
+                        "Chức năng giáo dục",
+                        "Chức năng kinh tế",
+                        "Chức năng quân sự",
+                        "Chức năng quân sự"
+                },
+                {
+                        "Chức năng giáo dục của gia đình thể hiện ở đâu?",
+                        "Dạy kiến thức khoa học",
+                        "Hình thành nhân cách, đạo đức",
+                        "Quản lý nhà nước",
+                        "Phát triển công nghệ",
+                        "Hình thành nhân cách, đạo đức"
+                },
+                {
+                        "Vai trò quan trọng nhất của gia đình đối với trẻ em là gì?",
+                        "Cung cấp tiền bạc",
+                        "Giáo dục và chăm sóc",
+                        "Quản lý thời gian",
+                        "Kiểm soát hành vi",
+                        "Giáo dục và chăm sóc"
+                },
+                {
+                        "Gia đình hạnh phúc là gia đình có đặc điểm nào?",
+                        "Giàu có",
+                        "Đông con",
+                        "Các thành viên yêu thương, tôn trọng nhau",
+                        "Có địa vị xã hội cao",
+                        "Các thành viên yêu thương, tôn trọng nhau"
+                },
+                {
+                        "Yếu tố nào ảnh hưởng trực tiếp đến hạnh phúc gia đình?",
+                        "Sự quan tâm và chia sẻ",
+                        "Số lượng thành viên",
+                        "Diện tích nhà ở",
+                        "Nghề nghiệp",
+                        "Sự quan tâm và chia sẻ"
+                },
+                {
+                        "Trách nhiệm của cha mẹ đối với con cái là gì?",
+                        "Kiểm soát mọi hành vi",
+                        "Nuôi dưỡng, giáo dục và bảo vệ",
+                        "Chỉ cung cấp tài chính",
+                        "Quyết định thay con",
+                        "Nuôi dưỡng, giáo dục và bảo vệ"
+                },
+                {
+                        "Trách nhiệm của con cái đối với cha mẹ là gì?",
+                        "Nghe lời tuyệt đối",
+                        "Phụ thuộc hoàn toàn",
+                        "Kính trọng, hiếu thảo",
+                        "Quyết định thay cha mẹ",
+                        "Kính trọng, hiếu thảo"
+                },
+                {
+                        "Gia đình truyền thống thường có đặc điểm nào?",
+                        "Ít thế hệ",
+                        "Quan hệ bình đẳng tuyệt đối",
+                        "Nhiều thế hệ cùng chung sống",
+                        "Không có vai trò cha mẹ",
+                        "Nhiều thế hệ cùng chung sống"
+                },
+                {
+                        "Gia đình hiện đại có đặc điểm nào?",
+                        "Nhiều thế hệ",
+                        "Quan hệ áp đặt",
+                        "Bình đẳng, dân chủ hơn",
+                        "Phụ thuộc họ hàng",
+                        "Bình đẳng, dân chủ hơn"
+                },
+                {
+                        "Mối quan hệ trong gia đình cần dựa trên nguyên tắc nào?",
+                        "Áp đặt",
+                        "Lợi ích cá nhân",
+                        "Yêu thương, tôn trọng",
+                        "Quyền lực",
+                        "Yêu thương, tôn trọng"
+                },
+                {
+                        "Nguyên nhân phổ biến dẫn đến mâu thuẫn gia đình là gì?",
+                        "Thiếu giao tiếp, chia sẻ",
+                        "Nhà ở chật",
+                        "Đông con",
+                        "Khác nghề nghiệp",
+                        "Thiếu giao tiếp, chia sẻ"
+                },
+                {
+                        "Gia đình có vai trò gì trong việc giữ gìn văn hóa?",
+                        "Phát minh văn hóa",
+                        "Truyền lại giá trị, truyền thống",
+                        "Quản lý xã hội",
+                        "Kiểm soát con người",
+                        "Truyền lại giá trị, truyền thống"
+                },
+                {
+                        "Gia đình ảnh hưởng đến nhân cách cá nhân thông qua yếu tố nào?",
+                        "Môi trường sống và giáo dục",
+                        "Tiền bạc",
+                        "Địa vị xã hội",
+                        "Quyền lực",
+                        "Môi trường sống và giáo dục"
+                },
+                {
+                        "Trách nhiệm chung của các thành viên trong gia đình là gì?",
+                        "Chỉ lo cho bản thân",
+                        "Chia sẻ, giúp đỡ lẫn nhau",
+                        "Phụ thuộc người khác",
+                        "Tránh trách nhiệm",
+                        "Chia sẻ, giúp đỡ lẫn nhau"
+                },
+                {
+                        "Gia đình có vai trò gì đối với xã hội hiện đại?",
+                        "Không còn quan trọng",
+                        "Chỉ mang tính cá nhân",
+                        "Là nền tảng ổn định xã hội",
+                        "Chỉ phục vụ kinh tế",
+                        "Là nền tảng ổn định xã hội"
+                },
+                {
+                        "Biểu hiện của một gia đình hạnh phúc là gì?",
+                        "Giàu có",
+                        "Ít mâu thuẫn",
+                        "Yêu thương, gắn bó",
+                        "Có nhiều tài sản",
+                        "Yêu thương, gắn bó"
+                },
+                {
+                        "Điều quan trọng nhất để xây dựng gia đình hạnh phúc là gì?",
+                        "Tiền bạc",
+                        "Quyền lực",
+                        "Sự yêu thương và tôn trọng",
+                        "Địa vị xã hội",
+                        "Sự yêu thương và tôn trọng"
                 }
-                testRepository.saveAll(tests);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        };
+
+        seedForTest(test1, questions);
+        seedForTest(test2, questions);
+        seedForTest(test3, questions);
     }
 
-    private void seedQuestionTest() throws Exception {
-        try {
-            if (questionTestRepository.count() == 0) {
-                var tests = testRepository.findAll();
-                for (var test : tests) {
-                    List<QuestionTests> questionTests = new ArrayList<>();
-                    for (int i = 1; i <= 21; i++) {
-                        questionTests.add(QuestionTests.builder()
-                                .orderNumber(i * 1L)
-                                .content("content of question " + i)
-                                .test(test)
-                                .build());
-                    }
-                    questionTestRepository.saveAll(questionTests);
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+    public void seedForTest(Test test, String[][] questions){
+        for (int i = 0; i < questions.length; i++) {
+            var question = questions[i];
+            var contentQuestion = question[0];
+            var contentOpt1 = question[1];
+            var contentOpt2 = question[2];
+            var contentOpt3 = question[3];
+            var contentOpt4 = question[4];
+            var contentAnswer = question[5];
+            var quest = QuestionTests.builder()
+                    .orderNumber((i + 1) * 1L)
+                    .content(contentQuestion)
+                    .test(test)
+                    .build();
+            questionTestRepository.saveAll(List.of(quest));
+
+
+            var op1 = QuestionOptions.builder()
+                    .content(contentOpt1)
+                    .questionTest(quest)
+                    .isAnswer(contentOpt1.equals(contentAnswer) ? 1L : 0L)// 1 is answer, 0 is no answer
+                    .build();
+            var op2 = QuestionOptions.builder()
+                    .content(contentOpt2)
+                    .questionTest(quest)
+                    .isAnswer(contentOpt2.equals(contentAnswer) ? 1L : 0L)// 1 is answer, 0 is no answer
+                    .build();
+            var op3 = QuestionOptions.builder()
+                    .content(contentOpt3)
+                    .questionTest(quest)
+                    .isAnswer(contentOpt3.equals(contentAnswer) ? 1L : 0L)// 1 is answer, 0 is no answer
+                    .build();
+            var op4 = QuestionOptions.builder()
+                    .content(contentOpt4)
+                    .questionTest(quest)
+                    .isAnswer(contentOpt4.equals(contentAnswer) ? 1L : 0L)// 1 is answer, 0 is no answer
+                    .build();
+            questionOptionRepository.saveAll(List.of(op1,op2,op3,op4));
         }
+
     }
-
-    private void seedQuestionOption() throws Exception {
-        try {
-            if (questionOptionRepository.count() == 0) {
-                var questionTests = questionTestRepository.findAll();
-                for (var questionTest : questionTests) {
-                    List<QuestionOptions> questionOptions = new ArrayList<>();
-                    for (int i = 1; i <= 4; i++) {
-                        questionOptions.add(QuestionOptions.builder()
-                                .content("content of option " + i)
-                                .questionTest(questionTest)
-                                .isAnswer(0L)
-                                .build());
-                    }
-                    questionOptions.get((new Random().nextInt(questionOptions.size()))).setIsAnswer(1L);
-                    questionOptionRepository.saveAll(questionOptions);
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-
     private void seedUser() throws Exception {
         try {
             if (userRepository.count() == 0) {

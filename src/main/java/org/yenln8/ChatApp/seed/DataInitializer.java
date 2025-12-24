@@ -292,9 +292,9 @@ public class DataInitializer {
                             .build());
 
                     User user = User.builder()
-                            .email(i == 4 ? "ChatBot@gmail.com" : "fakeUser" + i + "@gmail.com")
+                            .email(i == 4 ? "ChatBot@gmail.com" : genEmailByIndex(i))
                             .password(passwordEncoder.encode("ChatApp123456@"))
-                            .fullName(i == 4 ? "CHAT BOT" : "fakeUser" + i)
+                            .fullName(i == 4 ? "CHAT BOT" : genFullNameByIndex(i))
                             .status(User.STATUS.ACTIVE)
                             .role(User.ROLE.USER)
                             .profile(profile)
@@ -359,6 +359,68 @@ public class DataInitializer {
             e.printStackTrace();
             userRepository.deleteAll();
         }
+    }
+    public String genEmailByIndex(int i){
+        String[] emails = {
+                "john.doe@gmail.com",
+                "jane.smith@gmail.com",
+                "mike.johnson@gmail.com",
+                "sarah.wilson@gmail.com",
+                "david.brown@gmail.com",
+                "emma.davis@gmail.com",
+                "chris.miller@gmail.com",
+                "lisa.garcia@gmail.com",
+                "ryan.martinez@gmail.com",
+                "ashley.lopez@gmail.com",
+                "kevin.anderson@gmail.com",
+                "amanda.taylor@gmail.com",
+                "brandon.thomas@gmail.com",
+                "jessica.white@gmail.com",
+                "tyler.harris@gmail.com",
+                "nicole.clark@gmail.com",
+                "austin.lewis@gmail.com",
+                "stephanie.walker@gmail.com",
+                "jordan.hall@gmail.com",
+                "melissa.young@gmail.com",
+                "smith.young@gmail.com",
+        };
+
+        if(i >= 0 && i < emails.length){
+            return emails[i];
+        }
+        return "unknown@gmail.com";
+    }
+
+    public String genFullNameByIndex(int i){
+        String[] fullNames = {
+                "John Doe",
+                "Jane Smith",
+                "Mike Johnson",
+                "Sarah Wilson",
+                "David Brown",
+                "Emma Davis",
+                "Chris Miller",
+                "Lisa Garcia",
+                "Ryan Martinez",
+                "Ashley Lopez",
+                "Kevin Anderson",
+                "Amanda Taylor",
+                "Brandon Thomas",
+                "Jessica White",
+                "Tyler Harris",
+                "Nicole Clark",
+                "Austin Lewis",
+                "Stephanie Walker",
+                "Jordan Hall",
+                "Melissa Young",
+                "Melissa Smith",
+                "Bob Young"
+        };
+
+        if(i >= 0 && i < fullNames.length){
+            return fullNames[i];
+        }
+        return "Unknown User";
     }
 
     private void seedLearningNative() {

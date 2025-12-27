@@ -29,6 +29,9 @@ public class QuestionTests {
     @Column(name = "content", nullable = false)
     private String content;
 
+    @Column(name = "explains", nullable = true)
+    private String explain;
+
     @OneToMany(mappedBy = "questionTest", fetch = FetchType.LAZY)
     private List<QuestionOptions> questionOptions;
 

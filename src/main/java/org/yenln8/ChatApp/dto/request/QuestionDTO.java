@@ -17,4 +17,5 @@ public class QuestionDTO {
     private List<String> options;
     private String answer;
     private String myAnswer;
+    private String explain;
 }

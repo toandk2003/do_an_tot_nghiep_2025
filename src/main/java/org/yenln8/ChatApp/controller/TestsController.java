@@ -123,6 +123,7 @@ public class TestsController {
                                 .options(questionTest.getQuestionOptions().stream().map(QuestionOptions::getContent).toList())
                                 .answer(questionTest.getQuestionOptions().stream().filter(option -> option.getIsAnswer().equals(1L)).findFirst().get().getContent())
                                 .myAnswer(myAnswer)
+                                .explain(questionTest.getExplain())
                                 .build();
                     }).toList())
                     .build();
@@ -175,6 +176,7 @@ public class TestsController {
             var answer = answerOption.getContent();
             log.info("answer" + " " + answer);
             question.setAnswer(answer);
+            question.setExplain(questionEntity.getExplain());
 
             questionHistories.add(QuestionHistory.builder()
                     .testHistory(testHistory)

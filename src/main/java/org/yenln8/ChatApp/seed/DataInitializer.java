@@ -101,8 +101,8 @@ public class DataInitializer {
         var topicWork = topicTestRepository.findById(2L).get();       // Work
         var topicEducation = topicTestRepository.findById(3L).get();  // Education
 
-        var English = learningLanguageRepository.findById(1L).get();
-        var VietNam = learningLanguageRepository.findById(2L).get();
+        var VietNam = learningLanguageRepository.findById(1L).get();
+        var English = learningLanguageRepository.findById(2L).get();
         var Spanish = learningLanguageRepository.findById(3L).get();
         var French = learningLanguageRepository.findById(4L).get();
         var German = learningLanguageRepository.findById(5L).get();
